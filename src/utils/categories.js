@@ -204,31 +204,40 @@ export function detectCategoryFromTopic(topic = '') {
     return 'education';
   }
 
+  // Explicit hiring phrases
   if (/hiring|hire|vacancy|opening|join our team|we are hiring|we're hiring|apply now|walk-in|job alert|looking for (a|an)? (developer|engineer|designer|manager|architect)/i.test(t)) {
     return 'hiring';
   }
 
-  if (/festival|celebrat|diwali|deepavali|eid|christmas|new year|xmas|holiday|thanksgiving|pongal|holi|onam|anniversary|festive sale|black friday/i.test(t)) {
+  // Festivals & Holidays
+  if (/festival|celebrat|diwali|deepavali|eid|christmas|new year|xmas|holiday|thanksgiving|pongal|sankranti|holi|onam|anniversary|festive sale|black friday/i.test(t)) {
     return 'festival';
   }
 
-  if (/service|consulting|migration|managed service|solutions|audit|outsourcing|implementation|sla/i.test(t)) {
+  // Client Services & Consulting
+  if (/consulting|migration|managed service|solutions|audit|outsourcing|implementation|sla/i.test(t)) {
     return 'services';
   }
 
-  if (/launch|product|feature|app|saas|tool|platform|release|v[0-9]|skypro|software|pedestal|mobile app/i.test(t)) {
+  // AI & Cloud Products / Platforms / SaaS
+  if (/ai cloud|cloud ai|cloud platform|cloud computing|saas|app|platform|launch|product|feature|release|upgrade|showcase|v[0-9]|tool|api suite|automation suite|dashboard/i.test(t)) {
     return 'product';
   }
 
-  if (/top [0-9]|tips|best practices|how to|guide|architecture|vs|comparison|framework|insights|checklist/i.test(t)) {
+  // Industry Insights & Thought Leadership
+  if (/top [0-9]|tips|best practices|how to|guide|architecture|vs|comparison|framework|insights|checklist|strategy|leadership|brand|founder|finance|banking|investment|healthcare|medical|marketing|growth/i.test(t)) {
     return 'knowledge';
   }
 
-  // Default to hiring if it sounds like an engineering role name (e.g. "cloud engineer", "devops engineer", "react developer")
-  if (/engineer|developer|architect|designer|lead|manager|specialist|analyst/i.test(t)) {
+  // Job titles with role suffix
+  if (/(senior|lead|principal|junior|staff|vp|head of)\s+(engineer|developer|architect|designer|manager|analyst)|(engineer|developer|architect|designer|manager)\s+role/i.test(t)) {
     return 'hiring';
   }
 
-  return 'hiring';
+  if (/software development|coding|programming/i.test(t)) {
+    return 'product';
+  }
+
+  return 'product';
 }
 

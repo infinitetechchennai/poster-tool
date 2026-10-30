@@ -82,7 +82,7 @@ export async function renderCommonTemplate({
   // Background pattern per template
   const bgPattern = id === 'common-07' || id === 'common-11' ? 'warp-mesh' : 'dots';
 
-  // 1. Clean White & Soft Light Teal Background (NO default photos)
+  // 1. Clean White & Soft Light Teal Background (with subtle topic photo scrim if available)
   await renderPosterBackground({
     ctx,
     width,
@@ -90,7 +90,8 @@ export async function renderCommonTemplate({
     post,
     style,
     accentColor: TEAL_PRIMARY,
-    pattern: bgPattern
+    pattern: bgPattern,
+    topicImg
   });
 
   // 2. Top Branding Bar in White & Teal
@@ -325,6 +326,35 @@ async function renderCommonThoughtLeadership({
   ctx.font = '600 18px "Plus Jakarta Sans", sans-serif';
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.fillText('Infinitetech AI Insights · Published Weekly', padX + 94, curY + 54);
+
+  // 3 Action Principles / Core Takeaways filling to footerY
+  curY += authorCardH + 20;
+  const remH = footerY - curY - 14;
+  if (remH > 60) {
+    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
+    const principles = (items && items.length > 0) ? items.slice(0, 3) : [
+      'Speed as a Competitive Moat',
+      'Continuous Iteration Over Stagnation',
+      'Customer-Centric Decision Velocity'
+    ];
+    const pW = Math.round((maxW - 32) / 3);
+    principles.forEach((p, idx) => {
+      const px = padX + 16 + (idx * (pW + 8));
+      drawRoundRect(ctx, px, curY + 14, pW, remH - 28, 12);
+      ctx.fillStyle = TEAL_BG_TINT;
+      ctx.fill();
+
+      ctx.font = '900 16px "Outfit", sans-serif';
+      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.textAlign = 'center';
+      ctx.fillText(`0${idx + 1}`, px + pW / 2, curY + remH * 0.40);
+
+      ctx.font = '800 14px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = TEXT_DARK;
+      ctx.fillText(p, px + pW / 2, curY + remH * 0.70);
+    });
+    ctx.textAlign = 'left';
+  }
 }
 
 /**
@@ -732,6 +762,36 @@ async function renderCommonDidYouKnow({
     ctx.fillText(l, padX + 220, dY);
     dY += 32;
   });
+
+  // 3 Complementary Research Metrics inside card
+  const subY = curY + cardH - 100;
+  if (subY > dY + 16) {
+    const researchBadges = (items && items.length > 0) ? items.slice(0, 3) : [
+      '60,000x Faster Processing',
+      '82% Increased Recall',
+      '4.2x Organic Shares'
+    ];
+    const bW = Math.round((maxW - 64) / 3);
+    researchBadges.forEach((rb, idx) => {
+      const bx = padX + 24 + (idx * (bW + 8));
+      drawRoundRect(ctx, bx, subY, bW, 76, 12);
+      ctx.fillStyle = TEAL_BG_TINT;
+      ctx.fill();
+      ctx.strokeStyle = TEAL_BORDER;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      ctx.font = '900 16px "Outfit", sans-serif';
+      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.textAlign = 'center';
+      ctx.fillText(rb, bx + bW / 2, subY + 32);
+
+      ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillText('Empirically Verified', bx + bW / 2, subY + 56);
+    });
+    ctx.textAlign = 'left';
+  }
 }
 
 /**
@@ -1001,6 +1061,26 @@ async function renderCommonWeeklyDigest({
 
     curY += cardH + 14;
   });
+
+  // Bottom Executive Editorial Note Strip (fills to footerY)
+  const remH = footerY - curY - 14;
+  if (remH > 50) {
+    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 14 });
+    const pills = ['48 Editions Published', '25,000+ Tech Subscribers', '100% Free Weekly Access'];
+    const pW = Math.round(maxW / 3);
+    pills.forEach((p, idx) => {
+      const px = padX + (idx * pW);
+      ctx.font = '900 16px "Outfit", sans-serif';
+      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.textAlign = 'center';
+      ctx.fillText(p, px + pW / 2, curY + remH * 0.44);
+
+      ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillText('Verified Executive Intelligence', px + pW / 2, curY + remH * 0.74);
+    });
+    ctx.textAlign = 'left';
+  }
 }
 
 /**

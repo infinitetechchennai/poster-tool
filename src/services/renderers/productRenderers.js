@@ -64,7 +64,7 @@ export async function renderProductTemplate({
 
   const bgPattern = id === 'product-04' || id === 'product-08' ? 'warp-mesh' : 'dots';
 
-  // 1. Clean White & Soft Light Teal Background (NO default photos)
+  // 1. Clean White & Soft Light Teal Background (with subtle topic photo scrim if available)
   await renderPosterBackground({
     ctx,
     width,
@@ -72,7 +72,8 @@ export async function renderProductTemplate({
     post,
     style,
     accentColor: TEAL_PRIMARY,
-    pattern: bgPattern
+    pattern: bgPattern,
+    topicImg
   });
 
   // 2. Top Branding Bar in White & Teal
@@ -92,26 +93,26 @@ export async function renderProductTemplate({
 
   // 3. Layout Dispatcher based on template ID (All 10 distinct layouts)
   if (id === 'product-01') {
-    await renderProductPedestalPhone({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape });
+    await renderProductPedestalPhone({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg });
   } else if (id === 'product-02') {
-    await renderProductBalanceScale({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape });
+    await renderProductBalanceScale({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg });
   } else if (id === 'product-03') {
-    await renderProductDashboard({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape });
+    await renderProductDashboard({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg });
   } else if (id === 'product-04') {
-    await renderProductHardwareGadget({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape });
+    await renderProductHardwareGadget({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg });
   } else if (id === 'product-05') {
-    await renderProductChangelog({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape });
+    await renderProductChangelog({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg });
   } else if (id === 'product-06') {
-    await renderProductCopilotWorkstation({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape });
+    await renderProductCopilotWorkstation({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg });
   } else if (id === 'product-07') {
-    await renderProductMobileApp({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape });
+    await renderProductMobileApp({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg });
   } else if (id === 'product-08') {
-    await renderProductCyberneticCore({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape });
+    await renderProductCyberneticCore({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg });
   } else if (id === 'product-09') {
-    await renderProductSecuritySuite({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape });
+    await renderProductSecuritySuite({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg });
   } else {
     // product-10 & default: Minimalist Product Hero
-    await renderProductMinimalHero({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape });
+    await renderProductMinimalHero({ ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg });
   }
 
   // 4. Bottom Call To Action & Contact Capsule
@@ -134,7 +135,7 @@ export async function renderProductTemplate({
  * PRODUCT-01: Step Into Infinity (3D Smartphone on Cylindrical Pedestal)
  */
 async function renderProductPedestalPhone({
-  ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape
+  ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg
 }) {
   const cx = width / 2;
   let curY = contentTopY;
@@ -211,12 +212,16 @@ async function renderProductPedestalPhone({
   ctx.fillStyle = '#0F172A';
   ctx.fill();
 
-  if (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width) {
+  const heroImg = (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width)
+    ? post.uploadedImage
+    : (topicImg && topicImg.width ? topicImg : null);
+
+  if (heroImg) {
     ctx.save();
     ctx.beginPath();
     drawRoundRect(ctx, phoneX + 8, phoneY + 8, phoneW - 16, phoneH - 16, 18);
     ctx.clip();
-    const img = post.uploadedImage;
+    const img = heroImg;
     const scale = Math.max((phoneW - 16) / img.width, (phoneH - 16) / img.height);
     const iw = img.width * scale;
     const ih = img.height * scale;
@@ -248,6 +253,32 @@ async function renderProductPedestalPhone({
   // Floating Badges on Left & Right
   drawFloatingGlossyBadge(ctx, phoneX - 60, phoneY + 90, 72, '🚀', TEAL_PRIMARY, '#FFFFFF');
   drawFloatingGlossyBadge(ctx, phoneX + phoneW + 60, phoneY + 180, 72, '⚡', TEAL_PRIMARY, '#FFFFFF');
+
+  // 3 Feature Highlight Cards below pedestal (fills to footerY)
+  const belowY = pedY + pedH + 36;
+  const remH = footerY - belowY - 14;
+  if (remH > 50) {
+    const featItems = (features && features.length > 0) ? features.slice(0, 3) : [
+      'Zero-Latency Sync',
+      'End-to-End Encryption',
+      'Cross-Platform Ecosystem'
+    ];
+    const featW = Math.round((width - padX * 2 - 24) / 3);
+    featItems.forEach((f, idx) => {
+      const fx = padX + (idx * (featW + 12));
+      drawWhiteTealCard({ ctx, x: fx, y: belowY, w: featW, h: remH, radius: 14 });
+
+      ctx.font = '900 16px "Outfit", sans-serif';
+      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.textAlign = 'center';
+      ctx.fillText(f, fx + featW / 2, belowY + remH * 0.44);
+
+      ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillText('Enterprise Ready Tier', fx + featW / 2, belowY + remH * 0.74);
+    });
+    ctx.textAlign = 'left';
+  }
 }
 
 /**
@@ -452,12 +483,16 @@ async function renderProductHardwareGadget({
   const cardH = footerY - curY - 20;
   drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: cardH, radius: 20 });
 
-  if (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width) {
+  const heroImg = (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width)
+    ? post.uploadedImage
+    : (topicImg && topicImg.width ? topicImg : null);
+
+  if (heroImg) {
     ctx.save();
     ctx.beginPath();
     drawRoundRect(ctx, padX + 12, curY + 12, maxW - 24, cardH - 24, 16);
     ctx.clip();
-    const img = post.uploadedImage;
+    const img = heroImg;
     const scale = Math.max((maxW - 24) / img.width, (cardH - 24) / img.height);
     const iw = img.width * scale;
     const ih = img.height * scale;
@@ -564,6 +599,30 @@ async function renderProductChangelog({
 
     curY += logH + 14;
   });
+
+  // Bottom Performance Metrics Strip (fills to footerY)
+  const remH = footerY - curY - 14;
+  if (remH > 50) {
+    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 14 });
+    const metrics = [
+      { v: '50+', l: 'Bespoke Templates' },
+      { v: '< 1s', l: 'Canvas Vector Math' },
+      { v: '100%', l: 'Spelling Accuracy' }
+    ];
+    const mW = Math.round(maxW / 3);
+    metrics.forEach((m, idx) => {
+      const mx = padX + (idx * mW);
+      ctx.font = '900 24px "Outfit", sans-serif';
+      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.textAlign = 'center';
+      ctx.fillText(m.v, mx + mW / 2, curY + remH * 0.44);
+
+      ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillText(m.l, mx + mW / 2, curY + remH * 0.76);
+    });
+    ctx.textAlign = 'left';
+  }
 }
 
 /**
@@ -571,7 +630,7 @@ async function renderProductChangelog({
  * "Your Workstation Just Got A Brain"
  */
 async function renderProductCopilotWorkstation({
-  ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape
+  ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg
 }) {
   let curY = contentTopY;
   const maxW = width - padX * 2;
@@ -798,6 +857,31 @@ async function renderProductSecuritySuite({
       dy += 22;
     });
   });
+
+  // Bottom Compliance & Trust Strip (fills to footerY)
+  curY += (bH * 2) + 36;
+  const remH = footerY - curY - 14;
+  if (remH > 50) {
+    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 14 });
+    const certs = [
+      { t: 'SOC 2 TYPE II', d: 'Independently Audited' },
+      { t: 'ISO 27001', d: 'Global Infosec Standard' },
+      { t: 'HIPAA & GDPR', d: 'Zero-Leakage Guarantee' }
+    ];
+    const cW = Math.round(maxW / 3);
+    certs.forEach((c, idx) => {
+      const cx = padX + (idx * cW);
+      ctx.font = '900 18px "Outfit", sans-serif';
+      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.textAlign = 'center';
+      ctx.fillText(c.t, cx + cW / 2, curY + remH * 0.42);
+
+      ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillText(c.d, cx + cW / 2, curY + remH * 0.74);
+    });
+    ctx.textAlign = 'left';
+  }
 }
 
 /**
@@ -805,7 +889,7 @@ async function renderProductSecuritySuite({
  * "Simplicity Is The Ultimate Sophistication"
  */
 async function renderProductMinimalHero({
-  ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape
+  ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg
 }) {
   const cx = width / 2;
   let curY = contentTopY + 20;
@@ -838,12 +922,16 @@ async function renderProductMinimalHero({
   const heroH = footerY - curY - 20;
   drawWhiteTealCard({ ctx, x: padX, y: curY, w: heroW, h: heroH, radius: 20 });
 
-  if (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width) {
+  const heroImg = (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width)
+    ? post.uploadedImage
+    : (topicImg && topicImg.width ? topicImg : null);
+
+  if (heroImg) {
     ctx.save();
     ctx.beginPath();
     drawRoundRect(ctx, padX + 12, curY + 12, heroW - 24, heroH - 24, 16);
     ctx.clip();
-    const img = post.uploadedImage;
+    const img = heroImg;
     const scale = Math.max((heroW - 24) / img.width, (heroH - 24) / img.height);
     const iw = img.width * scale;
     const ih = img.height * scale;

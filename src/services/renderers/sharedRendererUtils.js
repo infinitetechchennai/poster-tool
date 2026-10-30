@@ -46,25 +46,32 @@ export async function renderPosterBackground({
   post,
   style,
   accentColor = TEAL_PRIMARY,
-  pattern = 'dots'
+  pattern = 'dots',
+  topicImg = null
 }) {
   ctx.save();
 
-  // If user explicitly uploaded their own image
-  if (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width) {
-    const img = post.uploadedImage;
-    const scale = Math.max(width / img.width, height / img.height);
-    const dw = img.width * scale;
-    const dh = img.height * scale;
+  // Resolve photo from user upload OR matched local images_AI folder
+  const bgImg = (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width)
+    ? post.uploadedImage
+    : (topicImg && topicImg.width && (post?.useImageBackground || post?.category === 'festival' || style?.id?.startsWith('festival-') || post?.category === 'product' || post?.category === 'knowledge'))
+      ? topicImg
+      : null;
+
+  if (bgImg && bgImg.width > 0) {
+    const scale = Math.max(width / bgImg.width, height / bgImg.height);
+    const dw = bgImg.width * scale;
+    const dh = bgImg.height * scale;
     const dx = (width - dw) / 2;
     const dy = (height - dh) / 2;
-    ctx.drawImage(img, dx, dy, dw, dh);
+    ctx.drawImage(bgImg, dx, dy, dw, dh);
 
-    // Subtle light scrim so text remains 100% readable
+    // Subtle light scrim so clean white cards, teal typography & branding remain 100% crisp and readable
     const scrim = ctx.createLinearGradient(0, 0, 0, height);
-    scrim.addColorStop(0, 'rgba(255, 255, 255, 0.90)');
-    scrim.addColorStop(0.6, 'rgba(255, 255, 255, 0.94)');
-    scrim.addColorStop(1, 'rgba(255, 255, 255, 0.98)');
+    scrim.addColorStop(0, 'rgba(255, 255, 255, 0.88)');
+    scrim.addColorStop(0.35, 'rgba(255, 255, 255, 0.92)');
+    scrim.addColorStop(0.75, 'rgba(255, 255, 255, 0.95)');
+    scrim.addColorStop(1, 'rgba(240, 253, 250, 0.98)');
     ctx.fillStyle = scrim;
     ctx.fillRect(0, 0, width, height);
     ctx.restore();
@@ -417,7 +424,7 @@ export function drawPosterHeadline(ctx, {
  * 5. Signature Fluid Wave Ribbon (seen in AppX / hiring 2.jpg)
  * Draws a flowing curved wave down the right side with a clipping mask for photo / workspace
  */
-export function drawFluidWaveHero(ctx, width, height, post, accentColor = TEAL_PRIMARY) {
+export function drawFluidWaveHero(ctx, width, height, post, accentColor = TEAL_PRIMARY, topicImg = null) {
   ctx.save();
   const waveStartX = Math.round(width * 0.52);
 
@@ -449,9 +456,10 @@ export function drawFluidWaveHero(ctx, width, height, post, accentColor = TEAL_P
   ctx.fillStyle = waveGrad;
   ctx.fillRect(waveStartX - 100, 0, width, height);
 
-  // If user uploaded an image, draw it clipped inside the wave
-  if (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width) {
-    const img = post.uploadedImage;
+  // If user uploaded an image or topicImg available, draw it clipped inside the wave
+  const waveImg = (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width) ? post.uploadedImage : (post?.useImageInHero !== false && topicImg && topicImg.width ? topicImg : null);
+  if (waveImg) {
+    const img = waveImg;
     const waveW = width - waveStartX + 50;
     const scale = Math.max(waveW / img.width, height / img.height);
     const iw = img.width * scale;
@@ -518,7 +526,7 @@ export function drawFluidWaveHero(ctx, width, height, post, accentColor = TEAL_P
 /**
  * 6. Signature Diagonal Cut Ribbon (seen in Skillmount / hiring 4.jpg)
  */
-export function drawDiagonalHeroRibbon(ctx, width, height, post, accentColor = TEAL_PRIMARY) {
+export function drawDiagonalHeroRibbon(ctx, width, height, post, accentColor = TEAL_PRIMARY, topicImg = null) {
   ctx.save();
 
   // Thick diagonal ribbon cutting across
@@ -550,11 +558,12 @@ export function drawDiagonalHeroRibbon(ctx, width, height, post, accentColor = T
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  // If user uploaded an image, clip it into the diagonal band
-  if (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width) {
+  // If user uploaded an image or topicImg available, clip it into the diagonal band
+  const ribbonImg = (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width) ? post.uploadedImage : (post?.useImageInHero !== false && topicImg && topicImg.width ? topicImg : null);
+  if (ribbonImg) {
     ctx.save();
     ctx.clip();
-    const img = post.uploadedImage;
+    const img = ribbonImg;
     const scale = Math.max(width / img.width, height / img.height);
     const iw = img.width * scale;
     const ih = img.height * scale;
@@ -1232,4 +1241,101 @@ export function drawCrescentMoonAndLanterns(ctx, cx, cy, size = 60, color = TEAL
   ctx.fillStyle = '#F59E0B';
   ctx.fill();
   ctx.restore();
+}
+
+/**
+ * Calculate dynamic card height to evenly distribute remaining vertical space
+ */
+export function calculateDynamicCardHeight({
+  availableH,
+  itemCount = 3,
+  gap = 14,
+  minCardH = 64,
+  maxCardH = 160
+}) {
+  const count = Math.max(1, itemCount);
+  const totalGaps = gap * (count - 1);
+  const idealH = Math.floor((availableH - totalGaps) / count);
+  return Math.min(maxCardH, Math.max(minCardH, idealH));
+}
+
+/**
+ * Draw a vertically distributed stack of dynamic cards that fills to footerY
+ */
+export function drawDynamicVerticalCards({
+  ctx,
+  items,
+  x,
+  startY,
+  w,
+  footerY,
+  gap = 14,
+  showIndex = true,
+  icon = 'check',
+  accentColor = TEAL_PRIMARY
+}) {
+  const count = Math.max(1, Math.min(items.length, 5));
+  const availableH = footerY - startY - 14;
+  const cardH = calculateDynamicCardHeight({ availableH, itemCount: count, gap });
+
+  let curY = startY;
+  items.slice(0, count).forEach((item, idx) => {
+    drawWhiteTealCard({ ctx, x, y: curY, w, h: cardH, radius: 14 });
+
+    const badgeSize = Math.min(42, Math.max(32, Math.floor(cardH * 0.45)));
+    const badgeX = x + 18;
+    const badgeY = curY + (cardH - badgeSize) / 2;
+
+    drawRoundRect(ctx, badgeX, badgeY, badgeSize, badgeSize, 10);
+    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fill();
+    ctx.strokeStyle = accentColor;
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    if (showIndex) {
+      ctx.font = '900 18px "Outfit", sans-serif';
+      ctx.fillStyle = accentColor;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`0${idx + 1}`, badgeX + badgeSize / 2, badgeY + badgeSize / 2);
+    } else {
+      drawCheckmarkIcon(ctx, badgeX + badgeSize / 2, badgeY + badgeSize / 2, 20, accentColor);
+    }
+
+    const textX = badgeX + badgeSize + 16;
+    const textW = w - (badgeSize + 52);
+    const itemText = typeof item === 'string' ? item : (item.title || item.k || '');
+    const subText = typeof item === 'object' ? (item.desc || item.v || '') : '';
+
+    if (subText) {
+      ctx.font = '900 19px "Outfit", sans-serif';
+      ctx.fillStyle = TEXT_DARK;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(itemText, textX, curY + 16);
+
+      ctx.font = '600 14px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = TEXT_MUTED;
+      wrapText(ctx, subText, textW).slice(0, 2).forEach((l, li) => {
+        ctx.fillText(l, textX, curY + 42 + (li * 20));
+      });
+    } else {
+      ctx.font = '800 18px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = TEXT_DARK;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      const lines = wrapText(ctx, itemText, textW);
+      if (lines.length === 1) {
+        ctx.fillText(lines[0], textX, curY + cardH / 2);
+      } else {
+        ctx.fillText(lines[0], textX, curY + cardH / 2 - 12);
+        ctx.fillText(lines[1], textX, curY + cardH / 2 + 14);
+      }
+    }
+
+    curY += cardH + gap;
+  });
+
+  return curY;
 }

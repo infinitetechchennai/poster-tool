@@ -5,6 +5,7 @@
  */
 
 import { drawRoundRect } from './textLayout.js';
+import { pickImageForTopic, getLocalImagesForTopic, LOCAL_AI_FOLDERS } from './localAiImages.js';
 
 export const TOPIC_IMAGE_PRESETS = [
   {
@@ -167,37 +168,51 @@ function keywordMatches(text, keyword) {
   return regex.test(text);
 }
 
-export function getTopicRelatedImage(topic = '', headline = '', category = '', customImageUrl = '') {
+export function getTopicRelatedImage(topic = '', headline = '', category = '', customImageUrl = '', imageIndex = 0) {
   if (customImageUrl && customImageUrl.trim()) {
     return {
       id: 'custom',
-      label: 'Custom Image',
+      label: 'Selected Visual',
       tag: '🖼️ FEATURED VISUAL',
       url: customImageUrl.trim()
     };
   }
 
-  const query = `${topic} ${headline} ${category}`.toLowerCase();
+  const query = `${topic} ${headline} ${category}`.trim();
 
-  // 1. Check for specific multi-word phrases first (e.g. "ai cloud", "ai marketing", "data engineering")
+  // 1. Prioritize Curated Local AI Images from C:\Users\katana\Downloads\images_AI
+  const localMatch = pickImageForTopic(query || 'ai cloud', category, imageIndex);
+  if (localMatch && localMatch.image?.url) {
+    return {
+      id: localMatch.folder.id,
+      label: `${localMatch.folder.label}: ${localMatch.image.name}`,
+      tag: `📸 ${localMatch.folder.label.toUpperCase()}`,
+      url: localMatch.image.url,
+      folder: localMatch.folder,
+      image: localMatch.image,
+      index: localMatch.index,
+      total: localMatch.total
+    };
+  }
+
+  // 2. Fallback to Topic Presets
+  const qLower = query.toLowerCase();
   for (const preset of TOPIC_IMAGE_PRESETS) {
     for (const kw of preset.keywords) {
-      if (kw.includes(' ') && keywordMatches(query, kw)) {
+      if (kw.includes(' ') && keywordMatches(qLower, kw)) {
         return preset;
       }
     }
   }
 
-  // 2. Check for single-word keywords with strict word boundaries
   for (const preset of TOPIC_IMAGE_PRESETS) {
     for (const kw of preset.keywords) {
-      if (!kw.includes(' ') && keywordMatches(query, kw)) {
+      if (!kw.includes(' ') && keywordMatches(qLower, kw)) {
         return preset;
       }
     }
   }
 
-  // Default to AI Core or Circuit
   return TOPIC_IMAGE_PRESETS[0];
 }
 

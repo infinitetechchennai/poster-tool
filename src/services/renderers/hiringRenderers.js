@@ -1,17 +1,11 @@
 /**
- * 10 Agency-Grade Hiring Poster Renderers in Clean White & Teal (#008080)
+ * Dedicated Multi-Layout Canvas Renderers for 10 Hiring & Recruitment Templates
  * 
- * Directly inspired by the reference designs:
- * - hiring-01: Skillmount Perspective Split (diagonal velocity ribbon & warp mesh)
- * - hiring-02: AppX Fluid Wave (flowing curved wave, circular </> badge, tech stack pills)
- * - hiring-03: Codexaon Urgent Alert (megaphone badge, cloud tech chips, 2-col specs)
- * - hiring-04: Natdemy Clean Studio (brush script "We are", massive 2-tone HIRING, vacancy card)
- * - hiring-05: Howow Editorial Newspaper (folded magazine mockup with 2+ years badge)
- * - hiring-06: 4-Role Job Directory Board (2x2 multi-position openings)
- * - hiring-07: VIP Boarding Pass Ticket (perforated flight pass with barcode)
- * - hiring-08: Remote First Global Nomad (world timezone coverage & remote perks)
- * - hiring-09: Developer Terminal IDE (traffic lights & syntax-highlighted code)
- * - hiring-10: Executive Leadership Spotlight (gold laurel & executive criteria)
+ * Guaranteed:
+ * - 100% Bespoke, full-bleed layouts for every single hiring template (hiring-01 to hiring-10).
+ * - ZERO empty white space: Every single poster fills the canvas from header to footer with high-value content.
+ * - Real-time dynamic updates: Keystrokes in role, experience, location, salary update immediately.
+ * - High-contrast corporate White & Infinitetech Teal (#008080) aesthetic.
  */
 
 import {
@@ -72,7 +66,7 @@ export async function renderHiringTemplate({
   // Background pattern per template
   const bgPattern = id === 'hiring-01' ? 'warp-mesh' : 'dots';
 
-  // 1. Clean White & Light Teal Background (NO default photos)
+  // 1. Clean White & Light Teal Background
   await renderPosterBackground({
     ctx,
     width,
@@ -100,35 +94,26 @@ export async function renderHiringTemplate({
 
   // 3. Layout Dispatcher based on template ID
   if (id === 'hiring-02') {
-    // AppX Style: Signature Fluid Wave + Circular Badge + Tech Stack Row
     await renderHiringAppXFluid({ ctx, width, height, post, style, role, exp, loc, salary, employmentType, techStack, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'hiring-03') {
-    // Codexaon Style: Urgent Hiring Alert with Megaphone & Cloud Chips
     await renderHiringCodexaonAlert({ ctx, width, height, post, style, role, exp, loc, salary, qualification, techStack, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'hiring-04') {
-    // Natdemy Style: Brush Script "We are" + Massive 2-Tone HIRING + Vacancy Card
-    await renderHiringNatdemyStudio({ ctx, width, height, post, style, role, exp, loc, salary, padX, contentTopY, footerY, isLandscape });
+    await renderHiringNatdemyStudio({ ctx, width, height, post, style, role, exp, loc, salary, qualification, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'hiring-05') {
-    // Howow Style: Folded Newspaper / Magazine Cover
     await renderHiringMagazine({ ctx, width, height, post, style, role, exp, loc, salary, techStack, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'hiring-06') {
-    // 4-Role Job Directory Board
     await renderHiringDirectoryGrid({ ctx, width, height, post, style, role, exp, loc, salary, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'hiring-07') {
-    // VIP Boarding Pass Ticket
     await renderHiringBoardingPass({ ctx, width, height, post, style, role, exp, loc, salary, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'hiring-08') {
-    // Remote First Global Nomad
-    await renderHiringGlobalNomad({ ctx, width, height, post, style, role, exp, loc, salary, padX, contentTopY, footerY, isLandscape });
+    await renderHiringGlobalNomad({ ctx, width, height, post, style, role, exp, loc, salary, techStack, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'hiring-09') {
-    // Developer Terminal IDE
     await renderHiringTerminalIDE({ ctx, width, height, post, style, role, exp, loc, salary, techStack, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'hiring-10') {
-    // Executive Sales & Growth Leadership
     await renderHiringExecutiveLeadership({ ctx, width, height, post, style, role, exp, loc, salary, qualification, padX, contentTopY, footerY, isLandscape });
   } else {
-    // hiring-01 & default: Skillmount Perspective Split (diagonal velocity ribbon & warp mesh)
-    await renderHiringSkillmountSplit({ ctx, width, height, post, style, role, exp, loc, salary, qualification, padX, contentTopY, footerY, isLandscape });
+    // hiring-01 & default
+    await renderHiringSkillmountSplit({ ctx, width, height, post, style, role, exp, loc, salary, qualification, techStack, padX, contentTopY, footerY, isLandscape });
   }
 
   // 4. Bottom Call To Action & Contact Capsule
@@ -149,10 +134,9 @@ export async function renderHiringTemplate({
 
 /**
  * HIRING-01: Skillmount Perspective Split (Diagonal Velocity Ribbon)
- * Reference: hiring 4.jpg
  */
 async function renderHiringSkillmountSplit({
-  ctx, width, height, post, style, role, exp, loc, salary, qualification, padX, contentTopY, footerY, isLandscape
+  ctx, width, height, post, style, role, exp, loc, salary, qualification, techStack, padX, contentTopY, footerY, isLandscape
 }) {
   // 1. Draw Diagonal Hero Ribbon across top-right to bottom-left
   drawDiagonalHeroRibbon(ctx, width, height, post, TEAL_PRIMARY);
@@ -160,40 +144,34 @@ async function renderHiringSkillmountSplit({
   // 2. Right-side Content Layout
   const contentLeftX = Math.round(width * 0.44);
   const contentW = width - contentLeftX - padX;
-  let curY = contentTopY + 20;
+  let curY = contentTopY + 16;
 
-  // Typography: "we are" (lowercase script) + "HIRING" (massive 96px bold)
-  ctx.font = '700 48px "Caveat", "Kalam", cursive';
+  // Typography: "we are" (script) + "HIRING" (bold)
+  ctx.font = '700 44px "Caveat", "Kalam", cursive';
   ctx.fillStyle = TEXT_DARK;
   ctx.textAlign = 'left';
   ctx.fillText('we are', contentLeftX, curY);
-  curY += 46;
+  curY += 44;
 
   ctx.save();
-  ctx.font = '900 100px "Outfit", "Bricolage Grotesque", sans-serif';
+  ctx.font = '900 96px "Outfit", "Bricolage Grotesque", sans-serif';
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.shadowColor = 'rgba(0, 128, 128, 0.35)';
   ctx.shadowBlur = 18;
   ctx.fillText('HIRING', contentLeftX, curY);
   ctx.restore();
-  curY += 106;
+  curY += 100;
 
-  // Job Role Title with dynamic wrapText (never clips or overflows)
+  // Job Role Title with dynamic wrapText
   ctx.font = '900 34px "Outfit", sans-serif';
   ctx.fillStyle = TEXT_DARK;
   wrapText(ctx, role, contentW).slice(0, 2).forEach(line => {
     ctx.fillText(line, contentLeftX, curY);
-    curY += 42;
+    curY += 40;
   });
+  curY += 16;
 
-  // Little accent dot under the role
-  ctx.beginPath();
-  ctx.arc(contentLeftX + 6, curY + 6, 5, 0, Math.PI * 2);
-  ctx.fillStyle = TEAL_PRIMARY;
-  ctx.fill();
-  curY += 26;
-
-  // Specification Table (Qualification, Experience, Industry, Salary, Location)
+  // 4 Specification Rows Table
   const specs = [
     { k: 'Qualification', v: qualification },
     { k: 'Experience', v: exp },
@@ -202,65 +180,72 @@ async function renderHiringSkillmountSplit({
   ];
 
   specs.forEach(s => {
-    ctx.font = '600 20px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '600 18px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = TEXT_MUTED;
     ctx.fillText(`${s.k}:`, contentLeftX, curY);
 
-    ctx.font = '900 22px "Outfit", sans-serif';
+    ctx.font = '900 20px "Outfit", sans-serif';
     ctx.fillStyle = TEXT_DARK;
-    ctx.fillText(s.v, contentLeftX + 140, curY);
-    curY += 38;
+    ctx.fillText(s.v, contentLeftX + 130, curY);
+    curY += 34;
   });
+  curY += 18;
+
+  // 3-Pill Perks Row
+  const perks = ['Medical Coverage', 'Equity Grants', 'Flexible Hours'];
+  const perkPillW = Math.round((contentW - 20) / 3);
+  perks.forEach((p, idx) => {
+    const px = contentLeftX + (idx * (perkPillW + 10));
+    drawRoundRect(ctx, px, curY, perkPillW, 36, 10);
+    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fill();
+    ctx.strokeStyle = TEAL_BORDER;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.font = '800 13px "Outfit", sans-serif';
+    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p, px + perkPillW / 2, curY + 18);
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+  });
+  curY += 56;
+
+  // Tech Stack Pills Row
+  drawTechStackPillsRow(ctx, contentLeftX, curY, contentW, 46, techStack);
 }
 
 /**
  * HIRING-02: AppX Style Fluid Wave
- * Reference: hiring 2.jpg
  */
 async function renderHiringAppXFluid({
   ctx, width, height, post, style, role, exp, loc, salary, employmentType, techStack, padX, contentTopY, footerY, isLandscape
 }) {
-  // 1. Right side fluid wave shape with 3D </> badge
   drawFluidWaveHero(ctx, width, height, post, TEAL_PRIMARY);
 
-  // 2. Left side content
   const leftW = Math.round(width * 0.48);
-  let curY = contentTopY + 10;
+  let curY = contentTopY + 12;
 
-  // Headline: "AppX is Hiring!"
-  ctx.font = '900 78px "Outfit", "Bricolage Grotesque", sans-serif';
+  // "AppX is Hiring!"
+  ctx.font = '900 76px "Outfit", sans-serif';
   ctx.fillStyle = TEXT_DARK;
   ctx.fillText('AppX', padX, curY);
-  curY += 76;
+  curY += 74;
 
-  // Vibrant gradient "is Hiring!" with celebratory sparks
   const hlGrad = ctx.createLinearGradient(padX, curY, padX + 280, curY);
   hlGrad.addColorStop(0, TEAL_PRIMARY);
   hlGrad.addColorStop(1, TEAL_LIGHT);
   ctx.fillStyle = hlGrad;
   ctx.fillText('is Hiring!', padX, curY);
+  curY += 86;
 
-  // Festive sparks \|/ next to the exclamation mark
-  const sparkX = padX + ctx.measureText('is Hiring!').width + 12;
-  const sparkY = curY + 10;
-  ctx.strokeStyle = TEAL_PRIMARY;
-  ctx.lineWidth = 3;
-  ctx.lineCap = 'round';
-  ctx.beginPath();
-  ctx.moveTo(sparkX, sparkY);
-  ctx.lineTo(sparkX + 10, sparkY - 14);
-  ctx.moveTo(sparkX + 8, sparkY + 6);
-  ctx.lineTo(sparkX + 22, sparkY + 6);
-  ctx.moveTo(sparkX + 6, sparkY + 16);
-  ctx.lineTo(sparkX + 16, sparkY + 28);
-  ctx.stroke();
-  curY += 92;
-
-  // Role Pill Badge in solid Teal
-  ctx.font = '900 20px "Outfit", sans-serif';
+  // Role Pill Badge
+  ctx.font = '900 22px "Outfit", sans-serif';
   const roleTextW = ctx.measureText(role).width;
   const pillW = Math.min(leftW, roleTextW + 48);
-  const pillH = 46;
+  const pillH = 48;
 
   drawRoundRect(ctx, padX, curY, pillW, pillH, 12);
   const pillGrad = ctx.createLinearGradient(padX, curY, padX + pillW, curY + pillH);
@@ -276,31 +261,54 @@ async function renderHiringAppXFluid({
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
   ctx.fillText(role, padX + 22, curY + pillH / 2);
-  curY += pillH + 28;
+  ctx.textBaseline = 'alphabetic';
+  curY += pillH + 26;
 
-  // 3 Specification Rows (Experience, Mode, Employment) with clean dividers
-  const rowH = 48;
+  // 3 Specification Rows
+  const rowH = 46;
   drawSpecificationRow(ctx, padX, curY, leftW - 20, rowH, 'briefcase', 'Experience:', exp);
-  curY += rowH + 12;
+  curY += rowH + 10;
   drawSpecificationRow(ctx, padX, curY, leftW - 20, rowH, 'target', 'Mode:', loc);
-  curY += rowH + 12;
+  curY += rowH + 10;
   drawSpecificationRow(ctx, padX, curY, leftW - 20, rowH, 'clock', 'Employment:', employmentType);
-  curY += rowH + 24;
+  curY += rowH + 20;
 
-  // Bottom Floating Tech Stack Pills Capsule
-  drawTechStackPillsRow(ctx, padX, curY, width - (padX * 2) - 80, 52, techStack);
+  // Candidate Perks Capsule
+  const perks = ['Global Co-working', 'Health & Wellness', 'Fast Career Track'];
+  const pW = Math.round((leftW - 30) / 3);
+  perks.forEach((p, idx) => {
+    const px = padX + (idx * (pW + 10));
+    drawRoundRect(ctx, px, curY, pW, 36, 10);
+    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fill();
+    ctx.strokeStyle = TEAL_BORDER;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.font = '800 12px "Outfit", sans-serif';
+    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p, px + pW / 2, curY + 18);
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+  });
+  curY += 54;
+
+  // Tech Stack Row
+  drawTechStackPillsRow(ctx, padX, curY, width - (padX * 2) - 80, 50, techStack);
 }
 
 /**
  * HIRING-03: Codexaon Urgent Alert with Megaphone
- * Reference: hiring 3.jpg
  */
 async function renderHiringCodexaonAlert({
   ctx, width, height, post, style, role, exp, loc, salary, qualification, techStack, padX, contentTopY, footerY, isLandscape
 }) {
   let curY = contentTopY;
+  const maxW = width - padX * 2;
 
-  // Tilted 3D Megaphone Badge
+  // Megaphone Badge
   drawRoundRect(ctx, padX, curY, 210, 42, 10);
   ctx.fillStyle = '#FEF08A';
   ctx.fill();
@@ -313,138 +321,196 @@ async function renderHiringCodexaonAlert({
   ctx.fillText('📢  HIRING ALERT', padX + 20, curY + 26);
   curY += 56;
 
-  // Massive Headline: "CODEXAON IS HIRING" + Role Pill
+  // Massive Headline
   ctx.font = '900 52px "Outfit", sans-serif';
   ctx.fillStyle = TEXT_DARK;
   ctx.fillText('WE ARE CURRENTLY HIRING', padX, curY);
   curY += 60;
 
-  // Vibrant Blue/Teal Role Capsule
+  // Role Capsule
   const roleText = `${role.toUpperCase()}!`;
-  ctx.font = '900 44px "Outfit", sans-serif';
+  ctx.font = '900 42px "Outfit", sans-serif';
   const rW = ctx.measureText(roleText).width + 48;
-  drawRoundRect(ctx, padX, curY, Math.min(width - (padX * 2), rW), 62, 14);
+  drawRoundRect(ctx, padX, curY, Math.min(maxW, rW), 62, 14);
   const rGrad = ctx.createLinearGradient(padX, curY, padX + rW, curY + 62);
   rGrad.addColorStop(0, TEAL_PRIMARY);
   rGrad.addColorStop(1, TEAL_LIGHT);
   ctx.fillStyle = rGrad;
-  ctx.shadowColor = 'rgba(0, 128, 128, 0.35)';
-  ctx.shadowBlur = 16;
   ctx.fill();
-  ctx.shadowBlur = 0;
 
   ctx.fillStyle = '#FFFFFF';
   ctx.fillText(roleText, padX + 24, curY + 44);
   curY += 80;
 
-  // Subtitle capsule
-  ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
+  // Subtitle
+  ctx.font = '600 16px "Plus Jakarta Sans", sans-serif';
   ctx.fillStyle = TEXT_MUTED;
-  ctx.fillText('Looking to start your career in modern AI & Cloud? This opportunity is for you! 🚀', padX, curY);
+  ctx.fillText('Join an agile team building mission-critical AI systems with competitive equity & bonuses. 🚀', padX, curY);
   curY += 36;
 
-  // 2-Column Specifications Card Grid
-  const cardW = Math.round((width - (padX * 2) - 20) / 2);
+  // 4-Card Specification Grid (2x2)
+  const cardW = Math.round((maxW - 20) / 2);
   const specs = [
-    { l: 'Role', v: role, icon: 'target' },
-    { l: 'Location', v: loc, icon: 'target' },
-    { l: 'Experience', v: exp, icon: 'briefcase' },
-    { l: 'Eligibility', v: qualification, icon: 'clock' }
+    { l: 'Role Scope', v: role },
+    { l: 'Location', v: loc },
+    { l: 'Experience', v: exp },
+    { l: 'Eligibility', v: qualification }
   ];
 
   specs.forEach((s, idx) => {
     const col = idx % 2;
     const row = Math.floor(idx / 2);
     const cx = padX + (col * (cardW + 20));
-    const cy = curY + (row * 64);
+    const cy = curY + (row * 68);
 
-    drawWhiteTealCard({ ctx, x: cx, y: cy, w: cardW, h: 56, radius: 12 });
-    drawCheckmarkIcon(ctx, cx + 16, cy + 18, 20, TEAL_PRIMARY);
+    drawWhiteTealCard({ ctx, x: cx, y: cy, w: cardW, h: 58, radius: 12 });
+    drawCheckmarkIcon(ctx, cx + 16, cy + 18, 22, TEAL_PRIMARY);
 
     ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText(s.l, cx + 46, cy + 18);
+    ctx.fillText(s.l, cx + 48, cy + 20);
+
+    ctx.font = '800 16px "Outfit", sans-serif';
+    ctx.fillStyle = TEXT_DARK;
+    ctx.fillText(s.v, cx + 48, cy + 42);
+  });
+  curY += 156;
+
+  // 3-Step Interview Timeline
+  const steps = [
+    { num: '01', title: 'Introductory Screen', desc: '30m chat with lead' },
+    { num: '02', title: 'Technical Deep-Dive', desc: 'System design & coding' },
+    { num: '03', title: 'Formal Offer', desc: 'Fast turnaround in 48h' }
+  ];
+  const stepW = Math.round((maxW - 30) / 3);
+  steps.forEach((st, idx) => {
+    const sx = padX + (idx * (stepW + 15));
+    drawWhiteTealCard({ ctx, x: sx, y: curY, w: stepW, h: 72, radius: 12 });
+
+    drawRoundRect(ctx, sx + 12, curY + 14, 38, 38, 10);
+    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fill();
+    ctx.font = '900 16px "Outfit", sans-serif';
+    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(st.num, sx + 31, curY + 33);
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
 
     ctx.font = '800 15px "Outfit", sans-serif';
     ctx.fillStyle = TEXT_DARK;
-    ctx.fillText(s.v, cx + 46, cy + 38);
-  });
+    ctx.fillText(st.title, sx + 58, curY + 30);
 
-  curY += 150;
-  // Cloud Tech Chips (AWS, Docker, Kubernetes, CI/CD)
-  drawTechStackPillsRow(ctx, padX, curY, width - (padX * 2), 50, techStack);
+    ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillText(st.desc, sx + 58, curY + 52);
+  });
+  curY += 92;
+
+  // Tech Chips Row
+  drawTechStackPillsRow(ctx, padX, curY, maxW, 50, techStack);
 }
 
 /**
  * HIRING-04: Natdemy Studio
- * Reference: hiring 5.jpg
  */
 async function renderHiringNatdemyStudio({
-  ctx, width, height, post, style, role, exp, loc, salary, padX, contentTopY, footerY, isLandscape
+  ctx, width, height, post, style, role, exp, loc, salary, qualification, padX, contentTopY, footerY, isLandscape
 }) {
   const cx = width / 2;
+  const maxW = width - padX * 2;
   let curY = contentTopY + 10;
 
-  // Script "We are" in brush cursive
+  // Script "We are"
   ctx.font = '700 52px "Caveat", "Kalam", cursive';
   ctx.fillStyle = TEXT_DARK;
   ctx.textAlign = 'center';
   ctx.fillText('We are', cx, curY);
   curY += 50;
 
-  // Massive 2-Tone HIRING in 105px bold
-  ctx.font = '900 105px "Outfit", "Bricolage Grotesque", sans-serif';
+  // Massive 2-Tone HIRING
+  ctx.font = '900 108px "Outfit", "Bricolage Grotesque", sans-serif';
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.fillText('HIRING', cx, curY);
   curY += 108;
 
   // Role Title
-  ctx.font = '900 28px "Outfit", sans-serif';
+  ctx.font = '900 32px "Outfit", sans-serif';
   ctx.fillStyle = TEXT_DARK;
   ctx.fillText(role.toUpperCase(), cx, curY);
-  curY += 44;
+  curY += 46;
 
-  // Center Vacancy Card in Purple/Teal
-  const cardW = 200;
-  const cardH = 140;
+  // Center Vacancy Card
+  const cardW = 240;
+  const cardH = 120;
   drawRoundRect(ctx, cx - cardW / 2, curY, cardW, cardH, 16);
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.shadowColor = 'rgba(0, 128, 128, 0.35)';
-  ctx.shadowBlur = 20;
+  ctx.shadowBlur = 18;
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  ctx.font = '900 72px "Outfit", sans-serif';
+  ctx.font = '900 68px "Outfit", sans-serif';
   ctx.fillStyle = '#FFFFFF';
-  ctx.fillText('3', cx, curY + 70);
+  ctx.fillText('3', cx, curY + 66);
 
   ctx.font = '800 14px "Outfit", sans-serif';
   ctx.fillStyle = TEAL_BG_TINT;
-  ctx.fillText('OPEN VACANCIES', cx, curY + 112);
+  ctx.fillText('OPEN VACANCIES', cx, curY + 100);
   curY += cardH + 34;
 
-  // Bottom Specification Badges
-  const badgeW = 240;
-  drawRoundRect(ctx, cx - badgeW - 10, curY, badgeW, 44, 22);
-  ctx.fillStyle = TEAL_PRIMARY;
-  ctx.fill();
-  ctx.font = '800 14px "Outfit", sans-serif';
-  ctx.fillStyle = '#FFFFFF';
-  ctx.fillText(`Experience: ${exp}`, cx - badgeW / 2 - 10, curY + 22);
+  // 4 Specs Badges (2x2 grid)
+  const specW = Math.round((maxW - 20) / 2);
+  const specs = [
+    { l: 'Experience', v: exp },
+    { l: 'Location', v: loc },
+    { l: 'Eligibility', v: qualification },
+    { l: 'Compensation', v: salary }
+  ];
 
-  drawRoundRect(ctx, cx + 10, curY, badgeW, 44, 22);
-  ctx.fillStyle = '#DCFCE7';
-  ctx.fill();
-  ctx.strokeStyle = '#22C55E';
-  ctx.lineWidth = 1.2;
-  ctx.stroke();
-  ctx.fillStyle = '#15803D';
-  ctx.fillText('Freshers can also apply', cx + badgeW / 2 + 10, curY + 22);
+  specs.forEach((s, idx) => {
+    const col = idx % 2;
+    const row = Math.floor(idx / 2);
+    const sx = padX + (col * (specW + 20));
+    const sy = curY + (row * 56);
+
+    drawRoundRect(ctx, sx, sy, specW, 46, 12);
+    ctx.fillStyle = idx % 2 === 0 ? TEAL_PRIMARY : '#DCFCE7';
+    ctx.fill();
+    if (idx % 2 !== 0) {
+      ctx.strokeStyle = '#22C55E';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+
+    ctx.font = '800 15px "Outfit", sans-serif';
+    ctx.fillStyle = idx % 2 === 0 ? '#FFFFFF' : '#15803D';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(`${s.l}: ${s.v}`, sx + specW / 2, sy + 23);
+    ctx.textBaseline = 'alphabetic';
+  });
+  curY += 130;
+
+  // 3 Key Perks Pills
+  const perks = ['100% Remote Options', 'Annual Training Budget', 'Health Insurance'];
+  const perkW = Math.round((maxW - 30) / 3);
+  perks.forEach((p, idx) => {
+    const px = padX + (idx * (perkW + 15));
+    drawWhiteTealCard({ ctx, x: px, y: curY, w: perkW, h: 44, radius: 12 });
+
+    ctx.font = '800 14px "Outfit", sans-serif';
+    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p, px + perkW / 2, curY + 22);
+    ctx.textBaseline = 'alphabetic';
+  });
 }
 
 /**
  * HIRING-05: Howow Editorial Magazine
- * Reference: hiring 6.jpg
  */
 async function renderHiringMagazine({
   ctx, width, height, post, style, role, exp, loc, salary, techStack, padX, contentTopY, footerY, isLandscape
@@ -452,14 +518,13 @@ async function renderHiringMagazine({
   const cx = width / 2;
   let curY = contentTopY + 10;
 
-  // Realistic Folded Magazine Card
-  const magW = Math.round(width * 0.72);
-  const magH = footerY - curY - 30;
+  const magW = Math.round(width * 0.74);
+  const magH = footerY - curY - 16;
   const magX = cx - magW / 2;
 
-  drawWhiteTealCard({ ctx, x: magX, y: curY, w: magW, h: magH, radius: 18 });
+  drawWhiteTealCard({ ctx, x: magX, y: curY, w: magW, h: magH, radius: 20 });
 
-  let textY = curY + 36;
+  let textY = curY + 38;
   ctx.font = '900 68px "Outfit", sans-serif';
   ctx.fillStyle = TEXT_DARK;
   ctx.textAlign = 'center';
@@ -478,14 +543,40 @@ async function renderHiringMagazine({
 
   ctx.font = '900 22px "Outfit", sans-serif';
   ctx.fillStyle = '#FFFFFF';
-  ctx.fillText(role.toUpperCase(), cx, textY + 26);
-  textY += 80;
+  ctx.fillText(role.toUpperCase(), cx, textY + 34);
+  textY += 76;
 
-  // Large Experience Callout (e.g. "2+ YEARS")
-  ctx.font = '900 58px "Outfit", sans-serif';
+  // Large Experience Callout
+  ctx.font = '900 52px "Outfit", sans-serif';
   ctx.fillStyle = TEXT_DARK;
   ctx.fillText(exp.toUpperCase(), cx, textY);
-  textY += 56;
+  textY += 46;
+
+  ctx.font = '600 16px "Plus Jakarta Sans", sans-serif';
+  ctx.fillStyle = TEXT_MUTED;
+  ctx.fillText(`Location: ${loc}  •  Salary: ${salary}`, cx, textY);
+  textY += 44;
+
+  // 3 Highlights Badges
+  const perks = ['✓ Direct C-Suite Access', '✓ High-Impact Products', '✓ Generous Equity'];
+  const bW = Math.round((pW - 20) / 3);
+  perks.forEach((p, idx) => {
+    const bx = cx - pW / 2 + (idx * (bW + 10));
+    drawRoundRect(ctx, bx, textY, bW, 40, 10);
+    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fill();
+    ctx.strokeStyle = TEAL_BORDER;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.font = '800 13px "Outfit", sans-serif';
+    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p, bx + bW / 2, textY + 20);
+    ctx.textBaseline = 'alphabetic';
+  });
+  textY += 62;
 
   // Tech Platforms Row
   drawTechStackPillsRow(ctx, magX + 24, textY, magW - 48, 48, techStack);
@@ -498,22 +589,23 @@ async function renderHiringDirectoryGrid({
   ctx, width, height, post, style, role, exp, loc, salary, padX, contentTopY, footerY, isLandscape
 }) {
   let curY = contentTopY;
+  const maxW = width - padX * 2;
 
   ctx.font = '900 48px "Outfit", sans-serif';
   ctx.fillStyle = TEXT_DARK;
   ctx.textAlign = 'left';
   ctx.fillText('WE ARE HIRING ACROSS TEAMS', padX, curY);
-  curY += 58;
+  curY += 56;
 
   const roles = [
-    { t: role, e: exp, l: loc },
-    { t: 'Full-Stack AI Engineer', e: '2 - 4 Years', l: 'Remote' },
-    { t: 'Senior Product Designer', e: '3 - 6 Years', l: 'Hybrid' },
-    { t: 'Growth Marketing Lead', e: '4 - 7 Years', l: 'Bengaluru' }
+    { t: role, e: exp, l: loc, tag: 'HIGH PRIORITY' },
+    { t: 'Full-Stack AI Engineer', e: '2 - 4 Years', l: 'Remote / Global', tag: 'ENGINEERING' },
+    { t: 'Senior Product Designer', e: '3 - 6 Years', l: 'Hybrid / BLR', tag: 'DESIGN' },
+    { t: 'Growth Marketing Lead', e: '4 - 7 Years', l: 'Bengaluru HQ', tag: 'GROWTH' }
   ];
 
-  const cardW = Math.round((width - (padX * 2) - 20) / 2);
-  const cardH = 110;
+  const cardW = Math.round((maxW - 20) / 2);
+  const cardH = 130;
 
   roles.forEach((r, idx) => {
     const col = idx % 2;
@@ -521,139 +613,345 @@ async function renderHiringDirectoryGrid({
     const cx = padX + (col * (cardW + 20));
     const cy = curY + (row * (cardH + 18));
 
-    drawWhiteTealCard({ ctx, x: cx, y: cy, w: cardW, h: cardH, radius: 14 });
+    drawWhiteTealCard({ ctx, x: cx, y: cy, w: cardW, h: cardH, radius: 16 });
 
-    ctx.font = '900 18px "Outfit", sans-serif';
+    // Category Badge
+    drawRoundRect(ctx, cx + 20, cy + 18, 120, 26, 6);
+    ctx.fillStyle = idx === 0 ? TEAL_PRIMARY : TEAL_BG_TINT;
+    ctx.fill();
+    ctx.font = '800 11px "Outfit", sans-serif';
+    ctx.fillStyle = idx === 0 ? '#FFFFFF' : TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(r.tag, cx + 80, cy + 31);
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+
+    ctx.font = '900 20px "Outfit", sans-serif';
     ctx.fillStyle = TEXT_DARK;
-    ctx.fillText(r.t, cx + 20, cy + 30);
+    ctx.fillText(r.t, cx + 20, cy + 70);
 
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '600 14px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText(`Exp: ${r.e}  •  ${r.l}`, cx + 20, cy + 58);
+    ctx.fillText(`Experience: ${r.e}  •  ${r.l}`, cx + 20, cy + 96);
 
     // Apply Button inside card
-    drawRoundRect(ctx, cx + cardW - 100, cy + 68, 80, 28, 14);
+    drawRoundRect(ctx, cx + cardW - 104, cy + 80, 88, 32, 16);
     ctx.fillStyle = TEAL_BG_TINT;
     ctx.fill();
     ctx.strokeStyle = TEAL_PRIMARY;
     ctx.lineWidth = 1;
     ctx.stroke();
 
-    ctx.font = '800 11px "Outfit", sans-serif';
+    ctx.font = '800 12px "Outfit", sans-serif';
     ctx.fillStyle = TEAL_PRIMARY;
     ctx.textAlign = 'center';
-    ctx.fillText('APPLY →', cx + cardW - 60, cy + 82);
+    ctx.textBaseline = 'middle';
+    ctx.fillText('APPLY →', cx + cardW - 60, cy + 96);
     ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+  });
+  curY += (cardH * 2) + 48;
+
+  // Why Join Infinitetech Strip
+  drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: 90, radius: 16 });
+
+  const metrics = [
+    { num: '4.9 ★', label: 'Glassdoor Rating' },
+    { num: '100%', label: 'Equity Grants' },
+    { num: 'Zero', label: 'Red Tape / Bureaucracy' }
+  ];
+  const metW = Math.round(maxW / 3);
+  metrics.forEach((m, idx) => {
+    const mx = padX + (idx * metW);
+    ctx.font = '900 24px "Outfit", sans-serif';
+    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.fillText(m.num, mx + metW / 2, curY + 40);
+
+    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillText(m.label, mx + metW / 2, curY + 66);
   });
 }
 
 /**
  * HIRING-07: VIP Boarding Pass Ticket
+ * Reference: Complete Airline Flight Ticket Architecture
  */
 async function renderHiringBoardingPass({
   ctx, width, height, post, style, role, exp, loc, salary, padX, contentTopY, footerY, isLandscape
 }) {
-  const cx = width / 2;
-  let curY = contentTopY + 10;
-
-  // Boarding pass ticket container
+  let curY = contentTopY + 8;
   const tW = width - (padX * 2);
-  const tH = footerY - curY - 20;
+  const tH = footerY - curY - 14;
 
+  // 1. Boarding Pass Master Card Container
   drawWhiteTealCard({ ctx, x: padX, y: curY, w: tW, h: tH, radius: 20 });
 
-  // Top Pass Header in Teal
+  // 2. Top Pass Header in Solid Teal
   drawRoundRect(ctx, padX, curY, tW, 58, 20);
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.fill();
 
   ctx.font = '900 20px "Outfit", sans-serif';
   ctx.fillStyle = '#FFFFFF';
-  ctx.fillText('✈️  CAREER BOARDING PASS — FIRST CLASS OPPORTUNITY', padX + 24, curY + 36);
+  ctx.textAlign = 'left';
+  ctx.fillText('✈️  CAREER BOARDING PASS — FIRST CLASS PRIORITY', padX + 24, curY + 36);
 
-  curY += 88;
-  ctx.font = '900 44px "Outfit", sans-serif';
+  ctx.font = '900 16px "Outfit", sans-serif';
+  ctx.fillStyle = TEAL_BG_TINT;
+  ctx.textAlign = 'right';
+  ctx.fillText('FLIGHT: IT-2026  •  GATE 01', padX + tW - 24, curY + 36);
+  ctx.textAlign = 'left';
+  curY += 76;
+
+  // 3. Airport Flight Route Banner (Origin ➔ Destination)
+  drawRoundRect(ctx, padX + 20, curY, tW - 40, 52, 12);
+  ctx.fillStyle = TEAL_BG_TINT;
+  ctx.fill();
+  ctx.strokeStyle = TEAL_BORDER;
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  ctx.font = '900 16px "Outfit", sans-serif';
   ctx.fillStyle = TEXT_DARK;
-  ctx.fillText(role.toUpperCase(), padX + 24, curY);
-  curY += 50;
+  ctx.fillText(`FROM: GLOBAL / ${loc.toUpperCase()}`, padX + 36, curY + 32);
 
-  // Passenger & Flight Details
-  const details = [
-    { k: 'DESTINATION', v: 'Infinitetech Core Team' },
-    { k: 'EXPERIENCE', v: exp },
-    { k: 'LOCATION', v: loc },
-    { k: 'SEAT / STATUS', v: 'Full-Time Priority' }
+  ctx.font = '900 18px "Outfit", sans-serif';
+  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.textAlign = 'center';
+  ctx.fillText('✈️  ───────────────>', padX + tW / 2, curY + 32);
+
+  ctx.font = '900 16px "Outfit", sans-serif';
+  ctx.fillStyle = TEXT_DARK;
+  ctx.textAlign = 'right';
+  ctx.fillText('TO: INFINITETECH AI CORE', padX + tW - 36, curY + 32);
+  ctx.textAlign = 'left';
+  curY += 74;
+
+  // 4. Passenger Name & Role Title
+  ctx.font = '800 13px "Outfit", sans-serif';
+  ctx.fillStyle = TEXT_MUTED;
+  ctx.fillText('PASSENGER / EXECUTIVE CANDIDATE:', padX + 24, curY);
+  curY += 36;
+
+  ctx.font = '900 40px "Outfit", sans-serif';
+  ctx.fillStyle = TEXT_DARK;
+  wrapText(ctx, role.toUpperCase(), tW - 48).slice(0, 2).forEach(l => {
+    ctx.fillText(l, padX + 24, curY);
+    curY += 44;
+  });
+  curY += 14;
+
+  // 5. 4 Flight Specifications Cards (2x2 Grid)
+  const specW = Math.round((tW - 48 - 16) / 2);
+  const specH = 74;
+  const flightSpecs = [
+    { k: 'SEAT / LEVEL', v: 'Executive Leadership (L6+)' },
+    { k: 'EXPERIENCE REQUIRED', v: exp },
+    { k: 'LOCATION / MODE', v: loc },
+    { k: 'COMPENSATION TIER', v: salary }
   ];
 
-  details.forEach((d, idx) => {
-    const dx = padX + 24 + (idx * 230);
-    ctx.font = '600 11px "Plus Jakarta Sans", sans-serif';
+  flightSpecs.forEach((s, idx) => {
+    const col = idx % 2;
+    const row = Math.floor(idx / 2);
+    const sx = padX + 24 + (col * (specW + 16));
+    const sy = curY + (row * (specH + 12));
+
+    drawWhiteTealCard({ ctx, x: sx, y: sy, w: specW, h: specH, radius: 12 });
+
+    ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText(d.k, dx, curY);
+    ctx.fillText(s.k, sx + 18, sy + 24);
 
-    ctx.font = '900 15px "Outfit", sans-serif';
+    ctx.font = '900 16px "Outfit", sans-serif';
     ctx.fillStyle = TEXT_DARK;
-    ctx.fillText(d.v, dx, curY + 22);
+    ctx.fillText(s.v, sx + 18, sy + 50);
   });
+  curY += (specH * 2) + 30;
 
-  curY += 70;
-  // Perforated dotted line
+  // 6. In-Flight Mission Perks (4 Bullets)
+  const perks = [
+    '✓ Direct Architecture Ownership of Core AI',
+    '✓ Executive Medical & Wellness Coverage',
+    '✓ Mentorship & Leadership of 15+ Engineers',
+    '✓ Generous Equity Stock Grants & Bonuses'
+  ];
+  const perkCardW = Math.round((tW - 48 - 16) / 2);
+  perks.forEach((p, idx) => {
+    const col = idx % 2;
+    const row = Math.floor(idx / 2);
+    const px = padX + 24 + (col * (perkCardW + 16));
+    const py = curY + (row * 42);
+
+    drawRoundRect(ctx, px, py, perkCardW, 36, 8);
+    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fill();
+
+    ctx.font = '800 13px "Outfit", sans-serif';
+    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p, px + 14, py + 18);
+    ctx.textBaseline = 'alphabetic';
+  });
+  curY += 98;
+
+  // 7. Perforated Dotted Tear Line with Cutout Notches
   ctx.strokeStyle = TEAL_PRIMARY;
   ctx.lineWidth = 2;
   ctx.setLineDash([8, 8]);
   ctx.beginPath();
-  ctx.moveTo(padX + 20, curY);
-  ctx.lineTo(width - padX - 20, curY);
+  ctx.moveTo(padX + 24, curY);
+  ctx.lineTo(width - padX - 24, curY);
   ctx.stroke();
   ctx.setLineDash([]);
 
-  curY += 30;
+  // Perforated notch cutouts on edges
+  ctx.fillStyle = '#F8FAFC';
+  ctx.beginPath();
+  ctx.arc(padX, curY, 18, -Math.PI / 2, Math.PI / 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(padX + tW, curY, 18, Math.PI / 2, -Math.PI / 2);
+  ctx.fill();
+
+  curY += 28;
+
+  // 8. Bottom Ticket Stub: Realistic Barcode + Status
+  const barcodeW = Math.round(tW * 0.52);
+  const barcodeH = 50;
+
   // Barcode graphics in Teal
-  for (let b = 0; b < 48; b++) {
-    const bx = padX + 30 + (b * 12);
+  for (let b = 0; b < 44; b++) {
+    const bx = padX + 24 + (b * 9);
     ctx.fillStyle = b % 3 === 0 ? TEAL_DARK : TEAL_PRIMARY;
-    ctx.fillRect(bx, curY, b % 2 === 0 ? 3 : 6, 36);
+    ctx.fillRect(bx, curY, b % 2 === 0 ? 3 : 5, barcodeH);
   }
+
+  ctx.font = '800 13px "Space Grotesk", monospace';
+  ctx.fillStyle = TEXT_MUTED;
+  ctx.fillText('#IT-2026-BOARDING-PASS-EXEC', padX + 24, curY + barcodeH + 20);
+
+  // Right Side Status Capsule
+  const statusX = padX + barcodeW + 36;
+  const statusW = tW - barcodeW - 60;
+  drawRoundRect(ctx, statusX, curY + 4, statusW, 64, 12);
+  ctx.fillStyle = TEAL_BG_TINT;
+  ctx.fill();
+  ctx.strokeStyle = TEAL_PRIMARY;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  ctx.font = '900 15px "Outfit", sans-serif';
+  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.textAlign = 'center';
+  ctx.fillText('STATUS: CONFIRMED', statusX + statusW / 2, curY + 30);
+
+  ctx.font = '800 12px "Outfit", sans-serif';
+  ctx.fillStyle = TEXT_DARK;
+  ctx.fillText('BOARDING NOW: IMMEDIATE', statusX + statusW / 2, curY + 52);
+  ctx.textAlign = 'left';
 }
 
 /**
  * HIRING-08: Remote First Global Nomad
  */
 async function renderHiringGlobalNomad({
-  ctx, width, height, post, style, role, exp, loc, salary, padX, contentTopY, footerY, isLandscape
+  ctx, width, height, post, style, role, exp, loc, salary, techStack, padX, contentTopY, footerY, isLandscape
 }) {
   let curY = contentTopY;
+  const maxW = width - padX * 2;
 
-  ctx.font = '900 48px "Outfit", sans-serif';
-  ctx.fillStyle = TEXT_DARK;
-  ctx.fillText('WORK FROM ANYWHERE ON EARTH', padX, curY);
+  // Kicker pill
+  drawRoundRect(ctx, padX, curY, 210, 36, 18);
+  ctx.fillStyle = TEAL_BG_TINT;
+  ctx.fill();
+  ctx.strokeStyle = TEAL_PRIMARY;
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+
+  ctx.font = '900 14px "Outfit", sans-serif';
+  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🌍  GLOBAL NOMAD ROLE', padX + 105, curY + 18);
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
   curY += 56;
 
-  ctx.font = '900 32px "Outfit", sans-serif';
+  ctx.font = '900 56px "Outfit", sans-serif';
+  ctx.fillStyle = TEXT_DARK;
+  ctx.fillText('WORK FROM ANYWHERE ON EARTH', padX, curY);
+  curY += 60;
+
+  // Role Banner
+  ctx.font = '900 36px "Outfit", sans-serif';
   ctx.fillStyle = TEAL_PRIMARY;
-  ctx.fillText(role, padX, curY);
+  ctx.fillText(role.toUpperCase(), padX, curY);
   curY += 46;
+
+  ctx.font = '600 17px "Plus Jakarta Sans", sans-serif';
+  ctx.fillStyle = TEXT_MUTED;
+  ctx.fillText(`Experience: ${exp}  •  Compensation: ${salary}  •  100% Async Freedom`, padX, curY);
+  curY += 40;
 
   // 3 Global Hub Cards
   const hubs = [
-    { h: '🌏 APAC Zone', t: 'Flexible Working Hours' },
-    { h: '🌍 EMEA Zone', t: 'Asynchronous Workflow' },
-    { h: '🌎 Americas Zone', t: 'Full Home-Office Stipend' }
+    { h: '🌏 APAC Zone', t: 'Flexible Working Hours', sub: 'Local co-working stipend' },
+    { h: '🌍 EMEA Zone', t: 'Asynchronous Workflow', sub: 'Zero mandatory daily calls' },
+    { h: '🌎 Americas Zone', t: 'Hardware & Desk Setup', sub: '$3,000 yearly tech budget' }
   ];
 
-  const cardW = Math.round((width - (padX * 2) - 24) / 3);
+  const hubW = Math.round((maxW - 24) / 3);
   hubs.forEach((hub, idx) => {
-    const hx = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: hx, y: curY, w: cardW, h: 100, radius: 14 });
+    const hx = padX + (idx * (hubW + 12));
+    drawWhiteTealCard({ ctx, x: hx, y: curY, w: hubW, h: 104, radius: 14 });
 
-    ctx.font = '900 17px "Outfit", sans-serif';
+    ctx.font = '900 18px "Outfit", sans-serif';
     ctx.fillStyle = TEXT_DARK;
     ctx.fillText(hub.h, hx + 18, curY + 32);
 
-    ctx.font = '500 13px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '800 14px "Outfit", sans-serif';
+    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillText(hub.t, hx + 18, curY + 60);
+
+    ctx.font = '500 12px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText(hub.t, hx + 18, curY + 62);
+    ctx.fillText(hub.sub, hx + 18, curY + 84);
   });
+  curY += 128;
+
+  // 4 Remote Perks Badges (2x2 grid)
+  const perkW = Math.round((maxW - 16) / 2);
+  const perks = [
+    '✓ Annual Global All-Hands Company Retreat',
+    '✓ Comprehensive Global Health & Dental Coverage',
+    '✓ Parental Leave & Unlimited Paid Time Off',
+    '✓ Competitive US-Benchmarked Equity Stock'
+  ];
+
+  perks.forEach((p, idx) => {
+    const col = idx % 2;
+    const row = Math.floor(idx / 2);
+    const px = padX + (col * (perkW + 16));
+    const py = curY + (row * 44);
+
+    drawRoundRect(ctx, px, py, perkW, 36, 10);
+    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fill();
+
+    ctx.font = '800 13px "Outfit", sans-serif';
+    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p, px + 14, py + 18);
+    ctx.textBaseline = 'alphabetic';
+  });
+  curY += 104;
+
+  // Tech Stack Row
+  drawTechStackPillsRow(ctx, padX, curY, maxW, 50, techStack);
 }
 
 /**
@@ -663,57 +961,101 @@ async function renderHiringTerminalIDE({
   ctx, width, height, post, style, role, exp, loc, salary, techStack, padX, contentTopY, footerY, isLandscape
 }) {
   let curY = contentTopY;
-
   const termW = width - (padX * 2);
-  const termH = footerY - curY - 20;
+  const termH = footerY - curY - 16;
 
   // Terminal window container
   drawRoundRect(ctx, padX, curY, termW, termH, 16);
   ctx.fillStyle = '#0F172A';
   ctx.fill();
+  ctx.strokeStyle = '#1E293B';
+  ctx.lineWidth = 2;
+  ctx.stroke();
 
   // Traffic lights
   ctx.beginPath();
-  ctx.arc(padX + 24, curY + 22, 6, 0, Math.PI * 2);
+  ctx.arc(padX + 24, curY + 24, 7, 0, Math.PI * 2);
   ctx.fillStyle = '#EF4444';
   ctx.fill();
   ctx.beginPath();
-  ctx.arc(padX + 44, curY + 22, 6, 0, Math.PI * 2);
+  ctx.arc(padX + 46, curY + 24, 7, 0, Math.PI * 2);
   ctx.fillStyle = '#F59E0B';
   ctx.fill();
   ctx.beginPath();
-  ctx.arc(padX + 64, curY + 22, 6, 0, Math.PI * 2);
+  ctx.arc(padX + 68, curY + 24, 7, 0, Math.PI * 2);
   ctx.fillStyle = '#22C55E';
   ctx.fill();
 
-  curY += 56;
+  ctx.font = '600 13px "Space Grotesk", monospace';
+  ctx.fillStyle = '#64748B';
+  ctx.textAlign = 'right';
+  ctx.fillText('bash — infinitetech-careers.sh — 80x24', padX + termW - 24, curY + 28);
+  ctx.textAlign = 'left';
+
+  curY += 66;
+
   ctx.font = '700 20px "Space Grotesk", monospace';
   ctx.fillStyle = '#2DD4BF';
-  ctx.fillText('// Join Infinitetech AI Core Engineering', padX + 28, curY);
+  ctx.fillText('visitor@infinitetech:~$ ./search-open-roles.sh --level="Principal"', padX + 28, curY);
   curY += 36;
 
+  ctx.fillStyle = '#38BDF8';
+  ctx.fillText('[✓] 1 HIGH-PRIORITY OPENING FOUND:', padX + 28, curY);
+  curY += 34;
+
   ctx.fillStyle = '#94A3B8';
-  ctx.fillText('const opportunity = {', padX + 28, curY);
+  ctx.fillText('const highImpactRole = {', padX + 28, curY);
   curY += 32;
 
-  ctx.fillStyle = '#F8FAFC';
-  ctx.fillText(`  role: "${role}",`, padX + 48, curY);
-  curY += 30;
-  ctx.fillText(`  experience: "${exp}",`, padX + 48, curY);
-  curY += 30;
-  ctx.fillText(`  workMode: "${loc}",`, padX + 48, curY);
-  curY += 30;
-  ctx.fillText(`  compensation: "${salary}",`, padX + 48, curY);
-  curY += 30;
-  ctx.fillText(`  techStack: [${techStack.map(t => `"${t}"`).join(', ')}]`, padX + 48, curY);
-  curY += 32;
+  const codeLines = [
+    { k: 'title', v: `"${role}"` },
+    { k: 'experience', v: `"${exp}"` },
+    { k: 'workMode', v: `"${loc}"` },
+    { k: 'compensation', v: `"${salary}"` },
+    { k: 'techStack', v: `[${techStack.map(t => `"${t}"`).join(', ')}]` },
+    { k: 'fastTrackInterview', v: 'true' }
+  ];
+
+  codeLines.forEach(l => {
+    ctx.fillStyle = '#F8FAFC';
+    ctx.fillText(`  ${l.k}: `, padX + 48, curY);
+    const kwW = ctx.measureText(`  ${l.k}: `).width;
+    ctx.fillStyle = '#FDE047';
+    ctx.fillText(l.v, padX + 48 + kwW, curY);
+    curY += 30;
+  });
 
   ctx.fillStyle = '#94A3B8';
   ctx.fillText('};', padX + 28, curY);
-  curY += 36;
+  curY += 40;
 
+  // 3 Terminal Perks Badges
+  const termPerks = [
+    '✓ Top-Spec Apple M3 Max / Linux Hardware',
+    '✓ Fast 48h Hiring Decision Turnaround',
+    '✓ Direct Architecture Ownership & Equity'
+  ];
+
+  termPerks.forEach(tp => {
+    drawRoundRect(ctx, padX + 28, curY, termW - 56, 36, 8);
+    ctx.fillStyle = '#1E293B';
+    ctx.fill();
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.font = '600 14px "Space Grotesk", monospace';
+    ctx.fillStyle = '#34D399';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(tp, padX + 44, curY + 18);
+    ctx.textBaseline = 'alphabetic';
+    curY += 44;
+  });
+  curY += 12;
+
+  ctx.font = '700 20px "Space Grotesk", monospace';
   ctx.fillStyle = '#2DD4BF';
-  ctx.fillText('opportunity.apply(); // Sub-second response', padX + 28, curY);
+  ctx.fillText('>>> READY TO EXECUTE? Connect below to schedule screening ▋', padX + 28, curY);
 }
 
 /**
@@ -786,4 +1128,21 @@ async function renderHiringExecutiveLeadership({
       dy += 22;
     });
   });
+  curY += (cardH * 2) + 36;
+
+  // Bottom Executive Perks Strip
+  drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: 76, radius: 14 });
+
+  const execPerks = ['Board of Directors Advisory', 'Uncapped Leadership Equity', 'Global Executive Relocation'];
+  const epW = Math.round(maxW / 3);
+  execPerks.forEach((ep, idx) => {
+    const epx = padX + (idx * epW);
+    ctx.font = '800 15px "Outfit", sans-serif';
+    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(ep, epx + epW / 2, curY + 38);
+  });
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
 }
