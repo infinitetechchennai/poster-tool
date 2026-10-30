@@ -113,7 +113,8 @@ export const POST_CATEGORIES = [
       'common-17',
       'common-18',
       'common-19',
-      'common-20'
+      'common-20',
+      'common-21'
     ],
     sampleTopics: [
       'Your Brand Is Talking. Is Anyone Listening?',

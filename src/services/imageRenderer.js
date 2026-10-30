@@ -1754,6 +1754,12 @@ export async function renderPostToCanvas({
     }
   }
 
+  // Set background photo & card transparency state on ctx
+  const hasValidBgImage = Boolean((post?.uploadedImage && post.uploadedImage.width) || (topicImg && topicImg.width) || post?.imageUrl);
+  ctx.__hasBackgroundImage = hasValidBgImage && post?.showBackgroundImage !== false;
+  ctx.__cardOpacity = post?.cardOpacity ?? 0.0;
+  ctx.__bgOverlayOpacity = post?.bgOverlayOpacity ?? 0.38;
+
   const isLandscape = height < 750; // true for 1200x627 and 1200x630
 
   // 1. Dedicated Multi-Layout Renders for the 50 Core Professional Templates

@@ -5,7 +5,7 @@
  * - Crisp White (#FFFFFF) & Soft Light Teal (#F0FDFA) background base (NO default photos)
  * - Festive celebration highlights: Gold (#D97706), Amber (#F59E0B), Crimson (#DC2626), and Infinitetech Teal (#008080)
  * - Big, bold 2-tone colorful festive typography (Deep Slate #0F172A + Vibrant Teal & Gold)
- * - Zero empty white space: Every single festival poster fills the canvas from header to footer with high-value festive content.
+ * - Zero unwanted white box: When background photography is active, text floats transparently with pristine drop-shadow contrast.
  * - High-converting bottom CTA button (#008080) + Contact capsule
  * - 100% dynamic: immediately updates with text from the left editor
  */
@@ -36,6 +36,118 @@ const TEAL_BORDER = 'rgba(0, 128, 128, 0.22)';
 const TEXT_DARK = '#0F172A';
 const TEXT_MUTED = '#475569';
 const GOLD_ACCENT = '#D97706';
+
+// ── Shared Helper Functions for Floating Transparent Festive Typography ──
+
+function renderFestiveHeadline(ctx, headline, cx, y, maxW, isLandscape, hasBg, font = '"Outfit", serif', accent = '#FBBF24') {
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 44 : 58}px ${font}`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.92)';
+    ctx.shadowBlur = 14;
+    ctx.shadowOffsetY = 3;
+  }
+  let curY = y;
+  wrapText(ctx, headline, maxW).slice(0, 2).forEach((l, idx) => {
+    ctx.fillStyle = hasBg ? (idx === 0 ? '#FFFFFF' : accent) : (idx === 0 ? TEXT_DARK : TEAL_PRIMARY);
+    ctx.fillText(l, cx, curY);
+    curY += isLandscape ? 50 : 66;
+  });
+  ctx.restore();
+  return curY;
+}
+
+function renderFestiveTagline(ctx, tagline, cx, y, maxW, isLandscape, hasBg) {
+  ctx.save();
+  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
+  ctx.fillStyle = hasBg ? '#F1F5F9' : TEXT_MUTED;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+    ctx.shadowBlur = 10;
+  }
+  let curY = y;
+  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
+    ctx.fillText(tl, cx, curY);
+    curY += 30;
+  });
+  ctx.restore();
+  return curY;
+}
+
+function renderFestiveCards(ctx, items, subLabel, padX, curY, maxW, hasBg, iconType = 'sparkle', iconColor = GOLD_ACCENT) {
+  const cardW = Math.round((maxW - 24) / 3);
+  const cardH = 92;
+
+  items.slice(0, 3).forEach((item, idx) => {
+    const cardX = padX + (idx * (cardW + 12));
+    drawWhiteTealCard({
+      ctx,
+      x: cardX,
+      y: curY,
+      w: cardW,
+      h: cardH,
+      radius: 14,
+      borderCol: hasBg ? 'rgba(251, 191, 36, 0.45)' : 'rgba(217, 119, 6, 0.35)'
+    });
+
+    if (iconType === 'sparkle') {
+      drawSparkleIcon(ctx, cardX + 22, curY + 30, 20, iconColor);
+    } else {
+      drawCheckmarkIcon(ctx, cardX + 22, curY + 30, 20, iconColor);
+    }
+
+    ctx.save();
+    ctx.font = '900 18px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    ctx.textAlign = 'left';
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+      ctx.shadowBlur = 8;
+    }
+    ctx.fillText(item, cardX + 50, curY + 34);
+
+    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
+    ctx.fillText(subLabel, cardX + 50, curY + 62);
+    ctx.restore();
+  });
+  return curY + cardH + 28;
+}
+
+function renderFestiveBottomBanner(ctx, cx, curY, padX, maxW, remH, title, subtitle, hasBg, titleColor = '#FBBF24') {
+  if (remH <= 70) return;
+  // In white corporate mode, draw crisp card container.
+  // In image mode: NO LIGHT WHITE BOX! Text floats with transparent background and rich drop shadows!
+  if (!hasBg) {
+    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
+  }
+
+  ctx.save();
+  ctx.font = '900 21px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? titleColor : TEAL_PRIMARY;
+  ctx.textAlign = 'center';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 14;
+    ctx.shadowOffsetY = 2;
+  }
+  ctx.fillText(title, cx, curY + remH * 0.38);
+
+  ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+    ctx.shadowBlur = 8;
+  }
+  ctx.fillText(subtitle, cx, curY + remH * 0.70);
+  ctx.restore();
+}
+
+// ── Master Festival Template Dispatcher ──
 
 export async function renderFestivalTemplate({
   id,
@@ -68,17 +180,19 @@ export async function renderFestivalTemplate({
     topicImg
   });
 
-  // 2. Top Branding Bar in White & Teal
+  // 2. Top Branding Bar in White & Teal (Wavy Header matching User Sketch)
   const { contentTopY } = renderStandardTopBar({
     ctx,
     width,
     height,
+    post,
     brand,
     logoImg,
     style,
     padX,
     padY,
-    isLandscape
+    isLandscape,
+    accentColor: TEAL_PRIMARY
   });
 
   const footerY = height - padY - (isLandscape ? 80 : 96);
@@ -129,6 +243,7 @@ export async function renderFestivalTemplate({
 async function renderDiwaliTeal({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const cx = width / 2;
   const maxW = width - (padX * 2);
   let curY = contentTopY + 12;
@@ -139,66 +254,18 @@ async function renderDiwaliTeal({
   drawSparkleIcon(ctx, cx + 160, curY + 36, 26, GOLD_ACCENT);
   curY += isLandscape ? 104 : 130;
 
-  // Bold Headline
-  ctx.save();
-  ctx.font = `900 ${isLandscape ? 44 : 58}px "Outfit", serif`;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
+  // Bold Headline & Tagline (Floating Transparent Typography)
+  curY = renderFestiveHeadline(ctx, headline, cx, curY, maxW, isLandscape, hasBg, '"Outfit", serif', '#FBBF24');
+  curY = renderFestiveTagline(ctx, tagline, cx, curY + 8, maxW, isLandscape, hasBg);
+  curY = renderFestiveCards(ctx, items, 'Divine Festive Blessing', padX, curY + 20, maxW, hasBg, 'sparkle', GOLD_ACCENT);
 
-  wrapText(ctx, headline, maxW).slice(0, 2).forEach((l, idx) => {
-    ctx.fillStyle = idx === 0 ? TEXT_DARK : TEAL_PRIMARY;
-    ctx.fillText(l, cx, curY);
-    curY += isLandscape ? 50 : 66;
-  });
-  ctx.restore();
-
-  // Subtitle
-  curY += 8;
-  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'center';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
-    ctx.fillText(tl, cx, curY);
-    curY += 30;
-  });
-  curY += 20;
-
-  // 3 Blessing Cards
-  const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
-
-  items.slice(0, 3).forEach((item, idx) => {
-    const cardX = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: cardX, y: curY, w: cardW, h: cardH, radius: 14, borderCol: 'rgba(217, 119, 6, 0.35)' });
-
-    drawSparkleIcon(ctx, cardX + 22, curY + 30, 20, GOLD_ACCENT);
-
-    ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.textAlign = 'left';
-    ctx.fillText(item, cardX + 50, curY + 34);
-
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText('Divine Festive Blessing', cardX + 50, curY + 62);
-  });
-  curY += cardH + 28;
-
-  // Bottom Festive Greeting Card (Fills down to footerY)
-  const remH = footerY - curY - 14;
-  if (remH > 70) {
-    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
-
-    ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.fillText('🪔  MAY THE FESTIVAL OF LIGHTS ILLUMINATE YOUR BUSINESS JOURNEY', cx, curY + remH * 0.38);
-
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.fillText('Wishing you and your teams boundless innovation, prosperity, and joyful shared triumphs.', cx, curY + remH * 0.70);
-    ctx.textAlign = 'left';
-  }
+  // Bottom Festive Greeting - Floating typography (NO LIGHT WHITE BOX!)
+  renderFestiveBottomBanner(
+    ctx, cx, curY, padX, maxW, footerY - curY - 14,
+    '🪔  MAY THE FESTIVAL OF LIGHTS ILLUMINATE YOUR BUSINESS JOURNEY',
+    'Wishing you and your teams boundless innovation, prosperity, and joyful shared triumphs.',
+    hasBg, '#FBBF24'
+  );
 }
 
 /**
@@ -207,6 +274,7 @@ async function renderDiwaliTeal({
 async function renderNewYearTeal({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   drawFireworksBurst(ctx, width * 0.16, contentTopY + 54, 52, TEAL_PRIMARY);
   drawFireworksBurst(ctx, width * 0.84, contentTopY + 48, 56, GOLD_ACCENT);
 
@@ -219,70 +287,28 @@ async function renderNewYearTeal({
   ctx.font = `900 ${isLandscape ? 72 : 96}px "Outfit", sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+    ctx.shadowBlur = 16;
+  }
   const nyGrad = ctx.createLinearGradient(cx - 140, curY, cx + 140, curY + 90);
-  nyGrad.addColorStop(0, TEAL_PRIMARY);
-  nyGrad.addColorStop(1, TEAL_LIGHT);
+  nyGrad.addColorStop(0, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
+  nyGrad.addColorStop(1, hasBg ? '#5EEAD4' : TEAL_LIGHT);
   ctx.fillStyle = nyGrad;
   ctx.fillText('2027', cx, curY);
   ctx.restore();
   curY += isLandscape ? 82 : 108;
 
-  // Headline
-  ctx.font = `900 ${isLandscape ? 40 : 54}px "Outfit", sans-serif`;
-  ctx.fillStyle = TEXT_DARK;
-  ctx.textAlign = 'center';
-  wrapText(ctx, headline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, cx, curY);
-    curY += isLandscape ? 48 : 62;
-  });
+  curY = renderFestiveHeadline(ctx, headline, cx, curY, maxW, isLandscape, hasBg, '"Outfit", sans-serif', '#2DD4BF');
+  curY = renderFestiveTagline(ctx, tagline, cx, curY + 8, maxW, isLandscape, hasBg);
+  curY = renderFestiveCards(ctx, items, 'Core 2027 Milestone', padX, curY + 20, maxW, hasBg, 'checkmark', hasBg ? '#2DD4BF' : TEAL_PRIMARY);
 
-  // Tagline
-  curY += 8;
-  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
-    ctx.fillText(tl, cx, curY);
-    curY += 30;
-  });
-  curY += 20;
-
-  // 3 Milestone Cards
-  const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
-
-  items.slice(0, 3).forEach((item, idx) => {
-    const cardX = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: cardX, y: curY, w: cardW, h: cardH, radius: 14 });
-
-    drawCheckmarkIcon(ctx, cardX + 20, curY + 30, 22, TEAL_PRIMARY);
-
-    ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.textAlign = 'left';
-    ctx.fillText(item, cardX + 50, curY + 34);
-
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText('Core 2027 Milestone', cardX + 50, curY + 62);
-  });
-  curY += cardH + 28;
-
-  // Bottom Corporate Vision Card
-  const remH = footerY - curY - 14;
-  if (remH > 70) {
-    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
-
-    ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.fillText('🚀  STEPPING BOLDLY INTO A YEAR OF UNPRECEDENTED VELOCITY', cx, curY + remH * 0.38);
-
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.fillText('Empowering businesses worldwide with intelligent automated systems & visionary execution.', cx, curY + remH * 0.70);
-    ctx.textAlign = 'left';
-  }
+  renderFestiveBottomBanner(
+    ctx, cx, curY, padX, maxW, footerY - curY - 14,
+    '🚀  STEPPING BOLDLY INTO A YEAR OF UNPRECEDENTED VELOCITY',
+    'Empowering businesses worldwide with intelligent automated systems & visionary execution.',
+    hasBg, '#2DD4BF'
+  );
 }
 
 /**
@@ -291,64 +317,24 @@ async function renderNewYearTeal({
 async function renderEidTeal({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const cx = width / 2;
   const maxW = width - (padX * 2);
   let curY = contentTopY + 10;
 
-  drawCrescentMoonAndLanterns(ctx, cx, curY + 54, 76, TEAL_PRIMARY);
+  drawCrescentMoonAndLanterns(ctx, cx, curY + 54, 76, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
   curY += 126;
 
-  ctx.font = `900 ${isLandscape ? 44 : 56}px "Outfit", serif`;
-  ctx.fillStyle = TEXT_DARK;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
+  curY = renderFestiveHeadline(ctx, headline, cx, curY, maxW, isLandscape, hasBg, '"Outfit", serif', '#FBBF24');
+  curY = renderFestiveTagline(ctx, tagline, cx, curY + 8, maxW, isLandscape, hasBg);
+  curY = renderFestiveCards(ctx, items, 'Peace & Prosperity', padX, curY + 20, maxW, hasBg, 'sparkle', GOLD_ACCENT);
 
-  wrapText(ctx, headline, maxW).slice(0, 2).forEach((l, idx) => {
-    ctx.fillStyle = idx === 0 ? TEXT_DARK : TEAL_PRIMARY;
-    ctx.fillText(l, cx, curY);
-    curY += isLandscape ? 50 : 64;
-  });
-
-  curY += 8;
-  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
-    ctx.fillText(tl, cx, curY);
-    curY += 30;
-  });
-  curY += 20;
-
-  const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
-
-  items.slice(0, 3).forEach((item, idx) => {
-    const cardX = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: cardX, y: curY, w: cardW, h: cardH, radius: 14 });
-    drawSparkleIcon(ctx, cardX + 20, curY + 30, 20, TEAL_PRIMARY);
-    ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.textAlign = 'left';
-    ctx.fillText(item, cardX + 48, curY + 34);
-
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText('Peace & Prosperity', cardX + 48, curY + 62);
-  });
-  curY += cardH + 28;
-
-  const remH = footerY - curY - 14;
-  if (remH > 70) {
-    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
-    ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.fillText('🌙  EID MUBARAK — WISHING YOU HARMONY, SUCCESS & JOY', cx, curY + remH * 0.38);
-
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.fillText('May the blessings of this holy celebration bring peace and shared triumphs to your entire family.', cx, curY + remH * 0.70);
-    ctx.textAlign = 'left';
-  }
+  renderFestiveBottomBanner(
+    ctx, cx, curY, padX, maxW, footerY - curY - 14,
+    '🌙  EID MUBARAK — WISHING YOU HARMONY, SUCCESS & JOY',
+    'May the blessings of this holy celebration bring peace and shared triumphs to your entire family.',
+    hasBg, '#FBBF24'
+  );
 }
 
 /**
@@ -357,6 +343,7 @@ async function renderEidTeal({
 async function renderChristmasTeal({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const cx = width / 2;
   const maxW = width - (padX * 2);
   let curY = contentTopY + 14;
@@ -364,57 +351,16 @@ async function renderChristmasTeal({
   drawSparkleIcon(ctx, cx, curY + 32, 44, GOLD_ACCENT);
   curY += 76;
 
-  ctx.font = `900 ${isLandscape ? 44 : 56}px "Outfit", serif`;
-  ctx.fillStyle = TEXT_DARK;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
+  curY = renderFestiveHeadline(ctx, headline, cx, curY, maxW, isLandscape, hasBg, '"Outfit", serif', '#FBBF24');
+  curY = renderFestiveTagline(ctx, tagline, cx, curY + 8, maxW, isLandscape, hasBg);
+  curY = renderFestiveCards(ctx, items, 'Holiday Wish & Joy', padX, curY + 20, maxW, hasBg, 'checkmark', GOLD_ACCENT);
 
-  wrapText(ctx, headline, maxW).slice(0, 2).forEach((l, idx) => {
-    ctx.fillStyle = idx === 0 ? TEXT_DARK : TEAL_PRIMARY;
-    ctx.fillText(l, cx, curY);
-    curY += isLandscape ? 48 : 64;
-  });
-
-  curY += 8;
-  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
-    ctx.fillText(tl, cx, curY);
-    curY += 30;
-  });
-  curY += 20;
-
-  const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
-
-  items.slice(0, 3).forEach((item, idx) => {
-    const cardX = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: cardX, y: curY, w: cardW, h: cardH, radius: 14 });
-    drawCheckmarkIcon(ctx, cardX + 20, curY + 30, 20, TEAL_PRIMARY);
-    ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.textAlign = 'left';
-    ctx.fillText(item, cardX + 48, curY + 34);
-
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText('Holiday Wish & Joy', cardX + 48, curY + 62);
-  });
-  curY += cardH + 28;
-
-  const remH = footerY - curY - 14;
-  if (remH > 70) {
-    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
-    ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.fillText('🎄  WARMEST SEASON GREETINGS & PROSPEROUS NEW YEAR', cx, curY + remH * 0.38);
-
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.fillText('Grateful for our incredible clients, partners, and teams making this year extraordinary.', cx, curY + remH * 0.70);
-    ctx.textAlign = 'left';
-  }
+  renderFestiveBottomBanner(
+    ctx, cx, curY, padX, maxW, footerY - curY - 14,
+    '🎄  WARMEST SEASON GREETINGS & PROSPEROUS NEW YEAR',
+    'Grateful for our incredible clients, partners, and teams making this year extraordinary.',
+    hasBg, '#FBBF24'
+  );
 }
 
 /**
@@ -423,18 +369,19 @@ async function renderChristmasTeal({
 async function renderMegaSaleTeal({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const maxW = width - (padX * 2);
   let curY = contentTopY;
 
   drawRoundRect(ctx, padX, curY, maxW, 46, 12);
-  ctx.fillStyle = TEAL_BG_TINT;
+  ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.40)' : TEAL_BG_TINT;
   ctx.fill();
-  ctx.strokeStyle = TEAL_PRIMARY;
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.lineWidth = 1.4;
   ctx.stroke();
 
   ctx.font = '900 16px "Outfit", sans-serif';
-  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('⚡ MEGA FESTIVE SALE — EXCLUSIVE ENTERPRISE OFFER', width / 2, curY + 23);
@@ -443,10 +390,14 @@ async function renderMegaSaleTeal({
   // Giant 50% OFF Callout
   ctx.save();
   ctx.font = `900 ${isLandscape ? 76 : 100}px "Outfit", sans-serif`;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+    ctx.shadowBlur = 16;
+  }
   const saleGrad = ctx.createLinearGradient(width / 2 - 160, curY, width / 2 + 160, curY + 90);
   saleGrad.addColorStop(0, '#EF4444');
-  saleGrad.addColorStop(0.5, TEAL_PRIMARY);
-  saleGrad.addColorStop(1, TEAL_LIGHT);
+  saleGrad.addColorStop(0.5, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
+  saleGrad.addColorStop(1, hasBg ? '#5EEAD4' : TEAL_LIGHT);
   ctx.fillStyle = saleGrad;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
@@ -454,53 +405,16 @@ async function renderMegaSaleTeal({
   ctx.restore();
   curY += isLandscape ? 84 : 110;
 
-  ctx.font = `900 ${isLandscape ? 40 : 50}px "Outfit", sans-serif`;
-  ctx.fillStyle = TEXT_DARK;
-  wrapText(ctx, headline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, width / 2, curY);
-    curY += isLandscape ? 46 : 58;
-  });
+  curY = renderFestiveHeadline(ctx, headline, width / 2, curY, maxW, isLandscape, hasBg, '"Outfit", sans-serif', '#2DD4BF');
+  curY = renderFestiveTagline(ctx, tagline, width / 2, curY + 8, maxW, isLandscape, hasBg);
+  curY = renderFestiveCards(ctx, items, 'Included in Sale', padX, curY + 20, maxW, hasBg, 'checkmark', hasBg ? '#2DD4BF' : TEAL_PRIMARY);
 
-  curY += 8;
-  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
-    ctx.fillText(tl, width / 2, curY);
-    curY += 30;
-  });
-  curY += 20;
-
-  const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
-
-  items.slice(0, 3).forEach((item, idx) => {
-    const cardX = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: cardX, y: curY, w: cardW, h: cardH, radius: 14 });
-    drawCheckmarkIcon(ctx, cardX + 20, curY + 30, 20, TEAL_PRIMARY);
-    ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.textAlign = 'left';
-    ctx.fillText(item, cardX + 48, curY + 34);
-
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText('Included in Sale', cardX + 48, curY + 62);
-  });
-  curY += cardH + 28;
-
-  const remH = footerY - curY - 14;
-  if (remH > 70) {
-    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
-    ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.fillText('🏷️  USE VOUCHER CODE: FESTIVE2026 FOR INSTANT 50% CREDITS', width / 2, curY + remH * 0.38);
-
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.fillText('Priority activation · Dedicated engineering support · Zero setup fees · Enterprise SLA', width / 2, curY + remH * 0.70);
-    ctx.textAlign = 'left';
-  }
+  renderFestiveBottomBanner(
+    ctx, width / 2, curY, padX, maxW, footerY - curY - 14,
+    '🏷️  USE VOUCHER CODE: FESTIVE2026 FOR INSTANT 50% CREDITS',
+    'Priority activation · Dedicated engineering support · Zero setup fees · Enterprise SLA',
+    hasBg, '#2DD4BF'
+  );
 }
 
 /**
@@ -509,64 +423,24 @@ async function renderMegaSaleTeal({
 async function renderFreedomTeal({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const cx = width / 2;
   const maxW = width - (padX * 2);
   let curY = contentTopY + 16;
 
-  drawSparkleIcon(ctx, cx, curY + 28, 38, TEAL_PRIMARY);
+  drawSparkleIcon(ctx, cx, curY + 28, 38, hasBg ? '#FBBF24' : TEAL_PRIMARY);
   curY += 70;
 
-  ctx.font = `900 ${isLandscape ? 44 : 56}px "Outfit", serif`;
-  ctx.fillStyle = TEXT_DARK;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
+  curY = renderFestiveHeadline(ctx, headline, cx, curY, maxW, isLandscape, hasBg, '"Outfit", serif', '#FBBF24');
+  curY = renderFestiveTagline(ctx, tagline, cx, curY + 8, maxW, isLandscape, hasBg);
+  curY = renderFestiveCards(ctx, items, 'National Milestone', padX, curY + 20, maxW, hasBg, 'checkmark', GOLD_ACCENT);
 
-  wrapText(ctx, headline, maxW).slice(0, 2).forEach((l, idx) => {
-    ctx.fillStyle = idx === 0 ? TEXT_DARK : TEAL_PRIMARY;
-    ctx.fillText(l, cx, curY);
-    curY += isLandscape ? 50 : 64;
-  });
-
-  curY += 8;
-  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
-    ctx.fillText(tl, cx, curY);
-    curY += 30;
-  });
-  curY += 20;
-
-  const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
-
-  items.slice(0, 3).forEach((item, idx) => {
-    const cardX = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: cardX, y: curY, w: cardW, h: cardH, radius: 14 });
-    drawCheckmarkIcon(ctx, cardX + 20, curY + 30, 20, TEAL_PRIMARY);
-    ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.textAlign = 'left';
-    ctx.fillText(item, cardX + 48, curY + 34);
-
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText('National Milestone', cardX + 48, curY + 62);
-  });
-  curY += cardH + 28;
-
-  const remH = footerY - curY - 14;
-  if (remH > 70) {
-    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
-    ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.fillText('🇮🇳  HONORING THE SPIRIT OF FREEDOM, INNOVATION & RESILIENCE', cx, curY + remH * 0.38);
-
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.fillText('Committed to building world-class technology that champions progress, unity, and self-reliance.', cx, curY + remH * 0.70);
-    ctx.textAlign = 'left';
-  }
+  renderFestiveBottomBanner(
+    ctx, cx, curY, padX, maxW, footerY - curY - 14,
+    '🇮🇳  HONORING THE SPIRIT OF FREEDOM, INNOVATION & RESILIENCE',
+    'Committed to building world-class technology that champions progress, unity, and self-reliance.',
+    hasBg, '#FBBF24'
+  );
 }
 
 /**
@@ -575,6 +449,7 @@ async function renderFreedomTeal({
 async function renderHoliTeal({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const cx = width / 2;
   const maxW = width - (padX * 2);
   let curY = contentTopY + 20;
@@ -591,57 +466,16 @@ async function renderHoliTeal({
   }
   curY += 68;
 
-  ctx.font = `900 ${isLandscape ? 44 : 58}px "Outfit", sans-serif`;
-  ctx.fillStyle = TEXT_DARK;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
+  curY = renderFestiveHeadline(ctx, headline, cx, curY, maxW, isLandscape, hasBg, '"Outfit", sans-serif', '#EC4899');
+  curY = renderFestiveTagline(ctx, tagline, cx, curY + 8, maxW, isLandscape, hasBg);
+  curY = renderFestiveCards(ctx, items, 'Celebration Color', padX, curY + 20, maxW, hasBg, 'sparkle', '#F59E0B');
 
-  wrapText(ctx, headline, maxW).slice(0, 2).forEach((l, idx) => {
-    ctx.fillStyle = idx === 0 ? TEXT_DARK : TEAL_PRIMARY;
-    ctx.fillText(l, cx, curY);
-    curY += isLandscape ? 50 : 64;
-  });
-
-  curY += 8;
-  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
-    ctx.fillText(tl, cx, curY);
-    curY += 30;
-  });
-  curY += 20;
-
-  const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
-
-  items.slice(0, 3).forEach((item, idx) => {
-    const cardX = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: cardX, y: curY, w: cardW, h: cardH, radius: 14 });
-    drawSparkleIcon(ctx, cardX + 20, curY + 30, 20, TEAL_PRIMARY);
-    ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.textAlign = 'left';
-    ctx.fillText(item, cardX + 48, curY + 34);
-
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText('Celebration Color', cardX + 48, curY + 62);
-  });
-  curY += cardH + 28;
-
-  const remH = footerY - curY - 14;
-  if (remH > 70) {
-    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
-    ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.fillText('🎨  CELEBRATING VIBRANT PARTNERSHIPS, UNITY & CREATIVITY', cx, curY + remH * 0.38);
-
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.fillText('May your business journey be painted with boundless breakthroughs and joyful collaboration.', cx, curY + remH * 0.70);
-    ctx.textAlign = 'left';
-  }
+  renderFestiveBottomBanner(
+    ctx, cx, curY, padX, maxW, footerY - curY - 14,
+    '🎨  CELEBRATING VIBRANT PARTNERSHIPS, UNITY & CREATIVITY',
+    'May your business journey be painted with boundless breakthroughs and joyful collaboration.',
+    hasBg, '#EC4899'
+  );
 }
 
 /**
@@ -650,6 +484,7 @@ async function renderHoliTeal({
 async function renderCyberWeekTeal({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const cx = width / 2;
   const maxW = width - (padX * 2);
   let curY = contentTopY;
@@ -657,7 +492,7 @@ async function renderCyberWeekTeal({
   drawRoundRect(ctx, padX, curY, maxW, 46, 12);
   ctx.fillStyle = '#0F172A';
   ctx.fill();
-  ctx.strokeStyle = TEAL_PRIMARY;
+  ctx.strokeStyle = '#2DD4BF';
   ctx.lineWidth = 1.6;
   ctx.stroke();
 
@@ -668,55 +503,16 @@ async function renderCyberWeekTeal({
   ctx.fillText('// CYBER SPRINT 2026: MAXIMUM CONVERSION UNLOCKED', cx, curY + 23);
   curY += 64;
 
-  ctx.font = `900 ${isLandscape ? 44 : 58}px "Outfit", sans-serif`;
-  ctx.fillStyle = TEXT_DARK;
-  ctx.textBaseline = 'top';
+  curY = renderFestiveHeadline(ctx, headline, cx, curY, maxW, isLandscape, hasBg, '"Space Grotesk", sans-serif', '#2DD4BF');
+  curY = renderFestiveTagline(ctx, tagline, cx, curY + 8, maxW, isLandscape, hasBg);
+  curY = renderFestiveCards(ctx, items, 'Cyber Tier Benefit', padX, curY + 20, maxW, hasBg, 'checkmark', '#2DD4BF');
 
-  wrapText(ctx, headline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, cx, curY);
-    curY += isLandscape ? 50 : 64;
-  });
-
-  curY += 8;
-  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
-    ctx.fillText(tl, cx, curY);
-    curY += 30;
-  });
-  curY += 20;
-
-  const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
-
-  items.slice(0, 3).forEach((item, idx) => {
-    const cardX = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: cardX, y: curY, w: cardW, h: cardH, radius: 14 });
-    drawCheckmarkIcon(ctx, cardX + 20, curY + 30, 20, TEAL_PRIMARY);
-    ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.textAlign = 'left';
-    ctx.fillText(item, cardX + 48, curY + 34);
-
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText('Cyber Tier Benefit', cardX + 48, curY + 62);
-  });
-  curY += cardH + 28;
-
-  const remH = footerY - curY - 14;
-  if (remH > 70) {
-    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
-    ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.fillText('⚡  LOCK IN TIER-1 INFRASTRUCTURE PRICING BEFORE CAPACITY EXPIRES', cx, curY + remH * 0.38);
-
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.fillText('Sub-second latency guarantees · 99.99% uptime SLAs · Seamless multi-cloud redundancy', cx, curY + remH * 0.70);
-    ctx.textAlign = 'left';
-  }
+  renderFestiveBottomBanner(
+    ctx, cx, curY, padX, maxW, footerY - curY - 14,
+    '⚡  LOCK IN TIER-1 INFRASTRUCTURE PRICING BEFORE CAPACITY EXPIRES',
+    'Sub-second latency guarantees · 99.99% uptime SLAs · Seamless multi-cloud redundancy',
+    hasBg, '#2DD4BF'
+  );
 }
 
 /**
@@ -725,64 +521,24 @@ async function renderCyberWeekTeal({
 async function renderGratitudeTeal({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const cx = width / 2;
   const maxW = width - (padX * 2);
   let curY = contentTopY + 16;
 
-  drawSparkleIcon(ctx, cx, curY + 28, 38, TEAL_PRIMARY);
+  drawSparkleIcon(ctx, cx, curY + 28, 38, hasBg ? '#FBBF24' : TEAL_PRIMARY);
   curY += 70;
 
-  ctx.font = `900 ${isLandscape ? 44 : 56}px "Outfit", serif`;
-  ctx.fillStyle = TEXT_DARK;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
+  curY = renderFestiveHeadline(ctx, headline, cx, curY, maxW, isLandscape, hasBg, '"Outfit", serif', '#FBBF24');
+  curY = renderFestiveTagline(ctx, tagline, cx, curY + 8, maxW, isLandscape, hasBg);
+  curY = renderFestiveCards(ctx, items, 'Gratitude & Loyalty', padX, curY + 20, maxW, hasBg, 'sparkle', GOLD_ACCENT);
 
-  wrapText(ctx, headline, maxW).slice(0, 2).forEach((l, idx) => {
-    ctx.fillStyle = idx === 0 ? TEXT_DARK : TEAL_PRIMARY;
-    ctx.fillText(l, cx, curY);
-    curY += isLandscape ? 50 : 64;
-  });
-
-  curY += 8;
-  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
-    ctx.fillText(tl, cx, curY);
-    curY += 30;
-  });
-  curY += 20;
-
-  const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
-
-  items.slice(0, 3).forEach((item, idx) => {
-    const cardX = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: cardX, y: curY, w: cardW, h: cardH, radius: 14 });
-    drawCheckmarkIcon(ctx, cardX + 20, curY + 30, 20, TEAL_PRIMARY);
-    ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.textAlign = 'left';
-    ctx.fillText(item, cardX + 48, curY + 34);
-
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText('Gratitude & Loyalty', cardX + 48, curY + 62);
-  });
-  curY += cardH + 28;
-
-  const remH = footerY - curY - 14;
-  if (remH > 70) {
-    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
-    ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.fillText('🍁  PROFOUND GRATITUDE TO OUR VALUED CLIENTS & PARTNERS', cx, curY + remH * 0.38);
-
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.fillText('Thank you for trusting our team to power your most ambitious digital transformations.', cx, curY + remH * 0.70);
-    ctx.textAlign = 'left';
-  }
+  renderFestiveBottomBanner(
+    ctx, cx, curY, padX, maxW, footerY - curY - 14,
+    '🍁  PROFOUND GRATITUDE TO OUR VALUED CLIENTS & PARTNERS',
+    'Thank you for trusting our team to power your most ambitious digital transformations.',
+    hasBg, '#FBBF24'
+  );
 }
 
 /**
@@ -791,6 +547,7 @@ async function renderGratitudeTeal({
 async function renderAnniversaryTeal({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const cx = width / 2;
   const maxW = width - (padX * 2);
   let curY = contentTopY + 16;
@@ -798,55 +555,14 @@ async function renderAnniversaryTeal({
   drawSparkleIcon(ctx, cx, curY + 28, 40, GOLD_ACCENT);
   curY += 72;
 
-  ctx.font = `900 ${isLandscape ? 44 : 58}px "Outfit", sans-serif`;
-  ctx.fillStyle = TEXT_DARK;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
+  curY = renderFestiveHeadline(ctx, headline, cx, curY, maxW, isLandscape, hasBg, '"Outfit", sans-serif', '#FBBF24');
+  curY = renderFestiveTagline(ctx, tagline, cx, curY + 8, maxW, isLandscape, hasBg);
+  curY = renderFestiveCards(ctx, items, 'Corporate Milestone', padX, curY + 20, maxW, hasBg, 'checkmark', GOLD_ACCENT);
 
-  wrapText(ctx, headline, maxW).slice(0, 2).forEach((l, idx) => {
-    ctx.fillStyle = idx === 0 ? TEXT_DARK : TEAL_PRIMARY;
-    ctx.fillText(l, cx, curY);
-    curY += isLandscape ? 50 : 64;
-  });
-
-  curY += 8;
-  ctx.font = `600 ${isLandscape ? 16 : 22}px "Plus Jakarta Sans", sans-serif`;
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(tl => {
-    ctx.fillText(tl, cx, curY);
-    curY += 30;
-  });
-  curY += 20;
-
-  const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
-
-  items.slice(0, 3).forEach((item, idx) => {
-    const cardX = padX + (idx * (cardW + 12));
-    drawWhiteTealCard({ ctx, x: cardX, y: curY, w: cardW, h: cardH, radius: 14 });
-    drawCheckmarkIcon(ctx, cardX + 20, curY + 30, 20, TEAL_PRIMARY);
-    ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.textAlign = 'left';
-    ctx.fillText(item, cardX + 48, curY + 34);
-
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
-    ctx.fillText('Corporate Milestone', cardX + 48, curY + 62);
-  });
-  curY += cardH + 28;
-
-  const remH = footerY - curY - 14;
-  if (remH > 70) {
-    drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: remH, radius: 16 });
-    ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.fillText('🏆  HONORING FOUNDING VALUES OF CRAFTSMANSHIP & CLIENT SUCCESS', cx, curY + remH * 0.38);
-
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
-    ctx.fillText('Here is to another milestone year of innovation, high standards, and empowering world-class teams.', cx, curY + remH * 0.70);
-    ctx.textAlign = 'left';
-  }
+  renderFestiveBottomBanner(
+    ctx, cx, curY, padX, maxW, footerY - curY - 14,
+    '🏆  HONORING FOUNDING VALUES OF CRAFTSMANSHIP & CLIENT SUCCESS',
+    'Here is to another milestone year of innovation, high standards, and empowering world-class teams.',
+    hasBg, '#FBBF24'
+  );
 }

@@ -1195,6 +1195,29 @@ export const DESIGN_STYLES = [
     "categoryPillText": "#008080",
     "categoryPillBorder": "rgba(0, 128, 128, 0.3)",
     "description": "Inspirational company manifesto with visionary mission points, polished leadership signoff, and join mission CTA."
+  },
+  {
+    "id": "common-21",
+    "name": "Common 21: Before & After Transformation",
+    "badge": "Before & After",
+    "category": "knowledge",
+    "layout": "before-after-split",
+    "dark": false,
+    "bgType": "common-before-after",
+    "bgStart": "#FFFFFF",
+    "bgEnd": "#F0FDFA",
+    "accentColor": "#008080",
+    "secondaryAccent": "#00A2A2",
+    "textColor": "#0F172A",
+    "textSecondary": "#475569",
+    "cardBg": "#FFFFFF",
+    "cardBorder": "rgba(0, 128, 128, 0.22)",
+    "ctaBg": "#008080",
+    "ctaText": "#FFFFFF",
+    "categoryPillBg": "rgba(0, 128, 128, 0.08)",
+    "categoryPillText": "#008080",
+    "categoryPillBorder": "rgba(0, 128, 128, 0.3)",
+    "description": "Dual-curve transformation layout contrasting Before pain points against After AI velocity."
   }
 ];
 

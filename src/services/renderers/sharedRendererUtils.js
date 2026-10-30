@@ -54,11 +54,15 @@ export async function renderPosterBackground({
   // Resolve photo from user upload OR matched local images_AI folder
   const bgImg = (post?.uploadedImage && typeof post.uploadedImage === 'object' && post.uploadedImage.width)
     ? post.uploadedImage
-    : (topicImg && topicImg.width && (post?.useImageBackground || post?.category === 'festival' || style?.id?.startsWith('festival-') || post?.category === 'product' || post?.category === 'knowledge'))
+    : (topicImg && topicImg.width && post?.showBackgroundImage !== false)
       ? topicImg
       : null;
 
   if (bgImg && bgImg.width > 0) {
+    ctx.__hasBackgroundImage = true;
+    ctx.__cardOpacity = post?.cardOpacity ?? 0.0;
+    ctx.__bgOverlayOpacity = post?.bgOverlayOpacity ?? 0.38;
+
     const scale = Math.max(width / bgImg.width, height / bgImg.height);
     const dw = bgImg.width * scale;
     const dh = bgImg.height * scale;
@@ -66,14 +70,16 @@ export async function renderPosterBackground({
     const dy = (height - dh) / 2;
     ctx.drawImage(bgImg, dx, dy, dw, dh);
 
-    // Subtle light scrim so clean white cards, teal typography & branding remain 100% crisp and readable
+    // Dynamic Translucent Scrim - keeps background photo vivid and provides pristine contrast for floating typography!
+    const baseAlpha = post?.bgOverlayOpacity ?? 0.38;
     const scrim = ctx.createLinearGradient(0, 0, 0, height);
-    scrim.addColorStop(0, 'rgba(255, 255, 255, 0.88)');
-    scrim.addColorStop(0.35, 'rgba(255, 255, 255, 0.92)');
-    scrim.addColorStop(0.75, 'rgba(255, 255, 255, 0.95)');
-    scrim.addColorStop(1, 'rgba(240, 253, 250, 0.98)');
+    scrim.addColorStop(0, `rgba(15, 23, 42, ${baseAlpha * 0.45})`);
+    scrim.addColorStop(0.4, `rgba(15, 23, 42, ${baseAlpha * 0.65})`);
+    scrim.addColorStop(0.8, `rgba(15, 23, 42, ${baseAlpha * 0.88})`);
+    scrim.addColorStop(1, `rgba(15, 23, 42, ${Math.min(0.92, baseAlpha * 1.20)})`);
     ctx.fillStyle = scrim;
     ctx.fillRect(0, 0, width, height);
+
     ctx.restore();
     return;
   }
@@ -166,73 +172,306 @@ export function drawWarpMesh(ctx, width, height, color = 'rgba(0, 128, 128, 0.07
 }
 
 /**
- * 2. Top Branding Bar (Logo + Category Pill in White & Teal)
+ * Helper: Draw a decorative hanging ornament at (x, y)
+ * Types: 'lantern' | 'bulb' | 'star' | 'diya' | 'bell' | 'beads'
+ * Matches the user's festive hand-drawn sketch of hanging lights & ornaments
+ */
+function drawHangingOrnament(ctx, x, y, type, primaryColor, glowColor, scale = 1.0) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+
+  if (type === 'lantern') {
+    // 1. Festive Lantern / Pendant
+    ctx.fillStyle = primaryColor;
+    ctx.fillRect(-4, -2, 8, 3);
+
+    const grad = ctx.createRadialGradient(0, 5, 1, 0, 5, 8);
+    grad.addColorStop(0, '#FFFFFF');
+    grad.addColorStop(0.35, glowColor);
+    grad.addColorStop(1, primaryColor);
+
+    ctx.shadowColor = glowColor;
+    ctx.shadowBlur = 8;
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(6, 4);
+    ctx.lineTo(4, 11);
+    ctx.lineTo(0, 13);
+    ctx.lineTo(-4, 11);
+    ctx.lineTo(-6, 4);
+    ctx.closePath();
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Bottom droplet
+    ctx.fillStyle = primaryColor;
+    ctx.beginPath();
+    ctx.arc(0, 16, 2, 0, Math.PI * 2);
+    ctx.fill();
+
+  } else if (type === 'bulb') {
+    // 2. Glowing Fairy Light Bulb
+    ctx.fillStyle = primaryColor;
+    ctx.fillRect(-2.5, -2, 5, 3);
+
+    const bulbGrad = ctx.createRadialGradient(-1, 3, 1, 0, 5, 7);
+    bulbGrad.addColorStop(0, '#FFFFFF');
+    bulbGrad.addColorStop(0.45, glowColor);
+    bulbGrad.addColorStop(1, primaryColor);
+
+    ctx.shadowColor = glowColor;
+    ctx.shadowBlur = 9;
+    ctx.fillStyle = bulbGrad;
+    ctx.beginPath();
+    ctx.arc(0, 5, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Filament center
+    ctx.fillStyle = '#FFFFFF';
+    ctx.beginPath();
+    ctx.arc(-1, 3.5, 1.6, 0, Math.PI * 2);
+    ctx.fill();
+
+  } else if (type === 'star') {
+    // 3. 4-Point Diamond Sparkle Star
+    ctx.shadowColor = glowColor;
+    ctx.shadowBlur = 8;
+    ctx.fillStyle = glowColor;
+    ctx.beginPath();
+    ctx.moveTo(0, -9);
+    ctx.quadraticCurveTo(0, 0, 7, 0);
+    ctx.quadraticCurveTo(0, 0, 0, 9);
+    ctx.quadraticCurveTo(0, 0, -7, 0);
+    ctx.quadraticCurveTo(0, 0, 0, -9);
+    ctx.closePath();
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    ctx.fillStyle = '#FFFFFF';
+    ctx.beginPath();
+    ctx.arc(0, 0, 2, 0, Math.PI * 2);
+    ctx.fill();
+
+  } else if (type === 'diya') {
+    // 4. Festive Diya / Lamp bowl
+    ctx.fillStyle = primaryColor;
+    ctx.beginPath();
+    ctx.ellipse(0, 5, 7, 3.5, 0, 0, Math.PI);
+    ctx.fill();
+
+    // Flame
+    const flameGrad = ctx.createLinearGradient(0, 4, 0, -5);
+    flameGrad.addColorStop(0, '#EF4444');
+    flameGrad.addColorStop(0.4, glowColor);
+    flameGrad.addColorStop(1, '#FFFFFF');
+
+    ctx.shadowColor = glowColor;
+    ctx.shadowBlur = 8;
+    ctx.fillStyle = flameGrad;
+    ctx.beginPath();
+    ctx.moveTo(0, -5);
+    ctx.quadraticCurveTo(3, 1, 0, 4);
+    ctx.quadraticCurveTo(-3, 1, 0, -5);
+    ctx.closePath();
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+  } else if (type === 'bell') {
+    // 5. Festive Bell / Drop Pendant
+    ctx.strokeStyle = primaryColor;
+    ctx.lineWidth = 1.2;
+    ctx.strokeRect(-2, -2, 4, 2);
+
+    ctx.fillStyle = glowColor;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.quadraticCurveTo(4, 2, 5, 8);
+    ctx.lineTo(-5, 8);
+    ctx.quadraticCurveTo(-4, 2, 0, 0);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = primaryColor;
+    ctx.beginPath();
+    ctx.arc(0, 11, 2, 0, Math.PI * 2);
+    ctx.fill();
+
+  } else {
+    // 6. Bead Cluster / Toran Motif
+    ctx.fillStyle = glowColor;
+    ctx.beginPath();
+    ctx.arc(0, 2, 3, 0, Math.PI * 2);
+    ctx.arc(0, 8, 4, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = primaryColor;
+    ctx.beginPath();
+    ctx.arc(0, 14, 2.2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+/**
+ * 2. Top Branding Bar (Solid White Background across top + Undulating Wave Boundary + Logo & Category Pill)
+ * 
+ * Requirement:
+ * - "top also like bottom okay see the second image"
+ * - Full-width clean white header background (#FFFFFF) starting from top of canvas
+ * - Bottom boundary of top bar follows an organic undulating wave curve matching user's sketch
+ * - Rhythmic decorative hanging strings & ornaments (lights, lanterns, sparkles, diyas) matching user sketch
+ * - Logo and category pill badge rendered crisply on the white header
+ * - Returns contentTopY with ample clearance so headlines never collide
  */
 export function renderStandardTopBar({
   ctx,
   width,
   height,
+  post,
   brand,
   logoImg,
   style,
   padX,
   padY,
-  isLandscape = false
+  isLandscape = false,
+  accentColor = TEAL_PRIMARY
 }) {
   ctx.save();
-  const headerY = padY;
-  const headerH = isLandscape ? 52 : 68;
 
-  // 1. Company Logo Card (top-left)
+  const footerStyle = post?.footerStyle || 'lights'; // 'lights' (default) | 'wave' | 'straight'
+  const headerY = padY;
+  const headerH = isLandscape ? 48 : 62;
+
+  // Wave parameters for rhythmic undulating curve across canvas width (matching bottom wave)
+  const waveCycles = isLandscape ? 4.5 : 3.5;
+  const waveAmp = isLandscape ? 8 : 12;
+  const topWaveBaseY = headerY + headerH + (isLandscape ? 10 : 16);
+
+  const getTopWaveY = (x) => {
+    if (footerStyle === 'straight') return topWaveBaseY;
+    return topWaveBaseY + Math.sin((x / width) * Math.PI * 2 * waveCycles) * waveAmp;
+  };
+
+  // 1. Fill Solid Clean White Header Background (#FFFFFF) from top of canvas to the wave curve
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(width, 0);
+  ctx.lineTo(width, getTopWaveY(width));
+  const step = 4;
+  for (let x = width; x >= 0; x -= step) {
+    ctx.lineTo(x, getTopWaveY(x));
+  }
+  ctx.closePath();
+  ctx.fillStyle = '#FFFFFF';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.14)';
+  ctx.shadowBlur = 14;
+  ctx.shadowOffsetY = 3;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+  ctx.restore();
+
+  // 2. Decorative Wave Divider Line on bottom edge of white header
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, getTopWaveY(0));
+  for (let x = step; x <= width; x += step) {
+    ctx.lineTo(x, getTopWaveY(x));
+  }
+  ctx.strokeStyle = accentColor;
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+
+  // Delicate secondary echo line
+  ctx.beginPath();
+  ctx.moveTo(0, getTopWaveY(0) - 3);
+  for (let x = step; x <= width; x += step) {
+    ctx.lineTo(x, getTopWaveY(x) - 3);
+  }
+  ctx.strokeStyle = 'rgba(0, 128, 128, 0.20)';
+  ctx.lineWidth = 1.0;
+  ctx.stroke();
+  ctx.restore();
+
+  // 3. Hanging Strings & Decorative Ornaments (Matching user sketch & bottom bar)
+  if (footerStyle === 'lights') {
+    const isFestival = style?.category === 'festivals' ||
+      (post?.headline || '').toLowerCase().includes('diwali') ||
+      (post?.tagline || '').toLowerCase().includes('festival') ||
+      (post?.theme || '').toLowerCase().includes('festive');
+
+    const ornPrimary = isFestival ? '#D97706' : accentColor;
+    const ornGlow = isFestival ? '#FBBF24' : '#2DD4BF';
+
+    const numDrops = isLandscape ? 10 : 8;
+    const topStringLenList = isLandscape
+      ? [8, 14, 6, 12, 8, 16, 6, 12, 8, 14]
+      : [12, 20, 10, 18, 14, 22, 10, 16];
+
+    const ornamentTypes = ['bulb', 'star', 'lantern', 'bell', 'diya', 'star', 'bulb', 'beads'];
+    const ornScale = isLandscape ? 0.62 : 0.80;
+
+    for (let i = 0; i < numDrops; i++) {
+      const dropX = width * (0.06 + (i * (0.88 / (numDrops - 1))));
+      const dropStartY = getTopWaveY(dropX);
+      const dropLen = topStringLenList[i % topStringLenList.length];
+      const dropEndY = dropStartY + dropLen;
+
+      // Anchor bead on the wave line
+      ctx.fillStyle = ornPrimary;
+      ctx.beginPath();
+      ctx.arc(dropX, dropStartY, isLandscape ? 2.0 : 2.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Slender vertical hanging string
+      ctx.strokeStyle = isFestival ? 'rgba(217, 119, 6, 0.45)' : 'rgba(0, 128, 128, 0.38)';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(dropX, dropStartY);
+      ctx.lineTo(dropX, dropEndY);
+      ctx.stroke();
+
+      // Draw hanging ornament
+      const ornType = ornamentTypes[i % ornamentTypes.length];
+      drawHangingOrnament(ctx, dropX, dropEndY, ornType, ornPrimary, ornGlow, ornScale);
+    }
+  }
+
+  // 4. Company Logo (top-left on white header)
   if (logoImg && typeof logoImg === 'object' && logoImg.width) {
-    const scale = Math.min((headerH - 12) / logoImg.height, 220 / logoImg.width);
+    const scale = Math.min((headerH - 8) / logoImg.height, 220 / logoImg.width);
     const lw = logoImg.width * scale;
     const lh = logoImg.height * scale;
-    drawRoundRect(ctx, padX - 10, headerY - 5, lw + 20, headerH + 10, 14);
-    ctx.fillStyle = '#FFFFFF';
-    ctx.shadowColor = 'rgba(0, 128, 128, 0.12)';
-    ctx.shadowBlur = 12;
-    ctx.fill();
-    ctx.shadowBlur = 0;
-    ctx.strokeStyle = TEAL_BORDER;
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
     ctx.drawImage(logoImg, padX, headerY + (headerH - lh) / 2, lw, lh);
   } else {
     const compName = (brand?.companyName || 'INFINITETECH AI').toUpperCase();
-    ctx.font = `900 ${isLandscape ? 18 : 24}px "Outfit", "Plus Jakarta Sans", sans-serif`;
-    const nw = ctx.measureText(compName).width + 56;
-    drawRoundRect(ctx, padX, headerY, nw, headerH, 16);
-    ctx.fillStyle = '#FFFFFF';
-    ctx.shadowColor = 'rgba(0, 128, 128, 0.10)';
-    ctx.shadowBlur = 12;
-    ctx.fill();
-    ctx.shadowBlur = 0;
-    ctx.strokeStyle = TEAL_BORDER;
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
+    ctx.font = `900 ${isLandscape ? 17 : 22}px "Outfit", "Plus Jakarta Sans", sans-serif`;
 
     // Glowing Teal Status Dot
     ctx.beginPath();
-    ctx.arc(padX + 22, headerY + headerH / 2, 7, 0, Math.PI * 2);
+    ctx.arc(padX + 10, headerY + headerH / 2, 6, 0, Math.PI * 2);
     ctx.fillStyle = TEAL_PRIMARY;
-    ctx.shadowColor = TEAL_PRIMARY;
-    ctx.shadowBlur = 10;
+    ctx.shadowColor = 'rgba(0, 128, 128, 0.40)';
+    ctx.shadowBlur = 8;
     ctx.fill();
     ctx.shadowBlur = 0;
 
     ctx.fillStyle = TEXT_DARK;
     ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
-    ctx.fillText(compName, padX + 38, headerY + headerH / 2);
+    ctx.fillText(compName, padX + 24, headerY + headerH / 2);
   }
 
-  // 2. Category Pill Badge (top-right) in Teal
+  // 5. Category Pill Badge (top-right on white header)
   const category = (style?.category || 'general').toUpperCase();
   const badgeText = (style?.badge || (category === 'HIRING' ? "WE'RE HIRING" : category === 'PRODUCT' ? 'PRODUCT SHOWCASE' : category)).toUpperCase();
-  ctx.font = `900 ${isLandscape ? 16 : 20}px "Outfit", sans-serif`;
-  const pillW = ctx.measureText(badgeText).width + 42;
-  const pillH = isLandscape ? 44 : 56;
+  ctx.font = `900 ${isLandscape ? 14 : 18}px "Outfit", sans-serif`;
+  const pillW = ctx.measureText(badgeText).width + 36;
+  const pillH = isLandscape ? 38 : 46;
   const pillY = headerY + (headerH - pillH) / 2;
   const pillX = width - padX - pillW;
 
@@ -250,12 +489,20 @@ export function renderStandardTopBar({
 
   ctx.restore();
 
-  const contentTopY = headerY + headerH + (isLandscape ? 22 : 36);
+  const contentTopY = topWaveBaseY + waveAmp + (isLandscape ? 22 : 36);
   return { headerH, contentTopY };
 }
 
 /**
- * 3. Bottom Footer Bar (Call To Action + Contact Info in White & Teal)
+ * 3. Bottom Footer Bar (Solid White Background across bottom + Dynamic Call To Action)
+ * 
+ * Requirement:
+ * - "every templete bottom should be bg white and txt should be call to action okay that i want the call to action should be editable okay"
+ * - "this bottom start link stright line see the scond image okay link that i want"
+ * - Full-width clean white footer background (#FFFFFF) starting with an undulating wave curve
+ * - Rhythmic decorative hanging strings & ornaments (lights, lanterns, sparkles, diyas) matching user sketch
+ * - Prominent editable Call To Action (from post.cta / post.ctaText)
+ * - Zero overlap: dynamic collision protection & 2-tier stacked mode for long CTAs
  */
 export function renderStandardBottomBar({
   ctx,
@@ -271,71 +518,238 @@ export function renderStandardBottomBar({
   accentColor = TEAL_PRIMARY
 }) {
   ctx.save();
-  const ctaH = isLandscape ? 56 : 68;
-  const barY = footerY + (bottomH - ctaH) / 2;
 
-  const rawCta = (post?.ctaText || post?.cta || 'Apply Now').trim();
+  // 1. Resolve Editable Call to Action & Contact Details first
+  let rawCta = (post?.cta || post?.ctaText || '').trim();
+  if (!rawCta || rawCta.startsWith('#')) {
+    rawCta = post?.cta || 'Apply Now';
+  }
   const btnText = rawCta.toUpperCase();
 
   const rawWebsite = (post?.website || post?.websiteUrl || brand?.website || 'www.infinitetechai.com').replace(/^https?:\/\//, '');
   const rawPhone = (post?.phone || brand?.phone || '+91 99765 63210');
-
-  // CTA Button in Infinitetech Teal Gradient (#008080 -> #00A2A2)
-  ctx.font = `900 ${isLandscape ? 18 : 24}px "Outfit", sans-serif`;
-  const btnW = Math.max(isLandscape ? 220 : 270, ctx.measureText(btnText).width + 76);
-  const btnX = padX;
-
-  const ctaGrad = ctx.createLinearGradient(btnX, barY, btnX + btnW, barY + ctaH);
-  ctaGrad.addColorStop(0, TEAL_PRIMARY);
-  ctaGrad.addColorStop(1, TEAL_LIGHT);
-
-  drawRoundRect(ctx, btnX, barY, btnW, ctaH, ctaH / 2);
-  ctx.fillStyle = ctaGrad;
-  ctx.shadowColor = 'rgba(0, 128, 128, 0.40)';
-  ctx.shadowBlur = 18;
-  ctx.shadowOffsetY = 6;
-  ctx.fill();
-  ctx.shadowBlur = 0;
-
-  ctx.fillStyle = '#FFFFFF';
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(btnText, btnX + 30, barY + ctaH / 2);
-  drawCtaArrowBadge(ctx, btnX + btnW - 28, barY + ctaH / 2, 16, 'rgba(255,255,255,0.30)', '#FFFFFF');
-
-  // Contact Capsule on the right with Website & Phone
   const contactText = `${rawWebsite}   |   ${rawPhone}`;
-  let contactFontFs = isLandscape ? 16 : 21;
-  ctx.font = `700 ${contactFontFs}px "Plus Jakarta Sans", sans-serif`;
 
-  const availW = width - (padX * 2) - btnW - 24;
-  let contactW = ctx.measureText(contactText).width + 68;
+  const availW = width - (padX * 2);
 
-  // Scale down font slightly if needed to guarantee BOTH website & phone fit comfortably
-  if (contactW > availW && contactFontFs > 16) {
-    contactFontFs = 17;
-    ctx.font = `700 ${contactFontFs}px "Plus Jakarta Sans", sans-serif`;
-    contactW = ctx.measureText(contactText).width + 64;
+  // Layout mode check
+  const isLongCta = btnText.length > 28 || (btnText.length > 20 && isLandscape);
+
+  // 2. Footer Elevation & Wave Curve (Matching user's sketch)
+  const footerStyle = post?.footerStyle || 'lights'; // 'lights' (default) | 'wave' | 'straight'
+  const footerTop = Math.round(footerY - (isLandscape ? 14 : 22));
+  const footerH = height - footerTop;
+
+  const waveCycles = isLandscape ? 4.5 : 3.5;
+  const waveAmp = isLandscape ? 10 : 15;
+  const waveBaseY = footerTop;
+
+  const getWaveY = (x) => {
+    if (footerStyle === 'straight') return footerTop;
+    return waveBaseY + Math.sin((x / width) * Math.PI * 2 * waveCycles) * waveAmp;
+  };
+
+  // 2a. Fill Solid Clean White Footer Background below the wave curve
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, height);
+  ctx.lineTo(0, getWaveY(0));
+  const step = 4;
+  for (let x = step; x <= width; x += step) {
+    ctx.lineTo(x, getWaveY(x));
   }
-
-  const contactX = width - padX - contactW;
-  drawRoundRect(ctx, contactX, barY, contactW, ctaH, ctaH / 2);
+  ctx.lineTo(width, height);
+  ctx.closePath();
   ctx.fillStyle = '#FFFFFF';
-  ctx.shadowColor = 'rgba(0, 128, 128, 0.08)';
-  ctx.shadowBlur = 12;
-  ctx.shadowOffsetY = 4;
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.14)';
+  ctx.shadowBlur = 14;
+  ctx.shadowOffsetY = -3;
   ctx.fill();
   ctx.shadowBlur = 0;
-  ctx.strokeStyle = TEAL_BORDER;
-  ctx.lineWidth = 1.5;
+  ctx.restore();
+
+  // 2b. Decorative Wave Divider Line on top of white footer
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, getWaveY(0));
+  for (let x = step; x <= width; x += step) {
+    ctx.lineTo(x, getWaveY(x));
+  }
+  ctx.strokeStyle = accentColor;
+  ctx.lineWidth = 2.2;
   ctx.stroke();
 
-  drawGlobeIcon(ctx, contactX + 22, barY + (ctaH - 22) / 2, 22, TEAL_PRIMARY);
+  // Delicate secondary echo line
+  ctx.beginPath();
+  ctx.moveTo(0, getWaveY(0) + 3);
+  for (let x = step; x <= width; x += step) {
+    ctx.lineTo(x, getWaveY(x) + 3);
+  }
+  ctx.strokeStyle = 'rgba(0, 128, 128, 0.20)';
+  ctx.lineWidth = 1.0;
+  ctx.stroke();
+  ctx.restore();
 
-  ctx.fillStyle = TEXT_DARK;
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(contactText, contactX + 54, barY + ctaH / 2);
+  // 2c. Hanging Strings & Decorative Ornaments (Matching user sketch)
+  if (footerStyle === 'lights') {
+    const isFestival = style?.category === 'festivals' ||
+      (post?.headline || '').toLowerCase().includes('diwali') ||
+      (post?.tagline || '').toLowerCase().includes('festival') ||
+      (post?.theme || '').toLowerCase().includes('festive');
+
+    const ornPrimary = isFestival ? '#D97706' : accentColor;
+    const ornGlow = isFestival ? '#FBBF24' : '#2DD4BF';
+
+    const numDrops = isLandscape ? 10 : 8;
+    const stringLenList = isLandscape
+      ? [12, 20, 10, 18, 14, 22, 10, 16, 12, 20]
+      : [18, 30, 16, 28, 20, 32, 16, 26];
+
+    const ornamentTypes = ['lantern', 'bulb', 'star', 'beads', 'diya', 'bell', 'star', 'lantern', 'bulb', 'beads'];
+
+    // Safe ceiling so hanging ornaments never touch CTA buttons
+    const ctaTopBoundary = isLongCta
+      ? footerTop + (isLandscape ? 36 : 46)
+      : footerTop + (isLandscape ? 42 : 52);
+    const maxDropAllowed = ctaTopBoundary - (isLandscape ? 8 : 12);
+    const ornScale = isLandscape ? 0.72 : 0.92;
+
+    for (let i = 0; i < numDrops; i++) {
+      const dropX = width * (0.06 + (i * (0.88 / (numDrops - 1))));
+      const dropStartY = getWaveY(dropX);
+      let dropLen = stringLenList[i % stringLenList.length];
+
+      if (dropStartY + dropLen + 16 > maxDropAllowed) {
+        dropLen = Math.max(6, maxDropAllowed - dropStartY - 16);
+      }
+      const dropEndY = dropStartY + dropLen;
+
+      // Anchor bead on the wave line
+      ctx.fillStyle = ornPrimary;
+      ctx.beginPath();
+      ctx.arc(dropX, dropStartY, isLandscape ? 2.2 : 2.8, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Slender vertical hanging string
+      ctx.strokeStyle = isFestival ? 'rgba(217, 119, 6, 0.50)' : 'rgba(0, 128, 128, 0.42)';
+      ctx.lineWidth = 1.3;
+      ctx.beginPath();
+      ctx.moveTo(dropX, dropStartY);
+      ctx.lineTo(dropX, dropEndY);
+      ctx.stroke();
+
+      // Draw hanging ornament
+      const ornType = ornamentTypes[i % ornamentTypes.length];
+      drawHangingOrnament(ctx, dropX, dropEndY, ornType, ornPrimary, ornGlow, ornScale);
+    }
+  }
+
+  // 3. Render Call to Action & Contact Info with Zero Collision
+  if (isLongCta) {
+    // ── STACKED 2-TIER FOOTER (Ideal for sentence-length CTAs) ──
+    const tier1H = isLandscape ? 36 : 44;
+    const tier1Y = footerTop + (isLandscape ? 36 : 46);
+
+    // Call to Action Banner across width
+    drawRoundRect(ctx, padX, tier1Y, availW, tier1H, tier1H / 2);
+    const ctaGrad = ctx.createLinearGradient(padX, tier1Y, padX + availW, tier1Y + tier1H);
+    ctaGrad.addColorStop(0, TEAL_PRIMARY);
+    ctaGrad.addColorStop(1, TEAL_LIGHT);
+    ctx.fillStyle = ctaGrad;
+    ctx.shadowColor = 'rgba(0, 128, 128, 0.30)';
+    ctx.shadowBlur = 12;
+    ctx.shadowOffsetY = 3;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Dynamically fit CTA text inside banner
+    let ctaFs = isLandscape ? 15 : 18;
+    ctx.font = `900 ${ctaFs}px "Outfit", sans-serif`;
+    while (ctx.measureText(`👉   ${btnText}   ➔`).width > availW - 36 && ctaFs > 11) {
+      ctaFs -= 1;
+      ctx.font = `900 ${ctaFs}px "Outfit", sans-serif`;
+    }
+
+    ctx.fillStyle = '#FFFFFF';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(`👉   ${btnText}   ➔`, padX + availW / 2, tier1Y + tier1H / 2);
+
+    // Tier 2: Clean contact info line below CTA banner on white background
+    const tier2Y = tier1Y + tier1H + (isLandscape ? 12 : 16);
+    ctx.font = `700 ${isLandscape ? 13 : 16}px "Plus Jakarta Sans", sans-serif`;
+    ctx.fillStyle = TEXT_DARK;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(`🌐  ${rawWebsite}      •      📞  ${rawPhone}`, padX + availW / 2, tier2Y);
+
+  } else {
+    // ── SIDE-BY-SIDE FOOTER (For standard concise CTAs like "Apply Now", "Register Today") ──
+    const ctaH = isLandscape ? 48 : 58;
+    const barY = footerTop + (isLandscape ? 42 : 52);
+
+    // Measure Contact Info Capsule first
+    let contactFs = isLandscape ? 15 : 18;
+    ctx.font = `700 ${contactFs}px "Plus Jakarta Sans", sans-serif`;
+    let contactTextW = ctx.measureText(contactText).width;
+    let contactW = contactTextW + 68;
+
+    // Allocate CTA button width with collision protection
+    const maxBtnW = availW - contactW - 24;
+
+    let btnFs = isLandscape ? 16 : 21;
+    ctx.font = `900 ${btnFs}px "Outfit", sans-serif`;
+    let btnTextW = ctx.measureText(btnText).width;
+    let calcBtnW = btnTextW + 72;
+
+    // Scale down if needed so button never exceeds allocated boundary
+    while (calcBtnW > maxBtnW && btnFs > 12) {
+      btnFs -= 1;
+      ctx.font = `900 ${btnFs}px "Outfit", sans-serif`;
+      btnTextW = ctx.measureText(btnText).width;
+      calcBtnW = btnTextW + 64;
+    }
+
+    const btnW = Math.max(isLandscape ? 180 : 210, Math.min(calcBtnW, maxBtnW));
+    const btnX = padX;
+
+    // 1. CTA Button in Infinitetech Teal Gradient on White Footer
+    const ctaGrad = ctx.createLinearGradient(btnX, barY, btnX + btnW, barY + ctaH);
+    ctaGrad.addColorStop(0, TEAL_PRIMARY);
+    ctaGrad.addColorStop(1, TEAL_LIGHT);
+
+    drawRoundRect(ctx, btnX, barY, btnW, ctaH, ctaH / 2);
+    ctx.fillStyle = ctaGrad;
+    ctx.shadowColor = 'rgba(0, 128, 128, 0.35)';
+    ctx.shadowBlur = 14;
+    ctx.shadowOffsetY = 4;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    ctx.font = `900 ${btnFs}px "Outfit", sans-serif`;
+    ctx.fillStyle = '#FFFFFF';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(btnText, btnX + 24, barY + ctaH / 2);
+    drawCtaArrowBadge(ctx, btnX + btnW - 24, barY + ctaH / 2, 14, 'rgba(255,255,255,0.30)', '#FFFFFF');
+
+    // 2. Contact Capsule on Right (on white background)
+    const contactX = width - padX - contactW;
+    drawRoundRect(ctx, contactX, barY, contactW, ctaH, ctaH / 2);
+    ctx.fillStyle = TEAL_BG_TINT; // soft light teal tint on white
+    ctx.fill();
+    ctx.strokeStyle = TEAL_BORDER;
+    ctx.lineWidth = 1.4;
+    ctx.stroke();
+
+    drawGlobeIcon(ctx, contactX + 22, barY + (ctaH - 20) / 2, 20, TEAL_PRIMARY);
+
+    ctx.font = `700 ${contactFs}px "Plus Jakarta Sans", sans-serif`;
+    ctx.fillStyle = TEXT_DARK;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(contactText, contactX + 50, barY + ctaH / 2);
+  }
 
   ctx.restore();
 }
@@ -358,31 +772,42 @@ export function drawPosterHeadline(ctx, {
   align = 'left'
 }) {
   ctx.save();
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = y;
 
   // 1. Script Accent (e.g. "We are") in Caveat font
   if (scriptAccent) {
     ctx.font = `700 ${isLandscape ? 38 : 46}px "Caveat", "Kalam", cursive`;
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.textAlign = align;
     ctx.textBaseline = 'top';
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+      ctx.shadowBlur = 10;
+    }
     ctx.fillText(scriptAccent, x, curY);
+    ctx.shadowBlur = 0;
     curY += isLandscape ? 38 : 48;
   } else if (kicker) {
     // Technical kicker badge / pill
     ctx.font = `900 ${isLandscape ? 13 : 15}px "Outfit", sans-serif`;
     const kw = ctx.measureText(kicker.toUpperCase()).width + 24;
     drawRoundRect(ctx, align === 'center' ? x - kw / 2 : x, curY, kw, 28, 14);
-    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.35)' : TEAL_BG_TINT;
     ctx.fill();
-    ctx.strokeStyle = TEAL_PRIMARY;
+    ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.lineWidth = 1.2;
     ctx.stroke();
 
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.textAlign = align === 'center' ? 'center' : 'left';
     ctx.textBaseline = 'middle';
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+      ctx.shadowBlur = 6;
+    }
     ctx.fillText(kicker.toUpperCase(), align === 'center' ? x : x + 12, curY + 14);
+    ctx.shadowBlur = 0;
     curY += 38;
   }
 
@@ -396,18 +821,25 @@ export function drawPosterHeadline(ctx, {
   hlFit.lines.forEach((line, idx) => {
     const lineY = curY + (idx * hlFit.lineHeight);
 
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 12;
+      ctx.shadowOffsetY = 2;
+    }
+
     if (idx === 0) {
-      // First line: deep slate navy
-      ctx.fillStyle = TEXT_DARK;
+      // First line: pure white if background image, deep slate navy if clean white
+      ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
       ctx.fillText(line, x, lineY);
     } else {
-      // Accent line: vibrant Infinitetech Teal gradient
+      // Accent line: vibrant cyan/teal gradient if background image, classic teal if clean white
       const lineGrad = ctx.createLinearGradient(x, lineY, x + maxW, lineY);
-      lineGrad.addColorStop(0, TEAL_PRIMARY);
-      lineGrad.addColorStop(1, TEAL_LIGHT);
+      lineGrad.addColorStop(0, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
+      lineGrad.addColorStop(1, hasBg ? '#5EEAD4' : TEAL_LIGHT);
       ctx.fillStyle = lineGrad;
       ctx.fillText(line, x, lineY);
     }
+    ctx.shadowBlur = 0;
   });
 
   const totalHeight = (curY - y) + (hlFit.lines.length * hlFit.lineHeight);
@@ -418,6 +850,32 @@ export function drawPosterHeadline(ctx, {
     bottomY: y + totalHeight,
     fontSize: hlFit.fontSize
   };
+}
+
+/**
+ * 4b. Master Poster Tagline / Subtitle with High-Contrast Background Protection
+ */
+export function drawPosterTagline(ctx, tagline, x, y, maxW, align = 'left', fs = 22) {
+  ctx.save();
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
+  ctx.font = `600 ${fs}px "Plus Jakarta Sans", sans-serif`;
+  ctx.fillStyle = hasBg ? '#F1F5F9' : TEXT_MUTED;
+  ctx.textAlign = align;
+  ctx.textBaseline = 'top';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 8;
+    ctx.shadowOffsetY = 1;
+  }
+  let curY = y;
+  const lines = wrapText(ctx, tagline, maxW).slice(0, 2);
+  lines.forEach(l => {
+    ctx.fillText(l, x, curY);
+    curY += fs + 10;
+  });
+  ctx.shadowBlur = 0;
+  ctx.restore();
+  return curY;
 }
 
 /**
@@ -610,18 +1068,24 @@ export function drawSpecificationRow(ctx, x, y, w, h = 64, iconType = 'briefcase
 
   // Label & Value
   const textX = x + (iconR * 2) + 20;
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   ctx.font = '600 18px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
+  ctx.fillStyle = hasBg ? '#E2E8F0' : TEXT_MUTED;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+    ctx.shadowBlur = 6;
+  }
   ctx.fillText(label, textX, y + 6);
 
   ctx.font = '900 24px "Outfit", sans-serif';
-  ctx.fillStyle = TEXT_DARK;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
   ctx.fillText(value, textX, y + 30);
+  ctx.shadowBlur = 0;
 
   // Subtle divider line
-  ctx.strokeStyle = 'rgba(0, 128, 128, 0.16)';
+  ctx.strokeStyle = hasBg ? 'rgba(255, 255, 255, 0.18)' : 'rgba(0, 128, 128, 0.16)';
   ctx.lineWidth = 1.2;
   ctx.beginPath();
   ctx.moveTo(textX, y + h);
@@ -674,16 +1138,19 @@ export function drawFloatingGlossyBadge(ctx, cx, cy, size = 72, iconText = '</>'
  */
 export function drawTechStackPillsRow(ctx, x, y, w, h = 60, items = ['React', 'Node.js', 'SQL', 'APIs']) {
   ctx.save();
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
 
-  // Floating white pill container
+  // Floating pill container - NO white box on images!
   drawRoundRect(ctx, x, y, w, h, h / 2);
-  ctx.fillStyle = '#FFFFFF';
-  ctx.shadowColor = 'rgba(0, 128, 128, 0.12)';
-  ctx.shadowBlur = 16;
-  ctx.shadowOffsetY = 6;
+  ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.40)' : '#FFFFFF';
+  if (!hasBg) {
+    ctx.shadowColor = 'rgba(0, 128, 128, 0.12)';
+    ctx.shadowBlur = 16;
+    ctx.shadowOffsetY = 6;
+  }
   ctx.fill();
   ctx.shadowBlur = 0;
-  ctx.strokeStyle = TEAL_BORDER;
+  ctx.strokeStyle = hasBg ? 'rgba(255, 255, 255, 0.25)' : TEAL_BORDER;
   ctx.lineWidth = 1.6;
   ctx.stroke();
 
@@ -697,13 +1164,18 @@ export function drawTechStackPillsRow(ctx, x, y, w, h = 60, items = ['React', 'N
     const cy = y + (h / 2);
 
     ctx.font = '800 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+      ctx.shadowBlur = 6;
+    }
     ctx.fillText(item, cx, cy);
+    ctx.shadowBlur = 0;
 
     if (idx < valid.length - 1) {
-      ctx.strokeStyle = 'rgba(0, 128, 128, 0.18)';
+      ctx.strokeStyle = hasBg ? 'rgba(255, 255, 255, 0.18)' : 'rgba(0, 128, 128, 0.18)';
       ctx.lineWidth = 1.4;
       ctx.beginPath();
       ctx.moveTo(ix + itemW, y + 14);
@@ -720,6 +1192,7 @@ export function drawTechStackPillsRow(ctx, x, y, w, h = 60, items = ['React', 'N
  */
 export function drawFeaturePillsRow(ctx, x, y, pills = [], maxW = 1080) {
   ctx.save();
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const valid = pills.slice(0, 3);
   if (valid.length === 0) {
     ctx.restore();
@@ -738,18 +1211,23 @@ export function drawFeaturePillsRow(ctx, x, y, pills = [], maxW = 1080) {
     if (curX + pillW > x + maxW) return;
 
     drawRoundRect(ctx, curX, y, pillW, pillH, pillH / 2);
-    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.35)' : TEAL_BG_TINT;
     ctx.fill();
-    ctx.strokeStyle = TEAL_PRIMARY;
+    ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.lineWidth = 1.4;
     ctx.stroke();
 
-    drawCheckmarkIcon(ctx, curX + 18, y + (pillH - 20) / 2, 20, TEAL_PRIMARY);
+    drawCheckmarkIcon(ctx, curX + 18, y + (pillH - 20) / 2, 20, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
 
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
     ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+      ctx.shadowBlur = 6;
+    }
     ctx.fillText(clean, curX + 46, y + pillH / 2);
+    ctx.shadowBlur = 0;
 
     curX += pillW + 16;
   });
@@ -903,17 +1381,38 @@ export function drawWhiteTealCard({
   borderCol = TEAL_BORDER,
   bgCol = '#FFFFFF'
 }) {
+  ctx.save();
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
+
+  if (hasBg) {
+    // When background photo is active:
+    // Frosted dark glass container ensures all text is 100% crisp and readable
+    // while keeping transparency so the background photo shines through!
+    drawRoundRect(ctx, x, y, w, h, radius);
+    ctx.fillStyle = (h >= 260 && w >= 600) ? 'rgba(15, 23, 42, 0.40)' : 'rgba(15, 23, 42, 0.66)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    ctx.restore();
+    return;
+  }
+
+  // When no background image is active (Clean Corporate White mode):
   drawRoundRect(ctx, x, y, w, h, radius);
-  ctx.fillStyle = bgCol;
+  ctx.fillStyle = bgCol || '#FFFFFF';
   ctx.shadowColor = 'rgba(0, 128, 128, 0.08)';
   ctx.shadowBlur = 12;
   ctx.shadowOffsetY = 4;
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  ctx.strokeStyle = borderCol;
+  ctx.strokeStyle = borderCol || TEAL_BORDER;
   ctx.lineWidth = 1.4;
   ctx.stroke();
+
+  ctx.restore();
 }
 
 /**

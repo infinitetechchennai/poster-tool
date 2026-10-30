@@ -12,6 +12,7 @@ import { renderPostToCanvas } from '../services/imageRenderer';
 import { DESIGN_STYLES } from '../utils/designTemplates';
 import { POST_CATEGORIES, getCategoryById, detectCategoryFromTopic } from '../utils/categories';
 import { TEMPLATE_DEFAULT_CONTENT } from '../utils/templateDefaultContent';
+import { pickImageForTopic, getLocalImagesForTopic, findMatchingFolder } from '../utils/localAiImages';
 export { TEMPLATE_DEFAULT_CONTENT };
 
 export const DEFAULT_HIRING_CONTENT = {
@@ -244,17 +245,60 @@ export default function CreatePost({
     }
   }, [brand, selectedCategory]);
 
+  // Image cycler for local images_AI folder
+  const handleCycleTopicImage = (direction = 1) => {
+    const currentQuery = post?.headline || topic || 'ai cloud';
+    const activeCat = post?.category || selectedCategory;
+    const currentIdx = post?.localImageIndex ?? 0;
+    const nextIdx = currentIdx + direction;
+    const match = pickImageForTopic(currentQuery, activeCat, nextIdx);
+    if (match && match.image?.url) {
+      setPost(prev => ({
+        ...prev,
+        imageUrl: match.image.url,
+        localFolder: match.folder,
+        localImageIndex: match.index,
+        localTotalImages: match.total
+      }));
+      onShowToast?.({ type: 'info', message: `Photo: ${match.folder.label} (${match.index + 1}/${match.total})` });
+    }
+  };
+
   // Single post generation
   const handleGenerateSingle = async () => {
     const inputTopic = topic.trim() || 'Senior Cloud & DevOps Engineer (AWS & Kubernetes)';
     setIsGenerating(true);
     setIsSaved(false);
 
-    // Auto-detect or align category and template
-    const catObj = getCategoryById(selectedCategory);
+    // 1. Auto-detect category & recommended template from input topic
+    const detectedCat = detectCategoryFromTopic(inputTopic);
+    let activeCategory = selectedCategory;
+
+    // If user typed a distinct topic domain (e.g. 'ai cloud', 'diwali', 'product launch'), auto-align category
+    if (detectedCat && detectedCat !== selectedCategory) {
+      const isDefaultInitial = (selectedCategory === 'hiring' && inputTopic.toLowerCase() !== 'senior cloud & devops engineer (aws & kubernetes)');
+      const isFestivalQuery = /festival|diwali|deepavali|pongal|christmas|new year/i.test(inputTopic);
+      const isProductQuery = /ai cloud|cloud ai|cloud platform|launch|saas|product|app|mobile app/i.test(inputTopic);
+
+      if (isDefaultInitial || isFestivalQuery || isProductQuery) {
+        activeCategory = detectedCat;
+        setSelectedCategory(activeCategory);
+      }
+    }
+
+    const catObj = getCategoryById(activeCategory);
     let activeStyleId = styleId;
-    if (selectedCategory === 'hiring' && !styleId.startsWith('hiring-')) {
+    if (activeCategory === 'hiring' && !styleId.startsWith('hiring-')) {
       activeStyleId = catObj?.defaultTemplate || 'hiring-01';
+      setStyleId(activeStyleId);
+    } else if (activeCategory === 'product' && !styleId.startsWith('product-')) {
+      activeStyleId = catObj?.defaultTemplate || 'product-01';
+      setStyleId(activeStyleId);
+    } else if (activeCategory === 'festival' && !styleId.startsWith('festival-')) {
+      activeStyleId = catObj?.defaultTemplate || 'festival-01';
+      setStyleId(activeStyleId);
+    } else if (activeCategory === 'knowledge' && !styleId.startsWith('common-')) {
+      activeStyleId = catObj?.defaultTemplate || 'common-01';
       setStyleId(activeStyleId);
     } else if (catObj && !catObj.recommendedTemplates?.includes(styleId)) {
       activeStyleId = catObj.defaultTemplate;
@@ -267,9 +311,9 @@ export default function CreatePost({
       // 1. Try Groq AI (Ultra-fast content + custom visual prompt)
       if (groqService.getApiKey()) {
         const isLikelyHeadline = inputTopic.trim().split(/\s+/).length >= 4;
-        const groqRes = await groqService.generatePostAndImagePrompt(inputTopic, brand, isLikelyHeadline, selectedCategory);
+        const groqRes = await groqService.generatePostAndImagePrompt(inputTopic, brand, isLikelyHeadline, activeCategory);
         if (groqRes.success && groqRes.data) {
-          generated = { ...groqRes.data, category: selectedCategory, imageUrl: null };
+          generated = { ...groqRes.data, category: activeCategory };
           onShowToast?.({ type: 'success', message: 'Synthesized with Groq LPU!' });
         }
       }
@@ -283,20 +327,20 @@ export default function CreatePost({
           brand
         );
         if (ollamaRes.success) {
-          generated = { ...ollamaRes.data, category: selectedCategory };
+          generated = { ...ollamaRes.data, category: activeCategory };
           onShowToast?.({ type: 'success', message: 'Generated via Ollama Local AI!' });
         }
       }
 
       // 3. Fallback to built-in template generator
       if (!generated) {
-        generated = { ...generatePostContent(inputTopic, brand, variationIndex), category: selectedCategory };
+        generated = { ...generatePostContent(inputTopic, brand, variationIndex), category: activeCategory };
       }
 
       // Smart category content enrichment for all templates (Hiring, Services, Products, Roadmap)
       const smartCat = generateSmartCategoryContent(
         generated.headline || inputTopic,
-        selectedCategory,
+        activeCategory,
         brand,
         variationIndex,
         activeStyleId
@@ -305,10 +349,10 @@ export default function CreatePost({
       generated = {
         ...smartCat,
         ...generated,
-        category: selectedCategory
+        category: activeCategory
       };
 
-      if (selectedCategory === 'hiring' || activeStyleId.startsWith('hiring-') || activeStyleId.startsWith('tpl-hiring')) {
+      if (activeCategory === 'hiring' || activeStyleId.startsWith('hiring-') || activeStyleId.startsWith('tpl-hiring')) {
         generated.role = smartCat.role;
         generated.techStack = smartCat.techStack;
         generated.requirements = smartCat.requirements;
@@ -316,36 +360,45 @@ export default function CreatePost({
         generated.salary = smartCat.salary;
         generated.fresherSalary = smartCat.fresherSalary;
         generated.keyPoints = smartCat.requirements.slice(0, 4);
-      } else if (selectedCategory === 'services' || activeStyleId.includes('service') || activeStyleId.startsWith('tpl-services')) {
+      } else if (activeCategory === 'services' || activeStyleId.includes('service') || activeStyleId.startsWith('tpl-services')) {
         generated.serviceName = smartCat.serviceName;
         generated.deliverables = smartCat.deliverables;
         generated.tagline = smartCat.tagline;
         generated.phone = smartCat.phone;
         generated.keyPoints = smartCat.deliverables.slice(0, 4);
-      } else if (selectedCategory === 'product' || activeStyleId.includes('product') || activeStyleId.startsWith('tpl-product')) {
+      } else if (activeCategory === 'product' || activeStyleId.includes('product') || activeStyleId.startsWith('tpl-product')) {
         generated.productName = smartCat.productName;
         generated.features = smartCat.features;
         generated.tagline = smartCat.tagline;
         generated.keyPoints = smartCat.features.map(f => `${f.title}: ${f.desc}`);
-      } else if (selectedCategory === 'education' || selectedCategory === 'career-roadmap' || activeStyleId === 'hiring-white-executive' || activeStyleId === 'hiring-teal-leadership') {
+      } else if (activeCategory === 'education' || activeCategory === 'career-roadmap' || activeStyleId === 'hiring-white-executive' || activeStyleId === 'hiring-teal-leadership') {
         generated.stages = smartCat.stages;
       }
 
-      generated.imageUrl = null;
+      // Automatically assign matching high-res image from local images_AI folder!
+      const localMatch = pickImageForTopic(inputTopic, activeCategory, variationIndex);
+      if (localMatch && localMatch.image?.url) {
+        generated.imageUrl = localMatch.image.url;
+        generated.localFolder = localMatch.folder;
+        generated.localImageIndex = localMatch.index;
+        generated.localTotalImages = localMatch.total;
+      } else {
+        generated.imageUrl = null;
+      }
 
       if (!generated.cta || /^book\s+(your\s+|a\s+)?demo/i.test(generated.cta)) {
-        generated.cta = selectedCategory === 'hiring' ? 'Send Your Resume →' : 'Explore More';
+        generated.cta = activeCategory === 'hiring' ? 'Send Your Resume →' : 'Explore More';
       }
 
       if (generated.headlinePrefix === "Imagine More. Achieve More with AI." || generated.headlinePrefix === "Your Business Can't Miss") {
         generated.headlinePrefix = "";
       }
 
-      generated.category = selectedCategory;
+      generated.category = activeCategory;
       setPost(generated);
     } catch (err) {
       console.error('Generation error:', err);
-      const fallback = { ...generatePostContent(inputTopic, brand, 0), category: selectedCategory };
+      const fallback = { ...generatePostContent(inputTopic, brand, 0), category: activeCategory };
       setPost(fallback);
       onShowToast?.({ type: 'error', message: 'Template fallback applied.' });
     } finally {
@@ -684,6 +737,10 @@ export default function CreatePost({
         setMode={setMode}
         selectedCategory={selectedCategory}
         onSelectCategory={handleCategoryChange}
+        onCycleImage={handleCycleTopicImage}
+        currentFolder={post?.localFolder}
+        currentImageIndex={post?.localImageIndex ?? 0}
+        totalImages={post?.localTotalImages ?? 0}
       />
 
       {/* 2. Main Studio Grid (Content Editor on Left, Live Image on Right) */}

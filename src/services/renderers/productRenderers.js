@@ -37,6 +37,7 @@ import {
   renderStandardTopBar,
   renderStandardBottomBar,
   drawPosterHeadline,
+  drawPosterTagline,
   drawWhiteTealCard,
   drawFloatingGlossyBadge,
   drawFeaturePillsRow
@@ -76,17 +77,19 @@ export async function renderProductTemplate({
     topicImg
   });
 
-  // 2. Top Branding Bar in White & Teal
+  // 2. Top Branding Bar in White & Teal (Wavy Header matching User Sketch)
   const { contentTopY } = renderStandardTopBar({
     ctx,
     width,
     height,
+    post,
     brand,
     logoImg,
     style,
     padX,
     padY,
-    isLandscape
+    isLandscape,
+    accentColor: TEAL_PRIMARY
   });
 
   const footerY = height - padY - (isLandscape ? 80 : 96);
@@ -137,7 +140,9 @@ export async function renderProductTemplate({
 async function renderProductPedestalPhone({
   ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const cx = width / 2;
+  const maxW = width - padX * 2;
   let curY = contentTopY;
 
   const hlInfo = drawPosterHeadline(ctx, {
@@ -145,7 +150,7 @@ async function renderProductPedestalPhone({
     headline: headline || 'Step Into Infinity Today',
     x: cx,
     y: curY,
-    maxW: width - padX * 2,
+    maxW,
     initialFs: isLandscape ? 52 : 72,
     minFs: 38,
     maxLines: 2,
@@ -154,11 +159,8 @@ async function renderProductPedestalPhone({
   });
   curY = hlInfo.bottomY + 12;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'center';
-  ctx.fillText(tagline, cx, curY);
-  curY += 36;
+  curY = drawPosterTagline(ctx, tagline, cx, curY, maxW - 40, 'center', isLandscape ? 17 : 22);
+  curY += 12;
 
   // 3D Smartphone on Pedestal
   const phoneW = 200;
@@ -269,12 +271,12 @@ async function renderProductPedestalPhone({
       drawWhiteTealCard({ ctx, x: fx, y: belowY, w: featW, h: remH, radius: 14 });
 
       ctx.font = '900 16px "Outfit", sans-serif';
-      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
       ctx.textAlign = 'center';
       ctx.fillText(f, fx + featW / 2, belowY + remH * 0.44);
 
       ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
       ctx.fillText('Enterprise Ready Tier', fx + featW / 2, belowY + remH * 0.74);
     });
     ctx.textAlign = 'left';
@@ -287,6 +289,7 @@ async function renderProductPedestalPhone({
 async function renderProductBalanceScale({
   ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -303,39 +306,36 @@ async function renderProductBalanceScale({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // Comparison Matrix (Traditional Search vs AI Recommendations)
   const colW = Math.round((maxW - 24) / 2);
   const colH = footerY - curY - 20;
 
   // Left Column: Traditional Search
-  drawRoundRect(ctx, padX, curY, colW, colH, 18);
-  ctx.fillStyle = '#FFFFFF';
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(0, 128, 128, 0.16)';
-  ctx.lineWidth = 1.4;
-  ctx.stroke();
+  drawWhiteTealCard({ ctx, x: padX, y: curY, w: colW, h: colH, radius: 18 });
 
   ctx.font = '900 22px "Outfit", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_MUTED;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 6;
+  }
   ctx.fillText('🔍  TRADITIONAL SEARCH', padX + 24, curY + 24);
+  ctx.shadowBlur = 0;
 
   const leftItems = ['Keyword link matching', 'High ad-clutter & drop-off', 'Zero intent reasoning', 'Declining CTR across web'];
   let y1 = curY + 76;
   leftItems.forEach(item => {
     drawRoundRect(ctx, padX + 20, y1, colW - 40, 48, 10);
-    ctx.fillStyle = '#F8FAFC';
+    ctx.fillStyle = hasBg ? 'rgba(255, 255, 255, 0.08)' : '#F8FAFC';
     ctx.fill();
+    ctx.strokeStyle = hasBg ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 128, 128, 0.1)';
+    ctx.stroke();
+
     ctx.font = '600 16px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_DARK;
     ctx.textBaseline = 'middle';
     ctx.fillText(item, padX + 36, y1 + 24);
     y1 += 60;
@@ -344,16 +344,21 @@ async function renderProductBalanceScale({
   // Right Column: AI Engine Recommendations
   const rightX = padX + colW + 24;
   drawRoundRect(ctx, rightX, curY, colW, colH, 18);
-  ctx.fillStyle = TEAL_BG_TINT;
+  ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.45)' : TEAL_BG_TINT;
   ctx.fill();
-  ctx.strokeStyle = TEAL_PRIMARY;
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.lineWidth = 2;
   ctx.stroke();
 
   ctx.font = '900 22px "Outfit", sans-serif';
-  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.fillStyle = hasBg ? '#5EEAD4' : TEAL_PRIMARY;
   ctx.textBaseline = 'top';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 6;
+  }
   ctx.fillText('⚡  AI AGENT RECOMMENDATIONS', rightX + 24, curY + 24);
+  ctx.shadowBlur = 0;
 
   const rightItems = (features && features.length > 0) ? features : [
     'Synthesized semantic citations',
@@ -364,17 +369,14 @@ async function renderProductBalanceScale({
   let y2 = curY + 76;
   rightItems.forEach(item => {
     drawRoundRect(ctx, rightX + 20, y2, colW - 40, 48, 10);
-    ctx.fillStyle = '#FFFFFF';
-    ctx.shadowColor = 'rgba(0, 128, 128, 0.10)';
-    ctx.shadowBlur = 8;
+    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.65)' : '#FFFFFF';
     ctx.fill();
-    ctx.shadowBlur = 0;
-    ctx.strokeStyle = TEAL_BORDER;
+    ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_BORDER;
     ctx.lineWidth = 1.2;
     ctx.stroke();
 
     ctx.font = '800 16px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEAL_PRIMARY;
     ctx.textBaseline = 'middle';
     ctx.fillText(`✓  ${item}`, rightX + 36, y2 + 24);
     y2 += 60;
@@ -387,6 +389,7 @@ async function renderProductBalanceScale({
 async function renderProductDashboard({
   ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -403,14 +406,8 @@ async function renderProductDashboard({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 32;
-  });
-  curY += 20;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   curY = drawFeaturePillsRow(ctx, padX, curY, features, maxW);
 
@@ -433,17 +430,27 @@ async function renderProductDashboard({
     kpis.forEach((k, i) => {
       const kx = padX + 20 + (i * (colW + 12));
       drawRoundRect(ctx, kx, curY + 20, colW, 96, 12);
-      ctx.fillStyle = i === 0 ? TEAL_PRIMARY : TEAL_BG_TINT;
+      ctx.fillStyle = i === 0 ? TEAL_PRIMARY : (hasBg ? 'rgba(0, 128, 128, 0.40)' : TEAL_BG_TINT);
       ctx.fill();
+      if (hasBg) {
+        ctx.strokeStyle = i === 0 ? '#2DD4BF' : 'rgba(255, 255, 255, 0.22)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
 
       ctx.font = '700 14px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = i === 0 ? '#CCFBF1' : TEXT_MUTED;
+      ctx.fillStyle = i === 0 ? '#CCFBF1' : (hasBg ? '#CBD5E1' : TEXT_MUTED);
       ctx.textAlign = 'left';
       ctx.fillText(k.t, kx + 18, curY + 44);
 
       ctx.font = '900 36px "Outfit", sans-serif';
-      ctx.fillStyle = i === 0 ? '#FFFFFF' : TEAL_PRIMARY;
+      ctx.fillStyle = i === 0 ? '#FFFFFF' : (hasBg ? '#FFFFFF' : TEAL_PRIMARY);
+      if (hasBg) {
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+        ctx.shadowBlur = 8;
+      }
       ctx.fillText(k.v, kx + 18, curY + 84);
+      ctx.shadowBlur = 0;
     });
   }
 }
@@ -454,6 +461,7 @@ async function renderProductDashboard({
 async function renderProductHardwareGadget({
   ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -470,14 +478,8 @@ async function renderProductHardwareGadget({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // Circular Pedestal & Device Frame
   const cardH = footerY - curY - 20;
@@ -531,8 +533,13 @@ async function renderProductHardwareGadget({
     ctx.fillText('VOICE AI', cx, cy);
 
     ctx.font = '800 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.fillText('Noise-Canceling Dual Microphones · Instant Neural Sync', cx, curY + cardH - 36);
+    ctx.shadowBlur = 0;
   }
 }
 
@@ -542,6 +549,7 @@ async function renderProductHardwareGadget({
 async function renderProductChangelog({
   ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -558,14 +566,8 @@ async function renderProductChangelog({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 3 Feature Changelog Cards
   const logs = [
@@ -589,12 +591,17 @@ async function renderProductChangelog({
     ctx.fillText(l.tag, padX + 83, curY + 30);
 
     ctx.font = '900 22px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.textAlign = 'left';
     ctx.fillText(l.title, padX + 166, curY + 30);
+    ctx.shadowBlur = 0;
 
     ctx.font = '600 16px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     ctx.fillText(l.desc, padX + 18, curY + 64);
 
     curY += logH + 14;
@@ -613,12 +620,12 @@ async function renderProductChangelog({
     metrics.forEach((m, idx) => {
       const mx = padX + (idx * mW);
       ctx.font = '900 24px "Outfit", sans-serif';
-      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
       ctx.textAlign = 'center';
       ctx.fillText(m.v, mx + mW / 2, curY + remH * 0.44);
 
       ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
       ctx.fillText(m.l, mx + mW / 2, curY + remH * 0.76);
     });
     ctx.textAlign = 'left';
@@ -632,6 +639,7 @@ async function renderProductChangelog({
 async function renderProductCopilotWorkstation({
   ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -648,14 +656,8 @@ async function renderProductCopilotWorkstation({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 4 Feature Pills
   curY = drawFeaturePillsRow(ctx, padX, curY, features, maxW);
@@ -665,12 +667,17 @@ async function renderProductCopilotWorkstation({
   drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: boxH, radius: 18 });
 
   ctx.font = '900 24px "Outfit", sans-serif';
-  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.fillText('Autonomous Engineering & Growth Copilot', padX + 24, curY + 32);
 
   ctx.font = '600 18px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_DARK;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 6;
+  }
   ctx.fillText('Equipped with deep codebase synthesis, automated test runners, and real-time execution.', padX + 24, curY + 68);
+  ctx.shadowBlur = 0;
 }
 
 /**
@@ -679,6 +686,7 @@ async function renderProductCopilotWorkstation({
 async function renderProductMobileApp({
   ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -695,13 +703,8 @@ async function renderProductMobileApp({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 3 Feature Cards
   const colW = Math.round((maxW - 36) / 3);
@@ -721,11 +724,16 @@ async function renderProductMobileApp({
     ctx.fillText(c.icon, cx + 22, curY + 44);
 
     ctx.font = '900 22px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.fillText(c.t, cx + 22, curY + 96);
+    ctx.shadowBlur = 0;
 
     ctx.font = '500 16px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     let dy = curY + 130;
     wrapText(ctx, c.d, colW - 44).forEach(l => {
       ctx.fillText(l, cx + 22, dy);
@@ -740,6 +748,7 @@ async function renderProductMobileApp({
 async function renderProductCyberneticCore({
   ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -756,13 +765,8 @@ async function renderProductCyberneticCore({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 32;
-  });
-  curY += 28;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // Center Touch Glass Card
   const boxH = footerY - curY - 20;
@@ -790,9 +794,14 @@ async function renderProductCyberneticCore({
   ctx.shadowBlur = 0;
 
   ctx.font = '900 22px "Outfit", sans-serif';
-  ctx.fillStyle = TEXT_DARK;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 8;
+  }
   ctx.textAlign = 'center';
   ctx.fillText('ONE-CLICK SYNTHESIS ACROSS ALL 50 TEMPLATES', cx, curY + boxH - 36);
+  ctx.shadowBlur = 0;
 }
 
 /**
@@ -801,6 +810,7 @@ async function renderProductCyberneticCore({
 async function renderProductSecuritySuite({
   ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -817,13 +827,8 @@ async function renderProductSecuritySuite({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 4 Security Badges Grid
   const bW = Math.round((maxW - 20) / 2);
@@ -843,14 +848,19 @@ async function renderProductSecuritySuite({
     const sy = curY + (row * (bH + 18));
 
     drawWhiteTealCard({ ctx, x: sx, y: sy, w: bW, h: bH, radius: 16 });
-    drawShieldIcon(ctx, sx + 22, sy + 24, 28, TEAL_PRIMARY);
+    drawShieldIcon(ctx, sx + 22, sy + 24, 28, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
 
     ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.fillText(s.title, sx + 64, sy + 26);
+    ctx.shadowBlur = 0;
 
     ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     let dy = sy + 54;
     wrapText(ctx, s.desc, bW - 84).slice(0, 2).forEach(l => {
       ctx.fillText(l, sx + 64, dy);
@@ -872,12 +882,12 @@ async function renderProductSecuritySuite({
     certs.forEach((c, idx) => {
       const cx = padX + (idx * cW);
       ctx.font = '900 18px "Outfit", sans-serif';
-      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
       ctx.textAlign = 'center';
       ctx.fillText(c.t, cx + cW / 2, curY + remH * 0.42);
 
       ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
       ctx.fillText(c.d, cx + cW / 2, curY + remH * 0.74);
     });
     ctx.textAlign = 'left';
@@ -891,31 +901,33 @@ async function renderProductSecuritySuite({
 async function renderProductMinimalHero({
   ctx, width, height, post, style, headline, tagline, features, padX, contentTopY, footerY, isLandscape, topicImg
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const cx = width / 2;
   let curY = contentTopY + 20;
 
   // Massive Minimalist Headline
   ctx.font = `900 ${isLandscape ? 60 : 82}px "Outfit", sans-serif`;
-  ctx.fillStyle = TEXT_DARK;
   ctx.textAlign = 'center';
 
   const lines = wrapText(ctx, headline || 'Simplicity Is The Ultimate Sophistication', width - padX * 2);
   lines.forEach((l, i) => {
     if (i === lines.length - 1) {
-      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    } else {
+      ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    }
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+      ctx.shadowBlur = 12;
     }
     ctx.fillText(l, cx, curY);
+    ctx.shadowBlur = 0;
     curY += (isLandscape ? 66 : 90);
   });
   curY += 24;
 
-  ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, width - padX * 2).slice(0, 2).forEach(l => {
-    ctx.fillText(l, cx, curY);
-    curY += 34;
-  });
-  curY += 36;
+  curY = drawPosterTagline(ctx, tagline, cx, curY, width - padX * 2, 'center', isLandscape ? 18 : 24);
+  curY += 24;
 
   // Minimal Hero Card in Center
   const heroW = width - padX * 2;
@@ -945,18 +957,28 @@ async function renderProductMinimalHero({
     feats.forEach((f, idx) => {
       const fx = padX + 18 + (idx * (colW + 12));
       drawRoundRect(ctx, fx, curY + 24, colW, heroH - 48, 14);
-      ctx.fillStyle = TEAL_BG_TINT;
+      ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.35)' : TEAL_BG_TINT;
       ctx.fill();
+      if (hasBg) {
+        ctx.strokeStyle = '#2DD4BF';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      }
 
-      drawCheckmarkIcon(ctx, fx + 24, curY + 54, 28, TEAL_PRIMARY);
+      drawCheckmarkIcon(ctx, fx + 24, curY + 54, 28, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
 
       ctx.font = '900 22px "Outfit", sans-serif';
-      ctx.fillStyle = TEXT_DARK;
+      ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+      if (hasBg) {
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+        ctx.shadowBlur = 6;
+      }
       ctx.textAlign = 'left';
       ctx.fillText(f, fx + 64, curY + 60);
+      ctx.shadowBlur = 0;
 
       ctx.font = '600 16px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
       ctx.fillText('Engineered for scale & precision.', fx + 64, curY + 92);
     });
   }

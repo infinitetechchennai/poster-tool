@@ -1127,6 +1127,35 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-21": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Contrasting manual friction with automated intelligence to unlock 10x creative output.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "BEFORE & AFTER",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "agency-website-editorial": {
     "category": "services",
     "headline": "YOUR WEBSITE SHOULD DO MORE THAN LOOK GOOD",

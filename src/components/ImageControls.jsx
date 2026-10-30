@@ -15,6 +15,7 @@ import {
 import confetti from 'canvas-confetti';
 import { IMAGE_DIMENSIONS, DESIGN_STYLES, COLOR_PALETTES, BACKGROUND_PATTERNS } from '../utils/designTemplates';
 import { TOPIC_IMAGE_PRESETS } from '../utils/topicImages';
+import { LOCAL_AI_FOLDERS, findMatchingFolder } from '../utils/localAiImages';
 import { exportService } from '../services/exportService';
 
 const ICON_OPTIONS = [
@@ -107,6 +108,7 @@ export default function ImageControls({
 }) {
   const [downloadMenuOpen, setDownloadMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('styles'); // 'styles' | 'formats' | 'colors' | 'backgrounds' | 'icons' | 'visuals'
+  const [selectedFolderId, setSelectedFolderId] = useState('auto');
   const [styleCategory, setStyleCategory] = useState(() => {
     return selectedCategory === 'hiring' ? 'hiring' : 'all';
   });
@@ -183,11 +185,10 @@ export default function ImageControls({
           <button
             type="button"
             onClick={onSavePost}
-            className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl border text-xs font-semibold transition-all ${
-              isSaved
+            className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl border text-xs font-semibold transition-all ${isSaved
                 ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
                 : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-700'
-            }`}
+              }`}
           >
             {isSaved ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <BookmarkPlus className="w-3.5 h-3.5" />}
             <span>{isSaved ? 'Saved to My Posts' : 'Save Post'}</span>
@@ -240,11 +241,10 @@ export default function ImageControls({
         <button
           type="button"
           onClick={() => setActiveTab('styles')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'styles'
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${activeTab === 'styles'
               ? 'bg-slate-900 text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-          }`}
+            }`}
         >
           <Layout className="w-3.5 h-3.5" />
           <span>Design Style (8)</span>
@@ -253,11 +253,10 @@ export default function ImageControls({
         <button
           type="button"
           onClick={() => setActiveTab('formats')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'formats'
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${activeTab === 'formats'
               ? 'bg-slate-900 text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-          }`}
+            }`}
         >
           <ImageIcon className="w-3.5 h-3.5" />
           <span>Image Format (5)</span>
@@ -266,11 +265,10 @@ export default function ImageControls({
         <button
           type="button"
           onClick={() => setActiveTab('colors')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'colors'
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${activeTab === 'colors'
               ? 'bg-slate-900 text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-          }`}
+            }`}
         >
           <Palette className="w-3.5 h-3.5" />
           <span>Color Palette</span>
@@ -279,11 +277,10 @@ export default function ImageControls({
         <button
           type="button"
           onClick={() => setActiveTab('backgrounds')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'backgrounds'
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${activeTab === 'backgrounds'
               ? 'bg-slate-900 text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-          }`}
+            }`}
         >
           <Layers className="w-3.5 h-3.5" />
           <span>Background</span>
@@ -292,11 +289,10 @@ export default function ImageControls({
         <button
           type="button"
           onClick={() => setActiveTab('icons')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'icons'
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${activeTab === 'icons'
               ? 'bg-slate-900 text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-          }`}
+            }`}
         >
           <Sparkles className="w-3.5 h-3.5 text-blue-500" />
           <span>Topic Icon</span>
@@ -305,11 +301,10 @@ export default function ImageControls({
         <button
           type="button"
           onClick={() => setActiveTab('visuals')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'visuals'
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${activeTab === 'visuals'
               ? 'bg-slate-900 text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-          }`}
+            }`}
         >
           <ImageIcon className="w-3.5 h-3.5 text-indigo-500" />
           <span>Heading Visual</span>
@@ -325,11 +320,10 @@ export default function ImageControls({
             <button
               type="button"
               onClick={() => setStyleCategory('all')}
-              className={`px-3 py-1.5 rounded-full font-semibold transition-all shrink-0 ${
-                styleCategory === 'all'
+              className={`px-3 py-1.5 rounded-full font-semibold transition-all shrink-0 ${styleCategory === 'all'
                   ? 'bg-slate-900 text-white shadow-sm'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
+                }`}
             >
               All Styles ({DESIGN_STYLES.length})
             </button>
@@ -337,11 +331,10 @@ export default function ImageControls({
             <button
               type="button"
               onClick={() => setStyleCategory('hiring')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold transition-all shrink-0 ${
-                styleCategory === 'hiring'
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold transition-all shrink-0 ${styleCategory === 'hiring'
                   ? 'bg-teal-700 text-white shadow-sm ring-2 ring-teal-500/20'
                   : 'bg-teal-50 text-teal-800 border border-teal-200 hover:bg-teal-100'
-              }`}
+                }`}
             >
               <span>💼 Hiring ({DESIGN_STYLES.filter(s => s.id.startsWith('hiring-') || s.category === 'hiring').length})</span>
             </button>
@@ -349,11 +342,10 @@ export default function ImageControls({
             <button
               type="button"
               onClick={() => setStyleCategory('product')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold transition-all shrink-0 ${
-                styleCategory === 'product'
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold transition-all shrink-0 ${styleCategory === 'product'
                   ? 'bg-amber-600 text-white shadow-sm ring-2 ring-amber-500/20'
                   : 'bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100'
-              }`}
+                }`}
             >
               <span>🚀 Products ({DESIGN_STYLES.filter(s => s.id.startsWith('product-') || s.category === 'product').length})</span>
             </button>
@@ -361,11 +353,10 @@ export default function ImageControls({
             <button
               type="button"
               onClick={() => setStyleCategory('festival')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold transition-all shrink-0 ${
-                styleCategory === 'festival'
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold transition-all shrink-0 ${styleCategory === 'festival'
                   ? 'bg-rose-600 text-white shadow-sm ring-2 ring-rose-500/20'
                   : 'bg-rose-50 text-rose-800 border border-rose-200 hover:bg-rose-100'
-              }`}
+                }`}
             >
               <span>🎉 Festivals ({DESIGN_STYLES.filter(s => s.id.startsWith('festival-') || s.category === 'festival').length})</span>
             </button>
@@ -373,11 +364,10 @@ export default function ImageControls({
             <button
               type="button"
               onClick={() => setStyleCategory('common')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold transition-all shrink-0 ${
-                styleCategory === 'common'
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold transition-all shrink-0 ${styleCategory === 'common'
                   ? 'bg-blue-600 text-white shadow-sm ring-2 ring-blue-500/20'
                   : 'bg-blue-50 text-blue-800 border border-blue-200 hover:bg-blue-100'
-              }`}
+                }`}
             >
               <span>💡 Common ({DESIGN_STYLES.filter(s => s.id.startsWith('common-') || s.category === 'knowledge').length})</span>
             </button>
@@ -398,11 +388,10 @@ export default function ImageControls({
                   type="button"
                   title={st.description}
                   onClick={() => setStyleId(st.id)}
-                  className={`flex flex-col text-left p-3 rounded-xl border transition-all relative overflow-hidden group ${
-                    isSelected
+                  className={`flex flex-col text-left p-3 rounded-xl border transition-all relative overflow-hidden group ${isSelected
                       ? 'border-blue-600 ring-2 ring-blue-500/20 bg-blue-50/20 shadow-sm'
                       : 'border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50'
-                  }`}
+                    }`}
                 >
                   {/* Visual miniature layout blueprint preview */}
                   {renderStyleWireframe(st)}
@@ -429,11 +418,10 @@ export default function ImageControls({
                 key={fmt.id}
                 type="button"
                 onClick={() => setFormatId(fmt.id)}
-                className={`flex items-center justify-between p-3.5 rounded-xl border text-left transition-all ${
-                  isSelected
+                className={`flex items-center justify-between p-3.5 rounded-xl border text-left transition-all ${isSelected
                     ? 'border-blue-600 ring-2 ring-blue-500/20 bg-blue-50/30'
                     : 'border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50'
-                }`}
+                  }`}
               >
                 <div>
                   <div className="flex items-center gap-2">
@@ -464,11 +452,10 @@ export default function ImageControls({
                 key={pal.id}
                 type="button"
                 onClick={() => setColorPaletteId(pal.id)}
-                className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all ${
-                  isSelected
+                className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all ${isSelected
                     ? 'border-blue-600 ring-2 ring-blue-500/20 bg-blue-50/30'
                     : 'border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50'
-                }`}
+                  }`}
               >
                 <div className="flex -space-x-1 shrink-0">
                   <span
@@ -491,27 +478,116 @@ export default function ImageControls({
         </div>
       )}
 
-      {/* 4. BACKGROUND PATTERNS */}
+      {/* 4. BACKGROUND PATTERNS & TRANSPARENCY */}
       {activeTab === 'backgrounds' && (
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-          {BACKGROUND_PATTERNS.map((pat) => {
-            const isSelected = bgPattern === pat.id || (!bgPattern && pat.id === 'grid');
-            return (
-              <button
-                key={pat.id}
-                type="button"
-                onClick={() => setBgPattern(pat.id)}
-                className={`flex flex-col items-center justify-center p-3 rounded-xl border text-center transition-all ${
-                  isSelected
-                    ? 'border-blue-600 ring-2 ring-blue-500/20 bg-blue-50/30 text-blue-700 font-semibold'
-                    : 'border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700'
-                }`}
-              >
-                <span className="text-xs">{pat.name}</span>
-                {isSelected && <span className="text-[10px] text-blue-600 mt-1 font-bold">Active</span>}
-              </button>
-            );
-          })}
+        <div className="space-y-4">
+          {/* Card Transparency / Frosted Glass Controls */}
+          <div className="p-3.5 bg-teal-50/70 border border-teal-200/80 rounded-2xl space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-xs font-bold text-teal-950 block">Poster Card Transparency (Glassmorphism)</span>
+                <span className="text-[11px] text-teal-700">Controls how much of the background image shows through cards & elements</span>
+              </div>
+              <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-teal-900">
+                <input
+                  type="checkbox"
+                  checked={post.showBackgroundImage !== false}
+                  onChange={(e) => {
+                    onUpdateField?.('showBackgroundImage', e.target.checked);
+                    onShowToast?.({ type: 'info', message: e.target.checked ? 'Background photo enabled!' : 'Background photo hidden' });
+                  }}
+                  className="rounded text-teal-600 focus:ring-teal-500 w-4 h-4"
+                />
+                <span>Show Background Image</span>
+              </label>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              {[
+                { label: '👻 Transparent', val: 0.0, desc: 'No box (Floating words)' },
+                { label: '🌌 Subtle Tint', val: 0.15, desc: '15% ultra-sheer' },
+                { label: '💎 Light Glass', val: 0.35, desc: '35% soft glass' },
+                { label: '✨ Frosted', val: 0.65, desc: '65% frosted' }
+              ].map((opt) => {
+                const currentVal = post.cardOpacity ?? 0.0;
+                const isSelected = Math.abs(currentVal - opt.val) < 0.05;
+                return (
+                  <button
+                    key={opt.val}
+                    type="button"
+                    onClick={() => {
+                      onUpdateField?.('cardOpacity', opt.val);
+                      onShowToast?.({ type: 'info', message: `Card transparency set to ${opt.label}` });
+                    }}
+                    className={`p-2 rounded-xl border text-left transition-all ${
+                      isSelected
+                        ? 'border-teal-600 ring-2 ring-teal-500/20 bg-white text-teal-900 shadow-xs font-bold'
+                        : 'border-teal-200/60 bg-white/60 hover:bg-white text-slate-700 font-medium'
+                    }`}
+                  >
+                    <span className="text-xs block">{opt.label}</span>
+                    <span className="text-[10px] text-slate-400 block mt-0.5">{opt.desc}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Background Scrim & Image Clarity */}
+          <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-2xl space-y-2">
+            <span className="text-xs font-bold text-slate-800 block">Background Image Visibility / Scrim Tint</span>
+            <div className="grid grid-cols-3 gap-2">
+              {[
+                { label: '🌟 Vibrant Photo', val: 0.25, desc: '25% tint (Max visibility)' },
+                { label: '⚡ Balanced', val: 0.38, desc: '38% tint (Optimal contrast)' },
+                { label: '🌫️ Muted Scrim', val: 0.58, desc: '58% tint (Soft contrast)' }
+              ].map((scrimOpt) => {
+                const currentAlpha = post.bgOverlayOpacity ?? 0.38;
+                const isSelected = Math.abs(currentAlpha - scrimOpt.val) < 0.06;
+                return (
+                  <button
+                    key={scrimOpt.val}
+                    type="button"
+                    onClick={() => {
+                      onUpdateField?.('bgOverlayOpacity', scrimOpt.val);
+                      onShowToast?.({ type: 'info', message: `Background tint set to ${scrimOpt.label}` });
+                    }}
+                    className={`p-2 rounded-xl border text-left transition-all ${
+                      isSelected
+                        ? 'border-teal-600 ring-2 ring-teal-500/20 bg-white text-teal-900 shadow-xs font-bold'
+                        : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <span className="text-xs block">{scrimOpt.label}</span>
+                    <span className="text-[10px] text-slate-400 block mt-0.5">{scrimOpt.desc}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
+            <span className="text-xs font-bold text-slate-700 mb-2 block uppercase tracking-wider">Fallback Vector Pattern</span>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+              {BACKGROUND_PATTERNS.map((pat) => {
+                const isSelected = bgPattern === pat.id || (!bgPattern && pat.id === 'grid');
+                return (
+                  <button
+                    key={pat.id}
+                    type="button"
+                    onClick={() => setBgPattern(pat.id)}
+                    className={`flex flex-col items-center justify-center p-3 rounded-xl border text-center transition-all ${isSelected
+                        ? 'border-teal-600 ring-2 ring-teal-500/20 bg-teal-50/40 text-teal-800 font-semibold'
+                        : 'border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700'
+                      }`}
+                  >
+                    <span className="text-xs">{pat.name}</span>
+                    {isSelected && <span className="text-[10px] text-teal-600 mt-1 font-bold">Active</span>}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
 
@@ -532,11 +608,10 @@ export default function ImageControls({
                     setIconType?.(ico.id);
                     onShowToast?.({ type: 'info', message: `Icon set to: ${ico.label}` });
                   }}
-                  className={`flex flex-col items-center justify-center p-3 rounded-xl border text-center transition-all ${
-                    isSelected
+                  className={`flex flex-col items-center justify-center p-3 rounded-xl border text-center transition-all ${isSelected
                       ? 'border-blue-600 ring-2 ring-blue-500/20 bg-blue-50/40 text-blue-700 shadow-sm'
                       : 'border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700'
-                  }`}
+                    }`}
                 >
                   <span className="text-xl mb-1">{ico.icon}</span>
                   <span className="text-xs font-bold text-slate-900 line-clamp-1">{ico.label}</span>
@@ -553,93 +628,116 @@ export default function ImageControls({
         </div>
       )}
 
-      {/* 6. HEADING VISUALS / RIGHT-SIDE IMAGE */}
-      {activeTab === 'visuals' && (
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <p className="text-xs text-slate-500">
-              The right side displays a high-resolution visual matching your headline. Pick an alternate preset below or keep <strong>Auto Match</strong>:
-            </p>
-            {post.imageUrl && (
+      {/* 6. LOCAL AI IMAGES / RIGHT-SIDE IMAGE */}
+      {activeTab === 'visuals' && (() => {
+        const autoFolder = findMatchingFolder(post?.headline || post?.topic || '', selectedCategory);
+        const currentFolder = selectedFolderId === 'auto'
+          ? autoFolder
+          : (LOCAL_AI_FOLDERS.find(f => f.id === selectedFolderId) || autoFolder);
+
+        const currentImages = currentFolder?.files || [];
+
+        return (
+          <div className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <p className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                  📁 images_AI Repository: <span className="text-teal-700 font-extrabold">{currentFolder?.label}</span>
+                </p>
+                <p className="text-[11px] text-slate-500">
+                  {currentImages.length} high-resolution photos indexed from your local folder.
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                {post.imageUrl && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onUpdateField?.('imageUrl', null);
+                      setSelectedFolderId('auto');
+                      onShowToast?.({ type: 'info', message: 'Reset visual to smart auto-match' });
+                    }}
+                    className="text-[11px] font-semibold text-teal-700 hover:text-teal-900 bg-teal-50 px-2 py-1 rounded-md border border-teal-200"
+                  >
+                    Reset to Auto
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Folder Filter Bar */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
               <button
                 type="button"
-                onClick={() => {
-                  onUpdateField?.('imageUrl', null);
-                  onShowToast?.({ type: 'info', message: 'Reset visual to smart auto-match' });
-                }}
-                className="text-[11px] font-semibold text-blue-600 hover:text-blue-800"
-              >
-                Reset to Auto
-              </button>
-            )}
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-            {/* Signature 3D Architectural Studio Model (Scaler Masterclass Style) */}
-            <button
-              type="button"
-              onClick={() => {
-                onUpdateField?.('imageUrl', '3d-model');
-                onUpdateField?.('visualMode', '3d');
-                onShowToast?.({ type: 'info', message: 'Applied Signature 3D Studio Architecture!' });
-              }}
-              className={`group relative rounded-xl border overflow-hidden text-left transition-all flex flex-col ${
-                !post.imageUrl || post.imageUrl === '3d-model' || post.visualMode === '3d'
-                  ? 'border-blue-600 ring-2 ring-blue-500/20 shadow-sm'
-                  : 'border-slate-200 hover:border-slate-300'
-              }`}
-            >
-              <div className="w-full h-16 relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-900 flex items-center justify-center">
-                <span className="text-2xl">⚡</span>
-                <span className="absolute bottom-1 left-1.5 text-[9px] font-bold text-cyan-300 px-1.5 py-0.5 rounded bg-black/60 backdrop-blur-sm">
-                  3D Studio Model
-                </span>
-              </div>
-              <div className="p-2 bg-white">
-                <span className="text-xs font-bold text-slate-800 block truncate">3D Tech Model</span>
-                <span className="text-[10px] text-blue-600 font-semibold block truncate mt-0.5">Signature Scaler Style</span>
-              </div>
-            </button>
-
-            {TOPIC_IMAGE_PRESETS.map((preset) => {
-              const isSelected = post.imageUrl === preset.url;
-              return (
-                <button
-                  key={preset.id}
-                  type="button"
-                  onClick={() => {
-                    onUpdateField?.('imageUrl', preset.url);
-                    onUpdateField?.('visualMode', 'photo');
-                    onShowToast?.({ type: 'info', message: `Visual updated: ${preset.label}` });
-                  }}
-                  className={`group relative rounded-xl border overflow-hidden text-left transition-all flex flex-col ${
-                    isSelected
-                      ? 'border-blue-600 ring-2 ring-blue-500/20 shadow-sm'
-                      : 'border-slate-200 hover:border-slate-300'
+                onClick={() => setSelectedFolderId('auto')}
+                className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all border ${selectedFolderId === 'auto'
+                    ? 'bg-teal-700 text-white border-teal-700 shadow-xs'
+                    : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200'
                   }`}
-                >
-                  <div className="w-full h-16 relative overflow-hidden bg-slate-100">
-                    <img
-                      src={preset.url}
-                      alt={preset.label}
-                      className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <span className="absolute bottom-1 left-1.5 text-[9px] font-bold text-white px-1.5 py-0.5 rounded bg-black/40 backdrop-blur-sm">
-                      {preset.category}
-                    </span>
-                  </div>
-                  <div className="p-2 bg-white">
-                    <span className="text-xs font-bold text-slate-800 block truncate">{preset.label}</span>
-                    <span className="text-[10px] text-slate-400 block truncate mt-0.5">{preset.tag}</span>
-                  </div>
-                </button>
-              );
-            })}
+              >
+                ✨ Auto ({autoFolder?.label})
+              </button>
+              {LOCAL_AI_FOLDERS.map((f) => {
+                const isFolderActive = selectedFolderId === f.id;
+                return (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => setSelectedFolderId(f.id)}
+                    className={`px-3 py-1.5 rounded-xl font-semibold whitespace-nowrap transition-all border ${isFolderActive
+                        ? 'bg-teal-700 text-white border-teal-700 shadow-xs'
+                        : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200'
+                      }`}
+                  >
+                    {f.label} ({f.files.length})
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Image Thumbnail Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2.5 max-h-80 overflow-y-auto p-1 border border-slate-100 rounded-xl bg-slate-50/50">
+              {currentImages.map((img, idx) => {
+                const isSelected = post.imageUrl === img.url || (!post.imageUrl && idx === 0 && selectedFolderId === 'auto');
+                return (
+                  <button
+                    key={img.name}
+                    type="button"
+                    onClick={() => {
+                      onUpdateField?.('imageUrl', img.url);
+                      onUpdateField?.('localImageIndex', idx);
+                      onShowToast?.({ type: 'info', message: `Applied: ${img.name}` });
+                    }}
+                    className={`group relative rounded-xl border overflow-hidden text-left transition-all flex flex-col bg-white ${isSelected
+                        ? 'border-teal-600 ring-2 ring-teal-500/30 shadow-md scale-[1.02]'
+                        : 'border-slate-200 hover:border-teal-400 hover:shadow-xs'
+                      }`}
+                  >
+                    <div className="w-full h-20 relative overflow-hidden bg-slate-100">
+                      <img
+                        src={img.url}
+                        alt={img.name}
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      {isSelected && (
+                        <div className="absolute top-1.5 right-1.5 bg-teal-600 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold shadow-xs">
+                          Active
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-1.5">
+                      <span className="text-[10px] font-semibold text-slate-700 block truncate" title={img.name}>
+                        {img.name}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 }

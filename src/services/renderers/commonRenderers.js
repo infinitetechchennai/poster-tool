@@ -22,6 +22,7 @@
  * - common-18: Enterprise Checklist ("Is Your Business Ready For The AI Shift?")
  * - common-19: Conversion Funnel Matrix ("The Power of Automated Transformation")
  * - common-20: Vision & Mission Manifesto ("Our Mission: Empowering Creators Everywhere")
+ * - common-21: Before & After Transformation ("THE TRANSFORMATION: BEFORE VS AFTER")
  */
 
 import {
@@ -50,6 +51,7 @@ import {
   renderStandardTopBar,
   renderStandardBottomBar,
   drawPosterHeadline,
+  drawPosterTagline,
   drawWhiteTealCard,
   draw3dBookMockup,
   drawSpeedometerGauge,
@@ -94,17 +96,19 @@ export async function renderCommonTemplate({
     topicImg
   });
 
-  // 2. Top Branding Bar in White & Teal
+  // 2. Top Branding Bar in White & Teal (Wavy Header matching User Sketch)
   const { contentTopY } = renderStandardTopBar({
     ctx,
     width,
     height,
+    post,
     brand,
     logoImg,
     style,
     padX,
     padY,
-    isLandscape
+    isLandscape,
+    accentColor: TEAL_PRIMARY
   });
 
   const footerY = height - padY - (isLandscape ? 80 : 96);
@@ -148,6 +152,8 @@ export async function renderCommonTemplate({
     await renderCommonEnterpriseChecklist({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'common-19') {
     await renderCommonFunnelMatrix({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape });
+  } else if (id === 'common-21') {
+    await renderCommonBeforeAfter({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape });
   } else {
     // common-20 & fallback: Vision 2030 Strategic Manifesto
     await renderCommonVisionManifesto({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape });
@@ -176,6 +182,7 @@ export async function renderCommonTemplate({
 async function renderCommonBrandVoice({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -194,15 +201,8 @@ async function renderCommonBrandVoice({
   curY = hlInfo.bottomY + 16;
 
   // 2. Subheadline Tagline
-  ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'top';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 34;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 18 : 22);
+  curY += 16;
 
   // 3. 3 Feature Pills Row
   curY = drawFeaturePillsRow(ctx, padX, curY, items, maxW);
@@ -214,13 +214,18 @@ async function renderCommonBrandVoice({
 
     // Soundwave visualizer in center
     const waveCy = curY + cardH * 0.44;
-    drawAudioSoundwave(ctx, width / 2, waveCy, Math.min(540, maxW - 60), 68, TEAL_PRIMARY);
+    drawAudioSoundwave(ctx, width / 2, waveCy, Math.min(540, maxW - 60), 68, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
 
     ctx.font = '800 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText('Autonomous Voice & Visual Consistency Matrix', width / 2, curY + cardH - 36);
+    ctx.shadowBlur = 0;
   }
 }
 
@@ -249,15 +254,8 @@ async function renderCommonDigitalAgency({
   curY = hlInfo.bottomY + 14;
 
   // 2. Subheadline Tagline
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'top';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 20;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 3. 3 Feature Badges Row
   const pillBadges = (items && items.length > 0) ? items : [
@@ -281,12 +279,13 @@ async function renderCommonDigitalAgency({
 async function renderCommonThoughtLeadership({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   const maxW = width - padX * 2;
   let curY = contentTopY + 10;
 
   // Giant 130px Stylized Quotation Mark in Teal
   ctx.font = '900 130px "Outfit", serif';
-  ctx.fillStyle = 'rgba(0, 128, 128, 0.22)';
+  ctx.fillStyle = hasBg ? 'rgba(45, 212, 191, 0.40)' : 'rgba(0, 128, 128, 0.22)';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
   ctx.fillText('“', padX - 10, curY - 30);
@@ -294,37 +293,43 @@ async function renderCommonThoughtLeadership({
 
   // Massive Italic Executive Quote Headline
   ctx.font = `900 italic ${isLandscape ? 48 : 66}px "Outfit", "Bricolage Grotesque", sans-serif`;
-  ctx.fillStyle = TEXT_DARK;
   const quoteLines = wrapText(ctx, headline || 'Fast Execution Beats Perfect Planning', maxW);
   quoteLines.forEach((line, idx) => {
     if (idx === quoteLines.length - 1) {
-      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    } else {
+      ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    }
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+      ctx.shadowBlur = 10;
     }
     ctx.fillText(line, padX, curY);
+    ctx.shadowBlur = 0;
     curY += (isLandscape ? 56 : 74);
   });
-  curY += 24;
+  curY += 20;
 
   // Tagline / Context
-  ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 3).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 34;
-  });
-  curY += 32;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 18 : 22);
+  curY += 16;
 
   // Executive Endorsement Pill Card
   const authorCardH = 92;
   drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: authorCardH, radius: 20 });
-  drawUserAvatarIcon(ctx, padX + 24, curY + 20, 52, TEAL_PRIMARY);
+  drawUserAvatarIcon(ctx, padX + 24, curY + 20, 52, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
 
   ctx.font = '900 24px "Outfit", sans-serif';
-  ctx.fillStyle = TEXT_DARK;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 6;
+  }
   ctx.fillText('Executive Strategy & Leadership', padX + 94, curY + 24);
+  ctx.shadowBlur = 0;
 
   ctx.font = '600 18px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.fillText('Infinitetech AI Insights · Published Weekly', padX + 94, curY + 54);
 
   // 3 Action Principles / Core Takeaways filling to footerY
@@ -341,16 +346,21 @@ async function renderCommonThoughtLeadership({
     principles.forEach((p, idx) => {
       const px = padX + 16 + (idx * (pW + 8));
       drawRoundRect(ctx, px, curY + 14, pW, remH - 28, 12);
-      ctx.fillStyle = TEAL_BG_TINT;
+      ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.35)' : TEAL_BG_TINT;
       ctx.fill();
+      if (hasBg) {
+        ctx.strokeStyle = '#2DD4BF';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
 
       ctx.font = '900 16px "Outfit", sans-serif';
-      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
       ctx.textAlign = 'center';
       ctx.fillText(`0${idx + 1}`, px + pW / 2, curY + remH * 0.40);
 
       ctx.font = '800 14px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = TEXT_DARK;
+      ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
       ctx.fillText(p, px + pW / 2, curY + remH * 0.70);
     });
     ctx.textAlign = 'left';
@@ -364,6 +374,7 @@ async function renderCommonThoughtLeadership({
 async function renderCommonRadialEcosystem({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -380,13 +391,8 @@ async function renderCommonRadialEcosystem({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 28;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // Central AI Node + 4 Connected Orbital Nodes in Vector
   const hubW = maxW;
@@ -429,7 +435,7 @@ async function renderCommonRadialEcosystem({
     const ny = cy + Math.sin(angle) * orbRadius;
 
     // Connecting line
-    ctx.strokeStyle = 'rgba(0, 128, 128, 0.28)';
+    ctx.strokeStyle = hasBg ? 'rgba(45, 212, 191, 0.40)' : 'rgba(0, 128, 128, 0.28)';
     ctx.lineWidth = 2;
     ctx.setLineDash([6, 6]);
     ctx.beginPath();
@@ -442,21 +448,18 @@ async function renderCommonRadialEcosystem({
     const nCardW = 180;
     const nCardH = 68;
     drawRoundRect(ctx, nx - nCardW / 2, ny - nCardH / 2, nCardW, nCardH, 14);
-    ctx.fillStyle = '#FFFFFF';
-    ctx.shadowColor = 'rgba(0, 128, 128, 0.12)';
-    ctx.shadowBlur = 12;
+    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.75)' : '#FFFFFF';
     ctx.fill();
-    ctx.shadowBlur = 0;
-    ctx.strokeStyle = TEAL_BORDER;
+    ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_BORDER;
     ctx.lineWidth = 1.4;
     ctx.stroke();
 
     ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
     ctx.fillText(n.title, nx, ny - 10);
 
     ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.fillText(n.desc, nx, ny + 12);
   });
 }
@@ -468,6 +471,7 @@ async function renderCommonRadialEcosystem({
 async function renderCommonIndustryReport({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -484,14 +488,8 @@ async function renderCommonIndustryReport({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 30;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 20;
 
   // 3 Massive Stat Metric Cards (Filled, Zero Empty Space)
   const cardW = Math.round((maxW - 36) / 3);
@@ -509,19 +507,24 @@ async function renderCommonIndustryReport({
 
     // Number header in Teal Gradient
     ctx.font = '900 52px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
     ctx.fillText(st.num, cardX + 22, curY + 22);
 
     // Label
     ctx.font = '900 22px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.fillText(st.label, cardX + 22, curY + 84);
+    ctx.shadowBlur = 0;
 
     // Description
     ctx.font = '500 17px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     let descY = curY + 120;
     wrapText(ctx, st.desc, cardW - 44).slice(0, 3).forEach(line => {
       ctx.fillText(line, cardX + 22, descY);
@@ -537,6 +540,7 @@ async function renderCommonIndustryReport({
 async function renderCommonProblemSolution({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -553,14 +557,8 @@ async function renderCommonProblemSolution({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // Split Columns: Left Red/Manual vs Right Teal/AI
   const colW = Math.round((maxW - 24) / 2);
@@ -569,14 +567,14 @@ async function renderCommonProblemSolution({
   // Left: The Old Way (Warning Red Tint)
   const leftX = padX;
   drawRoundRect(ctx, leftX, curY, colW, colH, 18);
-  ctx.fillStyle = '#FFF1F2';
+  ctx.fillStyle = hasBg ? 'rgba(225, 29, 72, 0.25)' : '#FFF1F2';
   ctx.fill();
-  ctx.strokeStyle = 'rgba(244, 63, 94, 0.28)';
+  ctx.strokeStyle = hasBg ? '#F43F5E' : 'rgba(244, 63, 94, 0.28)';
   ctx.lineWidth = 1.5;
   ctx.stroke();
 
   ctx.font = '900 24px "Outfit", sans-serif';
-  ctx.fillStyle = '#E11D48';
+  ctx.fillStyle = hasBg ? '#FFA4B0' : '#E11D48';
   ctx.fillText('❌  The Old Manual Way', leftX + 24, curY + 24);
 
   const oldPoints = [
@@ -588,10 +586,10 @@ async function renderCommonProblemSolution({
   let pY1 = curY + 76;
   oldPoints.forEach(pt => {
     drawRoundRect(ctx, leftX + 20, pY1, colW - 40, 52, 10);
-    ctx.fillStyle = '#FFFFFF';
+    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.70)' : '#FFFFFF';
     ctx.fill();
     ctx.font = '700 18px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
     ctx.textBaseline = 'middle';
     ctx.fillText(pt, leftX + 36, pY1 + 26);
     pY1 += 66;
@@ -600,14 +598,14 @@ async function renderCommonProblemSolution({
   // Right: The Agentic AI Way (Vibrant Teal Tint)
   const rightX = padX + colW + 24;
   drawRoundRect(ctx, rightX, curY, colW, colH, 18);
-  ctx.fillStyle = TEAL_BG_TINT;
+  ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.40)' : TEAL_BG_TINT;
   ctx.fill();
-  ctx.strokeStyle = TEAL_PRIMARY;
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.lineWidth = 1.8;
   ctx.stroke();
 
   ctx.font = '900 24px "Outfit", sans-serif';
-  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.fillStyle = hasBg ? '#5EEAD4' : TEAL_PRIMARY;
   ctx.textBaseline = 'top';
   ctx.fillText('✅  The Infinitetech AI Way', rightX + 24, curY + 24);
 
@@ -620,17 +618,15 @@ async function renderCommonProblemSolution({
   let pY2 = curY + 76;
   newPoints.forEach(pt => {
     drawRoundRect(ctx, rightX + 20, pY2, colW - 40, 52, 10);
-    ctx.fillStyle = '#FFFFFF';
-    ctx.shadowColor = 'rgba(0, 128, 128, 0.12)';
-    ctx.shadowBlur = 8;
+    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.70)' : '#FFFFFF';
     ctx.fill();
-    ctx.shadowBlur = 0;
-    ctx.strokeStyle = TEAL_BORDER;
-    ctx.lineWidth = 1.2;
-    ctx.stroke();
-
+    if (hasBg) {
+      ctx.strokeStyle = '#2DD4BF';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
     ctx.font = '800 18px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEAL_PRIMARY;
     ctx.textBaseline = 'middle';
     ctx.fillText(`✓  ${pt}`, rightX + 36, pY2 + 26);
     pY2 += 66;
@@ -644,6 +640,7 @@ async function renderCommonProblemSolution({
 async function renderCommonRoadmap({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -660,14 +657,8 @@ async function renderCommonRoadmap({
   });
   curY = hlInfo.bottomY + 12;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 30;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 5 Step Connected Horizontal Capsules
   const steps = [
@@ -695,12 +686,17 @@ async function renderCommonRoadmap({
 
     // Title & Description
     ctx.font = '900 22px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.textAlign = 'left';
     ctx.fillText(st.title, padX + 80, curY + 22);
+    ctx.shadowBlur = 0;
 
     ctx.font = '600 16px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     ctx.fillText(st.desc, padX + 80, curY + 44);
 
     curY += stepH + 12;
@@ -714,19 +710,20 @@ async function renderCommonRoadmap({
 async function renderCommonDidYouKnow({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY + 10;
   const maxW = width - padX * 2;
 
   // Provocative Pill
   drawRoundRect(ctx, padX, curY, 240, 42, 21);
-  ctx.fillStyle = TEAL_BG_TINT;
+  ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.40)' : TEAL_BG_TINT;
   ctx.fill();
-  ctx.strokeStyle = TEAL_PRIMARY;
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.lineWidth = 1.4;
   ctx.stroke();
 
   ctx.font = '900 18px "Outfit", sans-serif';
-  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('💡  PROVEN RESEARCH', padX + 120, curY + 21);
@@ -734,13 +731,18 @@ async function renderCommonDidYouKnow({
 
   // Headline
   ctx.font = '900 58px "Outfit", sans-serif';
-  ctx.fillStyle = TEXT_DARK;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 10;
+  }
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
   wrapText(ctx, headline || 'Did You Know? Visuals Outperform Plain Text', maxW).forEach(line => {
     ctx.fillText(line, padX, curY);
     curY += 66;
   });
+  ctx.shadowBlur = 0;
   curY += 24;
 
   // Huge 110px Stat Card with Insight Box
@@ -748,15 +750,20 @@ async function renderCommonDidYouKnow({
   drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: cardH, radius: 20 });
 
   ctx.font = '900 110px "Outfit", sans-serif';
-  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.fillText('6x', padX + 40, curY + 36);
 
   ctx.font = '900 32px "Outfit", sans-serif';
-  ctx.fillStyle = TEXT_DARK;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 6;
+  }
   ctx.fillText('Higher Conversion & Retention', padX + 220, curY + 48);
+  ctx.shadowBlur = 0;
 
   ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
+  ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
   let dY = curY + 98;
   wrapText(ctx, tagline || 'Audiences process visual graphics 60,000 times faster than text. High-fidelity agency posters consistently drive higher CTR and engagement.', maxW - 260).forEach(l => {
     ctx.fillText(l, padX + 220, dY);
@@ -775,19 +782,19 @@ async function renderCommonDidYouKnow({
     researchBadges.forEach((rb, idx) => {
       const bx = padX + 24 + (idx * (bW + 8));
       drawRoundRect(ctx, bx, subY, bW, 76, 12);
-      ctx.fillStyle = TEAL_BG_TINT;
+      ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.35)' : TEAL_BG_TINT;
       ctx.fill();
-      ctx.strokeStyle = TEAL_BORDER;
+      ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_BORDER;
       ctx.lineWidth = 1;
       ctx.stroke();
 
       ctx.font = '900 16px "Outfit", sans-serif';
-      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
       ctx.textAlign = 'center';
       ctx.fillText(rb, bx + bW / 2, subY + 32);
 
       ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
       ctx.fillText('Empirically Verified', bx + bW / 2, subY + 56);
     });
     ctx.textAlign = 'left';
@@ -801,6 +808,7 @@ async function renderCommonDidYouKnow({
 async function renderCommonMythVsReality({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -823,38 +831,48 @@ async function renderCommonMythVsReality({
 
   // Myth Card (Warning style)
   drawRoundRect(ctx, padX, curY, cardW, cardH, 18);
-  ctx.fillStyle = '#FFF1F2';
+  ctx.fillStyle = hasBg ? 'rgba(225, 29, 72, 0.25)' : '#FFF1F2';
   ctx.fill();
-  ctx.strokeStyle = '#F43F5E';
+  ctx.strokeStyle = hasBg ? '#F43F5E' : '#F43F5E';
   ctx.lineWidth = 1.5;
   ctx.stroke();
 
   ctx.font = '900 24px "Outfit", sans-serif';
-  ctx.fillStyle = '#E11D48';
+  ctx.fillStyle = hasBg ? '#FFA4B0' : '#E11D48';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
   ctx.fillText('🔴  THE COMMON MYTH', padX + 24, curY + 22);
 
   ctx.font = '700 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_DARK;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 6;
+  }
   ctx.fillText('"You need a massive creative team and weeks of time to produce agency-level graphics."', padX + 24, curY + 60);
+  ctx.shadowBlur = 0;
 
   // Reality Card (Teal Success style)
   const rY = curY + cardH + 18;
   drawRoundRect(ctx, padX, rY, cardW, cardH, 18);
-  ctx.fillStyle = TEAL_BG_TINT;
+  ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.45)' : TEAL_BG_TINT;
   ctx.fill();
-  ctx.strokeStyle = TEAL_PRIMARY;
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.lineWidth = 2;
   ctx.stroke();
 
   ctx.font = '900 24px "Outfit", sans-serif';
-  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.fillStyle = hasBg ? '#5EEAD4' : TEAL_PRIMARY;
   ctx.fillText('🟢  THE PROVEN REALITY', padX + 24, rY + 22);
 
   ctx.font = '800 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_DARK;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 6;
+  }
   ctx.fillText('With Infinitetech AI, 1 person can synthesize 50 bespoke brand posters in under 60 seconds.', padX + 24, rY + 60);
+  ctx.shadowBlur = 0;
 }
 
 /**
@@ -864,6 +882,7 @@ async function renderCommonMythVsReality({
 async function renderCommonCaseStudy({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -880,14 +899,8 @@ async function renderCommonCaseStudy({
   });
   curY = hlInfo.bottomY + 16;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 3 Metric Pills
   const metrics = [
@@ -901,12 +914,12 @@ async function renderCommonCaseStudy({
     drawWhiteTealCard({ ctx, x: mx, y: curY, w: metW, h: 96, radius: 14 });
 
     ctx.font = '900 36px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.textAlign = 'center';
     ctx.fillText(m.val, mx + metW / 2, curY + 16);
 
     ctx.font = '700 16px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     ctx.fillText(m.label, mx + metW / 2, curY + 62);
   });
   curY += 120;
@@ -916,12 +929,17 @@ async function renderCommonCaseStudy({
   if (qH > 90) {
     drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: qH, radius: 16 });
     ctx.font = 'italic 700 22px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.textAlign = 'left';
     ctx.fillText('“Infinitetech transformed our entire marketing workflow. The results speak for themselves.”', padX + 30, curY + 28);
+    ctx.shadowBlur = 0;
 
     ctx.font = '800 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.fillText('— Alex Morgan, VP Marketing at CloudFlow', padX + 30, curY + 66);
   }
 }
@@ -933,6 +951,7 @@ async function renderCommonCaseStudy({
 async function renderCommonArchitectureBlueprint({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -949,14 +968,8 @@ async function renderCommonArchitectureBlueprint({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 4 Flow Architecture Nodes in Blueprint Style
   const flowNodes = [
@@ -972,30 +985,35 @@ async function renderCommonArchitectureBlueprint({
 
     // Step index
     drawRoundRect(ctx, padX + 16, curY + 14, 40, 40, 10);
-    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.40)' : TEAL_BG_TINT;
     ctx.fill();
-    ctx.strokeStyle = TEAL_PRIMARY;
+    ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.lineWidth = 1.2;
     ctx.stroke();
 
     ctx.font = '900 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(`0${idx + 1}`, padX + 36, curY + 34);
 
     // Title & Tech Chip
     ctx.font = '900 22px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.textAlign = 'left';
     ctx.fillText(n.title, padX + 74, curY + 22);
+    ctx.shadowBlur = 0;
 
     ctx.font = '700 14px monospace';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#5EEAD4' : TEAL_PRIMARY;
     ctx.fillText(`[ ${n.tech} ]`, padX + 240, curY + 22);
 
     ctx.font = '600 16px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     ctx.fillText(n.desc, padX + 74, curY + 46);
 
     curY += nodeH + 12;
@@ -1009,6 +1027,7 @@ async function renderCommonArchitectureBlueprint({
 async function renderCommonWeeklyDigest({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -1025,14 +1044,8 @@ async function renderCommonWeeklyDigest({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 3 Structured News Cards
   const news = [
@@ -1046,18 +1059,23 @@ async function renderCommonWeeklyDigest({
     drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: cardH, radius: 14 });
 
     ctx.font = '900 14px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.fillText(n.cat, padX + 22, curY + 20);
 
     ctx.font = '700 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     ctx.textAlign = 'right';
     ctx.fillText(n.date, padX + maxW - 22, curY + 20);
 
     ctx.font = '800 20px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.textAlign = 'left';
     ctx.fillText(n.title, padX + 22, curY + 50);
+    ctx.shadowBlur = 0;
 
     curY += cardH + 14;
   });
@@ -1071,12 +1089,12 @@ async function renderCommonWeeklyDigest({
     pills.forEach((p, idx) => {
       const px = padX + (idx * pW);
       ctx.font = '900 16px "Outfit", sans-serif';
-      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
       ctx.textAlign = 'center';
       ctx.fillText(p, px + pW / 2, curY + remH * 0.44);
 
       ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = TEXT_MUTED;
+      ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
       ctx.fillText('Verified Executive Intelligence', px + pW / 2, curY + remH * 0.74);
     });
     ctx.textAlign = 'left';
@@ -1090,6 +1108,7 @@ async function renderCommonWeeklyDigest({
 async function renderCommonGrowthPlaybook({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -1106,14 +1125,8 @@ async function renderCommonGrowthPlaybook({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 3 Pillar Cards Side-by-Side
   const colW = Math.round((maxW - 36) / 3);
@@ -1130,15 +1143,20 @@ async function renderCommonGrowthPlaybook({
     drawWhiteTealCard({ ctx, x: cx, y: curY, w: colW, h: colH, radius: 18 });
 
     ctx.font = '900 16px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.fillText(p.num, cx + 20, curY + 24);
 
     ctx.font = '900 24px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.fillText(p.title, cx + 20, curY + 56);
+    ctx.shadowBlur = 0;
 
     ctx.font = '500 17px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     let py = curY + 98;
     wrapText(ctx, p.desc, colW - 40).forEach(l => {
       ctx.fillText(l, cx + 20, py);
@@ -1154,6 +1172,7 @@ async function renderCommonGrowthPlaybook({
 async function renderCommonSecurityTrust({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -1170,14 +1189,8 @@ async function renderCommonSecurityTrust({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 28;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 4 Security Certifications Grid (2 x 2)
   const bW = Math.round((maxW - 20) / 2);
@@ -1197,14 +1210,19 @@ async function renderCommonSecurityTrust({
     const by = curY + (row * (bH + 20));
 
     drawWhiteTealCard({ ctx, x: bx, y: by, w: bW, h: bH, radius: 16 });
-    drawShieldIcon(ctx, bx + 22, by + 26, 32, TEAL_PRIMARY);
+    drawShieldIcon(ctx, bx + 22, by + 26, 32, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
 
     ctx.font = '900 22px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.fillText(b.title, bx + 68, by + 28);
+    ctx.shadowBlur = 0;
 
     ctx.font = '600 16px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     let dy = by + 58;
     wrapText(ctx, b.desc, bW - 88).slice(0, 2).forEach(l => {
       ctx.fillText(l, bx + 68, dy);
@@ -1220,6 +1238,7 @@ async function renderCommonSecurityTrust({
 async function renderCommonPodcastSpotlight({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -1236,14 +1255,8 @@ async function renderCommonPodcastSpotlight({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // Soundwave Visualization Card
   const soundCardH = footerY - curY - 20;
@@ -1251,21 +1264,30 @@ async function renderCommonPodcastSpotlight({
 
   // Speaker Badge
   drawRoundRect(ctx, padX + 24, curY + 24, 220, 36, 18);
-  ctx.fillStyle = TEAL_BG_TINT;
+  ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.40)' : TEAL_BG_TINT;
   ctx.fill();
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
   ctx.font = '800 15px "Outfit", sans-serif';
-  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.textAlign = 'center';
   ctx.fillText('🎙️  STREAMING EVERYWHERE', padX + 134, curY + 42);
 
   // Big Soundwave bars in center
   const waveCy = curY + soundCardH * 0.50;
-  drawAudioSoundwave(ctx, width / 2, waveCy, Math.min(600, maxW - 60), 84, TEAL_PRIMARY);
+  drawAudioSoundwave(ctx, width / 2, waveCy, Math.min(600, maxW - 60), 84, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
 
   ctx.font = '900 24px "Outfit", sans-serif';
-  ctx.fillStyle = TEXT_DARK;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+    ctx.shadowBlur = 6;
+  }
   ctx.textAlign = 'center';
   ctx.fillText('Listen on Spotify · Apple Podcasts · YouTube Music', width / 2, curY + soundCardH - 36);
+  ctx.shadowBlur = 0;
 }
 
 /**
@@ -1275,6 +1297,7 @@ async function renderCommonPodcastSpotlight({
 async function renderCommonBookRecommendations({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -1293,21 +1316,15 @@ async function renderCommonBookRecommendations({
   curY = hlInfo.bottomY + 12;
 
   // 2. Subtitle
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline || "Andy Grove's timeless masterpiece on operational leverage and team leadership.", maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 30;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline || "Andy Grove's timeless masterpiece on operational leverage and team leadership.", padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 3. Left Side: 3D Book Mockup | Right Side: 3 Structured Takeaway Cards
   const bookW = Math.round(width * (isLandscape ? 0.28 : 0.32));
   const bookH = footerY - curY - 16;
   draw3dBookMockup(ctx, padX, curY, bookW, bookH, headline, 'Andy Grove', 5, post?.uploadedImage, TEAL_PRIMARY);
 
-  // Right Side: 3 Compact, Well-Proportioned Takeaway Cards (ZERO EMPTY SPACE!)
+  // Right Side: 3 Compact Takeaway Cards
   const rightX = padX + bookW + 28;
   const rightW = width - rightX - padX;
   const cardH = 92;
@@ -1324,21 +1341,25 @@ async function renderCommonBookRecommendations({
 
     // Step number circle badge
     drawRoundRect(ctx, rightX + 16, cy + 18, 44, 44, 12);
-    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.40)' : TEAL_BG_TINT;
     ctx.fill();
-    ctx.strokeStyle = TEAL_PRIMARY;
+    ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.lineWidth = 1.2;
     ctx.stroke();
 
     ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(`0${idx + 1}`, rightX + 38, cy + 40);
 
     // Takeaway text
     ctx.font = '800 20px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
 
@@ -1348,6 +1369,7 @@ async function renderCommonBookRecommendations({
       ctx.fillText(l, rightX + 74, textY);
       textY += 26;
     });
+    ctx.shadowBlur = 0;
   });
 }
 
@@ -1358,33 +1380,35 @@ async function renderCommonBookRecommendations({
 async function renderCommonBoldStatement({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY + 10;
   const maxW = width - padX * 2;
 
   // Massive 92px Display Typography
   ctx.font = `900 ${isLandscape ? 64 : 88}px "Outfit", "Bricolage Grotesque", sans-serif`;
-  ctx.fillStyle = TEXT_DARK;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
 
   const lines = wrapText(ctx, headline || 'SIMPLICITY IS THE ULTIMATE SPEED', maxW);
   lines.forEach((l, i) => {
     if (i === lines.length - 1) {
-      ctx.fillStyle = TEAL_PRIMARY;
+      ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    } else {
+      ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    }
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+      ctx.shadowBlur = 12;
     }
     ctx.fillText(l, padX, curY);
+    ctx.shadowBlur = 0;
     curY += (isLandscape ? 70 : 96);
   });
   curY += 20;
 
   // Tagline
-  ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 34;
-  });
-  curY += 32;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 18 : 24);
+  curY += 20;
 
   // 4 Core Flywheel Nodes
   const nodes = ['1. Streamline Workflows', '2. Automate Production', '3. Compound Velocity', '4. Scale ROI'];
@@ -1400,11 +1424,11 @@ async function renderCommonBoldStatement({
     drawWhiteTealCard({ ctx, x: cx, y: cy, w: cardW, h: cardH, radius: 14 });
 
     ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.fillText(node, cx + 20, cy + 18);
 
     ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     ctx.fillText(items[idx] || 'Autonomous execution across all channels.', cx + 20, cy + 44);
   });
 }
@@ -1416,6 +1440,7 @@ async function renderCommonBoldStatement({
 async function renderCommonEnterpriseChecklist({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -1434,14 +1459,8 @@ async function renderCommonEnterpriseChecklist({
   curY = hlInfo.bottomY + 12;
 
   // 2. Tagline
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline || '4 essential readiness questions every executive must answer today.', maxW).slice(0, 2).forEach(l => {
-    ctx.fillText(l, padX, curY);
-    curY += 30;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline || '4 essential readiness questions every executive must answer today.', padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 3. Left Side: 4 Checklist Cards | Right Side: AI Readiness Speedometer Gauge
   const leftW = Math.round(width * (isLandscape ? 0.52 : 0.55));
@@ -1459,19 +1478,24 @@ async function renderCommonEnterpriseChecklist({
 
     // Glowing checkbox badge
     drawRoundRect(ctx, padX + 16, curY + 16, 36, 36, 10);
-    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.40)' : TEAL_BG_TINT;
     ctx.fill();
-    ctx.strokeStyle = TEAL_PRIMARY;
+    ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.lineWidth = 1.4;
     ctx.stroke();
 
-    drawCheckmarkIcon(ctx, padX + 24, curY + 24, 20, TEAL_PRIMARY);
+    drawCheckmarkIcon(ctx, padX + 24, curY + 24, 20, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
 
     ctx.font = '800 20px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
     ctx.fillText(q, padX + 66, curY + cardH / 2);
+    ctx.shadowBlur = 0;
 
     curY += cardH + 14;
   });
@@ -1500,7 +1524,7 @@ async function renderCommonEnterpriseChecklist({
     drawSpeedometerGauge(ctx, gaugeCx, gaugeCy, 100, 94, 'AI READINESS INDEX');
 
     ctx.font = '800 18px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.textAlign = 'center';
     ctx.fillText('ENTERPRISE MATURITY: GRADE A', gaugeCx, contentTopY + hlInfo.totalHeight + gaugeBoxH - 24);
   }
@@ -1513,6 +1537,7 @@ async function renderCommonEnterpriseChecklist({
 async function renderCommonFunnelMatrix({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -1529,14 +1554,8 @@ async function renderCommonFunnelMatrix({
   });
   curY = hlInfo.bottomY + 14;
 
-  ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline, maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 32;
-  });
-  curY += 24;
+  curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', isLandscape ? 17 : 22);
+  curY += 16;
 
   // 4 Tapered Funnel Stages
   const stages = [
@@ -1555,17 +1574,17 @@ async function renderCommonFunnelMatrix({
     drawWhiteTealCard({ ctx, x: sx, y: curY, w: sW, h: stageH, radius: 14 });
 
     ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.textAlign = 'left';
     ctx.fillText(st.name, sx + 22, curY + 22);
 
     ctx.font = '800 16px "Outfit", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
     ctx.textAlign = 'right';
     ctx.fillText(st.metric, sx + sW - 22, curY + 22);
 
     ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
     ctx.textAlign = 'left';
     ctx.fillText(st.desc, sx + 22, curY + 46);
 
@@ -1580,6 +1599,7 @@ async function renderCommonFunnelMatrix({
 async function renderCommonVisionManifesto({
   ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape
 }) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
   let curY = contentTopY;
   const maxW = width - padX * 2;
 
@@ -1596,14 +1616,8 @@ async function renderCommonVisionManifesto({
   });
   curY = hlInfo.bottomY + 16;
 
-  ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = TEXT_MUTED;
-  ctx.textAlign = 'left';
-  wrapText(ctx, tagline || 'We believe extraordinary technology should feel invisible, effortless, and accessible to every builder on earth.', maxW).slice(0, 2).forEach(line => {
-    ctx.fillText(line, padX, curY);
-    curY += 34;
-  });
-  curY += 28;
+  curY = drawPosterTagline(ctx, tagline || 'We believe extraordinary technology should feel invisible, effortless, and accessible to every builder on earth.', padX, curY, maxW, 'left', isLandscape ? 18 : 24);
+  curY += 20;
 
   // 3 Manifesto Pillar Cards
   const pillars = (items && items.length > 0) ? items.slice(0, 3) : [
@@ -1617,20 +1631,24 @@ async function renderCommonVisionManifesto({
     drawWhiteTealCard({ ctx, x: padX, y: curY, w: maxW, h: pillH, radius: 16 });
 
     drawRoundRect(ctx, padX + 18, curY + 18, 44, 44, 12);
-    ctx.fillStyle = TEAL_BG_TINT;
+    ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.40)' : TEAL_BG_TINT;
     ctx.fill();
-    ctx.strokeStyle = TEAL_PRIMARY;
+    ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.lineWidth = 1.2;
     ctx.stroke();
 
     ctx.font = '900 20px "Outfit", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(`0${idx + 1}`, padX + 40, curY + 40);
 
     ctx.font = '800 20px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEXT_DARK;
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
+      ctx.shadowBlur = 6;
+    }
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
 
@@ -1640,7 +1658,352 @@ async function renderCommonVisionManifesto({
       ctx.fillText(l, padX + 78, textY);
       textY += 26;
     });
+    ctx.shadowBlur = 0;
 
     curY += pillH + 16;
+  });
+}
+
+/**
+ * COMMON-21: Before & After Transformation
+ * Based on User Wireframe Sketch:
+ * - Upper curve dips down to center point (width / 2, centerY)
+ * - Lower curve arches up to center point (width / 2, centerY)
+ * - Upper zone: "BEFORE" section with pain points, crimson/rose accents, and warning badges
+ * - Lower zone: "AFTER" section with AI breakthrough outcomes, teal/cyan accents, and victory badges
+ * - Central intersection: ⚡ VS • TRANSFORMATION ⚡ floating focal badge
+ * - Supports frosted glass transparency when hasBg = true, and crisp light cards when hasBg = false
+ */
+async function renderCommonBeforeAfter({
+  ctx,
+  width,
+  height,
+  post,
+  style,
+  headline,
+  tagline,
+  items,
+  padX,
+  contentTopY,
+  footerY,
+  isLandscape
+}) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
+  const maxW = width - padX * 2;
+  const totalContentH = footerY - contentTopY;
+
+  // Exact vertical center meeting junction
+  const centerY = Math.round(contentTopY + totalContentH * 0.49);
+  const upperDip = Math.round(totalContentH * (isLandscape ? 0.26 : 0.23));
+  const topEdgeY = centerY - upperDip;
+  const bottomRise = Math.round(totalContentH * (isLandscape ? 0.36 : 0.34));
+  const bottomEdgeY = centerY + bottomRise;
+
+  // 1. Draw Upper Curved Container Fill (Zone: Above Upper Curve)
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width, contentTopY);
+  ctx.lineTo(width, topEdgeY);
+  for (let x = width; x >= 0; x -= 8) {
+    const y = topEdgeY + (centerY - topEdgeY) * Math.sin((x / width) * Math.PI);
+    ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  if (hasBg) {
+    const grad = ctx.createLinearGradient(0, contentTopY, 0, centerY);
+    grad.addColorStop(0, 'rgba(15, 23, 42, 0.68)');
+    grad.addColorStop(1, 'rgba(30, 41, 59, 0.45)');
+    ctx.fillStyle = grad;
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, 0, centerY);
+    grad.addColorStop(0, 'rgba(255, 255, 255, 0.96)');
+    grad.addColorStop(1, 'rgba(254, 242, 242, 0.70)');
+    ctx.fillStyle = grad;
+  }
+  ctx.fill();
+
+  // Stroke Upper Boundary Curve
+  ctx.beginPath();
+  ctx.moveTo(0, topEdgeY);
+  for (let x = 0; x <= width; x += 8) {
+    const y = topEdgeY + (centerY - topEdgeY) * Math.sin((x / width) * Math.PI);
+    ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = hasBg ? 'rgba(251, 113, 133, 0.65)' : 'rgba(225, 29, 72, 0.35)';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  ctx.restore();
+
+  // 2. Draw Lower Curved Container Fill (Zone: Below Lower Curve)
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, bottomEdgeY);
+  for (let x = 0; x <= width; x += 8) {
+    const y = bottomEdgeY - (bottomEdgeY - centerY) * Math.sin((x / width) * Math.PI);
+    ctx.lineTo(x, y);
+  }
+  ctx.lineTo(width, footerY);
+  ctx.lineTo(0, footerY);
+  ctx.closePath();
+  if (hasBg) {
+    const grad = ctx.createLinearGradient(0, centerY, 0, footerY);
+    grad.addColorStop(0, 'rgba(13, 148, 136, 0.25)');
+    grad.addColorStop(1, 'rgba(15, 23, 42, 0.72)');
+    ctx.fillStyle = grad;
+  } else {
+    const grad = ctx.createLinearGradient(0, centerY, 0, footerY);
+    grad.addColorStop(0, 'rgba(240, 253, 250, 0.85)');
+    grad.addColorStop(1, 'rgba(255, 255, 255, 0.96)');
+    ctx.fillStyle = grad;
+  }
+  ctx.fill();
+
+  // Stroke Lower Boundary Curve
+  ctx.beginPath();
+  ctx.moveTo(0, bottomEdgeY);
+  for (let x = 0; x <= width; x += 8) {
+    const y = bottomEdgeY - (bottomEdgeY - centerY) * Math.sin((x / width) * Math.PI);
+    ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  ctx.restore();
+
+  // 3. Central Junction Badge at (width / 2, centerY)
+  const badgeW = isLandscape ? 170 : 210;
+  const badgeH = isLandscape ? 40 : 48;
+  const badgeX = (width - badgeW) / 2;
+  const badgeY = centerY - badgeH / 2;
+
+  ctx.save();
+  drawRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, badgeH / 2);
+  const badgeGrad = ctx.createLinearGradient(badgeX, badgeY, badgeX + badgeW, badgeY + badgeH);
+  badgeGrad.addColorStop(0, '#0F172A');
+  badgeGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = badgeGrad;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.6)';
+  ctx.shadowBlur = 14;
+  ctx.fill();
+
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  ctx.font = '900 16px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('⚡ VS • TRANSFORMATION ⚡', width / 2, centerY);
+  ctx.restore();
+
+  // 4. Parse Before vs After content items
+  let beforeList = [];
+  let afterList = [];
+
+  if (Array.isArray(post?.beforePoints) && post.beforePoints.length > 0) {
+    beforeList = post.beforePoints;
+  }
+  if (Array.isArray(post?.afterPoints) && post.afterPoints.length > 0) {
+    afterList = post.afterPoints;
+  }
+
+  if (beforeList.length === 0 || afterList.length === 0) {
+    const rawList = (items && items.length > 0) ? items : [
+      'Manual agency revisions take 2+ weeks per campaign',
+      'Inconsistent branding & fragmented messaging across channels',
+      'Instant 1-click multi-format vector synthesis',
+      '100% brand consistency & compounding organic reach'
+    ];
+    const explicitBefore = rawList.filter(p => /^before\b/i.test(p.trim()));
+    const explicitAfter = rawList.filter(p => /^after\b/i.test(p.trim()));
+
+    if (explicitBefore.length > 0 || explicitAfter.length > 0) {
+      beforeList = explicitBefore.map(p => p.replace(/^before\s*:\s*/i, '').trim());
+      afterList = explicitAfter.map(p => p.replace(/^after\s*:\s*/i, '').trim());
+    } else {
+      const mid = Math.ceil(rawList.length / 2);
+      beforeList = rawList.slice(0, mid);
+      afterList = rawList.slice(mid);
+    }
+  }
+
+  if (beforeList.length === 0) {
+    beforeList = [
+      'Manual design cycles take 2+ weeks per campaign',
+      'Inconsistent branding across multiple channels'
+    ];
+  }
+  if (afterList.length === 0) {
+    afterList = [
+      'Instant 1-click synced vector synthesis',
+      '10x marketing output with compounding ROI'
+    ];
+  }
+
+  // 5. Render UPPER SECTION ("BEFORE")
+  let curY = contentTopY + 12;
+
+  // Upper Kicker Pill
+  const pillW = isLandscape ? 220 : 250;
+  const pillH = isLandscape ? 28 : 32;
+  ctx.save();
+  drawRoundRect(ctx, padX, curY, pillW, pillH, 8);
+  ctx.fillStyle = hasBg ? 'rgba(225, 29, 72, 0.25)' : 'rgba(225, 29, 72, 0.10)';
+  ctx.fill();
+  ctx.strokeStyle = hasBg ? '#FB7185' : '#E11D48';
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+
+  ctx.font = '800 13px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#FECDD3' : '#E11D48';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE: MANUAL FRICTION', padX + 14, curY + pillH / 2);
+  ctx.restore();
+  curY += pillH + 12;
+
+  // Headline in upper zone
+  const hlInfo = drawPosterHeadline(ctx, {
+    kicker: '',
+    headline: headline || 'THE CREATIVE PROCESS: BEFORE & AFTER',
+    x: padX,
+    y: curY,
+    maxW,
+    initialFs: isLandscape ? 40 : 54,
+    minFs: 30,
+    maxLines: 2,
+    isLandscape
+  });
+  curY = hlInfo.bottomY + 10;
+
+  // Tagline in upper zone
+  if (tagline && !isLandscape) {
+    curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', 18);
+    curY += 12;
+  }
+
+  // Render Before cards
+  const beforeCards = isLandscape ? beforeList.slice(0, 1) : beforeList.slice(0, 2);
+  const cardH = isLandscape ? 56 : 64;
+
+  beforeCards.forEach(bp => {
+    ctx.save();
+    drawRoundRect(ctx, padX, curY, maxW, cardH, 14);
+    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.65)' : 'rgba(255, 255, 255, 0.92)';
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+      ctx.shadowBlur = 8;
+    }
+    ctx.fill();
+    ctx.strokeStyle = hasBg ? 'rgba(244, 63, 94, 0.40)' : 'rgba(225, 29, 72, 0.25)';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Cross / Warning icon bubble
+    const iconSize = 34;
+    const iconX = padX + 14;
+    const iconY = curY + (cardH - iconSize) / 2;
+    drawRoundRect(ctx, iconX, iconY, iconSize, iconSize, 10);
+    ctx.fillStyle = hasBg ? 'rgba(244, 63, 94, 0.25)' : 'rgba(244, 63, 94, 0.12)';
+    ctx.fill();
+    ctx.strokeStyle = hasBg ? '#FB7185' : '#F43F5E';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    ctx.font = '900 16px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#FECDD3' : '#E11D48';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('✕', iconX + iconSize / 2, iconY + iconSize / 2);
+
+    // Text
+    ctx.font = '700 17px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+      ctx.shadowBlur = 6;
+    }
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
+    ctx.fillText(cleanBp, padX + iconSize + 26, curY + cardH / 2, maxW - iconSize - 40);
+    ctx.restore();
+
+    curY += cardH + 10;
+  });
+
+  // 6. Render LOWER SECTION ("AFTER")
+  let afterCurY = centerY + (isLandscape ? 28 : 34);
+
+  // Lower Kicker Pill
+  const afterPillW = isLandscape ? 220 : 250;
+  const afterPillH = isLandscape ? 28 : 32;
+  ctx.save();
+  drawRoundRect(ctx, padX, afterCurY, afterPillW, afterPillH, 8);
+  ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.30)' : 'rgba(0, 128, 128, 0.10)';
+  ctx.fill();
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+
+  ctx.font = '800 13px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER: AI VELOCITY', padX + 14, afterCurY + afterPillH / 2);
+  ctx.restore();
+  afterCurY += afterPillH + 12;
+
+  // After Cards
+  const afterCards = isLandscape ? afterList.slice(0, 2) : afterList.slice(0, 3);
+  afterCards.forEach(ap => {
+    ctx.save();
+    drawRoundRect(ctx, padX, afterCurY, maxW, cardH, 14);
+    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.65)' : 'rgba(255, 255, 255, 0.92)';
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+      ctx.shadowBlur = 8;
+    }
+    ctx.fill();
+    ctx.strokeStyle = hasBg ? 'rgba(45, 212, 191, 0.45)' : 'rgba(0, 128, 128, 0.25)';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Checkmark / Zap icon bubble
+    const iconSize = 34;
+    const iconX = padX + 14;
+    const iconY = afterCurY + (cardH - iconSize) / 2;
+    drawRoundRect(ctx, iconX, iconY, iconSize, iconSize, 10);
+    ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.35)' : 'rgba(0, 128, 128, 0.12)';
+    ctx.fill();
+    ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    ctx.font = '900 16px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('✓', iconX + iconSize / 2, iconY + iconSize / 2);
+
+    // Text
+    ctx.font = '700 17px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    if (hasBg) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+      ctx.shadowBlur = 6;
+    }
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    const cleanAp = String(ap).replace(/^[✓•\-\*]\s*/, '').trim();
+    ctx.fillText(cleanAp, padX + iconSize + 26, afterCurY + cardH / 2, maxW - iconSize - 40);
+    ctx.restore();
+
+    afterCurY += cardH + 12;
   });
 }

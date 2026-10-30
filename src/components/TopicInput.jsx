@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Sparkles, Trash2, Layers, Lightbulb, ArrowRight, CornerDownLeft } from 'lucide-react';
 import { SAMPLE_TOPICS, BULK_SAMPLE_TOPICS } from '../utils/sampleTopics';
 import { POST_CATEGORIES, getCategoryById, detectCategoryFromTopic } from '../utils/categories';
+import { findMatchingFolder } from '../utils/localAiImages';
 
 export default function TopicInput({
   topic,
@@ -12,11 +13,16 @@ export default function TopicInput({
   mode = 'single',
   setMode,
   selectedCategory = 'hiring',
-  onSelectCategory
+  onSelectCategory,
+  onCycleImage,
+  currentFolder,
+  currentImageIndex = 0,
+  totalImages = 0
 }) {
   const [activeChipIndex, setActiveChipIndex] = useState(null);
 
   const activeCat = getCategoryById(selectedCategory);
+  const matchedFolder = currentFolder || findMatchingFolder(topic, selectedCategory);
 
   const handleClear = () => {
     setTopic('');
@@ -175,6 +181,43 @@ export default function TopicInput({
           </div>
         )}
       </div>
+
+      {/* Matched Local Images_AI Folder Pill */}
+      {mode === 'single' && matchedFolder && matchedFolder.files && matchedFolder.files.length > 0 && (
+        <div className="flex flex-wrap items-center justify-between gap-2 mt-3 px-3.5 py-2 bg-teal-50/80 border border-teal-200/70 rounded-xl text-xs text-teal-950 transition-all">
+          <div className="flex items-center gap-2">
+            <span className="flex items-center gap-1.5 font-bold text-teal-800">
+              📸 <span className="font-extrabold">{matchedFolder.label}</span>
+            </span>
+            <span className="text-[11px] text-teal-700 bg-teal-100/90 px-2 py-0.5 rounded-full font-semibold">
+              {matchedFolder.files.length} images
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] text-teal-800 font-medium">
+              Photo {((currentImageIndex ?? 0) % matchedFolder.files.length) + 1} of {matchedFolder.files.length}
+            </span>
+            <div className="flex items-center gap-1">
+              <button
+                type="button"
+                onClick={() => onCycleImage?.(-1)}
+                className="px-2.5 py-1 rounded-lg bg-white hover:bg-teal-100 text-teal-900 border border-teal-200 shadow-xs font-bold transition-all text-xs active:scale-95"
+                title="Previous photo in folder"
+              >
+                ◀ Prev
+              </button>
+              <button
+                type="button"
+                onClick={() => onCycleImage?.(1)}
+                className="px-2.5 py-1 rounded-lg bg-teal-600 hover:bg-teal-700 text-white font-bold transition-all shadow-xs text-xs active:scale-95"
+                title="Next photo in folder"
+              >
+                Next Photo ▶
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Sample Quick-Picks (Single Mode) tailored to Category */}
       {mode === 'single' && (
