@@ -109,6 +109,7 @@ export default function ImageControls({
   const [downloadMenuOpen, setDownloadMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('styles'); // 'styles' | 'formats' | 'colors' | 'backgrounds' | 'icons' | 'visuals'
   const [selectedFolderId, setSelectedFolderId] = useState('auto');
+  const [beforeAfterTarget, setBeforeAfterTarget] = useState('before'); // 'before' | 'after'
   const [styleCategory, setStyleCategory] = useState(() => {
     return selectedCategory === 'hiring' ? 'hiring' : 'all';
   });
@@ -517,6 +518,8 @@ export default function ImageControls({
                     type="button"
                     onClick={() => {
                       onUpdateField?.('cardOpacity', opt.val);
+                      if (opt.val <= 0.05) onUpdateField?.('cardStyle', 'minimal');
+                      else onUpdateField?.('cardStyle', 'glass');
                       onShowToast?.({ type: 'info', message: `Card transparency set to ${opt.label}` });
                     }}
                     className={`p-2 rounded-xl border text-left transition-all ${
@@ -530,6 +533,42 @@ export default function ImageControls({
                   </button>
                 );
               })}
+            </div>
+
+            {/* Card Background Visual Style */}
+            <div className="pt-2 border-t border-teal-200/50">
+              <span className="text-[11px] font-bold text-teal-950 uppercase tracking-wider block mb-1.5">
+                Card Background Visual Style
+              </span>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { id: 'minimal', label: '👻 Floating Minimal', desc: 'No dark box (Sheer glow)' },
+                  { id: 'glass', label: '💎 Specular Glass', desc: 'Apple-style frosted glass' },
+                  { id: 'glow', label: '✨ Glowing Border', desc: 'Luminous accent rim' }
+                ].map((stOpt) => {
+                  const isStyleSelected = (post.cardStyle || (post.cardOpacity <= 0.05 ? 'minimal' : 'glass')) === stOpt.id;
+                  return (
+                    <button
+                      key={stOpt.id}
+                      type="button"
+                      onClick={() => {
+                        onUpdateField?.('cardStyle', stOpt.id);
+                        if (stOpt.id === 'minimal') onUpdateField?.('cardOpacity', 0.0);
+                        if (stOpt.id === 'glass' && (post.cardOpacity || 0) < 0.15) onUpdateField?.('cardOpacity', 0.35);
+                        onShowToast?.({ type: 'info', message: `Card style set to ${stOpt.label}` });
+                      }}
+                      className={`p-2 rounded-xl border text-left transition-all ${
+                        isStyleSelected
+                          ? 'border-teal-600 ring-2 ring-teal-500/20 bg-white text-teal-900 shadow-xs font-bold'
+                          : 'border-teal-200/60 bg-white/60 hover:bg-white text-slate-700 font-medium'
+                      }`}
+                    >
+                      <span className="text-xs block">{stOpt.label}</span>
+                      <span className="text-[10px] text-slate-400 block mt-0.5">{stOpt.desc}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
@@ -636,6 +675,10 @@ export default function ImageControls({
           : (LOCAL_AI_FOLDERS.find(f => f.id === selectedFolderId) || autoFolder);
 
         const currentImages = currentFolder?.files || [];
+        const isBeforeAfter = Boolean(
+          (styleId >= 'common-21' && styleId <= 'common-30') ||
+          styleId?.includes('before-after')
+        );
 
         return (
           <div className="space-y-4">
@@ -664,6 +707,42 @@ export default function ImageControls({
                 )}
               </div>
             </div>
+
+            {/* Dual Photo Target Selector for Before & After Templates */}
+            {isBeforeAfter && (
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 bg-gradient-to-r from-rose-50 via-slate-50 to-teal-50 border border-slate-200 rounded-xl">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold text-slate-700">Assign Photo To:</span>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => setBeforeAfterTarget('before')}
+                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all border ${
+                        beforeAfterTarget === 'before'
+                          ? 'bg-rose-600 text-white border-rose-600 shadow-xs'
+                          : 'bg-white text-slate-700 border-slate-200 hover:bg-rose-50'
+                      }`}
+                    >
+                      🔴 BEFORE Section
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setBeforeAfterTarget('after')}
+                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all border ${
+                        beforeAfterTarget === 'after'
+                          ? 'bg-teal-600 text-white border-teal-600 shadow-xs'
+                          : 'bg-white text-slate-700 border-slate-200 hover:bg-teal-50'
+                      }`}
+                    >
+                      🟢 AFTER Section
+                    </button>
+                  </div>
+                </div>
+                <span className="text-[11px] text-slate-500 font-medium">
+                  {beforeAfterTarget === 'before' ? 'Click any photo below to set Before' : 'Click any photo below to set After'}
+                </span>
+              </div>
+            )}
 
             {/* Folder Filter Bar */}
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
@@ -698,15 +777,29 @@ export default function ImageControls({
             {/* Image Thumbnail Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2.5 max-h-80 overflow-y-auto p-1 border border-slate-100 rounded-xl bg-slate-50/50">
               {currentImages.map((img, idx) => {
-                const isSelected = post.imageUrl === img.url || (!post.imageUrl && idx === 0 && selectedFolderId === 'auto');
+                const isBeforeMatch = isBeforeAfter && post.beforeImage === img.url;
+                const isAfterMatch = isBeforeAfter && post.afterImage === img.url;
+                const isSelected = isBeforeAfter
+                  ? (beforeAfterTarget === 'before' ? isBeforeMatch : isAfterMatch)
+                  : (post.imageUrl === img.url || (!post.imageUrl && idx === 0 && selectedFolderId === 'auto'));
                 return (
                   <button
                     key={img.name}
                     type="button"
                     onClick={() => {
-                      onUpdateField?.('imageUrl', img.url);
-                      onUpdateField?.('localImageIndex', idx);
-                      onShowToast?.({ type: 'info', message: `Applied: ${img.name}` });
+                      if (isBeforeAfter) {
+                        if (beforeAfterTarget === 'before') {
+                          onUpdateField?.('beforeImage', img.url);
+                          onShowToast?.({ type: 'info', message: `Applied to Before section: ${img.name}` });
+                        } else {
+                          onUpdateField?.('afterImage', img.url);
+                          onShowToast?.({ type: 'info', message: `Applied to After section: ${img.name}` });
+                        }
+                      } else {
+                        onUpdateField?.('imageUrl', img.url);
+                        onUpdateField?.('localImageIndex', idx);
+                        onShowToast?.({ type: 'info', message: `Applied: ${img.name}` });
+                      }
                     }}
                     className={`group relative rounded-xl border overflow-hidden text-left transition-all flex flex-col bg-white ${isSelected
                         ? 'border-teal-600 ring-2 ring-teal-500/30 shadow-md scale-[1.02]'
@@ -720,7 +813,20 @@ export default function ImageControls({
                         className="w-full h-full object-cover transition-transform group-hover:scale-105"
                         loading="lazy"
                       />
-                      {isSelected && (
+                      {isBeforeAfter ? (
+                        <>
+                          {isBeforeMatch && (
+                            <div className="absolute top-1.5 left-1.5 bg-rose-600 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold shadow-xs">
+                              🔴 Before
+                            </div>
+                          )}
+                          {isAfterMatch && (
+                            <div className="absolute top-1.5 right-1.5 bg-teal-600 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold shadow-xs">
+                              🟢 After
+                            </div>
+                          )}
+                        </>
+                      ) : isSelected && (
                         <div className="absolute top-1.5 right-1.5 bg-teal-600 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold shadow-xs">
                           Active
                         </div>

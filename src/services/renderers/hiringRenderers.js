@@ -114,6 +114,16 @@ export async function renderHiringTemplate({
     await renderHiringTerminalIDE({ ctx, width, height, post, style, role, exp, loc, salary, techStack, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'hiring-10') {
     await renderHiringExecutiveLeadership({ ctx, width, height, post, style, role, exp, loc, salary, qualification, padX, contentTopY, footerY, isLandscape });
+  } else if (id === 'hiring-11') {
+    await renderHiringScallopCloud({ ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg });
+  } else if (id === 'hiring-12') {
+    await renderHiringDiagonalSCurve({ ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg });
+  } else if (id === 'hiring-13') {
+    await renderHiringMountainCanopy({ ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg });
+  } else if (id === 'hiring-14') {
+    await renderHiringUpwardArc({ ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg });
+  } else if (id === 'hiring-15') {
+    await renderHiringSteppedShelf({ ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg });
   } else {
     // hiring-01 & default
     await renderHiringSkillmountSplit({ ctx, width, height, post, style, role, exp, loc, salary, qualification, techStack, padX, contentTopY, footerY, isLandscape, topicImg });
@@ -1306,4 +1316,967 @@ async function renderHiringExecutiveLeadership({
   });
   ctx.textAlign = 'left';
   ctx.textBaseline = 'alphabetic';
+}
+
+/**
+ * HIRING-11: Scallop Cloud Wave Split
+ * Wireframe: Top-left corner partitioned by scalloped / cloud wavy curve ("hiring which role"),
+ * right and bottom area for comprehensive specifications & requirements ("hiring detail").
+ */
+async function renderHiringScallopCloud({
+  ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg
+}) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
+  const maxW = width - padX * 2;
+  const availH = footerY - contentTopY;
+
+  // 1. Draw Top-Left Scallop Cloud Chamber
+  const cloudW = Math.round(width * (isLandscape ? 0.44 : 0.48));
+  const cloudH = Math.round(availH * (isLandscape ? 0.72 : 0.58));
+  const cloudBottomY = contentTopY + cloudH;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(padX - 8, contentTopY - 10);
+  ctx.lineTo(padX + cloudW, contentTopY - 10);
+
+  // Scalloped organic cloud boundary
+  const p1x = padX + cloudW;
+  const p1y = contentTopY - 10;
+  const p2x = padX + cloudW * 0.90;
+  const p2y = contentTopY + cloudH * 0.28;
+  const p3x = padX + cloudW * 0.70;
+  const p3y = contentTopY + cloudH * 0.62;
+  const p4x = padX + cloudW * 0.35;
+  const p4y = cloudBottomY;
+  const p5x = padX - 8;
+  const p5y = cloudBottomY;
+
+  ctx.bezierCurveTo(p1x + 15, contentTopY + cloudH * 0.12, p2x + 20, p2y - 20, p2x, p2y);
+  ctx.bezierCurveTo(p2x - 10, p2y + 40, p3x + 30, p3y - 15, p3x, p3y);
+  ctx.bezierCurveTo(p3x - 20, p3y + 40, p4x + 30, p4y + 10, p4x, p4y);
+  ctx.lineTo(p5x, p5y);
+  ctx.closePath();
+
+  // Background of Cloud Chamber
+  const cloudGrad = ctx.createLinearGradient(padX, contentTopY, padX + cloudW, cloudBottomY);
+  if (hasBg) {
+    cloudGrad.addColorStop(0, 'rgba(15, 23, 42, 0.88)');
+    cloudGrad.addColorStop(1, 'rgba(15, 23, 42, 0.70)');
+  } else {
+    cloudGrad.addColorStop(0, '#FFFFFF');
+    cloudGrad.addColorStop(0.5, '#F0FDFA');
+    cloudGrad.addColorStop(1, '#CCFBF1');
+  }
+  ctx.fillStyle = cloudGrad;
+  ctx.fill();
+
+  // Scalloped Border
+  ctx.strokeStyle = hasBg ? 'rgba(45, 212, 191, 0.75)' : 'rgba(0, 128, 128, 0.40)';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Clip optional topic image inside the cloud chamber
+  if (topicImg && topicImg.width) {
+    ctx.save();
+    ctx.clip();
+    const imgScale = Math.max(cloudW / topicImg.width, cloudH / topicImg.height);
+    const iw = topicImg.width * imgScale;
+    const ih = topicImg.height * imgScale;
+    ctx.globalAlpha = hasBg ? 0.18 : 0.14;
+    ctx.drawImage(topicImg, padX + (cloudW - iw) / 2, contentTopY + (cloudH - ih) / 2, iw, ih);
+    ctx.restore();
+  }
+  ctx.restore();
+
+  // 2. Content inside Top-Left Scallop ("hiring which role")
+  let roleCurY = contentTopY + 16;
+  const roleBoxW = cloudW - 32;
+
+  // Hiring Kicker Pill
+  ctx.save();
+  const kickerH = 28;
+  const kickerW = Math.min(180, roleBoxW);
+  drawRoundRect(ctx, padX + 12, roleCurY, kickerW, kickerH, 8);
+  ctx.fillStyle = hasBg ? 'rgba(45, 212, 191, 0.22)' : 'rgba(0, 128, 128, 0.12)';
+  ctx.fill();
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+
+  drawBriefcaseIcon(ctx, padX + 26, roleCurY + 14, 14, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
+
+  ctx.font = '800 11.5px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('WE ARE HIRING', padX + 40, roleCurY + 14);
+  ctx.restore();
+  roleCurY += kickerH + 16;
+
+  // Job Role Title
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 30 : 36}px "Outfit", sans-serif`;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 8;
+  }
+  const roleLines = wrapText(ctx, role, roleBoxW).slice(0, 3);
+  roleLines.forEach((line) => {
+    ctx.fillText(line, padX + 12, roleCurY + (isLandscape ? 28 : 34));
+    roleCurY += (isLandscape ? 34 : 40);
+  });
+  ctx.restore();
+  roleCurY += 12;
+
+  // Level & Work Mode Pills inside scallop
+  const subPills = [exp, employmentType];
+  let subPx = padX + 12;
+  subPills.forEach((p) => {
+    ctx.font = '700 12px "Plus Jakarta Sans", sans-serif';
+    const pw = ctx.measureText(p).width + 20;
+    drawRoundRect(ctx, subPx, roleCurY, pw, 26, 6);
+    ctx.fillStyle = hasBg ? 'rgba(255, 255, 255, 0.15)' : 'rgba(15, 23, 42, 0.06)';
+    ctx.fill();
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_MUTED;
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p, subPx + 10, roleCurY + 13);
+    subPx += pw + 8;
+  });
+
+  // 3. Right & Bottom Content ("hiring detail")
+  // Upper-Right Detail: 2 Specification Cards + Role Tagline
+  const rightStartX = padX + cloudW + (isLandscape ? 20 : 24);
+  const rightW = width - rightStartX - padX;
+
+  let rCurY = contentTopY + 10;
+  // Role Tagline / Mission
+  if (post?.tagline) {
+    ctx.save();
+    ctx.font = '600 14px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#E2E8F0' : TEXT_MUTED;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    const tagLines = wrapText(ctx, post.tagline, rightW).slice(0, 2);
+    tagLines.forEach((tl) => {
+      ctx.fillText(tl, rightStartX, rCurY);
+      rCurY += 20;
+    });
+    ctx.restore();
+    rCurY += 14;
+  }
+
+  // Right-side 2 Spec Cards (Salary & Location)
+  const topSpecCards = [
+    { label: 'COMPENSATION', val: salary, icon: 'zap' },
+    { label: 'WORK LOCATION', val: loc, icon: 'target' }
+  ];
+  const topCardH = isLandscape ? 68 : 76;
+  topSpecCards.forEach((sc, idx) => {
+    const cy = rCurY + (idx * (topCardH + 10));
+    drawWhiteTealCard({ ctx, x: rightStartX, y: cy, w: rightW, h: topCardH, radius: 12, hasBg });
+
+    // Icon
+    const icx = rightStartX + 20;
+    const icy = cy + topCardH / 2;
+    if (sc.icon === 'zap') drawZapIcon(ctx, icx, icy, 16, TEAL_PRIMARY);
+    else drawTargetIcon(ctx, icx, icy, 16, TEAL_PRIMARY);
+
+    ctx.font = '800 11px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText(sc.label, rightStartX + 42, cy + 14);
+
+    ctx.font = '800 14.5px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    ctx.fillText(sc.val, rightStartX + 42, cy + 34);
+  });
+
+  // 4. Lower Span Area: Key Requirements Checklist + Tech Stack + Perks
+  const bottomStartY = Math.max(cloudBottomY + 16, rCurY + (topSpecCards.length * (topCardH + 10)) + 16);
+  let bCurY = bottomStartY;
+  const fullW = width - padX * 2;
+
+  // Requirements Card
+  const reqList = (Array.isArray(post?.keyPoints) && post.keyPoints.length > 0)
+    ? post.keyPoints.slice(0, 3)
+    : [
+      'Solid knowledge of modern technologies and frameworks.',
+      'Build scalable and high-performance applications.',
+      'Work collaboratively in a cross-functional team.'
+    ];
+
+  const reqCardH = Math.min(136, footerY - bCurY - (isLandscape ? 90 : 110));
+  if (reqCardH > 80) {
+    drawWhiteTealCard({ ctx, x: padX, y: bCurY, w: fullW, h: reqCardH, radius: 14, hasBg });
+
+    ctx.font = '800 12px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('KEY ROLE RESPONSIBILITIES & CRITERIA', padX + 16, bCurY + 14);
+
+    const itemLineH = 24;
+    reqList.forEach((req, idx) => {
+      const iy = bCurY + 38 + (idx * itemLineH);
+      if (iy + 16 < bCurY + reqCardH) {
+        drawCheckmarkIcon(ctx, padX + 24, iy + 6, 12, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
+        ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+        ctx.textBaseline = 'middle';
+        const cleanReq = String(req).replace(/^[✓•\-\*]\s*/, '').trim();
+        const shortReq = wrapText(ctx, cleanReq, fullW - 54)[0] || cleanReq;
+        ctx.fillText(shortReq, padX + 38, iy + 6);
+      }
+    });
+
+    bCurY += reqCardH + 12;
+  }
+
+  // 5. Tech Stack Pills Row
+  if (footerY - bCurY > 40) {
+    drawTechStackPillsRow(ctx, padX, bCurY, fullW, 38, techStack);
+  }
+}
+
+/**
+ * HIRING-12: Diagonal S-Curve Stream
+ * Wireframe: Flowing diagonal S-curve dividing upper-right hiring role chamber from lower-left hiring detail.
+ */
+async function renderHiringDiagonalSCurve({
+  ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg
+}) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
+  const maxW = width - padX * 2;
+  const availH = footerY - contentTopY;
+
+  // 1. Draw Flowing S-Curve Ribbon Division
+  const sx1 = Math.round(width * 0.22);
+  const sy1 = contentTopY - 10;
+  const sx2 = Math.round(width * 0.82);
+  const sy2 = footerY + 10;
+
+  ctx.save();
+  // Draw Upper-Right Chamber Polygon
+  ctx.beginPath();
+  ctx.moveTo(sx1, sy1);
+  ctx.lineTo(width + 10, sy1);
+  ctx.lineTo(width + 10, sy2);
+  ctx.lineTo(sx2, sy2);
+  // S-Curve back to top
+  ctx.bezierCurveTo(
+    width * 0.72, contentTopY + availH * 0.74,
+    width * 0.46, contentTopY + availH * 0.50,
+    width * 0.24, contentTopY + availH * 0.26
+  );
+  ctx.closePath();
+
+  const upperGrad = ctx.createLinearGradient(sx1, sy1, width, sy2);
+  if (hasBg) {
+    upperGrad.addColorStop(0, 'rgba(15, 23, 42, 0.75)');
+    upperGrad.addColorStop(1, 'rgba(0, 128, 128, 0.35)');
+  } else {
+    upperGrad.addColorStop(0, '#FFFFFF');
+    upperGrad.addColorStop(0.5, '#F0FDFA');
+    upperGrad.addColorStop(1, '#CCFBF1');
+  }
+  ctx.fillStyle = upperGrad;
+  ctx.fill();
+
+  // Draw glowing S-curve divider stroke
+  ctx.beginPath();
+  ctx.moveTo(sx1, sy1);
+  ctx.bezierCurveTo(
+    width * 0.24, contentTopY + availH * 0.26,
+    width * 0.46, contentTopY + availH * 0.50,
+    width * 0.72, contentTopY + availH * 0.74
+  );
+  ctx.lineTo(sx2, sy2);
+  ctx.strokeStyle = hasBg ? 'rgba(45, 212, 191, 0.85)' : TEAL_PRIMARY;
+  ctx.lineWidth = 3;
+  ctx.shadowColor = hasBg ? 'rgba(45, 212, 191, 0.60)' : 'rgba(0, 128, 128, 0.30)';
+  ctx.shadowBlur = 12;
+  ctx.stroke();
+  ctx.restore();
+
+  // 2. Upper-Right Chamber Content ("hiring role")
+  const roleStartX = Math.round(width * (isLandscape ? 0.42 : 0.46));
+  const roleW = width - roleStartX - padX;
+  let roleY = contentTopY + 18;
+
+  // Kicker pill
+  ctx.save();
+  ctx.font = '800 12px "Outfit", sans-serif';
+  const roleBadgeW = Math.min(200, roleW);
+  drawRoundRect(ctx, roleStartX, roleY, roleBadgeW, 28, 8);
+  ctx.fillStyle = hasBg ? 'rgba(45, 212, 191, 0.20)' : 'rgba(0, 128, 128, 0.10)';
+  ctx.fill();
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('⚡ IMMEDIATE RECRUITMENT', roleStartX + roleBadgeW / 2, roleY + 14);
+  ctx.restore();
+  roleY += 42;
+
+  // Script "we are" + Massive "HIRING"
+  ctx.save();
+  ctx.font = '700 38px "Caveat", cursive';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'left';
+  ctx.fillText('we are', roleStartX, roleY);
+  roleY += 36;
+
+  ctx.font = `900 ${isLandscape ? 58 : 68}px "Outfit", sans-serif`;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEAL_PRIMARY;
+  ctx.shadowColor = hasBg ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 128, 128, 0.30)';
+  ctx.shadowBlur = 14;
+  ctx.fillText('HIRING', roleStartX, roleY);
+  ctx.restore();
+  roleY += (isLandscape ? 62 : 74);
+
+  // Role title
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 28 : 34}px "Outfit", sans-serif`;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  ctx.textAlign = 'left';
+  const rLines = wrapText(ctx, role, roleW).slice(0, 2);
+  rLines.forEach((l) => {
+    ctx.fillText(l, roleStartX, roleY);
+    roleY += (isLandscape ? 34 : 40);
+  });
+  ctx.restore();
+
+  // 3. Lower-Left Chamber Content ("h detail")
+  const leftW = Math.round(width * (isLandscape ? 0.38 : 0.42));
+  let dCurY = contentTopY + 14;
+
+  // 4 Specs Table (Stacked in clean cards)
+  const specs = [
+    { label: 'QUALIFICATION', val: qualification },
+    { label: 'EXPERIENCE', val: exp },
+    { label: 'LOCATION', val: loc },
+    { label: 'COMPENSATION', val: salary }
+  ];
+
+  const cardH = isLandscape ? 58 : 66;
+  specs.forEach((s) => {
+    drawWhiteTealCard({ ctx, x: padX, y: dCurY, w: leftW, h: cardH, radius: 10, hasBg });
+
+    ctx.font = '800 11px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText(s.label, padX + 16, dCurY + 12);
+
+    ctx.font = '800 14px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    ctx.fillText(s.val, padX + 16, dCurY + 32);
+
+    dCurY += cardH + 10;
+  });
+
+  // Requirements / What You'll Work On
+  dCurY += 6;
+  const reqH = Math.min(130, footerY - dCurY - 48);
+  if (reqH > 70) {
+    drawWhiteTealCard({ ctx, x: padX, y: dCurY, w: maxW, h: reqH, radius: 14, hasBg });
+
+    ctx.font = '800 12px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('CRITICAL REQUIREMENTS & EXPECTATIONS', padX + 18, dCurY + 14);
+
+    const pts = (post?.keyPoints || ['Proven track record in high-impact engineering', 'Clear communicator with high autonomy', 'Passion for AI velocity']).slice(0, 3);
+    pts.forEach((p, pIdx) => {
+      const py = dCurY + 38 + (pIdx * 24);
+      if (py + 16 < dCurY + reqH) {
+        drawCheckmarkIcon(ctx, padX + 26, py + 4, 12, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
+        ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+        ctx.textBaseline = 'middle';
+        const cleanPt = String(p).replace(/^[✓•\-\*]\s*/, '').trim();
+        ctx.fillText(cleanPt, padX + 42, py + 4);
+      }
+    });
+
+    dCurY += reqH + 12;
+  }
+
+  // Tech stack pills row
+  if (footerY - dCurY > 38) {
+    drawTechStackPillsRow(ctx, padX, dCurY, maxW, 36, techStack);
+  }
+}
+
+/**
+ * HIRING-13: Mountain Canopy Summit
+ * Wireframe: Chevron mountain peak / canopy curve dividing upper summit hiring role from lower structured hiring detail.
+ */
+async function renderHiringMountainCanopy({
+  ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg
+}) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
+  const maxW = width - padX * 2;
+  const availH = footerY - contentTopY;
+
+  // 1. Draw Mountain Peak / Canopy Ridge
+  const peakX = width * 0.50;
+  const peakY = contentTopY + Math.round(availH * (isLandscape ? 0.36 : 0.30));
+  const leftRidgeY = contentTopY + Math.round(availH * (isLandscape ? 0.54 : 0.48));
+  const rightRidgeY = contentTopY + Math.round(availH * (isLandscape ? 0.58 : 0.52));
+
+  ctx.save();
+  // Draw Canopy Background under the mountain
+  ctx.beginPath();
+  ctx.moveTo(padX - 10, leftRidgeY);
+  ctx.quadraticCurveTo(width * 0.28, peakY + 10, peakX, peakY);
+  ctx.quadraticCurveTo(width * 0.72, peakY + 10, width - padX + 10, rightRidgeY);
+  ctx.lineTo(width - padX + 10, footerY + 10);
+  ctx.lineTo(padX - 10, footerY + 10);
+  ctx.closePath();
+
+  const canopyGrad = ctx.createLinearGradient(peakX, peakY, peakX, footerY);
+  if (hasBg) {
+    canopyGrad.addColorStop(0, 'rgba(15, 23, 42, 0.90)');
+    canopyGrad.addColorStop(1, 'rgba(15, 23, 42, 0.72)');
+  } else {
+    canopyGrad.addColorStop(0, '#FFFFFF');
+    canopyGrad.addColorStop(0.3, '#F0FDFA');
+    canopyGrad.addColorStop(1, '#CCFBF1');
+  }
+  ctx.fillStyle = canopyGrad;
+  ctx.fill();
+
+  // Mountain Ridge Stroke
+  ctx.beginPath();
+  ctx.moveTo(padX - 10, leftRidgeY);
+  ctx.quadraticCurveTo(width * 0.28, peakY + 10, peakX, peakY);
+  ctx.quadraticCurveTo(width * 0.72, peakY + 10, width - padX + 10, rightRidgeY);
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = hasBg ? 'rgba(45, 212, 191, 0.80)' : 'rgba(0, 128, 128, 0.40)';
+  ctx.shadowBlur = 14;
+  ctx.stroke();
+  ctx.restore();
+
+  // 2. Summit Section Above Ridge ("hiring role")
+  let sCurY = contentTopY + 12;
+
+  // Header Pill
+  ctx.save();
+  const summitBadgeW = 220;
+  const sbx = (width - summitBadgeW) / 2;
+  drawRoundRect(ctx, sbx, sCurY, summitBadgeW, 28, 8);
+  ctx.fillStyle = hasBg ? 'rgba(45, 212, 191, 0.22)' : 'rgba(0, 128, 128, 0.12)';
+  ctx.fill();
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+
+  ctx.font = '800 12px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🌟 CAREER LAUNCHPAD // 2026', width / 2, sCurY + 14);
+  ctx.restore();
+  sCurY += 40;
+
+  // Headline: Job Role Title
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 34 : 42}px "Outfit", sans-serif`;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 10;
+  }
+  const roleLines = wrapText(ctx, role, maxW - 40).slice(0, 2);
+  roleLines.forEach((l) => {
+    ctx.fillText(l, width / 2, sCurY);
+    sCurY += (isLandscape ? 38 : 46);
+  });
+  ctx.restore();
+
+  // Quick Highlights Row under title
+  const topPills = [exp, loc, salary];
+  const tpW = Math.round((maxW - 30) / 3);
+  topPills.forEach((p, idx) => {
+    const px = padX + (idx * (tpW + 15));
+    drawRoundRect(ctx, px, sCurY + 6, tpW, 30, 8);
+    ctx.fillStyle = hasBg ? 'rgba(255, 255, 255, 0.14)' : 'rgba(15, 23, 42, 0.05)';
+    ctx.fill();
+    ctx.strokeStyle = hasBg ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 128, 128, 0.20)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.font = '700 13px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p, px + tpW / 2, sCurY + 21);
+  });
+
+  // 3. Lower Canopy Section Below Ridge ("h d" - hiring detail)
+  const canopyStartY = peakY + 44;
+  let cCurY = canopyStartY;
+
+  // 2-Column Grid: Left (Responsibilities) & Right (Specs & Perks)
+  const colGap = 16;
+  const colW = Math.round((maxW - colGap) / 2);
+  const leftColX = padX;
+  const rightColX = padX + colW + colGap;
+
+  const colCardH = Math.min(230, footerY - cCurY - 48);
+
+  // Left Column: Key Deliverables
+  drawWhiteTealCard({ ctx, x: leftColX, y: cCurY, w: colW, h: colCardH, radius: 14, hasBg });
+
+  ctx.font = '800 12px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('CORE RESPONSIBILITIES & DELIVERABLES', leftColX + 18, cCurY + 16);
+
+  const deliverables = (post?.keyPoints || [
+    'Architect resilient production cloud systems',
+    'Automate CI/CD pipelines with sub-second feedback',
+    'Empower team through mentorship & design reviews',
+    'Optimize latency & infrastructure cost efficiency'
+  ]).slice(0, 4);
+
+  deliverables.forEach((d, idx) => {
+    const dy = cCurY + 44 + (idx * 34);
+    if (dy + 20 < cCurY + colCardH) {
+      drawCheckmarkIcon(ctx, leftColX + 26, dy + 6, 12, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
+      ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+      ctx.textBaseline = 'middle';
+      const cleanD = String(d).replace(/^[✓•\-\*]\s*/, '').trim();
+      const wrapD = wrapText(ctx, cleanD, colW - 54)[0] || cleanD;
+      ctx.fillText(wrapD, leftColX + 42, dy + 6);
+    }
+  });
+
+  // Right Column: Specifications & Perks
+  drawWhiteTealCard({ ctx, x: rightColX, y: cCurY, w: colW, h: colCardH, radius: 14, hasBg });
+
+  ctx.font = '800 12px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('ROLE SPECIFICATIONS & PERKS', rightColX + 18, cCurY + 16);
+
+  const rightSpecs = [
+    { label: 'Qualification', val: qualification },
+    { label: 'Employment', val: employmentType },
+    { label: 'Package', val: salary }
+  ];
+
+  rightSpecs.forEach((rs, idx) => {
+    const rsy = cCurY + 44 + (idx * 36);
+    if (rsy + 20 < cCurY + colCardH) {
+      ctx.font = '700 11.5px "Outfit", sans-serif';
+      ctx.fillStyle = hasBg ? '#2DD4BF' : TEXT_MUTED;
+      ctx.textBaseline = 'top';
+      ctx.fillText(rs.label.toUpperCase(), rightColX + 20, rsy);
+
+      ctx.font = '800 14px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+      ctx.fillText(rs.val, rightColX + 20, rsy + 16);
+    }
+  });
+
+  // Bottom Tech Stack row
+  cCurY += colCardH + 12;
+  if (footerY - cCurY > 36) {
+    drawTechStackPillsRow(ctx, padX, cCurY, maxW, 36, techStack);
+  }
+}
+
+/**
+ * HIRING-14: Upward Dynamic Arc Slash
+ * Wireframe: Sweeping upward parabolic arc slash from bottom-left to top-right separating prominent role hero from detailed specifications.
+ */
+async function renderHiringUpwardArc({
+  ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg
+}) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
+  const maxW = width - padX * 2;
+  const availH = footerY - contentTopY;
+
+  // 1. Draw Sweeping Upward Arc Divider
+  const arcStartX = padX - 10;
+  const arcStartY = footerY + 10;
+  const arcEndX = Math.round(width * (isLandscape ? 0.38 : 0.44));
+  const arcEndY = contentTopY - 10;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(arcStartX, arcEndY);
+  ctx.lineTo(arcEndX, arcEndY);
+  // Upward parabolic arc
+  ctx.quadraticCurveTo(width * 0.16, contentTopY + availH * 0.45, arcStartX, arcStartY);
+  ctx.closePath();
+
+  const arcGrad = ctx.createLinearGradient(padX, contentTopY, arcEndX, arcStartY);
+  if (hasBg) {
+    arcGrad.addColorStop(0, 'rgba(15, 23, 42, 0.88)');
+    arcGrad.addColorStop(1, 'rgba(0, 128, 128, 0.45)');
+  } else {
+    arcGrad.addColorStop(0, '#FFFFFF');
+    arcGrad.addColorStop(0.5, '#F0FDFA');
+    arcGrad.addColorStop(1, '#CCFBF1');
+  }
+  ctx.fillStyle = arcGrad;
+  ctx.fill();
+
+  // Glowing arc curve
+  ctx.beginPath();
+  ctx.moveTo(arcEndX, arcEndY);
+  ctx.quadraticCurveTo(width * 0.16, contentTopY + availH * 0.45, arcStartX, arcStartY);
+  ctx.strokeStyle = hasBg ? 'rgba(45, 212, 191, 0.90)' : TEAL_PRIMARY;
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = hasBg ? 'rgba(45, 212, 191, 0.70)' : 'rgba(0, 128, 128, 0.35)';
+  ctx.shadowBlur = 12;
+  ctx.stroke();
+  ctx.restore();
+
+  // 2. Left Arc Chamber Content ("hiring R" - hiring Role)
+  const leftW = Math.round(width * (isLandscape ? 0.34 : 0.38));
+  let lCurY = contentTopY + 16;
+
+  // Kicker pill
+  ctx.save();
+  const arcBadgeW = Math.min(180, leftW - 20);
+  drawRoundRect(ctx, padX + 8, lCurY, arcBadgeW, 28, 8);
+  ctx.fillStyle = hasBg ? 'rgba(45, 212, 191, 0.20)' : 'rgba(0, 128, 128, 0.10)';
+  ctx.fill();
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+
+  ctx.font = '800 11.5px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('WE ARE HIRING', padX + 8 + arcBadgeW / 2, lCurY + 14);
+  ctx.restore();
+  lCurY += 42;
+
+  // Big Role Headline
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 28 : 34}px "Outfit", sans-serif`;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 8;
+  }
+  const rLines = wrapText(ctx, role, leftW - 24).slice(0, 3);
+  rLines.forEach((l) => {
+    ctx.fillText(l, padX + 8, lCurY + (isLandscape ? 26 : 32));
+    lCurY += (isLandscape ? 32 : 38);
+  });
+  ctx.restore();
+  lCurY += 12;
+
+  // Role Meta Badges inside Arc Chamber
+  const leftPills = [exp, employmentType, salary];
+  leftPills.forEach((p) => {
+    drawRoundRect(ctx, padX + 8, lCurY, leftW - 30, 30, 8);
+    ctx.fillStyle = hasBg ? 'rgba(255, 255, 255, 0.12)' : 'rgba(15, 23, 42, 0.05)';
+    ctx.fill();
+    ctx.strokeStyle = hasBg ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 128, 128, 0.18)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.font = '700 12.5px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEAL_PRIMARY;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(p, padX + 20, lCurY + 15);
+    lCurY += 38;
+  });
+
+  // 3. Right Expansive Chamber Content ("h d" - hiring detail)
+  const rightStartX = padX + leftW + (isLandscape ? 24 : 30);
+  const rightW = width - rightStartX - padX;
+  let rCurY = contentTopY + 12;
+
+  // Tagline
+  if (post?.tagline) {
+    ctx.save();
+    ctx.font = '600 14px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#E2E8F0' : TEXT_MUTED;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    const tagLines = wrapText(ctx, post.tagline, rightW).slice(0, 2);
+    tagLines.forEach((tl) => {
+      ctx.fillText(tl, rightStartX, rCurY);
+      rCurY += 20;
+    });
+    ctx.restore();
+    rCurY += 12;
+  }
+
+  // 2 Spec Cards (Qualification & Location)
+  const specPairW = Math.round((rightW - 12) / 2);
+  const specH = isLandscape ? 64 : 70;
+  const specCards = [
+    { label: 'QUALIFICATION', val: qualification },
+    { label: 'WORK LOCATION', val: loc }
+  ];
+
+  specCards.forEach((sc, idx) => {
+    const scx = rightStartX + (idx * (specPairW + 12));
+    drawWhiteTealCard({ ctx, x: scx, y: rCurY, w: specPairW, h: specH, radius: 12, hasBg });
+
+    ctx.font = '800 11px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText(sc.label, scx + 16, rCurY + 12);
+
+    ctx.font = '800 14px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    ctx.fillText(sc.val, scx + 16, rCurY + 32);
+  });
+  rCurY += specH + 14;
+
+  // Candidate Requirements Box
+  const reqCardH = Math.min(150, footerY - rCurY - 48);
+  if (reqCardH > 80) {
+    drawWhiteTealCard({ ctx, x: rightStartX, y: rCurY, w: rightW, h: reqCardH, radius: 14, hasBg });
+
+    ctx.font = '800 12px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('CORE QUALIFICATIONS & EXPERIENCE', rightStartX + 18, rCurY + 14);
+
+    const pts = (post?.keyPoints || [
+      'Proven expertise in architecting robust software systems',
+      'Demonstrated fluency in core frameworks and vector tools',
+      'High-velocity problem solver with extreme ownership'
+    ]).slice(0, 3);
+
+    pts.forEach((pt, idx) => {
+      const py = rCurY + 40 + (idx * 26);
+      if (py + 16 < rCurY + reqCardH) {
+        drawCheckmarkIcon(ctx, rightStartX + 26, py + 4, 12, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
+        ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+        ctx.textBaseline = 'middle';
+        const cleanPt = String(pt).replace(/^[✓•\-\*]\s*/, '').trim();
+        const shortPt = wrapText(ctx, cleanPt, rightW - 54)[0] || cleanPt;
+        ctx.fillText(shortPt, rightStartX + 42, py + 4);
+      }
+    });
+
+    rCurY += reqCardH + 12;
+  }
+
+  // Tech stack pills row
+  if (footerY - rCurY > 38) {
+    drawTechStackPillsRow(ctx, rightStartX, rCurY, rightW, 36, techStack);
+  }
+}
+
+/**
+ * HIRING-15: Stepped Shelf Podium
+ * Wireframe: Offset Z-step vertical shelf divider separating left candidate specifications from right prominent career launchpad.
+ */
+async function renderHiringSteppedShelf({
+  ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg
+}) {
+  const hasBg = Boolean(ctx.__hasBackgroundImage);
+  const maxW = width - padX * 2;
+  const availH = footerY - contentTopY;
+
+  // 1. Draw Stepped Z-Divider Line
+  const stepX = Math.round(width * (isLandscape ? 0.36 : 0.40));
+  const topShelfY = contentTopY + Math.round(availH * 0.16);
+  const bottomShelfY = footerY - Math.round(availH * 0.16);
+
+  ctx.save();
+  // Draw Left Shelf Container Polygon
+  ctx.beginPath();
+  ctx.moveTo(padX - 8, contentTopY - 10);
+  ctx.lineTo(stepX, contentTopY - 10);
+  ctx.lineTo(stepX, bottomShelfY);
+  ctx.lineTo(width - padX + 8, bottomShelfY);
+  ctx.lineTo(width - padX + 8, footerY + 10);
+  ctx.lineTo(padX - 8, footerY + 10);
+  ctx.closePath();
+
+  const shelfGrad = ctx.createLinearGradient(padX, contentTopY, stepX, footerY);
+  if (hasBg) {
+    shelfGrad.addColorStop(0, 'rgba(15, 23, 42, 0.85)');
+    shelfGrad.addColorStop(1, 'rgba(0, 128, 128, 0.35)');
+  } else {
+    shelfGrad.addColorStop(0, '#FFFFFF');
+    shelfGrad.addColorStop(0.5, '#F0FDFA');
+    shelfGrad.addColorStop(1, '#CCFBF1');
+  }
+  ctx.fillStyle = shelfGrad;
+  ctx.fill();
+
+  // Stepped dividing contour
+  ctx.beginPath();
+  ctx.moveTo(stepX, contentTopY - 10);
+  ctx.lineTo(stepX, bottomShelfY);
+  ctx.lineTo(width - padX + 8, bottomShelfY);
+  ctx.strokeStyle = hasBg ? 'rgba(45, 212, 191, 0.85)' : TEAL_PRIMARY;
+  ctx.lineWidth = 3;
+  ctx.shadowColor = hasBg ? 'rgba(45, 212, 191, 0.60)' : 'rgba(0, 128, 128, 0.30)';
+  ctx.shadowBlur = 12;
+  ctx.stroke();
+  ctx.restore();
+
+  // 2. Left Chamber Content ("h d" - hiring detail)
+  const leftW = stepX - padX - 16;
+  let lCurY = contentTopY + 14;
+
+  ctx.save();
+  ctx.font = '800 12px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('HIRING SPECIFICATIONS', padX, lCurY);
+  ctx.restore();
+  lCurY += 28;
+
+  // 4 Specification Rows Cards
+  const leftSpecs = [
+    { label: 'QUALIFICATION', val: qualification },
+    { label: 'EXPERIENCE', val: exp },
+    { label: 'LOCATION', val: loc },
+    { label: 'SALARY / PACKAGE', val: salary }
+  ];
+
+  const specCardH = isLandscape ? 58 : 64;
+  leftSpecs.forEach((ls) => {
+    drawWhiteTealCard({ ctx, x: padX, y: lCurY, w: leftW, h: specCardH, radius: 10, hasBg });
+
+    ctx.font = '800 11px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText(ls.label, padX + 14, lCurY + 10);
+
+    ctx.font = '800 13.5px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+    ctx.fillText(ls.val, padX + 14, lCurY + 28);
+
+    lCurY += specCardH + 10;
+  });
+
+  // Left Tech Stack Stack
+  lCurY += 6;
+  if (footerY - lCurY > 40) {
+    drawTechStackPillsRow(ctx, padX, lCurY, leftW, 36, techStack.slice(0, 3));
+  }
+
+  // 3. Right Chamber Content ("h R" - hiring Role)
+  const rightStartX = stepX + (isLandscape ? 20 : 26);
+  const rightW = width - rightStartX - padX;
+  let rCurY = contentTopY + 18;
+
+  // Announcement Pill
+  ctx.save();
+  const annW = Math.min(220, rightW);
+  drawRoundRect(ctx, rightStartX, rCurY, annW, 28, 8);
+  ctx.fillStyle = hasBg ? 'rgba(45, 212, 191, 0.20)' : 'rgba(0, 128, 128, 0.10)';
+  ctx.fill();
+  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+
+  ctx.font = '800 12px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🚀 EXECUTIVE HIRING DRIVE', rightStartX + annW / 2, rCurY + 14);
+  ctx.restore();
+  rCurY += 44;
+
+  // Display "HIRING" Headline
+  ctx.save();
+  ctx.font = '700 36px "Caveat", cursive';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'left';
+  ctx.fillText('join our team as', rightStartX, rCurY);
+  rCurY += 34;
+
+  ctx.font = `900 ${isLandscape ? 38 : 46}px "Outfit", sans-serif`;
+  ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+  ctx.shadowColor = hasBg ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 128, 128, 0.25)';
+  ctx.shadowBlur = 10;
+  const roleLines = wrapText(ctx, role, rightW).slice(0, 3);
+  roleLines.forEach((l) => {
+    ctx.fillText(l, rightStartX, rCurY + (isLandscape ? 30 : 38));
+    rCurY += (isLandscape ? 38 : 46);
+  });
+  ctx.restore();
+  rCurY += 14;
+
+  // Right Key Highlights Checklist Card
+  const rightCardH = Math.min(140, bottomShelfY - rCurY - 12);
+  if (rightCardH > 80) {
+    drawWhiteTealCard({ ctx, x: rightStartX, y: rCurY, w: rightW, h: rightCardH, radius: 14, hasBg });
+
+    ctx.font = '800 12px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('WHAT YOU WILL LEAD & BUILD', rightStartX + 18, rCurY + 14);
+
+    const pts = (post?.keyPoints || [
+      'Spearhead enterprise multi-agent platform architecture',
+      'Drive high-concurrency real-time delivery',
+      'Accelerate developer velocity and engineering craft'
+    ]).slice(0, 3);
+
+    pts.forEach((p, idx) => {
+      const py = rCurY + 40 + (idx * 26);
+      if (py + 16 < rCurY + rightCardH) {
+        drawCheckmarkIcon(ctx, rightStartX + 26, py + 4, 12, hasBg ? '#2DD4BF' : TEAL_PRIMARY);
+        ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
+        ctx.textBaseline = 'middle';
+        const cleanP = String(p).replace(/^[✓•\-\*]\s*/, '').trim();
+        const shortP = wrapText(ctx, cleanP, rightW - 54)[0] || cleanP;
+        ctx.fillText(shortP, rightStartX + 42, py + 4);
+      }
+    });
+
+    rCurY += rightCardH + 12;
+  }
+
+  // Bottom Shelf Perks Strip
+  const botY = bottomShelfY + 12;
+  const botH = footerY - botY;
+  if (botH > 32) {
+    drawWhiteTealCard({ ctx, x: padX, y: botY, w: maxW, h: botH, radius: 12, hasBg });
+    const bPerks = ['Medical Coverage', 'Annual Bonus', 'Relocation Support'];
+    const bpW = Math.round(maxW / 3);
+    bPerks.forEach((bp, idx) => {
+      ctx.font = '800 13px "Outfit", sans-serif';
+      ctx.fillStyle = hasBg ? '#FFFFFF' : TEAL_PRIMARY;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(bp, padX + (idx * bpW) + bpW / 2, botY + botH / 2);
+    });
+  }
 }

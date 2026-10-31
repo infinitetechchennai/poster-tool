@@ -22,7 +22,12 @@ export const POST_CATEGORIES = [
       'hiring-07',
       'hiring-08',
       'hiring-09',
-      'hiring-10'
+      'hiring-10',
+      'hiring-11',
+      'hiring-12',
+      'hiring-13',
+      'hiring-14',
+      'hiring-15'
     ],
     sampleTopics: [
       'Cloud Infrastructure Engineer',
@@ -114,7 +119,16 @@ export const POST_CATEGORIES = [
       'common-18',
       'common-19',
       'common-20',
-      'common-21'
+      'common-21',
+      'common-22',
+      'common-23',
+      'common-24',
+      'common-25',
+      'common-26',
+      'common-27',
+      'common-28',
+      'common-29',
+      'common-30'
     ],
     sampleTopics: [
       'Your Brand Is Talking. Is Anyone Listening?',

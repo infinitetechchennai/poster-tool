@@ -80,10 +80,12 @@ function renderFestiveTagline(ctx, tagline, cx, y, maxW, isLandscape, hasBg) {
 
 function renderFestiveCards(ctx, items, subLabel, padX, curY, maxW, hasBg, iconType = 'sparkle', iconColor = GOLD_ACCENT) {
   const cardW = Math.round((maxW - 24) / 3);
-  const cardH = 92;
+  const cardH = 96;
 
   items.slice(0, 3).forEach((item, idx) => {
     const cardX = padX + (idx * (cardW + 12));
+
+    // 1. Draw modern floating glass card (respects cardOpacity & cardStyle)
     drawWhiteTealCard({
       ctx,
       x: cardX,
@@ -94,25 +96,57 @@ function renderFestiveCards(ctx, items, subLabel, padX, curY, maxW, hasBg, iconT
       borderCol: hasBg ? 'rgba(251, 191, 36, 0.45)' : 'rgba(217, 119, 6, 0.35)'
     });
 
-    if (iconType === 'sparkle') {
-      drawSparkleIcon(ctx, cardX + 22, curY + 30, 20, iconColor);
-    } else {
-      drawCheckmarkIcon(ctx, cardX + 22, curY + 30, 20, iconColor);
-    }
-
+    // 2. Dedicated circular glass badge for the icon
+    const iconBadgeSize = 28;
+    const iconBadgeX = cardX + 12;
+    const iconBadgeY = curY + 16;
     ctx.save();
-    ctx.font = '900 18px "Outfit", sans-serif';
+    drawRoundRect(ctx, iconBadgeX, iconBadgeY, iconBadgeSize, iconBadgeSize, 8);
+    ctx.fillStyle = hasBg ? 'rgba(251, 191, 36, 0.18)' : 'rgba(217, 119, 6, 0.10)';
+    ctx.fill();
+    ctx.strokeStyle = hasBg ? 'rgba(251, 191, 36, 0.50)' : 'rgba(217, 119, 6, 0.25)';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    if (iconType === 'sparkle') {
+      drawSparkleIcon(ctx, iconBadgeX + 14, iconBadgeY + 14, 16, iconColor);
+    } else {
+      drawCheckmarkIcon(ctx, iconBadgeX + 14, iconBadgeY + 14, 16, iconColor);
+    }
+    ctx.restore();
+
+    // 3. Strict Clipping & Multi-Line Text Wrapping (NEVER overflows or overlaps adjacent cards!)
+    ctx.save();
+    ctx.beginPath();
+    drawRoundRect(ctx, cardX, curY, cardW, cardH, 14);
+    ctx.clip();
+
+    const textX = cardX + 48;
+    const textMaxW = cardW - 56;
+
+    ctx.font = '700 13.5px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
     ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
     if (hasBg) {
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
-      ctx.shadowBlur = 8;
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+      ctx.shadowBlur = 6;
     }
-    ctx.fillText(item, cardX + 50, curY + 34);
 
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = hasBg ? '#CBD5E1' : TEXT_MUTED;
-    ctx.fillText(subLabel, cardX + 50, curY + 62);
+    const cleanItem = String(item).replace(/^[✓•\-\*]\s*/, '').trim();
+    const lines = wrapText(ctx, cleanItem, textMaxW).slice(0, 2);
+    if (lines.length === 1) {
+      ctx.fillText(lines[0], textX, curY + 34);
+    } else {
+      ctx.fillText(lines[0], textX, curY + 26);
+      ctx.fillText(lines[1], textX, curY + 44);
+    }
+    ctx.shadowBlur = 0;
+
+    // Subtitle label
+    ctx.font = '800 10.5px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? (iconColor || '#FBBF24') : TEAL_PRIMARY;
+    ctx.fillText(subLabel.toUpperCase(), textX, curY + 74);
     ctx.restore();
   });
   return curY + cardH + 28;
