@@ -1802,6 +1802,19 @@ export async function renderPostToCanvas({
     }
   }
 
+  // Dedicated image resolution for Hiring templates (hiring-11 to hiring-15)
+  // User requirement: "hiring role bg should white and hiring detail bg should be image"
+  const isHiringWithDetailImage = Boolean(style.id >= 'hiring-11' && style.id <= 'hiring-15');
+  if (isHiringWithDetailImage && !topicImg) {
+    const defaultHiringDetailUrl = '/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg';
+    let hSrc = post?.imageUrl || (post?.uploadedImage && post.uploadedImage.src) || defaultHiringDetailUrl;
+    if (hSrc && typeof hSrc === 'object' && hSrc.width) {
+      topicImg = hSrc;
+    } else if (typeof hSrc === 'string') {
+      topicImg = await loadImage(hSrc, 5000);
+    }
+  }
+
   // 1. Dedicated Multi-Layout Renders for the 50 Core Professional Templates
   const isUnified50 = Boolean(
     style.id && (
