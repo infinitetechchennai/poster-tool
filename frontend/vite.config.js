@@ -20,6 +20,22 @@ export default defineConfig({
             proxyReq.removeHeader('referer');
           });
         }
+      },
+      '/api/keywords': {
+        target: 'http://127.0.0.1:8000',
+        changeOrigin: true
+      },
+      '/api/clusters': {
+        target: 'http://127.0.0.1:8000',
+        changeOrigin: true
+      },
+      '/api/render': {
+        target: 'http://127.0.0.1:8000',
+        changeOrigin: true
+      },
+      '/output_posters': {
+        target: 'http://127.0.0.1:8000',
+        changeOrigin: true
       }
     }
   }

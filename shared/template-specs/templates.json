@@ -1,0 +1,100 @@
+{
+  "templates": [
+    {
+      "id": "corporate_services",
+      "name": "Corporate Services",
+      "category": "B2B Enterprise",
+      "intended_use": "Custom software development, enterprise software, consulting, and IT services.",
+      "best_for": "Enterprise CTOs, IT Directors, Architecture modernization, Bespoke engineering",
+      "thumbnail_url": "/assets/thumbnails/corporate_services.png",
+      "accent_color": "#0fa5a6",
+      "theme": "light_corporate",
+      "default_kicker": "ENTERPRISE SOFTWARE ENGINEERING",
+      "default_title": "Bespoke Enterprise Software Built For Scale",
+      "default_description": "Modernize core legacy workflows with dedicated engineering squads, zero architectural debt, and verified production reliability.",
+      "default_bullets": [
+        "Custom Microservices Architecture",
+        "99.99% Mission-Critical Uptime",
+        "Automated CI/CD & Governance Pipeline",
+        "Full IP Ownership & Zero Lock-In"
+      ],
+      "default_cta": "Schedule Architecture Audit"
+    },
+    {
+      "id": "educational_informational",
+      "name": "Educational & Informational",
+      "category": "Thought Leadership",
+      "intended_use": "AI/ML education, technology explainers, industry insights, and awareness campaigns.",
+      "best_for": "Tech leaders, R&D teams, AI strategy adoption, Framework comparisons",
+      "thumbnail_url": "/assets/thumbnails/educational_informational.png",
+      "accent_color": "#0fa5a6",
+      "theme": "light_editorial",
+      "default_kicker": "STRATEGIC TECH REPORT",
+      "default_title": "Enterprise AI Engineering Playbook 2026",
+      "default_description": "Essential architectural patterns, security controls, and governance benchmarks for production AI.",
+      "default_bullets": [
+        "Production-Grade LLM Orchestration",
+        "Deterministic Guardrails & Verification",
+        "Enterprise Governance & Data Privacy"
+      ],
+      "default_cta": "Download Executive Guide"
+    },
+    {
+      "id": "product_promotion",
+      "name": "Product & Solution Promotion",
+      "category": "Product Launch",
+      "intended_use": "AI products, automation solutions, software features, and product launches.",
+      "best_for": "SaaS announcements, Automation platforms, Developer toolkits, Platform releases",
+      "thumbnail_url": "/assets/thumbnails/product_promotion.png",
+      "accent_color": "#38bdf8",
+      "theme": "dark_modern",
+      "default_kicker": "ENTERPRISE AI PLATFORM",
+      "default_title": "Next-Gen AI Workflow Automation Engine",
+      "default_description": "Orchestrate complex business logic with autonomous agentic intelligence and verified reliability.",
+      "default_bullets": [
+        "Sub-Millisecond Execution Times",
+        "Multi-Model Routing & Failover",
+        "Full Enterprise Compliance & Auditing"
+      ],
+      "default_cta": "Request Live Platform Demo"
+    },
+    {
+      "id": "problem_solution",
+      "name": "Problem & Solution",
+      "category": "ROI & Transformation",
+      "intended_use": "Business challenges, operational bottlenecks, workflow automation, and solution benefits.",
+      "best_for": "Comparing legacy bottlenecks vs modern AI solutions with quantified metrics",
+      "thumbnail_url": "/assets/thumbnails/problem_solution.png",
+      "accent_color": "#0fa5a6",
+      "theme": "light_comparison",
+      "default_kicker": "BUSINESS IMPACT ASSESSMENT",
+      "default_title": "Eliminate Costly Legacy Architecture Bottlenecks",
+      "default_description": "Replace brittle manual scripts with verified event-driven microservices engineered for scale.",
+      "default_bullets": [
+        "3x Accelerated Engineering Velocity",
+        "100% Code Governance & Quality",
+        "Zero Vendor Lock-In"
+      ],
+      "default_cta": "Modernize Your Workflows Today"
+    },
+    {
+      "id": "announcements_campaigns",
+      "name": "Announcements & Campaigns",
+      "category": "Events & Briefings",
+      "intended_use": "Company announcements, events, executive briefings, milestones, and marketing campaigns.",
+      "best_for": "Executive roundtables, Product keynotes, Partner events, Quarterly milestones",
+      "thumbnail_url": "/assets/thumbnails/announcements_campaigns.png",
+      "accent_color": "#38bdf8",
+      "theme": "dark_executive",
+      "default_kicker": "EXECUTIVE BRIEFING • 2026",
+      "default_title": "InfiniteTech AI Annual Technology Summit",
+      "default_description": "Join global CTOs and enterprise architects exploring agentic workflows, deterministic AI, and infrastructure scale.",
+      "default_bullets": [
+        "Exclusive Keynotes & Technical Deep-Dives",
+        "Live Architectural Framework Demonstrations",
+        "Direct Q&A with Deep Learning Engineers"
+      ],
+      "default_cta": "Reserve Your Seat"
+    }
+  ]
+}

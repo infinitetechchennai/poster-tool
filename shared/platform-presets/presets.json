@@ -1,0 +1,74 @@
+{
+  "presets": [
+    {
+      "id": "instagram_portrait",
+      "platform": "Instagram",
+      "format_name": "Feed Portrait",
+      "width": 1080,
+      "height": 1350,
+      "aspect_ratio": "4:5",
+      "orientation": "portrait",
+      "recommended_use": "Instagram feed posts, high vertical visual engagement"
+    },
+    {
+      "id": "instagram_square",
+      "platform": "Instagram",
+      "format_name": "Square Post",
+      "width": 1080,
+      "height": 1080,
+      "aspect_ratio": "1:1",
+      "orientation": "square",
+      "recommended_use": "Classic Instagram square feed, multi-image carousel"
+    },
+    {
+      "id": "instagram_story",
+      "platform": "Instagram",
+      "format_name": "Story & Reels Cover",
+      "width": 1080,
+      "height": 1920,
+      "aspect_ratio": "9:16",
+      "orientation": "vertical",
+      "recommended_use": "Full-screen vertical mobile immersion, Reels & Stories"
+    },
+    {
+      "id": "linkedin_portrait",
+      "platform": "LinkedIn",
+      "format_name": "Feed Portrait",
+      "width": 1080,
+      "height": 1350,
+      "aspect_ratio": "4:5",
+      "orientation": "portrait",
+      "recommended_use": "B2B executive thought leadership, highest LinkedIn mobile CTR"
+    },
+    {
+      "id": "linkedin_landscape",
+      "platform": "LinkedIn",
+      "format_name": "Feed Landscape",
+      "width": 1200,
+      "height": 627,
+      "aspect_ratio": "1.91:1",
+      "orientation": "landscape",
+      "recommended_use": "Desktop feed link previews and company page announcements"
+    },
+    {
+      "id": "facebook_portrait",
+      "platform": "Facebook",
+      "format_name": "Feed Portrait",
+      "width": 1080,
+      "height": 1350,
+      "aspect_ratio": "4:5",
+      "orientation": "portrait",
+      "recommended_use": "Facebook mobile feed and sponsored lead generation"
+    },
+    {
+      "id": "twitter_landscape",
+      "platform": "X / Twitter",
+      "format_name": "Timeline Banner / Card",
+      "width": 1200,
+      "height": 675,
+      "aspect_ratio": "16:9",
+      "orientation": "landscape",
+      "recommended_use": "X timeline cards, product launches, developer news"
+    }
+  ]
+}

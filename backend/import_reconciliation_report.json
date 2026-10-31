@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-10-27T18:23:08.848072",
+  "files": {
+    "InfinitetechAI_Keyword_Intent_Analysis.xlsx": {
+      "hash": "b357fb7bc934cd187387fad3c3308b9aabc1a3d21e0ffd9a65843cff577e6d5a",
+      "status": "skipped_unchanged",
+      "import_id": "4c6bbcec-087c-42c8-b6ae-a5f7e4ac8826",
+      "version": 1
+    },
+    "InfinitetechAI_Social_SEO_Content.xlsx": {
+      "hash": "cf16e84e9b990ea628da54a72d1d8ac19c1674902175b8b85331d63b1c929a74",
+      "status": "skipped_unchanged",
+      "import_id": "b818632f-e2d9-4feb-95eb-9df7bc21f8a3",
+      "version": 1
+    },
+    "InfinitetechAI_Google_Ads_Plan.xlsx": {
+      "hash": "8be979b2a62afee03c702dfe2461905a96f5210507591a70559e020802835efa",
+      "status": "skipped_unchanged",
+      "import_id": "d5651b31-b869-4c4e-a479-90e08dcf6d84",
+      "version": 1
+    }
+  },
+  "tables": {
+    "clusters": {
+      "expected": 13,
+      "actual": 13,
+      "match": true
+    },
+    "keywords": {
+      "expected": 3816,
+      "actual": 3816,
+      "match": true
+    },
+    "source_headlines": {
+      "expected": 38160,
+      "actual": 38160,
+      "match": true
+    },
+    "social_content": {
+      "expected": 78,
+      "actual": 78,
+      "match": true
+    },
+    "content_calendar": {
+      "expected": 30,
+      "actual": 30,
+      "match": true
+    },
+    "seo_landing_pages": {
+      "expected": 13,
+      "actual": 13,
+      "match": true
+    },
+    "campaign_shortlist": {
+      "expected": 487,
+      "actual": 487,
+      "match": true
+    }
+  },
+  "integrity_checks": {
+    "keywords_without_exactly_10_headlines": 0,
+    "keywords_null_low_bids": {
+      "expected": 363,
+      "actual": 363,
+      "match": true
+    },
+    "social_null_hashtags_quora": {
+      "expected": 13,
+      "actual": 13,
+      "match": true
+    }
+  },
+  "status": "reconciled_success"
+}
