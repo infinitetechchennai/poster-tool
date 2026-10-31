@@ -165,25 +165,21 @@ async function renderHiringSkillmountSplit({
   let curY = contentTopY + 16;
 
   // Typography: "we are" (script) + "HIRING" (bold)
-  ctx.font = '700 44px "Caveat", "Kalam", cursive';
+  // Executive Typography
+  ctx.font = '800 14px "Outfit", sans-serif';
   ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
   ctx.textAlign = 'left';
-  if (hasBg) {
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.90)';
-    ctx.shadowBlur = 10;
-  }
-  ctx.fillText('we are', contentLeftX, curY);
-  ctx.shadowBlur = 0;
-  curY += 44;
+  ctx.fillText('WE ARE RECRUITING // CAREER LAUNCHPAD', contentLeftX, curY);
+  curY += 28;
 
   ctx.save();
-  ctx.font = '900 96px "Outfit", "Bricolage Grotesque", sans-serif';
+  ctx.font = '900 84px "Bricolage Grotesque", "Outfit", sans-serif';
   ctx.fillStyle = hasBg ? '#FFFFFF' : TEAL_PRIMARY;
   ctx.shadowColor = hasBg ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 128, 128, 0.35)';
   ctx.shadowBlur = 18;
-  ctx.fillText('HIRING', contentLeftX, curY);
+  ctx.fillText('HIRING', contentLeftX, curY + 64);
   ctx.restore();
-  curY += 100;
+  curY += 92;
 
   // Job Role Title with dynamic wrapText
   ctx.font = '900 34px "Outfit", sans-serif';
@@ -1335,7 +1331,7 @@ function drawClippedDetailImage(ctx, img, bboxX, bboxY, bboxW, bboxH, clipPathFn
   const dw = img.width * scale;
   const dh = img.height * scale;
   const dx = bboxX + (bboxW - dw) / 2;
-  const dy = bboxY + (bboxH - dh) / 2;
+  const dy = bboxY + (bboxH - dw) / 2;
 
   ctx.drawImage(img, dx, dy, dw, dh);
 
@@ -1348,9 +1344,9 @@ function drawClippedDetailImage(ctx, img, bboxX, bboxY, bboxW, bboxH, clipPathFn
 
 /**
  * HIRING-11: Scallop Cloud Wave Split
- * Wireframe:
- * - Top-left: "hiring which role" -> SOLID WHITE BACKGROUND
- * - Right and bottom: "hiring detail" -> IMAGE BACKGROUND
+ * Modern Executive Typography & Front Design:
+ * - Top-Left: Solid White Role Chamber with ultra-clean geometric typography (NO cursive)
+ * - Right & Bottom: Photo Image Detail Chamber with frosted specular glass cards
  */
 async function renderHiringScallopCloud({
   ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg
@@ -1358,29 +1354,29 @@ async function renderHiringScallopCloud({
   const maxW = width - padX * 2;
   const availH = footerY - contentTopY;
 
-  const cloudW = Math.round(width * (isLandscape ? 0.44 : 0.48));
-  const cloudH = Math.round(availH * (isLandscape ? 0.72 : 0.58));
+  const cloudW = Math.round(width * (isLandscape ? 0.46 : 0.50));
+  const cloudH = Math.round(availH * (isLandscape ? 0.74 : 0.60));
   const cloudBottomY = contentTopY + cloudH;
 
-  // Path definition for Top-Left Scallop Cloud
+  // Path definition for Top-Left Scallop Cloud with smooth, architectural curves
   const pathScallopRole = () => {
     ctx.moveTo(padX - 8, contentTopY - 10);
     ctx.lineTo(padX + cloudW, contentTopY - 10);
 
     const p1x = padX + cloudW;
     const p1y = contentTopY - 10;
-    const p2x = padX + cloudW * 0.90;
-    const p2y = contentTopY + cloudH * 0.28;
-    const p3x = padX + cloudW * 0.70;
-    const p3y = contentTopY + cloudH * 0.62;
-    const p4x = padX + cloudW * 0.35;
+    const p2x = padX + cloudW * 0.92;
+    const p2y = contentTopY + cloudH * 0.30;
+    const p3x = padX + cloudW * 0.72;
+    const p3y = contentTopY + cloudH * 0.64;
+    const p4x = padX + cloudW * 0.38;
     const p4y = cloudBottomY;
     const p5x = padX - 8;
     const p5y = cloudBottomY;
 
-    ctx.bezierCurveTo(p1x + 15, contentTopY + cloudH * 0.12, p2x + 20, p2y - 20, p2x, p2y);
-    ctx.bezierCurveTo(p2x - 10, p2y + 40, p3x + 30, p3y - 15, p3x, p3y);
-    ctx.bezierCurveTo(p3x - 20, p3y + 40, p4x + 30, p4y + 10, p4x, p4y);
+    ctx.bezierCurveTo(p1x + 12, contentTopY + cloudH * 0.12, p2x + 18, p2y - 18, p2x, p2y);
+    ctx.bezierCurveTo(p2x - 12, p2y + 36, p3x + 24, p3y - 12, p3x, p3y);
+    ctx.bezierCurveTo(p3x - 18, p3y + 36, p4x + 24, p4y + 8, p4x, p4y);
     ctx.lineTo(p5x, p5y);
     ctx.closePath();
   };
@@ -1396,13 +1392,11 @@ async function renderHiringScallopCloud({
       width - padX * 2 + 16,
       availH + 20,
       () => {
-        // Full content box with rounded corners
         drawRoundRect(ctx, padX - 8, contentTopY - 10, width - padX * 2 + 16, availH + 20, 18);
       },
       0.46
     );
   } else {
-    // Elegant fallback gradient if no image
     ctx.save();
     drawRoundRect(ctx, padX - 8, contentTopY - 10, width - padX * 2 + 16, availH + 20, 18);
     const grad = ctx.createLinearGradient(padX, contentTopY, width - padX, footerY);
@@ -1413,79 +1407,95 @@ async function renderHiringScallopCloud({
     ctx.restore();
   }
 
-  // 2. HIRING ROLE: SOLID PURE WHITE BACKGROUND (Top-Left Scallop Cloud)
+  // 2. HIRING ROLE: SOLID PURE WHITE BACKGROUND
   ctx.save();
   ctx.beginPath();
   pathScallopRole();
   ctx.fillStyle = '#FFFFFF';
-  ctx.shadowColor = 'rgba(0, 0, 0, 0.28)';
-  ctx.shadowBlur = 18;
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.22)';
+  ctx.shadowBlur = 20;
   ctx.shadowOffsetY = 4;
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  // Crisp border around white role scallop
-  ctx.strokeStyle = 'rgba(0, 128, 128, 0.45)';
+  // Modern dual rim border
+  ctx.strokeStyle = 'rgba(0, 128, 128, 0.40)';
   ctx.lineWidth = 2.5;
   ctx.stroke();
   ctx.restore();
 
-  // 3. Content inside Top-Left Scallop ("hiring which role" - CRISP DARK ON WHITE)
-  let roleCurY = contentTopY + 16;
-  const roleBoxW = cloudW - 32;
+  // 3. Content inside Top-Left Scallop (EXECUTIVE MODERN TYPOGRAPHY ON WHITE)
+  let roleCurY = contentTopY + 18;
+  const roleBoxW = cloudW - 36;
 
-  // Hiring Kicker Pill
+  // Executive Kicker Capsule
   ctx.save();
   const kickerH = 28;
-  const kickerW = Math.min(180, roleBoxW);
-  drawRoundRect(ctx, padX + 14, roleCurY, kickerW, kickerH, 8);
-  ctx.fillStyle = 'rgba(0, 128, 128, 0.10)';
+  const kickerW = Math.min(210, roleBoxW);
+  drawRoundRect(ctx, padX + 16, roleCurY, kickerW, kickerH, 8);
+  ctx.fillStyle = 'rgba(0, 128, 128, 0.08)';
   ctx.fill();
-  ctx.strokeStyle = TEAL_PRIMARY;
+  ctx.strokeStyle = 'rgba(0, 128, 128, 0.35)';
   ctx.lineWidth = 1.2;
   ctx.stroke();
 
-  drawBriefcaseIcon(ctx, padX + 28, roleCurY + 14, 14, TEAL_PRIMARY);
+  drawBriefcaseIcon(ctx, padX + 30, roleCurY + 14, 14, TEAL_PRIMARY);
 
   ctx.font = '800 11.5px "Outfit", sans-serif';
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-  ctx.fillText('WE ARE HIRING', padX + 42, roleCurY + 14);
+  ctx.fillText('WE ARE HIRING', padX + 44, roleCurY + 14);
   ctx.restore();
-  roleCurY += kickerH + 16;
+  roleCurY += kickerH + 18;
 
-  // Job Role Title in rich dark slate
+  // Executive Over-title
   ctx.save();
-  ctx.font = `900 ${isLandscape ? 30 : 36}px "Outfit", sans-serif`;
+  ctx.font = '800 12.5px "Outfit", sans-serif';
+  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('OFFICIAL RECRUITMENT DRIVE', padX + 16, roleCurY);
+  ctx.restore();
+  roleCurY += 22;
+
+  // Giant Job Role Title in ultra-bold geometric font (Bricolage Grotesque / Outfit)
+  ctx.save();
+  const roleFs = isLandscape ? 30 : 36;
+  const roleLh = isLandscape ? 36 : 42;
+  ctx.font = `900 ${roleFs}px "Bricolage Grotesque", "Outfit", sans-serif`;
   ctx.fillStyle = TEXT_DARK;
   ctx.textAlign = 'left';
-  ctx.textBaseline = 'alphabetic';
+  ctx.textBaseline = 'top';
   const roleLines = wrapText(ctx, role, roleBoxW).slice(0, 3);
   roleLines.forEach((line) => {
-    ctx.fillText(line, padX + 14, roleCurY + (isLandscape ? 28 : 34));
-    roleCurY += (isLandscape ? 34 : 40);
+    ctx.fillText(line, padX + 16, roleCurY);
+    roleCurY += roleLh;
   });
   ctx.restore();
-  roleCurY += 12;
+  roleCurY += 14;
 
   // Level & Work Mode Pills inside white scallop
   const subPills = [exp, employmentType];
-  let subPx = padX + 14;
+  let subPx = padX + 16;
   subPills.forEach((p) => {
     ctx.font = '700 12px "Plus Jakarta Sans", sans-serif';
-    const pw = ctx.measureText(p).width + 20;
-    drawRoundRect(ctx, subPx, roleCurY, pw, 26, 6);
-    ctx.fillStyle = 'rgba(15, 23, 42, 0.06)';
+    const pw = ctx.measureText(p).width + 22;
+    drawRoundRect(ctx, subPx, roleCurY, pw, 28, 7);
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.05)';
     ctx.fill();
-    ctx.fillStyle = TEXT_MUTED;
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.12)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.fillStyle = TEXT_DARK;
     ctx.textBaseline = 'middle';
-    ctx.fillText(p, subPx + 10, roleCurY + 13);
+    ctx.fillText(p, subPx + 11, roleCurY + 14);
     subPx += pw + 8;
   });
 
-  // 4. Content inside Right & Bottom ("hiring detail" - HIGH CONTRAST ON IMAGE)
-  const rightStartX = padX + cloudW + (isLandscape ? 20 : 24);
+  // 4. Content inside Right & Bottom ("hiring detail" - HIGH-CONTRAST ON IMAGE)
+  const rightStartX = padX + cloudW + (isLandscape ? 18 : 22);
   const rightW = width - rightStartX - padX;
 
   let rCurY = contentTopY + 10;
@@ -1507,7 +1517,7 @@ async function renderHiringScallopCloud({
     rCurY += 14;
   }
 
-  // Right-side 2 Spec Cards (Salary & Location) with frosted glass
+  // Right-side 2 Spec Cards (Salary & Location) in frosted glass
   const topSpecCards = [
     { label: 'COMPENSATION', val: salary, icon: 'zap' },
     { label: 'WORK LOCATION', val: loc, icon: 'target' }
@@ -1581,9 +1591,9 @@ async function renderHiringScallopCloud({
 
 /**
  * HIRING-12: Diagonal S-Curve Stream
- * Wireframe:
- * - Upper-right: "hiring role" -> SOLID WHITE BACKGROUND
- * - Lower-left: "h detail" -> IMAGE BACKGROUND
+ * Modern Executive Typography & Front Design:
+ * - Upper-Right: Solid White Role Chamber with clean geometric bold headlines (NO cursive)
+ * - Lower-Left: Photo Image Detail Chamber with frosted specular glass specs & checklist
  */
 async function renderHiringDiagonalSCurve({
   ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg
@@ -1654,7 +1664,7 @@ async function renderHiringDiagonalSCurve({
   pathRoleChamber();
   ctx.fillStyle = '#FFFFFF';
   ctx.shadowColor = 'rgba(0, 0, 0, 0.22)';
-  ctx.shadowBlur = 18;
+  ctx.shadowBlur = 20;
   ctx.shadowOffsetX = -4;
   ctx.fill();
   ctx.shadowBlur = 0;
@@ -1672,17 +1682,17 @@ async function renderHiringDiagonalSCurve({
   ctx.stroke();
   ctx.restore();
 
-  // 3. Upper-Right Chamber Content ("hiring role" - CRISP DARK ON WHITE)
+  // 3. Upper-Right Chamber Content (EXECUTIVE MODERN TYPOGRAPHY ON WHITE)
   const roleStartX = Math.round(width * (isLandscape ? 0.44 : 0.48));
   const roleW = width - roleStartX - padX;
-  let roleY = contentTopY + 18;
+  let roleY = contentTopY + 20;
 
-  // Kicker pill
+  // Executive Kicker Capsule
   ctx.save();
-  ctx.font = '800 12px "Outfit", sans-serif';
-  const roleBadgeW = Math.min(200, roleW);
+  ctx.font = '800 11.5px "Outfit", sans-serif';
+  const roleBadgeW = Math.min(220, roleW);
   drawRoundRect(ctx, roleStartX, roleY, roleBadgeW, 28, 8);
-  ctx.fillStyle = 'rgba(0, 128, 128, 0.10)';
+  ctx.fillStyle = 'rgba(0, 128, 128, 0.08)';
   ctx.fill();
   ctx.strokeStyle = TEAL_PRIMARY;
   ctx.lineWidth = 1.2;
@@ -1693,33 +1703,52 @@ async function renderHiringDiagonalSCurve({
   ctx.textBaseline = 'middle';
   ctx.fillText('⚡ IMMEDIATE RECRUITMENT', roleStartX + roleBadgeW / 2, roleY + 14);
   ctx.restore();
-  roleY += 42;
+  roleY += 40;
 
-  // Script "we are" + Massive "HIRING" in dark & teal
+  // Main Display "WE ARE HIRING" in Ultra-Bold Grotesque (NO cursive!)
   ctx.save();
-  ctx.font = '700 38px "Caveat", cursive';
+  ctx.font = `900 ${isLandscape ? 48 : 58}px "Bricolage Grotesque", "Outfit", sans-serif`;
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.textAlign = 'left';
-  ctx.fillText('we are', roleStartX, roleY);
-  roleY += 36;
+  ctx.textBaseline = 'top';
+  ctx.fillText('WE ARE', roleStartX, roleY);
+  roleY += isLandscape ? 46 : 56;
 
-  ctx.font = `900 ${isLandscape ? 58 : 68}px "Outfit", sans-serif`;
-  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.fillStyle = TEXT_DARK;
   ctx.fillText('HIRING', roleStartX, roleY);
   ctx.restore();
-  roleY += (isLandscape ? 62 : 74);
+  roleY += (isLandscape ? 52 : 64);
 
-  // Role title in dark slate
+  // Job Role Title
   ctx.save();
-  ctx.font = `900 ${isLandscape ? 28 : 34}px "Outfit", sans-serif`;
+  const rFs = isLandscape ? 28 : 34;
+  const rLh = isLandscape ? 34 : 40;
+  ctx.font = `900 ${rFs}px "Outfit", sans-serif`;
   ctx.fillStyle = TEXT_DARK;
   ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
   const rLines = wrapText(ctx, role, roleW).slice(0, 2);
   rLines.forEach((l) => {
     ctx.fillText(l, roleStartX, roleY);
-    roleY += (isLandscape ? 34 : 40);
+    roleY += rLh;
   });
   ctx.restore();
+  roleY += 12;
+
+  // Mission Tagline
+  if (post?.tagline) {
+    ctx.save();
+    ctx.font = '600 13.5px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = TEXT_MUTED;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    const tagLines = wrapText(ctx, post.tagline, roleW).slice(0, 2);
+    tagLines.forEach((tl) => {
+      ctx.fillText(tl, roleStartX, roleY);
+      roleY += 19;
+    });
+    ctx.restore();
+  }
 
   // 4. Lower-Left Chamber Content ("h detail" - HIGH CONTRAST ON IMAGE)
   const leftW = Math.round(width * (isLandscape ? 0.36 : 0.40));
@@ -1785,9 +1814,9 @@ async function renderHiringDiagonalSCurve({
 
 /**
  * HIRING-13: Mountain Canopy Summit
- * Wireframe:
- * - Upper summit: "hiring role" -> SOLID WHITE BACKGROUND
- * - Lower canopy: "h d" -> IMAGE BACKGROUND
+ * Modern Executive Typography & Front Design:
+ * - Upper Summit: Solid White Role Chamber with prominent centered typography
+ * - Lower Canopy: Photo Image Detail Chamber with structured 2-column frosted glass cards
  */
 async function renderHiringMountainCanopy({
   ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg
@@ -1851,7 +1880,7 @@ async function renderHiringMountainCanopy({
   pathSummitChamber();
   ctx.fillStyle = '#FFFFFF';
   ctx.shadowColor = 'rgba(0, 0, 0, 0.22)';
-  ctx.shadowBlur = 18;
+  ctx.shadowBlur = 20;
   ctx.shadowOffsetY = 4;
   ctx.fill();
   ctx.shadowBlur = 0;
@@ -1866,58 +1895,71 @@ async function renderHiringMountainCanopy({
   ctx.stroke();
   ctx.restore();
 
-  // 3. Summit Section Above Ridge ("hiring role" - CRISP DARK ON WHITE)
-  let sCurY = contentTopY + 12;
+  // 3. Summit Section Above Ridge (EXECUTIVE MODERN TYPOGRAPHY ON WHITE)
+  let sCurY = contentTopY + 14;
 
   // Header Pill
   ctx.save();
-  const summitBadgeW = 220;
+  const summitBadgeW = 240;
   const sbx = (width - summitBadgeW) / 2;
   drawRoundRect(ctx, sbx, sCurY, summitBadgeW, 28, 8);
-  ctx.fillStyle = 'rgba(0, 128, 128, 0.10)';
+  ctx.fillStyle = 'rgba(0, 128, 128, 0.08)';
   ctx.fill();
   ctx.strokeStyle = TEAL_PRIMARY;
   ctx.lineWidth = 1.2;
   ctx.stroke();
 
-  ctx.font = '800 12px "Outfit", sans-serif';
+  ctx.font = '800 11.5px "Outfit", sans-serif';
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('🌟 CAREER LAUNCHPAD // 2026', width / 2, sCurY + 14);
   ctx.restore();
-  sCurY += 40;
+  sCurY += 38;
 
-  // Headline: Job Role Title in rich dark slate
+  // Headline: "WE ARE HIRING" Kicker
   ctx.save();
-  ctx.font = `900 ${isLandscape ? 34 : 42}px "Outfit", sans-serif`;
+  ctx.font = '800 14px "Outfit", sans-serif';
+  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillText('JOIN OUR CORE ENGINEERING TEAM', width / 2, sCurY);
+  ctx.restore();
+  sCurY += 22;
+
+  // Giant Job Role Title in rich dark slate
+  ctx.save();
+  const titleFs = isLandscape ? 34 : 42;
+  const titleLh = isLandscape ? 38 : 46;
+  ctx.font = `900 ${titleFs}px "Bricolage Grotesque", "Outfit", sans-serif`;
   ctx.fillStyle = TEXT_DARK;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   const roleLines = wrapText(ctx, role, maxW - 40).slice(0, 2);
   roleLines.forEach((l) => {
     ctx.fillText(l, width / 2, sCurY);
-    sCurY += (isLandscape ? 38 : 46);
+    sCurY += titleLh;
   });
   ctx.restore();
+  sCurY += 8;
 
   // Quick Highlights Row under title
   const topPills = [exp, loc, salary];
   const tpW = Math.round((maxW - 30) / 3);
   topPills.forEach((p, idx) => {
     const px = padX + (idx * (tpW + 15));
-    drawRoundRect(ctx, px, sCurY + 6, tpW, 30, 8);
+    drawRoundRect(ctx, px, sCurY, tpW, 30, 8);
     ctx.fillStyle = 'rgba(15, 23, 42, 0.05)';
     ctx.fill();
-    ctx.strokeStyle = 'rgba(0, 128, 128, 0.20)';
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.12)';
     ctx.lineWidth = 1;
     ctx.stroke();
 
     ctx.font = '700 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = TEXT_DARK;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(p, px + tpW / 2, sCurY + 21);
+    ctx.fillText(p, px + tpW / 2, sCurY + 15);
   });
 
   // 4. Lower Canopy Section Below Ridge ("h d" - HIGH CONTRAST ON IMAGE)
@@ -1998,9 +2040,9 @@ async function renderHiringMountainCanopy({
 
 /**
  * HIRING-14: Upward Dynamic Arc Slash
- * Wireframe:
- * - Left arc: "hiring R" -> SOLID WHITE BACKGROUND
- * - Right chamber: "h d" -> IMAGE BACKGROUND
+ * Modern Executive Typography & Front Design:
+ * - Left Arc: Solid White Role Chamber with bold structured typography
+ * - Right Chamber: Photo Image Detail Chamber with 2x2 specs and checklist
  */
 async function renderHiringUpwardArc({
   ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg
@@ -2031,7 +2073,7 @@ async function renderHiringUpwardArc({
     ctx.closePath();
   };
 
-  // 1. HIRING DETAIL: IMAGE BACKGROUND (Right / Lower-Right Expansive Chamber)
+  // 1. HIRING DETAIL: IMAGE BACKGROUND (Right Expansive Chamber)
   const detailImg = topicImg || (post?.uploadedImage && post.uploadedImage.width ? post.uploadedImage : null);
   if (detailImg && detailImg.width) {
     drawClippedDetailImage(
@@ -2062,7 +2104,7 @@ async function renderHiringUpwardArc({
   pathRoleArc();
   ctx.fillStyle = '#FFFFFF';
   ctx.shadowColor = 'rgba(0, 0, 0, 0.22)';
-  ctx.shadowBlur = 18;
+  ctx.shadowBlur = 20;
   ctx.shadowOffsetX = 4;
   ctx.fill();
   ctx.shadowBlur = 0;
@@ -2076,15 +2118,15 @@ async function renderHiringUpwardArc({
   ctx.stroke();
   ctx.restore();
 
-  // 3. Left Arc Chamber Content ("hiring R" - CRISP DARK ON WHITE)
+  // 3. Left Arc Chamber Content (EXECUTIVE MODERN TYPOGRAPHY ON WHITE)
   const leftW = Math.round(width * (isLandscape ? 0.34 : 0.38));
-  let lCurY = contentTopY + 16;
+  let lCurY = contentTopY + 18;
 
   // Kicker pill
   ctx.save();
-  const arcBadgeW = Math.min(180, leftW - 20);
-  drawRoundRect(ctx, padX + 8, lCurY, arcBadgeW, 28, 8);
-  ctx.fillStyle = 'rgba(0, 128, 128, 0.10)';
+  const arcBadgeW = Math.min(190, leftW - 20);
+  drawRoundRect(ctx, padX + 10, lCurY, arcBadgeW, 28, 8);
+  ctx.fillStyle = 'rgba(0, 128, 128, 0.08)';
   ctx.fill();
   ctx.strokeStyle = TEAL_PRIMARY;
   ctx.lineWidth = 1.2;
@@ -2094,40 +2136,52 @@ async function renderHiringUpwardArc({
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('WE ARE HIRING', padX + 8 + arcBadgeW / 2, lCurY + 14);
+  ctx.fillText('WE ARE HIRING', padX + 10 + arcBadgeW / 2, lCurY + 14);
   ctx.restore();
-  lCurY += 42;
+  lCurY += 40;
+
+  // Over-title
+  ctx.save();
+  ctx.font = '800 12px "Outfit", sans-serif';
+  ctx.fillStyle = TEAL_PRIMARY;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('OPEN POSITION', padX + 10, lCurY);
+  ctx.restore();
+  lCurY += 20;
 
   // Big Role Headline in dark slate
   ctx.save();
-  ctx.font = `900 ${isLandscape ? 28 : 34}px "Outfit", sans-serif`;
+  const arcFs = isLandscape ? 28 : 34;
+  const arcLh = isLandscape ? 34 : 40;
+  ctx.font = `900 ${arcFs}px "Bricolage Grotesque", "Outfit", sans-serif`;
   ctx.fillStyle = TEXT_DARK;
   ctx.textAlign = 'left';
-  ctx.textBaseline = 'alphabetic';
+  ctx.textBaseline = 'top';
   const rLines = wrapText(ctx, role, leftW - 24).slice(0, 3);
   rLines.forEach((l) => {
-    ctx.fillText(l, padX + 8, lCurY + (isLandscape ? 26 : 32));
-    lCurY += (isLandscape ? 32 : 38);
+    ctx.fillText(l, padX + 10, lCurY);
+    lCurY += arcLh;
   });
   ctx.restore();
-  lCurY += 12;
+  lCurY += 14;
 
   // Role Meta Badges inside White Arc Chamber
   const leftPills = [exp, employmentType, salary];
   leftPills.forEach((p) => {
-    drawRoundRect(ctx, padX + 8, lCurY, leftW - 30, 30, 8);
+    drawRoundRect(ctx, padX + 10, lCurY, leftW - 30, 32, 8);
     ctx.fillStyle = 'rgba(15, 23, 42, 0.05)';
     ctx.fill();
-    ctx.strokeStyle = 'rgba(0, 128, 128, 0.18)';
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.12)';
     ctx.lineWidth = 1;
     ctx.stroke();
 
     ctx.font = '700 12.5px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = TEAL_PRIMARY;
+    ctx.fillStyle = TEXT_DARK;
     ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
-    ctx.fillText(p, padX + 20, lCurY + 15);
-    lCurY += 38;
+    ctx.fillText(p, padX + 22, lCurY + 16);
+    lCurY += 40;
   });
 
   // 4. Right Expansive Chamber Content ("h d" - HIGH CONTRAST ON IMAGE)
@@ -2218,9 +2272,9 @@ async function renderHiringUpwardArc({
 
 /**
  * HIRING-15: Stepped Shelf Podium
- * Wireframe:
- * - Right: "h R" -> SOLID WHITE BACKGROUND
- * - Left: "h d" -> IMAGE BACKGROUND
+ * Modern Executive Typography & Front Design:
+ * - Right: Solid White Role Chamber with high-impact headline (NO cursive)
+ * - Left: Photo Image Detail Chamber with stacked specifications & perks
  */
 async function renderHiringSteppedShelf({
   ctx, width, height, post, style, role, exp, loc, salary, qualification, employmentType, techStack, padX, contentTopY, footerY, isLandscape, topicImg
@@ -2283,7 +2337,7 @@ async function renderHiringSteppedShelf({
   pathRoleChamber();
   ctx.fillStyle = '#FFFFFF';
   ctx.shadowColor = 'rgba(0, 0, 0, 0.22)';
-  ctx.shadowBlur = 18;
+  ctx.shadowBlur = 20;
   ctx.shadowOffsetX = -4;
   ctx.fill();
   ctx.shadowBlur = 0;
@@ -2298,43 +2352,47 @@ async function renderHiringSteppedShelf({
   ctx.stroke();
   ctx.restore();
 
-  // 3. Right Chamber Content ("h R" - CRISP DARK ON WHITE)
+  // 3. Right Chamber Content (EXECUTIVE MODERN TYPOGRAPHY ON WHITE)
   const rightStartX = stepX + (isLandscape ? 20 : 26);
   const rightW = width - rightStartX - padX;
-  let rCurY = contentTopY + 18;
+  let rCurY = contentTopY + 20;
 
   // Announcement Pill
   ctx.save();
-  const annW = Math.min(220, rightW);
+  const annW = Math.min(230, rightW);
   drawRoundRect(ctx, rightStartX, rCurY, annW, 28, 8);
-  ctx.fillStyle = 'rgba(0, 128, 128, 0.10)';
+  ctx.fillStyle = 'rgba(0, 128, 128, 0.08)';
   ctx.fill();
   ctx.strokeStyle = TEAL_PRIMARY;
   ctx.lineWidth = 1.2;
   ctx.stroke();
 
-  ctx.font = '800 12px "Outfit", sans-serif';
+  ctx.font = '800 11.5px "Outfit", sans-serif';
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('🚀 EXECUTIVE HIRING DRIVE', rightStartX + annW / 2, rCurY + 14);
   ctx.restore();
-  rCurY += 44;
+  rCurY += 40;
 
-  // Display "HIRING" Headline
+  // Display "WE ARE HIRING" in Ultra-Bold Grotesque (NO cursive!)
   ctx.save();
-  ctx.font = '700 36px "Caveat", cursive';
+  ctx.font = `900 ${isLandscape ? 38 : 46}px "Bricolage Grotesque", "Outfit", sans-serif`;
   ctx.fillStyle = TEAL_PRIMARY;
   ctx.textAlign = 'left';
-  ctx.fillText('join our team as', rightStartX, rCurY);
-  rCurY += 34;
+  ctx.textBaseline = 'top';
+  ctx.fillText('WE ARE HIRING', rightStartX, rCurY);
+  rCurY += isLandscape ? 42 : 50;
 
-  ctx.font = `900 ${isLandscape ? 38 : 46}px "Outfit", sans-serif`;
+  // Large Job Role Title in dark slate
   ctx.fillStyle = TEXT_DARK;
+  const roleFs = isLandscape ? 30 : 36;
+  const roleLh = isLandscape ? 36 : 42;
+  ctx.font = `900 ${roleFs}px "Outfit", sans-serif`;
   const roleLines = wrapText(ctx, role, rightW).slice(0, 3);
   roleLines.forEach((l) => {
-    ctx.fillText(l, rightStartX, rCurY + (isLandscape ? 30 : 38));
-    rCurY += (isLandscape ? 38 : 46);
+    ctx.fillText(l, rightStartX, rCurY);
+    rCurY += roleLh;
   });
   ctx.restore();
   rCurY += 14;
