@@ -60,7 +60,8 @@ export async function renderPosterBackground({
 
   if (bgImg && bgImg.width > 0) {
     ctx.__hasBackgroundImage = true;
-    ctx.__cardOpacity = post?.cardOpacity ?? 0.0;
+    ctx.__cardOpacity = typeof post?.cardOpacity === 'number' ? post.cardOpacity : 0.0;
+    ctx.__cardStyle = post?.cardStyle || (post?.cardOpacity > 0.05 ? 'glass' : 'minimal');
     ctx.__bgOverlayOpacity = post?.bgOverlayOpacity ?? 0.38;
 
     const scale = Math.max(width / bgImg.width, height / bgImg.height);
@@ -1386,13 +1387,74 @@ export function drawWhiteTealCard({
 
   if (hasBg) {
     // When background photo is active:
-    // Frosted dark glass container ensures all text is 100% crisp and readable
-    // while keeping transparency so the background photo shines through!
+    // Respects cardOpacity and cardStyle ('minimal' | 'glass' | 'glow')
+    // Eliminates clunky dark slate boxes in favor of ultra-clean floating glass!
+    const cardOpacity = typeof ctx.__cardOpacity === 'number' ? ctx.__cardOpacity : 0.0;
+    const cardStyle = ctx.__cardStyle || (cardOpacity <= 0.05 ? 'minimal' : 'glass');
+
     drawRoundRect(ctx, x, y, w, h, radius);
-    ctx.fillStyle = (h >= 260 && w >= 600) ? 'rgba(15, 23, 42, 0.40)' : 'rgba(15, 23, 42, 0.66)';
+
+    if (cardStyle === 'minimal' || cardOpacity <= 0.05) {
+      // 1. Floating Minimal (No dark box! Ultra-sheer ambient shimmer where 100% of the photo glows through)
+      const sheerGrad = ctx.createLinearGradient(x, y, x, y + h);
+      sheerGrad.addColorStop(0, 'rgba(255, 255, 255, 0.08)');
+      sheerGrad.addColorStop(1, 'rgba(255, 255, 255, 0.01)');
+      ctx.fillStyle = sheerGrad;
+      ctx.fill();
+
+      // Delicate illuminated glass border
+      const borderGrad = ctx.createLinearGradient(x, y, x + w, y + h);
+      borderGrad.addColorStop(0, 'rgba(255, 255, 255, 0.50)');
+      borderGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.15)');
+      borderGrad.addColorStop(1, borderCol || 'rgba(45, 212, 191, 0.35)');
+      ctx.strokeStyle = borderGrad;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      ctx.restore();
+      return;
+    }
+
+    if (cardStyle === 'glow') {
+      // 2. Luminous Accent Glow
+      const glowGrad = ctx.createLinearGradient(x, y, x, y + h);
+      glowGrad.addColorStop(0, 'rgba(255, 255, 255, 0.14)');
+      glowGrad.addColorStop(1, 'rgba(15, 23, 42, 0.28)');
+      ctx.fillStyle = glowGrad;
+      ctx.shadowColor = borderCol || 'rgba(251, 191, 36, 0.50)';
+      ctx.shadowBlur = 16;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      ctx.strokeStyle = borderCol || 'rgba(251, 191, 36, 0.70)';
+      ctx.lineWidth = 1.6;
+      ctx.stroke();
+
+      ctx.restore();
+      return;
+    }
+
+    // 3. Apple/Linear Specular Glassmorphism (Default when opacity > 0)
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+    ctx.shadowBlur = 12;
+    ctx.shadowOffsetY = 4;
+
+    const effAlpha = Math.max(0.18, cardOpacity);
+    const glassGrad = ctx.createLinearGradient(x, y, x, y + h);
+    glassGrad.addColorStop(0, 'rgba(255, 255, 255, 0.16)');
+    glassGrad.addColorStop(0.3, 'rgba(255, 255, 255, 0.05)');
+    glassGrad.addColorStop(0.7, `rgba(15, 23, 42, ${effAlpha * 0.40})`);
+    glassGrad.addColorStop(1, `rgba(15, 23, 42, ${effAlpha * 0.65})`);
+    ctx.fillStyle = glassGrad;
     ctx.fill();
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
-    ctx.lineWidth = 1.2;
+    ctx.shadowBlur = 0;
+
+    const borderGrad = ctx.createLinearGradient(x, y, x + w, y + h);
+    borderGrad.addColorStop(0, 'rgba(255, 255, 255, 0.65)');
+    borderGrad.addColorStop(0.35, 'rgba(255, 255, 255, 0.20)');
+    borderGrad.addColorStop(1, borderCol || 'rgba(45, 212, 191, 0.40)');
+    ctx.strokeStyle = borderGrad;
+    ctx.lineWidth = 1.3;
     ctx.stroke();
 
     ctx.restore();

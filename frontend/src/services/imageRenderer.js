@@ -1762,6 +1762,46 @@ export async function renderPostToCanvas({
 
   const isLandscape = height < 750; // true for 1200x627 and 1200x630
 
+  // Dedicated image resolution for Before & After templates (common-21 to common-30)
+  let beforeImg = null;
+  let afterImg = null;
+  const isBeforeAfter = Boolean(
+    (style.id >= 'common-21' && style.id <= 'common-30') ||
+    style.id?.includes('before-after')
+  );
+
+  if (isBeforeAfter) {
+    const defaultBeforeUrl = '/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg';
+    const defaultAfterUrl = '/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg';
+
+    // 1. Resolve Before Image (strictly inside Before upper curved section)
+    let beforeSrc = post?.beforeImage || post?.beforeImageUrl;
+    if (!beforeSrc && post?.uploadedImage && post.uploadedImage.width) {
+      beforeSrc = post.uploadedImage;
+    }
+    if (!beforeSrc) beforeSrc = defaultBeforeUrl;
+
+    if (beforeSrc && typeof beforeSrc === 'object' && beforeSrc.width) {
+      beforeImg = beforeSrc;
+    } else if (typeof beforeSrc === 'string') {
+      beforeImg = await loadImage(beforeSrc, 5000);
+    }
+
+    // 2. Resolve After Image (strictly inside After lower curved section)
+    let afterSrc = post?.afterImage || post?.afterImageUrl;
+    if (!afterSrc && post?.imageUrl) afterSrc = post.imageUrl;
+    if (!afterSrc && topicImg && topicImg.width) afterSrc = topicImg;
+    if (!afterSrc) afterSrc = defaultAfterUrl;
+
+    if (afterSrc && typeof afterSrc === 'object' && afterSrc.width) {
+      afterImg = afterSrc;
+    } else if (typeof afterSrc === 'string') {
+      afterImg = await loadImage(afterSrc, 5000);
+    } else if (topicImg) {
+      afterImg = topicImg;
+    }
+  }
+
   // 1. Dedicated Multi-Layout Renders for the 50 Core Professional Templates
   const isUnified50 = Boolean(
     style.id && (
@@ -1783,6 +1823,8 @@ export async function renderPostToCanvas({
       brand,
       logoImg,
       topicImg,
+      beforeImg,
+      afterImg,
       isLandscape
     });
   }
@@ -1822,6 +1864,8 @@ export async function renderPostToCanvas({
       brand,
       logoImg,
       topicImg,
+      beforeImg,
+      afterImg,
       isLandscape
     });
   }

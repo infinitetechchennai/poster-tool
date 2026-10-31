@@ -72,6 +72,8 @@ export async function renderCommonTemplate({
   brand,
   logoImg,
   topicImg,
+  beforeImg,
+  afterImg,
   isLandscape
 }) {
   const padX = Math.round(width * (isLandscape ? 0.05 : 0.055));
@@ -84,16 +86,19 @@ export async function renderCommonTemplate({
   // Background pattern per template
   const bgPattern = id === 'common-07' || id === 'common-11' ? 'warp-mesh' : 'dots';
 
-  // 1. Clean White & Soft Light Teal Background (with subtle topic photo scrim if available)
+  // 1. Clean White Background
+  // For Before & After templates (common-21 to common-30), remaining space background MUST be pure white
+  // The two images are clipped strictly inside their respective Before & After chambers!
+  const isBeforeAfterId = (id >= 'common-21' && id <= 'common-30');
   await renderPosterBackground({
     ctx,
     width,
     height,
-    post,
+    post: isBeforeAfterId ? { ...post, uploadedImage: null } : post,
     style,
     accentColor: TEAL_PRIMARY,
     pattern: bgPattern,
-    topicImg
+    topicImg: isBeforeAfterId ? null : topicImg
   });
 
   // 2. Top Branding Bar in White & Teal (Wavy Header matching User Sketch)
@@ -153,7 +158,25 @@ export async function renderCommonTemplate({
   } else if (id === 'common-19') {
     await renderCommonFunnelMatrix({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape });
   } else if (id === 'common-21') {
-    await renderCommonBeforeAfter({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape });
+    await renderCommonBeforeAfter({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape });
+  } else if (id === 'common-22') {
+    await renderCommonBeforeAfterVertical({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape });
+  } else if (id === 'common-23') {
+    await renderCommonBeforeAfterDiagonal({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape });
+  } else if (id === 'common-24') {
+    await renderCommonBeforeAfterWave({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape });
+  } else if (id === 'common-25') {
+    await renderCommonBeforeAfterYSplit({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape });
+  } else if (id === 'common-26') {
+    await renderCommonBeforeAfterVerticalHourglass({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape });
+  } else if (id === 'common-27') {
+    await renderCommonBeforeAfterDiagonalRibbon({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape });
+  } else if (id === 'common-28') {
+    await renderCommonBeforeAfterSawtooth({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape });
+  } else if (id === 'common-29') {
+    await renderCommonBeforeAfterParticleHorizon({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape });
+  } else if (id === 'common-30') {
+    await renderCommonBeforeAfterDualWaveRibbon({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape });
   } else {
     // common-20 & fallback: Vision 2030 Strategic Manifesto
     await renderCommonVisionManifesto({ ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, isLandscape });
@@ -1665,141 +1688,9 @@ async function renderCommonVisionManifesto({
 }
 
 /**
- * COMMON-21: Before & After Transformation
- * Based on User Wireframe Sketch:
- * - Upper curve dips down to center point (width / 2, centerY)
- * - Lower curve arches up to center point (width / 2, centerY)
- * - Upper zone ("the before place"): Holds all BEFORE content (prominent "BEFORE" header, description, and pain points)
- * - Lower zone ("the after place"): Holds all AFTER content (prominent "AFTER" header, description, and breakthrough points)
- * - Central intersection: ⚡ VS • TRANSFORMATION ⚡ floating focal badge
- * - Complete clearance: Curve lines never intersect or cut through any cards!
- * - Supports frosted glass transparency when hasBg = true, and crisp light cards when hasBg = false
+ * Shared Data & Point Item Helpers for Before & After Templates (common-21 to common-30)
  */
-async function renderCommonBeforeAfter({
-  ctx,
-  width,
-  height,
-  post,
-  style,
-  headline,
-  tagline,
-  items,
-  padX,
-  contentTopY,
-  footerY,
-  isLandscape
-}) {
-  const hasBg = Boolean(ctx.__hasBackgroundImage);
-  const maxW = width - padX * 2;
-  const totalContentH = footerY - contentTopY;
-
-  // Exact vertical center meeting junction
-  const centerY = Math.round(contentTopY + totalContentH * (isLandscape ? 0.48 : 0.49));
-  const curveDip = Math.round(totalContentH * (isLandscape ? 0.075 : 0.082)); // ~90px in portrait, ~36px in landscape
-  const topEdgeY = centerY - curveDip;
-  const bottomEdgeY = centerY + curveDip;
-
-  // 1. Draw Upper Curved Container Fill (Zone: Above Upper Curve - "The Before Place")
-  ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(0, contentTopY);
-  ctx.lineTo(width, contentTopY);
-  ctx.lineTo(width, topEdgeY);
-  for (let x = width; x >= 0; x -= 8) {
-    const y = topEdgeY + curveDip * Math.sin((x / width) * Math.PI);
-    ctx.lineTo(x, y);
-  }
-  ctx.closePath();
-  if (hasBg) {
-    const grad = ctx.createLinearGradient(0, contentTopY, 0, centerY);
-    grad.addColorStop(0, 'rgba(15, 23, 42, 0.65)');
-    grad.addColorStop(1, 'rgba(30, 41, 59, 0.40)');
-    ctx.fillStyle = grad;
-  } else {
-    const grad = ctx.createLinearGradient(0, contentTopY, 0, centerY);
-    grad.addColorStop(0, 'rgba(255, 255, 255, 0.96)');
-    grad.addColorStop(1, 'rgba(254, 242, 242, 0.70)');
-    ctx.fillStyle = grad;
-  }
-  ctx.fill();
-
-  // Stroke Upper Boundary Curve
-  ctx.beginPath();
-  ctx.moveTo(0, topEdgeY);
-  for (let x = 0; x <= width; x += 8) {
-    const y = topEdgeY + curveDip * Math.sin((x / width) * Math.PI);
-    ctx.lineTo(x, y);
-  }
-  ctx.strokeStyle = hasBg ? 'rgba(251, 113, 133, 0.75)' : 'rgba(225, 29, 72, 0.40)';
-  ctx.lineWidth = 3;
-  ctx.stroke();
-  ctx.restore();
-
-  // 2. Draw Lower Curved Container Fill (Zone: Below Lower Curve - "The After Place")
-  ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(0, bottomEdgeY);
-  for (let x = 0; x <= width; x += 8) {
-    const y = bottomEdgeY - curveDip * Math.sin((x / width) * Math.PI);
-    ctx.lineTo(x, y);
-  }
-  ctx.lineTo(width, footerY);
-  ctx.lineTo(0, footerY);
-  ctx.closePath();
-  if (hasBg) {
-    const grad = ctx.createLinearGradient(0, centerY, 0, footerY);
-    grad.addColorStop(0, 'rgba(13, 148, 136, 0.22)');
-    grad.addColorStop(1, 'rgba(15, 23, 42, 0.72)');
-    ctx.fillStyle = grad;
-  } else {
-    const grad = ctx.createLinearGradient(0, centerY, 0, footerY);
-    grad.addColorStop(0, 'rgba(240, 253, 250, 0.85)');
-    grad.addColorStop(1, 'rgba(255, 255, 255, 0.96)');
-    ctx.fillStyle = grad;
-  }
-  ctx.fill();
-
-  // Stroke Lower Boundary Curve
-  ctx.beginPath();
-  ctx.moveTo(0, bottomEdgeY);
-  for (let x = 0; x <= width; x += 8) {
-    const y = bottomEdgeY - curveDip * Math.sin((x / width) * Math.PI);
-    ctx.lineTo(x, y);
-  }
-  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
-  ctx.lineWidth = 3;
-  ctx.stroke();
-  ctx.restore();
-
-  // 3. Central Junction Badge at (width / 2, centerY)
-  const badgeW = isLandscape ? 170 : 210;
-  const badgeH = isLandscape ? 38 : 44;
-  const badgeX = (width - badgeW) / 2;
-  const badgeY = centerY - badgeH / 2;
-
-  ctx.save();
-  drawRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, badgeH / 2);
-  const badgeGrad = ctx.createLinearGradient(badgeX, badgeY, badgeX + badgeW, badgeY + badgeH);
-  badgeGrad.addColorStop(0, '#0F172A');
-  badgeGrad.addColorStop(1, '#008080');
-  ctx.fillStyle = badgeGrad;
-  ctx.shadowColor = 'rgba(45, 212, 191, 0.65)';
-  ctx.shadowBlur = 12;
-  ctx.fill();
-
-  ctx.strokeStyle = '#2DD4BF';
-  ctx.lineWidth = 2.2;
-  ctx.stroke();
-  ctx.shadowBlur = 0;
-
-  ctx.font = '900 15px "Outfit", sans-serif';
-  ctx.fillStyle = '#FFFFFF';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('⚡ VS • TRANSFORMATION ⚡', width / 2, centerY);
-  ctx.restore();
-
-  // 4. Parse Before vs After content items
+function parseBeforeAfterData(post, items) {
   let beforeList = [];
   let afterList = [];
 
@@ -1843,245 +1734,2151 @@ async function renderCommonBeforeAfter({
     ];
   }
 
-  // 5. Render UPPER SECTION ("THE BEFORE PLACE")
-  let curY = contentTopY + (isLandscape ? 8 : 12);
+  return { beforeList, afterList };
+}
 
-  // Optional overarching topic banner if provided
-  if (headline && !headline.toLowerCase().includes('before') && !isLandscape) {
-    ctx.save();
-    const bannerH = 28;
-    drawRoundRect(ctx, padX, curY, maxW, bannerH, 8);
-    ctx.fillStyle = hasBg ? 'rgba(0, 0, 0, 0.40)' : 'rgba(0, 128, 128, 0.07)';
-    ctx.fill();
-    ctx.strokeStyle = hasBg ? 'rgba(45, 212, 191, 0.35)' : 'rgba(0, 128, 128, 0.20)';
-    ctx.lineWidth = 1;
-    ctx.stroke();
+function renderBeforeAfterPointItem({
+  ctx,
+  iconText,
+  iconBg,
+  iconBorder,
+  text,
+  curY,
+  startX,
+  maxW,
+  isLandscape,
+  fontSize,
+  lineHeight,
+  accentCol = '#FFFFFF'
+}) {
+  const fs = fontSize || (isLandscape ? 14 : 16);
+  const lh = lineHeight || (isLandscape ? 19 : 22);
+  const iconSize = Math.round(fs * 1.6);
+  const iconX = startX;
+  const textX = startX + iconSize + 12;
+  const availTextW = maxW - iconSize - 16;
 
-    ctx.font = '800 12px "Outfit", sans-serif';
-    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(`⚡ ${headline.toUpperCase()} ⚡`, width / 2, curY + bannerH / 2);
-    ctx.restore();
-    curY += bannerH + 12;
-  }
-
-  // Prominent BEFORE Header Row
-  const beforeHeaderH = isLandscape ? 30 : 34;
   ctx.save();
-  // Pill badge: 🔴 BEFORE
-  const bPillW = isLandscape ? 110 : 130;
-  drawRoundRect(ctx, padX, curY, bPillW, beforeHeaderH, 8);
-  ctx.fillStyle = hasBg ? 'rgba(225, 29, 72, 0.30)' : 'rgba(225, 29, 72, 0.12)';
+  ctx.font = `700 ${fs}px "Plus Jakarta Sans", sans-serif`;
+  const lines = wrapText(ctx, text, availTextW).slice(0, 2);
+  const totalItemH = Math.max(iconSize, lines.length * lh);
+  const iconY = curY + (lines.length === 1 ? (totalItemH - iconSize) / 2 : 2);
+
+  // Bullet Icon Badge (Clean circular bullet indicator with shadow)
+  ctx.beginPath();
+  ctx.arc(iconX + iconSize / 2, iconY + iconSize / 2, iconSize / 2, 0, Math.PI * 2);
+  ctx.fillStyle = iconBg;
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.65)';
+  ctx.shadowBlur = 6;
+  ctx.shadowOffsetY = 2;
   ctx.fill();
-  ctx.strokeStyle = hasBg ? '#FB7185' : '#E11D48';
+
+  ctx.strokeStyle = iconBorder;
+  ctx.lineWidth = 1.8;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  // Icon glyph (✕ or ✓)
+  ctx.font = `900 ${Math.round(fs * 0.9)}px "Outfit", sans-serif`;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(iconText, iconX + iconSize / 2, iconY + iconSize / 2);
+
+  // Point Text directly on image (NO text background box!)
+  ctx.font = `700 ${fs}px "Plus Jakarta Sans", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = accentCol;
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+  ctx.shadowBlur = 8;
+  ctx.shadowOffsetY = 2;
+
+  lines.forEach((line, lIdx) => {
+    const lineY = lines.length === 1
+      ? curY + totalItemH / 2
+      : curY + (lIdx * lh) + lh / 2;
+
+    // Dark outline for crystal clarity on any background photo
+    ctx.save();
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+    ctx.lineWidth = 3.2;
+    ctx.lineJoin = 'round';
+    ctx.strokeText(line, textX, lineY);
+    ctx.restore();
+
+    ctx.fillText(line, textX, lineY);
+  });
+
+  ctx.restore();
+  return totalItemH;
+}
+
+/**
+ * COMMON-21: Before & After Transformation (Hourglass Curves)
+ * Based on User Wireframe Sketch
+ */
+async function renderCommonBeforeAfter({
+  ctx,
+  width,
+  height,
+  post,
+  style,
+  headline,
+  tagline,
+  items,
+  padX,
+  contentTopY,
+  footerY,
+  beforeImg,
+  afterImg,
+  isLandscape
+}) {
+  const maxW = width - padX * 2;
+  const totalContentH = footerY - contentTopY;
+
+  const centerY = Math.round(contentTopY + totalContentH * (isLandscape ? 0.48 : 0.49));
+  const curveDip = Math.round(totalContentH * (isLandscape ? 0.075 : 0.082));
+  const topEdgeY = centerY - curveDip;
+  const bottomEdgeY = centerY + curveDip;
+  const { beforeList, afterList } = parseBeforeAfterData(post, items);
+
+  // 1. Draw Upper Curved Container Fill (Zone: Above Upper Curve - "The Before Place")
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width, contentTopY);
+  ctx.lineTo(width, topEdgeY);
+  for (let x = width; x >= 0; x -= 6) {
+    const y = topEdgeY + curveDip * Math.sin((x / width) * Math.PI);
+    ctx.lineTo(x, y);
+  }
+  ctx.lineTo(0, contentTopY);
+  ctx.closePath();
+  ctx.clip();
+
+  const bBoxH = centerY - contentTopY;
+  if (beforeImg && beforeImg.width) {
+    const scale = Math.max(width / beforeImg.width, bBoxH / beforeImg.height);
+    const dw = beforeImg.width * scale;
+    const dh = beforeImg.height * scale;
+    const dx = (width - dw) / 2;
+    const dy = contentTopY + (bBoxH - dh) / 2;
+    ctx.drawImage(beforeImg, dx, dy, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, 0, centerY);
+    grad.addColorStop(0, '#1E293B');
+    grad.addColorStop(1, '#0F172A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, width, bBoxH);
+  }
+  ctx.restore();
+
+  // Stroke Upper Boundary Curve
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, topEdgeY);
+  for (let x = 0; x <= width; x += 6) {
+    const y = topEdgeY + curveDip * Math.sin((x / width) * Math.PI);
+    ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(251, 113, 133, 0.6)';
+  ctx.shadowBlur = 8;
+  ctx.stroke();
+  ctx.restore();
+
+  // 2. Draw Lower Curved Container Fill (Zone: Below Lower Curve - "The After Place")
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, bottomEdgeY);
+  for (let x = 0; x <= width; x += 6) {
+    const y = bottomEdgeY - curveDip * Math.sin((x / width) * Math.PI);
+    ctx.lineTo(x, y);
+  }
+  ctx.lineTo(width, footerY);
+  ctx.lineTo(0, footerY);
+  ctx.closePath();
+  ctx.clip();
+
+  const aBoxH = footerY - centerY;
+  if (afterImg && afterImg.width) {
+    const scale = Math.max(width / afterImg.width, aBoxH / afterImg.height);
+    const dw = afterImg.width * scale;
+    const dh = afterImg.height * scale;
+    const dx = (width - dw) / 2;
+    const dy = centerY + (aBoxH - dh) / 2;
+    ctx.drawImage(afterImg, dx, dy, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, centerY, 0, footerY);
+    grad.addColorStop(0, '#0F172A');
+    grad.addColorStop(1, '#042F2E');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, centerY, width, aBoxH);
+  }
+  ctx.restore();
+
+  // Stroke Lower Boundary Curve
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, bottomEdgeY);
+  for (let x = 0; x <= width; x += 6) {
+    const y = bottomEdgeY - curveDip * Math.sin((x / width) * Math.PI);
+    ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.65)';
+  ctx.shadowBlur = 8;
+  ctx.stroke();
+  ctx.restore();
+
+  // 3. Central Junction Badge
+  const badgeW = isLandscape ? 170 : 210;
+  const badgeH = isLandscape ? 38 : 44;
+  const badgeX = (width - badgeW) / 2;
+  const badgeY = centerY - badgeH / 2;
+
+  ctx.save();
+  drawRoundRect(ctx, badgeX, badgeY, badgeW, badgeH, badgeH / 2);
+  const badgeGrad = ctx.createLinearGradient(badgeX, badgeY, badgeX + badgeW, badgeY + badgeH);
+  badgeGrad.addColorStop(0, '#0F172A');
+  badgeGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = badgeGrad;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.65)';
+  ctx.shadowBlur = 12;
+  ctx.fill();
+
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  ctx.font = '900 15px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('⚡ VS • TRANSFORMATION ⚡', width / 2, centerY);
+  ctx.restore();
+
+  // 4. Render UPPER SECTION (BEFORE)
+  let curY = contentTopY + (isLandscape ? 8 : 12);
+  const beforeHeaderH = isLandscape ? 30 : 34;
+  const bPillW = isLandscape ? 110 : 130;
+
+  ctx.save();
+  drawRoundRect(ctx, padX, curY, bPillW, beforeHeaderH, 8);
+  ctx.fillStyle = '#E11D48';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
+  ctx.shadowBlur = 6;
+  ctx.fill();
+  ctx.strokeStyle = '#FB7185';
   ctx.lineWidth = 1.4;
   ctx.stroke();
+  ctx.shadowBlur = 0;
 
   ctx.font = '900 14px "Outfit", sans-serif';
-  ctx.fillStyle = hasBg ? '#FECDD3' : '#E11D48';
+  ctx.fillStyle = '#FFFFFF';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('🔴 BEFORE', padX + bPillW / 2, curY + beforeHeaderH / 2);
 
-  // Before Title Text next to badge
   ctx.font = '900 22px "Outfit", sans-serif';
-  ctx.fillStyle = hasBg ? '#FFFFFF' : '#0F172A';
-  if (hasBg) {
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
-    ctx.shadowBlur = 6;
-  }
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
   const beforeTitleText = post?.beforeTitle || 'TRADITIONAL MANUAL PROCESS';
-  ctx.fillText(beforeTitleText, padX + bPillW + 14, curY + beforeHeaderH / 2, maxW - bPillW - 20);
+  const bTitleX = padX + bPillW + 14;
+  const bTitleY = curY + beforeHeaderH / 2;
+
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.lineWidth = 3.5;
+  ctx.lineJoin = 'round';
+  ctx.strokeText(beforeTitleText, bTitleX, bTitleY, maxW - bPillW - 20);
+
+  ctx.fillStyle = '#FFFFFF';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+  ctx.shadowBlur = 8;
+  ctx.fillText(beforeTitleText, bTitleX, bTitleY, maxW - bPillW - 20);
   ctx.restore();
   curY += beforeHeaderH + (isLandscape ? 6 : 8);
 
-  // Before Subtitle / Description
+  // Before Subtitle
   ctx.save();
   ctx.font = '600 14px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = hasBg ? '#CBD5E1' : '#64748B';
-  if (hasBg) {
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-    ctx.shadowBlur = 4;
-  }
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
   const beforeSub = post?.beforeDescription || tagline || 'Slow manual agency revisions, disjointed branding, and high recurring costs.';
   const bLines = wrapText(ctx, beforeSub, maxW).slice(0, isLandscape ? 1 : 2);
   bLines.forEach(l => {
+    ctx.save();
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.80)';
+    ctx.lineWidth = 2.8;
+    ctx.lineJoin = 'round';
+    ctx.strokeText(l, padX, curY);
+    ctx.restore();
+
+    ctx.fillStyle = '#FFFFFF';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 6;
     ctx.fillText(l, padX, curY);
     curY += 18;
   });
   ctx.restore();
   curY += (isLandscape ? 8 : 12);
 
-  // Render Before cards (contained safely inside the Before zone above topEdgeY)
-  const beforeCards = isLandscape ? beforeList.slice(0, 1) : beforeList.slice(0, 2);
-  const cardH = isLandscape ? 52 : 62;
-
+  const beforeCards = isLandscape ? beforeList.slice(0, 2) : beforeList.slice(0, 3);
   beforeCards.forEach(bp => {
-    ctx.save();
-    drawRoundRect(ctx, padX, curY, maxW, cardH, 12);
-    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.68)' : 'rgba(255, 255, 255, 0.94)';
-    if (hasBg) {
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-      ctx.shadowBlur = 8;
-    }
-    ctx.fill();
-    ctx.strokeStyle = hasBg ? 'rgba(244, 63, 94, 0.40)' : 'rgba(225, 29, 72, 0.25)';
-    ctx.lineWidth = 1.2;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    // Cross Icon bubble
-    const iconSize = isLandscape ? 30 : 34;
-    const iconX = padX + 14;
-    const iconY = curY + (cardH - iconSize) / 2;
-    drawRoundRect(ctx, iconX, iconY, iconSize, iconSize, 9);
-    ctx.fillStyle = hasBg ? 'rgba(244, 63, 94, 0.28)' : 'rgba(244, 63, 94, 0.12)';
-    ctx.fill();
-    ctx.strokeStyle = hasBg ? '#FB7185' : '#F43F5E';
-    ctx.lineWidth = 1.2;
-    ctx.stroke();
-
-    ctx.font = '900 16px "Outfit", sans-serif';
-    ctx.fillStyle = hasBg ? '#FECDD3' : '#E11D48';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('✕', iconX + iconSize / 2, iconY + iconSize / 2);
-
-    // Text with multi-line support
-    ctx.font = '700 16px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
-    if (hasBg) {
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
-      ctx.shadowBlur = 6;
-    }
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
     const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
-    const bpLines = wrapText(ctx, cleanBp, maxW - iconSize - 36).slice(0, 2);
-    if (bpLines.length === 1) {
-      ctx.fillText(bpLines[0], padX + iconSize + 24, curY + cardH / 2);
-    } else {
-      ctx.fillText(bpLines[0], padX + iconSize + 24, curY + cardH / 2 - 10);
-      ctx.fillText(bpLines[1], padX + iconSize + 24, curY + cardH / 2 + 10);
-    }
-    ctx.restore();
-
-    curY += cardH + (isLandscape ? 8 : 10);
+    const itemH = renderBeforeAfterPointItem({
+      ctx,
+      iconText: '✕',
+      iconBg: '#E11D48',
+      iconBorder: '#FB7185',
+      text: cleanBp,
+      curY,
+      startX: padX,
+      maxW,
+      isLandscape,
+      accentCol: '#FFFFFF'
+    });
+    curY += itemH + (isLandscape ? 8 : 12);
   });
 
-  // 6. Render LOWER SECTION ("THE AFTER PLACE")
-  // Starts comfortably below the lower curve boundary
+  // 5. Render LOWER SECTION (AFTER)
   let afterCurY = bottomEdgeY + (isLandscape ? 10 : 16);
-
-  // Prominent AFTER Header Row
   const afterHeaderH = isLandscape ? 30 : 34;
-  ctx.save();
-  // Pill badge: 🟢 AFTER
   const aPillW = isLandscape ? 110 : 130;
+
+  ctx.save();
   drawRoundRect(ctx, padX, afterCurY, aPillW, afterHeaderH, 8);
-  ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.35)' : 'rgba(0, 128, 128, 0.14)';
+  ctx.fillStyle = '#008080';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
+  ctx.shadowBlur = 6;
   ctx.fill();
-  ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.strokeStyle = '#2DD4BF';
   ctx.lineWidth = 1.4;
   ctx.stroke();
+  ctx.shadowBlur = 0;
 
   ctx.font = '900 14px "Outfit", sans-serif';
-  ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.fillStyle = '#FFFFFF';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('🟢 AFTER', padX + aPillW / 2, afterCurY + afterHeaderH / 2);
 
-  // After Title Text next to badge
   ctx.font = '900 22px "Outfit", sans-serif';
-  ctx.fillStyle = hasBg ? '#2DD4BF' : '#008080';
-  if (hasBg) {
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
-    ctx.shadowBlur = 6;
-  }
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
   const afterTitleText = post?.afterTitle || 'AUTONOMOUS AI ACCELERATION';
-  ctx.fillText(afterTitleText, padX + aPillW + 14, afterCurY + afterHeaderH / 2, maxW - aPillW - 20);
+  const aTitleX = padX + aPillW + 14;
+  const aTitleY = afterCurY + afterHeaderH / 2;
+
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.lineWidth = 3.5;
+  ctx.lineJoin = 'round';
+  ctx.strokeText(afterTitleText, aTitleX, aTitleY, maxW - aPillW - 20);
+
+  ctx.fillStyle = '#2DD4BF';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+  ctx.shadowBlur = 8;
+  ctx.fillText(afterTitleText, aTitleX, aTitleY, maxW - aPillW - 20);
   ctx.restore();
   afterCurY += afterHeaderH + (isLandscape ? 6 : 8);
 
-  // After Subtitle / Description
   ctx.save();
   ctx.font = '600 14px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = hasBg ? '#E2E8F0' : '#475569';
-  if (hasBg) {
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-    ctx.shadowBlur = 4;
-  }
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
   const afterSub = post?.afterDescription || 'Sub-second 1-click vector synthesis, 100% brand consistency & compounding ROI.';
   const aLines = wrapText(ctx, afterSub, maxW).slice(0, isLandscape ? 1 : 2);
   aLines.forEach(l => {
+    ctx.save();
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.80)';
+    ctx.lineWidth = 2.8;
+    ctx.lineJoin = 'round';
+    ctx.strokeText(l, padX, afterCurY);
+    ctx.restore();
+
+    ctx.fillStyle = '#FFFFFF';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 6;
     ctx.fillText(l, padX, afterCurY);
     afterCurY += 18;
   });
   ctx.restore();
   afterCurY += (isLandscape ? 8 : 12);
 
-  // Render After cards (contained safely inside the After zone below bottomEdgeY)
   const afterCards = isLandscape ? afterList.slice(0, 2) : afterList.slice(0, 3);
-
   afterCards.forEach(ap => {
+    const cleanAp = String(ap).replace(/^[✓✔•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx,
+      iconText: '✓',
+      iconBg: '#008080',
+      iconBorder: '#2DD4BF',
+      text: cleanAp,
+      curY: afterCurY,
+      startX: padX,
+      maxW,
+      isLandscape,
+      accentCol: '#FFFFFF'
+    });
+    afterCurY += itemH + (isLandscape ? 8 : 12);
+  });
+}
+
+/**
+ * COMMON-22: Vertical 50/50 Split Transformation
+ */
+async function renderCommonBeforeAfterVertical({
+  ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape
+}) {
+  const midX = Math.round(width / 2);
+  const contentH = footerY - contentTopY;
+  const { beforeList, afterList } = parseBeforeAfterData(post, items);
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(0, contentTopY, midX, contentH);
+  ctx.clip();
+  if (beforeImg && beforeImg.width) {
+    const scale = Math.max(midX / beforeImg.width, contentH / beforeImg.height);
+    const dw = beforeImg.width * scale;
+    const dh = beforeImg.height * scale;
+    ctx.drawImage(beforeImg, (midX - dw) / 2, contentTopY + (contentH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, midX, footerY);
+    grad.addColorStop(0, '#1E293B');
+    grad.addColorStop(1, '#0F172A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, midX, contentH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(midX, contentTopY, width - midX, contentH);
+  ctx.clip();
+  if (afterImg && afterImg.width) {
+    const scale = Math.max((width - midX) / afterImg.width, contentH / afterImg.height);
+    const dw = afterImg.width * scale;
+    const dh = afterImg.height * scale;
+    ctx.drawImage(afterImg, midX + ((width - midX) - dw) / 2, contentTopY + (contentH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(midX, contentTopY, width, footerY);
+    grad.addColorStop(0, '#0F172A');
+    grad.addColorStop(1, '#042F2E');
+    ctx.fillStyle = grad;
+    ctx.fillRect(midX, contentTopY, width - midX, contentH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(midX, contentTopY);
+  ctx.lineTo(midX, footerY);
+  const divGrad = ctx.createLinearGradient(midX, contentTopY, midX, footerY);
+  divGrad.addColorStop(0, '#FB7185');
+  divGrad.addColorStop(0.5, '#FFFFFF');
+  divGrad.addColorStop(1, '#2DD4BF');
+  ctx.strokeStyle = divGrad;
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.6)';
+  ctx.shadowBlur = 8;
+  ctx.stroke();
+  ctx.restore();
+
+  const badgeR = isLandscape ? 24 : 30;
+  const badgeCY = contentTopY + contentH * (isLandscape ? 0.46 : 0.48);
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(midX, badgeCY, badgeR, 0, Math.PI * 2);
+  const bgGrad = ctx.createLinearGradient(midX - badgeR, badgeCY - badgeR, midX + badgeR, badgeCY + badgeR);
+  bgGrad.addColorStop(0, '#0F172A');
+  bgGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = bgGrad;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.7)';
+  ctx.shadowBlur = 12;
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+  ctx.font = `900 ${isLandscape ? 14 : 17}px "Outfit", sans-serif`;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('VS', midX, badgeCY);
+  ctx.restore();
+
+  const colW = midX - padX * 1.4;
+  let bCurY = contentTopY + (isLandscape ? 12 : 20);
+  const pillH = isLandscape ? 28 : 32;
+  const bPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, padX, bCurY, bPillW, pillH, 8);
+  ctx.fillStyle = '#E11D48';
+  ctx.fill();
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE', padX + bPillW / 2, bCurY + pillH / 2);
+  ctx.restore();
+  bCurY += pillH + (isLandscape ? 8 : 12);
+
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const beforeTitleText = post?.beforeTitle || 'MANUAL PROCESS';
+  wrapText(ctx, beforeTitleText, colW).slice(0, 2).forEach(tl => {
     ctx.save();
-    drawRoundRect(ctx, padX, afterCurY, maxW, cardH, 12);
-    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.68)' : 'rgba(255, 255, 255, 0.94)';
-    if (hasBg) {
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-      ctx.shadowBlur = 8;
-    }
-    ctx.fill();
-    ctx.strokeStyle = hasBg ? 'rgba(45, 212, 191, 0.45)' : 'rgba(0, 128, 128, 0.25)';
-    ctx.lineWidth = 1.2;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    // Checkmark Icon bubble
-    const iconSize = isLandscape ? 30 : 34;
-    const iconX = padX + 14;
-    const iconY = afterCurY + (cardH - iconSize) / 2;
-    drawRoundRect(ctx, iconX, iconY, iconSize, iconSize, 9);
-    ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.38)' : 'rgba(0, 128, 128, 0.14)';
-    ctx.fill();
-    ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
-    ctx.lineWidth = 1.2;
-    ctx.stroke();
-
-    ctx.font = '900 16px "Outfit", sans-serif';
-    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('✓', iconX + iconSize / 2, iconY + iconSize / 2);
-
-    // Text with multi-line support
-    ctx.font = '700 16px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
-    if (hasBg) {
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
-      ctx.shadowBlur = 6;
-    }
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
-    const cleanAp = String(ap).replace(/^[✓•\-\*]\s*/, '').trim();
-    const apLines = wrapText(ctx, cleanAp, maxW - iconSize - 36).slice(0, 2);
-    if (apLines.length === 1) {
-      ctx.fillText(apLines[0], padX + iconSize + 24, afterCurY + cardH / 2);
-    } else {
-      ctx.fillText(apLines[0], padX + iconSize + 24, afterCurY + cardH / 2 - 10);
-      ctx.fillText(apLines[1], padX + iconSize + 24, afterCurY + cardH / 2 + 10);
-    }
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+    ctx.lineWidth = 3.5;
+    ctx.strokeText(tl, padX, bCurY);
     ctx.restore();
+    ctx.fillStyle = '#FFFFFF';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 8;
+    ctx.fillText(tl, padX, bCurY);
+    bCurY += isLandscape ? 22 : 26;
+  });
+  ctx.restore();
+  bCurY += (isLandscape ? 8 : 12);
 
-    afterCurY += cardH + (isLandscape ? 8 : 10);
+  beforeList.slice(0, isLandscape ? 3 : 4).forEach(bp => {
+    const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✕', iconBg: '#E11D48', iconBorder: '#FB7185',
+      text: cleanBp, curY: bCurY, startX: padX, maxW: colW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    bCurY += itemH + (isLandscape ? 8 : 12);
+  });
+
+  const rStartX = midX + padX * 0.4;
+  let aCurY = contentTopY + (isLandscape ? 12 : 20);
+  const aPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, rStartX, aCurY, aPillW, pillH, 8);
+  ctx.fillStyle = '#008080';
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER', rStartX + aPillW / 2, aCurY + pillH / 2);
+  ctx.restore();
+  aCurY += pillH + (isLandscape ? 8 : 12);
+
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const afterTitleText = post?.afterTitle || 'AI VELOCITY';
+  wrapText(ctx, afterTitleText, colW).slice(0, 2).forEach(tl => {
+    ctx.save();
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+    ctx.lineWidth = 3.5;
+    ctx.strokeText(tl, rStartX, aCurY);
+    ctx.restore();
+    ctx.fillStyle = '#2DD4BF';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 8;
+    ctx.fillText(tl, rStartX, aCurY);
+    aCurY += isLandscape ? 22 : 26;
+  });
+  ctx.restore();
+  aCurY += (isLandscape ? 8 : 12);
+
+  afterList.slice(0, isLandscape ? 3 : 4).forEach(ap => {
+    const cleanAp = String(ap).replace(/^[✓✔•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✓', iconBg: '#008080', iconBorder: '#2DD4BF',
+      text: cleanAp, curY: aCurY, startX: rStartX, maxW: colW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    aCurY += itemH + (isLandscape ? 8 : 12);
+  });
+}
+
+/**
+ * COMMON-23: Diagonal Slash Transformation
+ */
+async function renderCommonBeforeAfterDiagonal({
+  ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape
+}) {
+  const contentH = footerY - contentTopY;
+  const { beforeList, afterList } = parseBeforeAfterData(post, items);
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width, contentTopY);
+  ctx.lineTo(width, footerY);
+  ctx.closePath();
+  ctx.clip();
+  if (beforeImg && beforeImg.width) {
+    const scale = Math.max(width / beforeImg.width, contentH / beforeImg.height);
+    const dw = beforeImg.width * scale;
+    const dh = beforeImg.height * scale;
+    ctx.drawImage(beforeImg, (width - dw) / 2, contentTopY + (contentH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, width, footerY);
+    grad.addColorStop(0, '#1E293B');
+    grad.addColorStop(1, '#0F172A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, width, contentH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width, footerY);
+  ctx.lineTo(0, footerY);
+  ctx.closePath();
+  ctx.clip();
+  if (afterImg && afterImg.width) {
+    const scale = Math.max(width / afterImg.width, contentH / afterImg.height);
+    const dw = afterImg.width * scale;
+    const dh = afterImg.height * scale;
+    ctx.drawImage(afterImg, (width - dw) / 2, contentTopY + (contentH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, width, footerY);
+    grad.addColorStop(0, '#0F172A');
+    grad.addColorStop(1, '#042F2E');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, width, contentH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width, footerY);
+  const diagGrad = ctx.createLinearGradient(0, contentTopY, width, footerY);
+  diagGrad.addColorStop(0, '#FB7185');
+  diagGrad.addColorStop(0.5, '#FFFFFF');
+  diagGrad.addColorStop(1, '#2DD4BF');
+  ctx.strokeStyle = diagGrad;
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.65)';
+  ctx.shadowBlur = 10;
+  ctx.stroke();
+  ctx.restore();
+
+  const badgeCenterX = width / 2;
+  const badgeCenterY = contentTopY + contentH / 2;
+  const badgeR = isLandscape ? 28 : 34;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(badgeCenterX, badgeCenterY, badgeR, 0, Math.PI * 2);
+  const badgeGrad = ctx.createLinearGradient(badgeCenterX - badgeR, badgeCenterY - badgeR, badgeCenterX + badgeR, badgeCenterY + badgeR);
+  badgeGrad.addColorStop(0, '#0F172A');
+  badgeGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = badgeGrad;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.75)';
+  ctx.shadowBlur = 14;
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+  ctx.font = `900 ${isLandscape ? 15 : 19}px "Outfit", sans-serif`;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('VS', badgeCenterX, badgeCenterY);
+  ctx.restore();
+
+  const bStartX = Math.round(width * 0.36);
+  const bMaxW = width - bStartX - padX;
+  let bCurY = contentTopY + (isLandscape ? 12 : 18);
+  const pillH = isLandscape ? 28 : 32;
+  const bPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, bStartX, bCurY, bPillW, pillH, 8);
+  ctx.fillStyle = '#E11D48';
+  ctx.fill();
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE', bStartX + bPillW / 2, bCurY + pillH / 2);
+
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const beforeTitleText = post?.beforeTitle || 'MANUAL PROCESS';
+  const bTitleX = bStartX + bPillW + 12;
+  const bTitleY = bCurY + pillH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(beforeTitleText, bTitleX, bTitleY, bMaxW - bPillW - 14);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillText(beforeTitleText, bTitleX, bTitleY, bMaxW - bPillW - 14);
+  ctx.restore();
+  bCurY += pillH + (isLandscape ? 8 : 12);
+
+  beforeList.slice(0, isLandscape ? 2 : 3).forEach(bp => {
+    const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✕', iconBg: '#E11D48', iconBorder: '#FB7185',
+      text: cleanBp, curY: bCurY, startX: bStartX, maxW: bMaxW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    bCurY += itemH + (isLandscape ? 8 : 12);
+  });
+
+  const aStartX = padX;
+  const aMaxW = Math.round(width * 0.60);
+  let aCurY = badgeCenterY + (isLandscape ? 16 : 24);
+  const aPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, aStartX, aCurY, aPillW, pillH, 8);
+  ctx.fillStyle = '#008080';
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER', aStartX + aPillW / 2, aCurY + pillH / 2);
+
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const afterTitleText = post?.afterTitle || 'AI VELOCITY';
+  const aTitleX = aStartX + aPillW + 12;
+  const aTitleY = aCurY + pillH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(afterTitleText, aTitleX, aTitleY, aMaxW - aPillW - 14);
+  ctx.fillStyle = '#2DD4BF';
+  ctx.fillText(afterTitleText, aTitleX, aTitleY, aMaxW - aPillW - 14);
+  ctx.restore();
+  aCurY += pillH + (isLandscape ? 8 : 12);
+
+  afterList.slice(0, isLandscape ? 2 : 3).forEach(ap => {
+    const cleanAp = String(ap).replace(/^[✓✔•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✓', iconBg: '#008080', iconBorder: '#2DD4BF',
+      text: cleanAp, curY: aCurY, startX: aStartX, maxW: aMaxW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    aCurY += itemH + (isLandscape ? 8 : 12);
+  });
+}
+
+/**
+ * COMMON-24: Fluid S-Wave Transformation
+ */
+async function renderCommonBeforeAfterWave({
+  ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape
+}) {
+  const contentH = footerY - contentTopY;
+  const { beforeList, afterList } = parseBeforeAfterData(post, items);
+
+  const traceWave = (reverse = false) => {
+    const steps = 70;
+    const pts = [];
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = t * width;
+      const wave = Math.sin(t * Math.PI * 2) * (isLandscape ? 30 : 55) + Math.sin(t * Math.PI) * (isLandscape ? 15 : 25);
+      const y = contentTopY + contentH * t + wave;
+      pts.push({ x, y });
+    }
+    if (reverse) pts.reverse();
+    pts.forEach(p => ctx.lineTo(p.x, p.y));
+  };
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width, contentTopY);
+  ctx.lineTo(width, footerY);
+  traceWave(true);
+  ctx.closePath();
+  ctx.clip();
+  if (beforeImg && beforeImg.width) {
+    const scale = Math.max(width / beforeImg.width, contentH / beforeImg.height);
+    const dw = beforeImg.width * scale;
+    const dh = beforeImg.height * scale;
+    ctx.drawImage(beforeImg, (width - dw) / 2, contentTopY + (contentH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, width, footerY);
+    grad.addColorStop(0, '#1E293B');
+    grad.addColorStop(1, '#0F172A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, width, contentH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  traceWave(false);
+  ctx.lineTo(0, footerY);
+  ctx.closePath();
+  ctx.clip();
+  if (afterImg && afterImg.width) {
+    const scale = Math.max(width / afterImg.width, contentH / afterImg.height);
+    const dw = afterImg.width * scale;
+    const dh = afterImg.height * scale;
+    ctx.drawImage(afterImg, (width - dw) / 2, contentTopY + (contentH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, width, footerY);
+    grad.addColorStop(0, '#0F172A');
+    grad.addColorStop(1, '#042F2E');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, width, contentH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  traceWave(false);
+  const waveGrad = ctx.createLinearGradient(0, contentTopY, width, footerY);
+  waveGrad.addColorStop(0, '#FB7185');
+  waveGrad.addColorStop(0.5, '#FFFFFF');
+  waveGrad.addColorStop(1, '#2DD4BF');
+  ctx.strokeStyle = waveGrad;
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.65)';
+  ctx.shadowBlur = 10;
+  ctx.stroke();
+  ctx.restore();
+
+  const badgeCenterX = width / 2;
+  const badgeCenterY = contentTopY + contentH / 2;
+  const badgeR = isLandscape ? 28 : 34;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(badgeCenterX, badgeCenterY, badgeR, 0, Math.PI * 2);
+  const badgeGrad = ctx.createLinearGradient(badgeCenterX - badgeR, badgeCenterY - badgeR, badgeCenterX + badgeR, badgeCenterY + badgeR);
+  badgeGrad.addColorStop(0, '#0F172A');
+  badgeGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = badgeGrad;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.75)';
+  ctx.shadowBlur = 14;
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+  ctx.font = `900 ${isLandscape ? 15 : 19}px "Outfit", sans-serif`;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('VS', badgeCenterX, badgeCenterY);
+  ctx.restore();
+
+  const bStartX = Math.round(width * 0.38);
+  const bMaxW = width - bStartX - padX;
+  let bCurY = contentTopY + (isLandscape ? 12 : 18);
+  const pillH = isLandscape ? 28 : 32;
+  const bPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, bStartX, bCurY, bPillW, pillH, 8);
+  ctx.fillStyle = '#E11D48';
+  ctx.fill();
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE', bStartX + bPillW / 2, bCurY + pillH / 2);
+
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const beforeTitleText = post?.beforeTitle || 'MANUAL PROCESS';
+  const bTitleX = bStartX + bPillW + 12;
+  const bTitleY = bCurY + pillH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(beforeTitleText, bTitleX, bTitleY, bMaxW - bPillW - 14);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillText(beforeTitleText, bTitleX, bTitleY, bMaxW - bPillW - 14);
+  ctx.restore();
+  bCurY += pillH + (isLandscape ? 8 : 12);
+
+  beforeList.slice(0, isLandscape ? 2 : 3).forEach(bp => {
+    const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✕', iconBg: '#E11D48', iconBorder: '#FB7185',
+      text: cleanBp, curY: bCurY, startX: bStartX, maxW: bMaxW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    bCurY += itemH + (isLandscape ? 8 : 12);
+  });
+
+  const aStartX = padX;
+  const aMaxW = Math.round(width * 0.58);
+  let aCurY = badgeCenterY + (isLandscape ? 16 : 24);
+  const aPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, aStartX, aCurY, aPillW, pillH, 8);
+  ctx.fillStyle = '#008080';
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER', aStartX + aPillW / 2, aCurY + pillH / 2);
+
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const afterTitleText = post?.afterTitle || 'AI VELOCITY';
+  const aTitleX = aStartX + aPillW + 12;
+  const aTitleY = aCurY + pillH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(afterTitleText, aTitleX, aTitleY, aMaxW - aPillW - 14);
+  ctx.fillStyle = '#2DD4BF';
+  ctx.fillText(afterTitleText, aTitleX, aTitleY, aMaxW - aPillW - 14);
+  ctx.restore();
+  aCurY += pillH + (isLandscape ? 8 : 12);
+
+  afterList.slice(0, isLandscape ? 2 : 3).forEach(ap => {
+    const cleanAp = String(ap).replace(/^[✓✔•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✓', iconBg: '#008080', iconBorder: '#2DD4BF',
+      text: cleanAp, curY: aCurY, startX: aStartX, maxW: aMaxW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    aCurY += itemH + (isLandscape ? 8 : 12);
+  });
+}
+
+/**
+ * COMMON-25: Y-Split Architecture Transformation
+ */
+async function renderCommonBeforeAfterYSplit({
+  ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape
+}) {
+  const contentH = footerY - contentTopY;
+  const midX = Math.round(width / 2);
+  const jY = Math.round(contentTopY + contentH * (isLandscape ? 0.28 : 0.30));
+  const { beforeList, afterList } = parseBeforeAfterData(post, items);
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(midX, jY);
+  ctx.lineTo(midX, footerY);
+  ctx.lineTo(0, footerY);
+  ctx.closePath();
+  ctx.clip();
+  if (beforeImg && beforeImg.width) {
+    const bH = footerY - contentTopY;
+    const scale = Math.max(midX / beforeImg.width, bH / beforeImg.height);
+    const dw = beforeImg.width * scale;
+    const dh = beforeImg.height * scale;
+    ctx.drawImage(beforeImg, (midX - dw) / 2, contentTopY + (bH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, midX, footerY);
+    grad.addColorStop(0, '#1E293B');
+    grad.addColorStop(1, '#0F172A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, midX, footerY - contentTopY);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(width, contentTopY);
+  ctx.lineTo(midX, jY);
+  ctx.lineTo(midX, footerY);
+  ctx.lineTo(width, footerY);
+  ctx.closePath();
+  ctx.clip();
+  if (afterImg && afterImg.width) {
+    const aH = footerY - contentTopY;
+    const scale = Math.max((width - midX) / afterImg.width, aH / afterImg.height);
+    const dw = afterImg.width * scale;
+    const dh = afterImg.height * scale;
+    ctx.drawImage(afterImg, midX + ((width - midX) - dw) / 2, contentTopY + (aH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(midX, contentTopY, width, footerY);
+    grad.addColorStop(0, '#0F172A');
+    grad.addColorStop(1, '#042F2E');
+    ctx.fillStyle = grad;
+    ctx.fillRect(midX, contentTopY, width - midX, footerY - contentTopY);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width, contentTopY);
+  ctx.lineTo(midX, jY);
+  ctx.closePath();
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fill();
+
+  const hlY = contentTopY + (isLandscape ? 14 : 20);
+  ctx.font = `900 ${isLandscape ? 20 : 26}px "Outfit", sans-serif`;
+  ctx.fillStyle = '#0F172A';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillText(headline || 'THE TRANSFORMATION: BEFORE VS AFTER', width / 2, hlY);
+
+  const triSub = tagline || 'How modern organizations replace weeks of friction with autonomous AI velocity';
+  ctx.font = `600 ${isLandscape ? 12 : 14}px "Plus Jakarta Sans", sans-serif`;
+  ctx.fillStyle = '#64748B';
+  ctx.fillText(triSub, width / 2, hlY + (isLandscape ? 26 : 34));
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(midX, jY);
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 3.5;
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(width, contentTopY);
+  ctx.lineTo(midX, jY);
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 3.5;
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(midX, jY);
+  ctx.lineTo(midX, footerY);
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 3.5;
+  ctx.stroke();
+  ctx.restore();
+
+  const badgeR = isLandscape ? 24 : 30;
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(midX, jY, badgeR, 0, Math.PI * 2);
+  const badgeGrad = ctx.createLinearGradient(midX - badgeR, jY - badgeR, midX + badgeR, jY + badgeR);
+  badgeGrad.addColorStop(0, '#0F172A');
+  badgeGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = badgeGrad;
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+  ctx.font = `900 ${isLandscape ? 14 : 17}px "Outfit", sans-serif`;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('VS', midX, jY);
+  ctx.restore();
+
+  const colW = midX - padX * 1.4;
+  let bCurY = jY + (isLandscape ? 20 : 28);
+  const pillH = isLandscape ? 28 : 32;
+  const bPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, padX, bCurY, bPillW, pillH, 8);
+  ctx.fillStyle = '#E11D48';
+  ctx.fill();
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE', padX + bPillW / 2, bCurY + pillH / 2);
+  ctx.restore();
+  bCurY += pillH + (isLandscape ? 8 : 12);
+
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const beforeTitleText = post?.beforeTitle || 'MANUAL PROCESS';
+  wrapText(ctx, beforeTitleText, colW).slice(0, 2).forEach(tl => {
+    ctx.save();
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+    ctx.lineWidth = 3.5;
+    ctx.strokeText(tl, padX, bCurY);
+    ctx.restore();
+    ctx.fillStyle = '#FFFFFF';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 8;
+    ctx.fillText(tl, padX, bCurY);
+    bCurY += isLandscape ? 22 : 26;
+  });
+  ctx.restore();
+  bCurY += (isLandscape ? 8 : 12);
+
+  beforeList.slice(0, 3).forEach(bp => {
+    const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✕', iconBg: '#E11D48', iconBorder: '#FB7185',
+      text: cleanBp, curY: bCurY, startX: padX, maxW: colW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    bCurY += itemH + (isLandscape ? 8 : 12);
+  });
+
+  const rStartX = midX + padX * 0.4;
+  let aCurY = jY + (isLandscape ? 20 : 28);
+  const aPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, rStartX, aCurY, aPillW, pillH, 8);
+  ctx.fillStyle = '#008080';
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER', rStartX + aPillW / 2, aCurY + pillH / 2);
+  ctx.restore();
+  aCurY += pillH + (isLandscape ? 8 : 12);
+
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const afterTitleText = post?.afterTitle || 'AI VELOCITY';
+  wrapText(ctx, afterTitleText, colW).slice(0, 2).forEach(tl => {
+    ctx.save();
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+    ctx.lineWidth = 3.5;
+    ctx.strokeText(tl, rStartX, aCurY);
+    ctx.restore();
+    ctx.fillStyle = '#2DD4BF';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 8;
+    ctx.fillText(tl, rStartX, aCurY);
+    aCurY += isLandscape ? 22 : 26;
+  });
+  ctx.restore();
+  aCurY += (isLandscape ? 8 : 12);
+
+  afterList.slice(0, 3).forEach(ap => {
+    const cleanAp = String(ap).replace(/^[✓✔•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✓', iconBg: '#008080', iconBorder: '#2DD4BF',
+      text: cleanAp, curY: aCurY, startX: rStartX, maxW: colW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    aCurY += itemH + (isLandscape ? 8 : 12);
+  });
+}
+
+/**
+ * COMMON-26: Vertical Hourglass Transformation
+ */
+async function renderCommonBeforeAfterVerticalHourglass({
+  ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape
+}) {
+  const contentH = footerY - contentTopY;
+  const midX = Math.round(width / 2);
+  const centerY = Math.round(contentTopY + contentH / 2);
+  const { beforeList, afterList } = parseBeforeAfterData(post, items);
+
+  const sampleLeftCurve = (reverse = false) => {
+    const steps = 50;
+    const pts = [];
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const y = contentTopY + contentH * t;
+      const dip = Math.sin(t * Math.PI) * (width * 0.36);
+      const x = (width * 0.14) + dip;
+      pts.push({ x, y });
+    }
+    if (reverse) pts.reverse();
+    pts.forEach(p => ctx.lineTo(p.x, p.y));
+  };
+
+  const sampleRightCurve = (reverse = false) => {
+    const steps = 50;
+    const pts = [];
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const y = contentTopY + contentH * t;
+      const dip = Math.sin(t * Math.PI) * (width * 0.36);
+      const x = (width * 0.86) - dip;
+      pts.push({ x, y });
+    }
+    if (reverse) pts.reverse();
+    pts.forEach(p => ctx.lineTo(p.x, p.y));
+  };
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width * 0.14, contentTopY);
+  sampleLeftCurve(false);
+  ctx.lineTo(0, footerY);
+  ctx.closePath();
+  ctx.clip();
+  if (beforeImg && beforeImg.width) {
+    const scale = Math.max(midX / beforeImg.width, contentH / beforeImg.height);
+    const dw = beforeImg.width * scale;
+    const dh = beforeImg.height * scale;
+    ctx.drawImage(beforeImg, (midX - dw) / 2, contentTopY + (contentH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, midX, footerY);
+    grad.addColorStop(0, '#1E293B');
+    grad.addColorStop(1, '#0F172A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, midX, contentH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(width, contentTopY);
+  ctx.lineTo(width * 0.86, contentTopY);
+  sampleRightCurve(false);
+  ctx.lineTo(width, footerY);
+  ctx.closePath();
+  ctx.clip();
+  if (afterImg && afterImg.width) {
+    const scale = Math.max((width - midX) / afterImg.width, contentH / afterImg.height);
+    const dw = afterImg.width * scale;
+    const dh = afterImg.height * scale;
+    ctx.drawImage(afterImg, midX + ((width - midX) - dw) / 2, contentTopY + (contentH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(midX, contentTopY, width, footerY);
+    grad.addColorStop(0, '#0F172A');
+    grad.addColorStop(1, '#042F2E');
+    ctx.fillStyle = grad;
+    ctx.fillRect(midX, contentTopY, width - midX, contentH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(width * 0.14, contentTopY);
+  sampleLeftCurve(false);
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(251, 113, 133, 0.6)';
+  ctx.shadowBlur = 8;
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(width * 0.86, contentTopY);
+  sampleRightCurve(false);
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.6)';
+  ctx.stroke();
+  ctx.restore();
+
+  const badgeR = isLandscape ? 26 : 32;
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(midX, centerY, badgeR, 0, Math.PI * 2);
+  const bgGrad = ctx.createLinearGradient(midX - badgeR, centerY - badgeR, midX + badgeR, centerY + badgeR);
+  bgGrad.addColorStop(0, '#0F172A');
+  bgGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = bgGrad;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.75)';
+  ctx.shadowBlur = 12;
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+  ctx.font = `900 ${isLandscape ? 15 : 18}px "Outfit", sans-serif`;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('VS', midX, centerY);
+  ctx.restore();
+
+  const colW = midX - padX * 1.4;
+  let bCurY = contentTopY + (isLandscape ? 14 : 20);
+  const pillH = isLandscape ? 28 : 32;
+  const bPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, padX, bCurY, bPillW, pillH, 8);
+  ctx.fillStyle = '#E11D48';
+  ctx.fill();
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE', padX + bPillW / 2, bCurY + pillH / 2);
+  ctx.restore();
+  bCurY += pillH + (isLandscape ? 8 : 12);
+
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const beforeTitleText = post?.beforeTitle || 'MANUAL PROCESS';
+  wrapText(ctx, beforeTitleText, colW).slice(0, 2).forEach(tl => {
+    ctx.save();
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+    ctx.lineWidth = 3.5;
+    ctx.strokeText(tl, padX, bCurY);
+    ctx.restore();
+    ctx.fillStyle = '#FFFFFF';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 8;
+    ctx.fillText(tl, padX, bCurY);
+    bCurY += isLandscape ? 22 : 26;
+  });
+  ctx.restore();
+  bCurY += (isLandscape ? 8 : 12);
+
+  beforeList.slice(0, isLandscape ? 3 : 4).forEach(bp => {
+    const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✕', iconBg: '#E11D48', iconBorder: '#FB7185',
+      text: cleanBp, curY: bCurY, startX: padX, maxW: colW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    bCurY += itemH + (isLandscape ? 8 : 12);
+  });
+
+  const rStartX = midX + padX * 0.4;
+  let aCurY = contentTopY + (isLandscape ? 14 : 20);
+  const aPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, rStartX, aCurY, aPillW, pillH, 8);
+  ctx.fillStyle = '#008080';
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER', rStartX + aPillW / 2, aCurY + pillH / 2);
+  ctx.restore();
+  aCurY += pillH + (isLandscape ? 8 : 12);
+
+  ctx.save();
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const afterTitleText = post?.afterTitle || 'AI VELOCITY';
+  wrapText(ctx, afterTitleText, colW).slice(0, 2).forEach(tl => {
+    ctx.save();
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+    ctx.lineWidth = 3.5;
+    ctx.strokeText(tl, rStartX, aCurY);
+    ctx.restore();
+    ctx.fillStyle = '#2DD4BF';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+    ctx.shadowBlur = 8;
+    ctx.fillText(tl, rStartX, aCurY);
+    aCurY += isLandscape ? 22 : 26;
+  });
+  ctx.restore();
+  aCurY += (isLandscape ? 8 : 12);
+
+  afterList.slice(0, isLandscape ? 3 : 4).forEach(ap => {
+    const cleanAp = String(ap).replace(/^[✓✔•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✓', iconBg: '#008080', iconBorder: '#2DD4BF',
+      text: cleanAp, curY: aCurY, startX: rStartX, maxW: colW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    aCurY += itemH + (isLandscape ? 8 : 12);
+  });
+}
+
+/**
+ * COMMON-27: Diagonal Ribbon Transformation
+ */
+async function renderCommonBeforeAfterDiagonalRibbon({
+  ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape
+}) {
+  const contentH = footerY - contentTopY;
+  const ribbonW = isLandscape ? 45 : 65;
+  const { beforeList, afterList } = parseBeforeAfterData(post, items);
+
+  const startY = contentTopY + 40;
+  const endY = footerY - 40;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width, contentTopY);
+  ctx.lineTo(width, endY - ribbonW / 2);
+  ctx.lineTo(0, startY - ribbonW / 2);
+  ctx.closePath();
+  ctx.clip();
+  if (beforeImg && beforeImg.width) {
+    const scale = Math.max(width / beforeImg.width, contentH / beforeImg.height);
+    const dw = beforeImg.width * scale;
+    const dh = beforeImg.height * scale;
+    ctx.drawImage(beforeImg, (width - dw) / 2, contentTopY + (contentH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, width, footerY);
+    grad.addColorStop(0, '#1E293B');
+    grad.addColorStop(1, '#0F172A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, width, contentH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, startY + ribbonW / 2);
+  ctx.lineTo(width, endY + ribbonW / 2);
+  ctx.lineTo(width, footerY);
+  ctx.lineTo(0, footerY);
+  ctx.closePath();
+  ctx.clip();
+  if (afterImg && afterImg.width) {
+    const scale = Math.max(width / afterImg.width, contentH / afterImg.height);
+    const dw = afterImg.width * scale;
+    const dh = afterImg.height * scale;
+    ctx.drawImage(afterImg, (width - dw) / 2, contentTopY + (contentH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, width, footerY);
+    grad.addColorStop(0, '#0F172A');
+    grad.addColorStop(1, '#042F2E');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, width, contentH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, startY - ribbonW / 2);
+  ctx.lineTo(width, endY - ribbonW / 2);
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(251, 113, 133, 0.65)';
+  ctx.shadowBlur = 8;
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(0, startY + ribbonW / 2);
+  ctx.lineTo(width, endY + ribbonW / 2);
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.65)';
+  ctx.stroke();
+  ctx.restore();
+
+  const badgeW = isLandscape ? 170 : 210;
+  const badgeH = isLandscape ? 36 : 42;
+  const midX = width / 2;
+  const midY = (startY + endY) / 2;
+  ctx.save();
+  drawRoundRect(ctx, midX - badgeW / 2, midY - badgeH / 2, badgeW, badgeH, badgeH / 2);
+  const badgeGrad = ctx.createLinearGradient(midX - badgeW / 2, midY, midX + badgeW / 2, midY);
+  badgeGrad.addColorStop(0, '#0F172A');
+  badgeGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = badgeGrad;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.75)';
+  ctx.shadowBlur = 12;
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+  ctx.font = '900 14px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('⚡ VS • TRANSFORMATION ⚡', midX, midY);
+  ctx.restore();
+
+  const bStartX = Math.round(width * 0.38);
+  const bMaxW = width - bStartX - padX;
+  let bCurY = contentTopY + (isLandscape ? 12 : 18);
+  const pillH = isLandscape ? 28 : 32;
+  const bPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, bStartX, bCurY, bPillW, pillH, 8);
+  ctx.fillStyle = '#E11D48';
+  ctx.fill();
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE', bStartX + bPillW / 2, bCurY + pillH / 2);
+
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const beforeTitleText = post?.beforeTitle || 'MANUAL PROCESS';
+  const bTitleX = bStartX + bPillW + 12;
+  const bTitleY = bCurY + pillH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(beforeTitleText, bTitleX, bTitleY, bMaxW - bPillW - 14);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillText(beforeTitleText, bTitleX, bTitleY, bMaxW - bPillW - 14);
+  ctx.restore();
+  bCurY += pillH + (isLandscape ? 8 : 12);
+
+  beforeList.slice(0, isLandscape ? 2 : 3).forEach(bp => {
+    const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✕', iconBg: '#E11D48', iconBorder: '#FB7185',
+      text: cleanBp, curY: bCurY, startX: bStartX, maxW: bMaxW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    bCurY += itemH + (isLandscape ? 8 : 12);
+  });
+
+  const aStartX = padX;
+  const aMaxW = Math.round(width * 0.58);
+  let aCurY = midY + (isLandscape ? 22 : 32);
+  const aPillW = isLandscape ? 100 : 120;
+
+  ctx.save();
+  drawRoundRect(ctx, aStartX, aCurY, aPillW, pillH, 8);
+  ctx.fillStyle = '#008080';
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER', aStartX + aPillW / 2, aCurY + pillH / 2);
+
+  ctx.font = `900 ${isLandscape ? 18 : 22}px "Outfit", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const afterTitleText = post?.afterTitle || 'AI VELOCITY';
+  const aTitleX = aStartX + aPillW + 12;
+  const aTitleY = aCurY + pillH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.88)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(afterTitleText, aTitleX, aTitleY, aMaxW - aPillW - 14);
+  ctx.fillStyle = '#2DD4BF';
+  ctx.fillText(afterTitleText, aTitleX, aTitleY, aMaxW - aPillW - 14);
+  ctx.restore();
+  aCurY += pillH + (isLandscape ? 8 : 12);
+
+  afterList.slice(0, isLandscape ? 2 : 3).forEach(ap => {
+    const cleanAp = String(ap).replace(/^[✓✔•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✓', iconBg: '#008080', iconBorder: '#2DD4BF',
+      text: cleanAp, curY: aCurY, startX: aStartX, maxW: aMaxW, isLandscape,
+      fontSize: isLandscape ? 13 : 15, lineHeight: isLandscape ? 18 : 21, accentCol: '#FFFFFF'
+    });
+    aCurY += itemH + (isLandscape ? 8 : 12);
+  });
+}
+
+/**
+ * COMMON-28: Chevron Peaks Transformation
+ */
+async function renderCommonBeforeAfterSawtooth({
+  ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape
+}) {
+  const contentH = footerY - contentTopY;
+  const centerY = Math.round(contentTopY + contentH * 0.48);
+  const amp = isLandscape ? 28 : 45;
+  const maxW = width - padX * 2;
+  const { beforeList, afterList } = parseBeforeAfterData(post, items);
+
+  const sampleSawtooth = (reverse = false) => {
+    const pts = [
+      { x: 0, y: centerY },
+      { x: width * 0.16, y: centerY - amp },
+      { x: width * 0.33, y: centerY + amp * 0.7 },
+      { x: width * 0.50, y: centerY - amp },
+      { x: width * 0.67, y: centerY + amp * 0.7 },
+      { x: width * 0.84, y: centerY - amp },
+      { x: width, y: centerY }
+    ];
+    if (reverse) pts.reverse();
+    pts.forEach(p => ctx.lineTo(p.x, p.y));
+  };
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width, contentTopY);
+  sampleSawtooth(true);
+  ctx.closePath();
+  ctx.clip();
+  const bBoxH = centerY + amp - contentTopY;
+  if (beforeImg && beforeImg.width) {
+    const scale = Math.max(width / beforeImg.width, bBoxH / beforeImg.height);
+    const dw = beforeImg.width * scale;
+    const dh = beforeImg.height * scale;
+    ctx.drawImage(beforeImg, (width - dw) / 2, contentTopY + (bBoxH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, 0, centerY);
+    grad.addColorStop(0, '#1E293B');
+    grad.addColorStop(1, '#0F172A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, width, bBoxH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, centerY);
+  sampleSawtooth(false);
+  ctx.lineTo(width, footerY);
+  ctx.lineTo(0, footerY);
+  ctx.closePath();
+  ctx.clip();
+  const aBoxH = footerY - (centerY - amp);
+  if (afterImg && afterImg.width) {
+    const scale = Math.max(width / afterImg.width, aBoxH / afterImg.height);
+    const dw = afterImg.width * scale;
+    const dh = afterImg.height * scale;
+    ctx.drawImage(afterImg, (width - dw) / 2, (centerY - amp) + (aBoxH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, centerY, 0, footerY);
+    grad.addColorStop(0, '#0F172A');
+    grad.addColorStop(1, '#042F2E');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, centerY - amp, width, aBoxH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, centerY);
+  sampleSawtooth(false);
+  const sawGrad = ctx.createLinearGradient(0, centerY - amp, width, centerY + amp);
+  sawGrad.addColorStop(0, '#FB7185');
+  sawGrad.addColorStop(0.5, '#FFFFFF');
+  sawGrad.addColorStop(1, '#2DD4BF');
+  ctx.strokeStyle = sawGrad;
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.65)';
+  ctx.shadowBlur = 10;
+  ctx.stroke();
+  ctx.restore();
+
+  const badgeR = isLandscape ? 26 : 30;
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(width * 0.50, centerY, badgeR, 0, Math.PI * 2);
+  const bgGrad = ctx.createLinearGradient(width * 0.50 - badgeR, centerY - badgeR, width * 0.50 + badgeR, centerY + badgeR);
+  bgGrad.addColorStop(0, '#0F172A');
+  bgGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = bgGrad;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.75)';
+  ctx.shadowBlur = 12;
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+  ctx.font = `900 ${isLandscape ? 14 : 17}px "Outfit", sans-serif`;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('VS', width * 0.50, centerY);
+  ctx.restore();
+
+  let curY = contentTopY + (isLandscape ? 10 : 16);
+  const beforeHeaderH = isLandscape ? 30 : 34;
+  const bPillW = isLandscape ? 110 : 130;
+
+  ctx.save();
+  drawRoundRect(ctx, padX, curY, bPillW, beforeHeaderH, 8);
+  ctx.fillStyle = '#E11D48';
+  ctx.fill();
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 14px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE', padX + bPillW / 2, curY + beforeHeaderH / 2);
+
+  ctx.font = '900 22px "Outfit", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const beforeTitleText = post?.beforeTitle || 'TRADITIONAL MANUAL PROCESS';
+  const bTitleX = padX + bPillW + 14;
+  const bTitleY = curY + beforeHeaderH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(beforeTitleText, bTitleX, bTitleY, maxW - bPillW - 20);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillText(beforeTitleText, bTitleX, bTitleY, maxW - bPillW - 20);
+  ctx.restore();
+  curY += beforeHeaderH + (isLandscape ? 8 : 12);
+
+  beforeList.slice(0, isLandscape ? 2 : 3).forEach(bp => {
+    const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✕', iconBg: '#E11D48', iconBorder: '#FB7185',
+      text: cleanBp, curY, startX: padX, maxW, isLandscape, accentCol: '#FFFFFF'
+    });
+    curY += itemH + (isLandscape ? 8 : 12);
+  });
+
+  let afterCurY = centerY + amp + (isLandscape ? 10 : 16);
+  const afterHeaderH = isLandscape ? 30 : 34;
+  const aPillW = isLandscape ? 110 : 130;
+
+  ctx.save();
+  drawRoundRect(ctx, padX, afterCurY, aPillW, afterHeaderH, 8);
+  ctx.fillStyle = '#008080';
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 14px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER', padX + aPillW / 2, afterCurY + afterHeaderH / 2);
+
+  ctx.font = '900 22px "Outfit", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const afterTitleText = post?.afterTitle || 'AUTONOMOUS AI ACCELERATION';
+  const aTitleX = padX + aPillW + 14;
+  const aTitleY = afterCurY + afterHeaderH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(afterTitleText, aTitleX, aTitleY, maxW - aPillW - 20);
+  ctx.fillStyle = '#2DD4BF';
+  ctx.fillText(afterTitleText, aTitleX, aTitleY, maxW - aPillW - 20);
+  ctx.restore();
+  afterCurY += afterHeaderH + (isLandscape ? 8 : 12);
+
+  afterList.slice(0, isLandscape ? 2 : 3).forEach(ap => {
+    const cleanAp = String(ap).replace(/^[✓✔•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✓', iconBg: '#008080', iconBorder: '#2DD4BF',
+      text: cleanAp, curY: afterCurY, startX: padX, maxW, isLandscape, accentCol: '#FFFFFF'
+    });
+    afterCurY += itemH + (isLandscape ? 8 : 12);
+  });
+}
+
+/**
+ * COMMON-29: Particle Horizon Transformation
+ */
+async function renderCommonBeforeAfterParticleHorizon({
+  ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape
+}) {
+  const contentH = footerY - contentTopY;
+  const centerY = Math.round(contentTopY + contentH * 0.48);
+  const bandH = isLandscape ? 50 : 68;
+  const topCutY = centerY - bandH / 2;
+  const botCutY = centerY + bandH / 2;
+  const maxW = width - padX * 2;
+  const { beforeList, afterList } = parseBeforeAfterData(post, items);
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(0, contentTopY, width, topCutY - contentTopY);
+  ctx.clip();
+  const bBoxH = topCutY - contentTopY;
+  if (beforeImg && beforeImg.width) {
+    const scale = Math.max(width / beforeImg.width, bBoxH / beforeImg.height);
+    const dw = beforeImg.width * scale;
+    const dh = beforeImg.height * scale;
+    ctx.drawImage(beforeImg, (width - dw) / 2, contentTopY + (bBoxH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, 0, topCutY);
+    grad.addColorStop(0, '#1E293B');
+    grad.addColorStop(1, '#0F172A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, width, bBoxH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(0, botCutY, width, footerY - botCutY);
+  ctx.clip();
+  const aBoxH = footerY - botCutY;
+  if (afterImg && afterImg.width) {
+    const scale = Math.max(width / afterImg.width, aBoxH / afterImg.height);
+    const dw = afterImg.width * scale;
+    const dh = afterImg.height * scale;
+    ctx.drawImage(afterImg, (width - dw) / 2, botCutY + (aBoxH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, botCutY, 0, footerY);
+    grad.addColorStop(0, '#0F172A');
+    grad.addColorStop(1, '#042F2E');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, botCutY, width, aBoxH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, topCutY, width, bandH);
+
+  ctx.strokeStyle = 'rgba(251, 113, 133, 0.4)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(0, topCutY);
+  ctx.lineTo(width, topCutY);
+  ctx.stroke();
+
+  ctx.strokeStyle = 'rgba(45, 212, 191, 0.4)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(0, botCutY);
+  ctx.lineTo(width, botCutY);
+  ctx.stroke();
+
+  const dotCount = 80;
+  for (let i = 0; i < dotCount; i++) {
+    const dx = (i * 37) % width;
+    const dy = topCutY + 4 + ((i * 19) % (bandH - 8));
+    const dr = 1.5 + ((i % 4) * 0.8);
+    const isTeal = i % 2 === 0;
+    ctx.beginPath();
+    ctx.arc(dx, dy, dr, 0, Math.PI * 2);
+    ctx.fillStyle = isTeal ? 'rgba(0, 128, 128, 0.55)' : 'rgba(251, 113, 133, 0.55)';
+    ctx.fill();
+  }
+
+  const badgeW = isLandscape ? 170 : 210;
+  const badgeH = isLandscape ? 34 : 40;
+  drawRoundRect(ctx, (width - badgeW) / 2, centerY - badgeH / 2, badgeW, badgeH, badgeH / 2);
+  const badgeGrad = ctx.createLinearGradient((width - badgeW) / 2, centerY, (width + badgeW) / 2, centerY);
+  badgeGrad.addColorStop(0, '#0F172A');
+  badgeGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = badgeGrad;
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('⚡ VS • TRANSFORMATION ⚡', width / 2, centerY);
+  ctx.restore();
+
+  let curY = contentTopY + (isLandscape ? 10 : 16);
+  const beforeHeaderH = isLandscape ? 30 : 34;
+  const bPillW = isLandscape ? 110 : 130;
+
+  ctx.save();
+  drawRoundRect(ctx, padX, curY, bPillW, beforeHeaderH, 8);
+  ctx.fillStyle = '#E11D48';
+  ctx.fill();
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 14px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE', padX + bPillW / 2, curY + beforeHeaderH / 2);
+
+  ctx.font = '900 22px "Outfit", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const beforeTitleText = post?.beforeTitle || 'TRADITIONAL MANUAL PROCESS';
+  const bTitleX = padX + bPillW + 14;
+  const bTitleY = curY + beforeHeaderH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(beforeTitleText, bTitleX, bTitleY, maxW - bPillW - 20);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillText(beforeTitleText, bTitleX, bTitleY, maxW - bPillW - 20);
+  ctx.restore();
+  curY += beforeHeaderH + (isLandscape ? 8 : 12);
+
+  beforeList.slice(0, isLandscape ? 2 : 3).forEach(bp => {
+    const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✕', iconBg: '#E11D48', iconBorder: '#FB7185',
+      text: cleanBp, curY, startX: padX, maxW, isLandscape, accentCol: '#FFFFFF'
+    });
+    curY += itemH + (isLandscape ? 8 : 12);
+  });
+
+  let afterCurY = botCutY + (isLandscape ? 10 : 16);
+  const afterHeaderH = isLandscape ? 30 : 34;
+  const aPillW = isLandscape ? 110 : 130;
+
+  ctx.save();
+  drawRoundRect(ctx, padX, afterCurY, aPillW, afterHeaderH, 8);
+  ctx.fillStyle = '#008080';
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 14px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER', padX + aPillW / 2, afterCurY + afterHeaderH / 2);
+
+  ctx.font = '900 22px "Outfit", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const afterTitleText = post?.afterTitle || 'AUTONOMOUS AI ACCELERATION';
+  const aTitleX = padX + aPillW + 14;
+  const aTitleY = afterCurY + afterHeaderH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(afterTitleText, aTitleX, aTitleY, maxW - aPillW - 20);
+  ctx.fillStyle = '#2DD4BF';
+  ctx.fillText(afterTitleText, aTitleX, aTitleY, maxW - aPillW - 20);
+  ctx.restore();
+  afterCurY += afterHeaderH + (isLandscape ? 8 : 12);
+
+  afterList.slice(0, isLandscape ? 2 : 3).forEach(ap => {
+    const cleanAp = String(ap).replace(/^[✓✔•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✓', iconBg: '#008080', iconBorder: '#2DD4BF',
+      text: cleanAp, curY: afterCurY, startX: padX, maxW, isLandscape, accentCol: '#FFFFFF'
+    });
+    afterCurY += itemH + (isLandscape ? 8 : 12);
+  });
+}
+
+/**
+ * COMMON-30: Dual Wave River Transformation
+ */
+async function renderCommonBeforeAfterDualWaveRibbon({
+  ctx, width, height, post, style, headline, tagline, items, padX, contentTopY, footerY, beforeImg, afterImg, isLandscape
+}) {
+  const contentH = footerY - contentTopY;
+  const centerY = Math.round(contentTopY + contentH * 0.48);
+  const riverW = isLandscape ? 40 : 60;
+  const maxW = width - padX * 2;
+  const { beforeList, afterList } = parseBeforeAfterData(post, items);
+
+  const sampleTopWave = (reverse = false) => {
+    const steps = 60;
+    const pts = [];
+    const base = centerY - riverW / 2;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = t * width;
+      const y = base + Math.sin(t * Math.PI * 4) * 14 + Math.sin(t * Math.PI * 2) * 8;
+      pts.push({ x, y });
+    }
+    if (reverse) pts.reverse();
+    pts.forEach(p => ctx.lineTo(p.x, p.y));
+  };
+
+  const sampleBotWave = (reverse = false) => {
+    const steps = 60;
+    const pts = [];
+    const base = centerY + riverW / 2;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = t * width;
+      const y = base + Math.sin(t * Math.PI * 4) * 14 + Math.sin(t * Math.PI * 2) * 8;
+      pts.push({ x, y });
+    }
+    if (reverse) pts.reverse();
+    pts.forEach(p => ctx.lineTo(p.x, p.y));
+  };
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, contentTopY);
+  ctx.lineTo(width, contentTopY);
+  sampleTopWave(true);
+  ctx.closePath();
+  ctx.clip();
+  const bBoxH = (centerY - riverW / 2 + 20) - contentTopY;
+  if (beforeImg && beforeImg.width) {
+    const scale = Math.max(width / beforeImg.width, bBoxH / beforeImg.height);
+    const dw = beforeImg.width * scale;
+    const dh = beforeImg.height * scale;
+    ctx.drawImage(beforeImg, (width - dw) / 2, contentTopY + (bBoxH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, contentTopY, 0, centerY);
+    grad.addColorStop(0, '#1E293B');
+    grad.addColorStop(1, '#0F172A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, contentTopY, width, bBoxH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, centerY + riverW / 2);
+  sampleBotWave(false);
+  ctx.lineTo(width, footerY);
+  ctx.lineTo(0, footerY);
+  ctx.closePath();
+  ctx.clip();
+  const aBoxH = footerY - (centerY + riverW / 2 - 20);
+  if (afterImg && afterImg.width) {
+    const scale = Math.max(width / afterImg.width, aBoxH / afterImg.height);
+    const dw = afterImg.width * scale;
+    const dh = afterImg.height * scale;
+    ctx.drawImage(afterImg, (width - dw) / 2, (centerY + riverW / 2 - 20) + (aBoxH - dh) / 2, dw, dh);
+  } else {
+    const grad = ctx.createLinearGradient(0, centerY, 0, footerY);
+    grad.addColorStop(0, '#0F172A');
+    grad.addColorStop(1, '#042F2E');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, centerY + riverW / 2 - 20, width, aBoxH);
+  }
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, centerY - riverW / 2);
+  sampleTopWave(false);
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(251, 113, 133, 0.65)';
+  ctx.shadowBlur = 8;
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(0, centerY + riverW / 2);
+  sampleBotWave(false);
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 3.5;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.65)';
+  ctx.stroke();
+  ctx.restore();
+
+  const badgeW = isLandscape ? 170 : 210;
+  const badgeH = isLandscape ? 34 : 40;
+  ctx.save();
+  drawRoundRect(ctx, (width - badgeW) / 2, centerY - badgeH / 2, badgeW, badgeH, badgeH / 2);
+  const badgeGrad = ctx.createLinearGradient((width - badgeW) / 2, centerY, (width + badgeW) / 2, centerY);
+  badgeGrad.addColorStop(0, '#0F172A');
+  badgeGrad.addColorStop(1, '#008080');
+  ctx.fillStyle = badgeGrad;
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+  ctx.font = '900 13px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('⚡ VS • TRANSFORMATION ⚡', width / 2, centerY);
+  ctx.restore();
+
+  let curY = contentTopY + (isLandscape ? 10 : 16);
+  const beforeHeaderH = isLandscape ? 30 : 34;
+  const bPillW = isLandscape ? 110 : 130;
+
+  ctx.save();
+  drawRoundRect(ctx, padX, curY, bPillW, beforeHeaderH, 8);
+  ctx.fillStyle = '#E11D48';
+  ctx.fill();
+  ctx.strokeStyle = '#FB7185';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 14px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE', padX + bPillW / 2, curY + beforeHeaderH / 2);
+
+  ctx.font = '900 22px "Outfit", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const beforeTitleText = post?.beforeTitle || 'TRADITIONAL MANUAL PROCESS';
+  const bTitleX = padX + bPillW + 14;
+  const bTitleY = curY + beforeHeaderH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(beforeTitleText, bTitleX, bTitleY, maxW - bPillW - 20);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillText(beforeTitleText, bTitleX, bTitleY, maxW - bPillW - 20);
+  ctx.restore();
+  curY += beforeHeaderH + (isLandscape ? 8 : 12);
+
+  beforeList.slice(0, isLandscape ? 2 : 3).forEach(bp => {
+    const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✕', iconBg: '#E11D48', iconBorder: '#FB7185',
+      text: cleanBp, curY, startX: padX, maxW, isLandscape, accentCol: '#FFFFFF'
+    });
+    curY += itemH + (isLandscape ? 8 : 12);
+  });
+
+  let afterCurY = centerY + riverW / 2 + (isLandscape ? 12 : 20);
+  const afterHeaderH = isLandscape ? 30 : 34;
+  const aPillW = isLandscape ? 110 : 130;
+
+  ctx.save();
+  drawRoundRect(ctx, padX, afterCurY, aPillW, afterHeaderH, 8);
+  ctx.fillStyle = '#008080';
+  ctx.fill();
+  ctx.strokeStyle = '#2DD4BF';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.font = '900 14px "Outfit", sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER', padX + aPillW / 2, afterCurY + afterHeaderH / 2);
+
+  ctx.font = '900 22px "Outfit", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const afterTitleText = post?.afterTitle || 'AUTONOMOUS AI ACCELERATION';
+  const aTitleX = padX + aPillW + 14;
+  const aTitleY = afterCurY + afterHeaderH / 2;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.lineWidth = 3.5;
+  ctx.strokeText(afterTitleText, aTitleX, aTitleY, maxW - aPillW - 20);
+  ctx.fillStyle = '#2DD4BF';
+  ctx.fillText(afterTitleText, aTitleX, aTitleY, maxW - aPillW - 20);
+  ctx.restore();
+  afterCurY += afterHeaderH + (isLandscape ? 8 : 12);
+
+  afterList.slice(0, isLandscape ? 2 : 3).forEach(ap => {
+    const cleanAp = String(ap).replace(/^[✓✔•\-\*]\s*/, '').trim();
+    const itemH = renderBeforeAfterPointItem({
+      ctx, iconText: '✓', iconBg: '#008080', iconBorder: '#2DD4BF',
+      text: cleanAp, curY: afterCurY, startX: padX, maxW, isLandscape, accentCol: '#FFFFFF'
+    });
+    afterCurY += itemH + (isLandscape ? 8 : 12);
   });
 }

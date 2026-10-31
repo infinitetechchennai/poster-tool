@@ -35,6 +35,285 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+  "common-26": {
+  "category": "knowledge",
+  "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+  "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+  "description": "Side-by-side vertical hourglass pinch curves dividing Left Before and Right After chambers.",
+  "beforeTitle": "BEFORE: MANUAL FRICTION",
+  "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+  "beforePoints": [
+    "Manual agency revisions take 2+ weeks per campaign",
+    "Inconsistent branding & fragmented messaging across channels",
+    "High recurring overhead with unpredictable ROI"
+  ],
+  "afterTitle": "AFTER: AI VELOCITY",
+  "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+  "afterPoints": [
+    "Instant 1-click multi-format vector synthesis",
+    "100% brand consistency & executive typography across all channels",
+    "10x marketing output with +280% higher engagement"
+  ],
+  "keyPoints": [
+    "Before: 14-day agency lag & high recurring fees",
+    "Before: Inconsistent branding & fragmented messaging",
+    "After: Instant 1-click multi-format vector synthesis",
+    "After: 10x marketing velocity & compounding ROI"
+  ],
+  "cta": "Start Your Transformation Today",
+  "badge": "VERTICAL HOURGLASS",
+  "phone": "+91 99765 63210",
+  "websiteUrl": "www.infinitetechai.com"
+},
+
+  "common-27": {
+  "category": "knowledge",
+  "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+  "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+  "description": "Dual parallel diagonal slashes forming a sleek dividing ribbon channel between Before and After.",
+  "beforeTitle": "BEFORE: MANUAL FRICTION",
+  "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+  "beforePoints": [
+    "Manual agency revisions take 2+ weeks per campaign",
+    "Inconsistent branding & fragmented messaging across channels",
+    "High recurring overhead with unpredictable ROI"
+  ],
+  "afterTitle": "AFTER: AI VELOCITY",
+  "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+  "afterPoints": [
+    "Instant 1-click multi-format vector synthesis",
+    "100% brand consistency & executive typography across all channels",
+    "10x marketing output with +280% higher engagement"
+  ],
+  "keyPoints": [
+    "Before: 14-day agency lag & high recurring fees",
+    "Before: Inconsistent branding & fragmented messaging",
+    "After: Instant 1-click multi-format vector synthesis",
+    "After: 10x marketing velocity & compounding ROI"
+  ],
+  "cta": "Start Your Transformation Today",
+  "badge": "DIAGONAL RIBBON",
+  "phone": "+91 99765 63210",
+  "websiteUrl": "www.infinitetechai.com"
+},
+
+  "common-28": {
+  "category": "knowledge",
+  "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+  "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+  "description": "Dynamic horizontal sawtooth chevron peaks dividing upper Before chamber and lower After chamber.",
+  "beforeTitle": "BEFORE: MANUAL FRICTION",
+  "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+  "beforePoints": [
+    "Manual agency revisions take 2+ weeks per campaign",
+    "Inconsistent branding & fragmented messaging across channels",
+    "High recurring overhead with unpredictable ROI"
+  ],
+  "afterTitle": "AFTER: AI VELOCITY",
+  "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+  "afterPoints": [
+    "Instant 1-click multi-format vector synthesis",
+    "100% brand consistency & executive typography across all channels",
+    "10x marketing output with +280% higher engagement"
+  ],
+  "keyPoints": [
+    "Before: 14-day agency lag & high recurring fees",
+    "Before: Inconsistent branding & fragmented messaging",
+    "After: Instant 1-click multi-format vector synthesis",
+    "After: 10x marketing velocity & compounding ROI"
+  ],
+  "cta": "Start Your Transformation Today",
+  "badge": "CHEVRON PEAKS",
+  "phone": "+91 99765 63210",
+  "websiteUrl": "www.infinitetechai.com"
+},
+
+  "common-29": {
+  "category": "knowledge",
+  "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+  "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+  "description": "Stippled dot matrix and particle dispersion horizon band softly dividing upper Before and lower After chambers.",
+  "beforeTitle": "BEFORE: MANUAL FRICTION",
+  "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+  "beforePoints": [
+    "Manual agency revisions take 2+ weeks per campaign",
+    "Inconsistent branding & fragmented messaging across channels",
+    "High recurring overhead with unpredictable ROI"
+  ],
+  "afterTitle": "AFTER: AI VELOCITY",
+  "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+  "afterPoints": [
+    "Instant 1-click multi-format vector synthesis",
+    "100% brand consistency & executive typography across all channels",
+    "10x marketing output with +280% higher engagement"
+  ],
+  "keyPoints": [
+    "Before: 14-day agency lag & high recurring fees",
+    "Before: Inconsistent branding & fragmented messaging",
+    "After: Instant 1-click multi-format vector synthesis",
+    "After: 10x marketing velocity & compounding ROI"
+  ],
+  "cta": "Start Your Transformation Today",
+  "badge": "PARTICLE HORIZON",
+  "phone": "+91 99765 63210",
+  "websiteUrl": "www.infinitetechai.com"
+},
+
+  "common-30": {
+  "category": "knowledge",
+  "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+  "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+  "description": "Dual parallel horizontal undulating wave curves forming an organic river ribbon separating Before and After.",
+  "beforeTitle": "BEFORE: MANUAL FRICTION",
+  "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+  "beforePoints": [
+    "Manual agency revisions take 2+ weeks per campaign",
+    "Inconsistent branding & fragmented messaging across channels",
+    "High recurring overhead with unpredictable ROI"
+  ],
+  "afterTitle": "AFTER: AI VELOCITY",
+  "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+  "afterPoints": [
+    "Instant 1-click multi-format vector synthesis",
+    "100% brand consistency & executive typography across all channels",
+    "10x marketing output with +280% higher engagement"
+  ],
+  "keyPoints": [
+    "Before: 14-day agency lag & high recurring fees",
+    "Before: Inconsistent branding & fragmented messaging",
+    "After: Instant 1-click multi-format vector synthesis",
+    "After: 10x marketing velocity & compounding ROI"
+  ],
+  "cta": "Start Your Transformation Today",
+  "badge": "DUAL WAVE RIVER",
+  "phone": "+91 99765 63210",
+  "websiteUrl": "www.infinitetechai.com"
+},
+
+
   "hiring-02": {
     "category": "hiring",
     "headline": "Full Stack Engineer (React & Node.js)",
@@ -62,6 +341,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Send Resume — Easy Apply",
     "badge": "CAREERS",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -97,6 +500,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "hiring-04": {
     "category": "hiring",
     "headline": "Creative UI/UX Designer & Art Director",
@@ -123,6 +650,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Submit Your Portfolio",
     "badge": "DESIGN TEAM",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -158,6 +809,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "hiring-06": {
     "category": "hiring",
     "headline": "CURRENT OPENINGS: Engineering & Product",
@@ -189,6 +964,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "hiring-07": {
     "category": "hiring",
     "headline": "Engineering Manager & Tech Leadership",
@@ -215,6 +1114,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Connect With Founders →",
     "badge": "LEADERSHIP",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -250,6 +1273,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "hiring-09": {
     "category": "hiring",
     "headline": "100% Remote: Senior Backend Engineer",
@@ -281,6 +1428,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "hiring-10": {
     "category": "hiring",
     "headline": "we are HIRING: Sales Team Lead",
@@ -308,6 +1579,290 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Apply Now — Sales Lead",
     "badge": "HIRING ALERT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "hiring-11": {
+    "category": "hiring",
+    "headline": "WE ARE HIRING: Senior Full-Stack AI Engineer",
+    "role": "Senior Full-Stack AI Engineer",
+    "tagline": "Build mission-critical AI systems, distributed platforms, and real-time inference tools.",
+    "description": "Join InfiniteTech AI in our Bengaluru innovation hub to build autonomous generative AI workflows and high-concurrency client solutions.",
+    "experience": "3 - 5 Years",
+    "location": "Bengaluru / Hybrid",
+    "salary": "₹18 - 28 LPA + Equity",
+    "qualification": "B.Tech / M.Tech in CS / AI",
+    "industry": "Artificial Intelligence & Cloud",
+    "employmentType": "Full-Time",
+    "techStack": [
+      "React 19",
+      "Python / FastAPI",
+      "PyTorch",
+      "Docker / K8s",
+      "PostgreSQL",
+      "Tailwind"
+    ],
+    "keyPoints": [
+      "Architect and ship scalable multi-agent AI systems",
+      "Lead technical design, code reviews, and system resilience",
+      "Collaborate directly with executive teams and enterprise clients",
+      "Comprehensive medical coverage, stock options & annual bonuses"
+    ],
+    "cta": "Apply Now — Instant Screening",
+    "badge": "TECH TALENT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "hiring-12": {
+    "category": "hiring",
+    "headline": "CAREER OPPORTUNITY: Lead Cloud & DevOps Architect",
+    "role": "Lead Cloud & DevOps Architect",
+    "tagline": "Architect enterprise multi-cloud resilience, Kubernetes clusters, and zero-trust security.",
+    "description": "We are seeking a seasoned DevOps Architect to spearhead high-availability cloud migration and developer platform engineering.",
+    "experience": "4 - 7 Years",
+    "location": "Bengaluru / Remote",
+    "salary": "₹24 - 35 LPA + Benefits",
+    "qualification": "Graduate / Engineering Degree",
+    "industry": "Cloud Platforms & SRE",
+    "employmentType": "Full-Time",
+    "techStack": [
+      "AWS / GCP",
+      "Kubernetes",
+      "Terraform",
+      "Helm / CI-CD",
+      "Prometheus",
+      "Linux / Bash"
+    ],
+    "keyPoints": [
+      "Design 99.99% SLA multi-region cloud architectures",
+      "Automate sub-minute container deployments with GitOps",
+      "Enforce enterprise zero-trust security & compliance",
+      "Relocation support, wellness stipend & flexible hours"
+    ],
+    "cta": "Schedule Technical Interview",
+    "badge": "EXPANDING TEAM",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "hiring-13": {
+    "category": "hiring",
+    "headline": "JOIN THE TEAM: Senior Machine Learning Engineer",
+    "role": "Senior Machine Learning Engineer",
+    "tagline": "Pioneer large language model fine-tuning, multi-modal embeddings, and vector synthesis.",
+    "description": "InfiniteTech AI is hiring an elite ML Engineer to train domain-adapted models and deploy real-time high-throughput inference.",
+    "experience": "3 - 6 Years",
+    "location": "Bengaluru Innovation Lab",
+    "salary": "₹22 - 32 LPA + Grants",
+    "qualification": "M.S / B.Tech in CS / Data Science",
+    "industry": "Deep Learning & Generative AI",
+    "employmentType": "Full-Time",
+    "techStack": [
+      "PyTorch",
+      "vLLM / TensorRT",
+      "Transformers",
+      "Qdrant / Milvus",
+      "Ray Train",
+      "CUDA"
+    ],
+    "keyPoints": [
+      "Fine-tune cutting-edge open weights foundation models",
+      "Optimize low-latency GPU inference serving pipelines",
+      "Develop proprietary evaluation and safety guardrails",
+      "Annual education grant, high-end GPU workstations"
+    ],
+    "cta": "Submit Your Resume Today",
+    "badge": "AI & INNOVATION",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "hiring-14": {
+    "category": "hiring",
+    "headline": "WE ARE HIRING: Product UX & Visual Design Lead",
+    "role": "Product UX & Visual Design Lead",
+    "tagline": "Shape next-generation AI interfaces, creative typography, and interactive canvas studios.",
+    "description": "Looking for a visionary Product Designer who marries pixel-perfect craft with cognitive simplicity and high-converting aesthetic.",
+    "experience": "3 - 5 Years",
+    "location": "Bengaluru / Hybrid",
+    "salary": "₹16 - 24 LPA + Stock",
+    "qualification": "Design Degree / Proven Portfolio",
+    "industry": "Product Design & SaaS",
+    "employmentType": "Full-Time",
+    "techStack": [
+      "Figma",
+      "Design Systems",
+      "Canvas / Vector",
+      "Motion & Micro-UX",
+      "Prototyping",
+      "User Research"
+    ],
+    "keyPoints": [
+      "Own end-to-end design for generative canvas applications",
+      "Build and document an executive enterprise design system",
+      "Conduct rapid interactive user research and usability tests",
+      "Latest Apple M-series hardware and creative tool stipend"
+    ],
+    "cta": "Apply Now with Portfolio",
+    "badge": "CREATIVE TALENT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "hiring-15": {
+    "category": "hiring",
+    "headline": "NOW RECRUITING: Technical Product Manager (AI Platforms)",
+    "role": "Technical Product Manager",
+    "tagline": "Translate customer breakthroughs into enterprise-grade AI software roadmap and delivery.",
+    "description": "Lead cross-functional engineering, design, and GTM teams to launch scalable autonomous AI applications worldwide.",
+    "experience": "4 - 7 Years",
+    "location": "Bengaluru / Hybrid",
+    "salary": "₹20 - 30 LPA + Bonus",
+    "qualification": "B.Tech + MBA Preferred",
+    "industry": "Enterprise Product Management",
+    "employmentType": "Full-Time",
+    "techStack": [
+      "Product Strategy",
+      "Agile / Scrum",
+      "AI / LLM Metrics",
+      "SQL / Telemetry",
+      "User Interviews",
+      "Roadmapping"
+    ],
+    "keyPoints": [
+      "Define multi-quarter product vision and measurable OKRs",
+      "Ship high-impact features with sub-weekly iteration loops",
+      "Partner with Fortune 500 customers to validate workflows",
+      "Comprehensive healthcare, performance bonuses & equity"
+    ],
+    "cta": "Apply Now — Fast-Track Review",
+    "badge": "LEADERSHIP ROLE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -347,6 +1902,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "product-02": {
     "category": "product",
     "headline": "AI Recommendations Matter More.",
@@ -374,6 +2053,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Optimize For AI Search Now",
     "badge": "NEW RELEASE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -409,6 +2212,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "product-04": {
     "category": "product",
     "headline": "SkyPro AI Voice Calling Device",
@@ -436,6 +2363,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Pre-Order Hardware Pedestal",
     "badge": "HARDWARE & AI",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -471,6 +2522,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "product-06": {
     "category": "product",
     "headline": "Your Workstation Just Got A Brain",
@@ -498,6 +2673,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Download Copilot Workstation",
     "badge": "AI WORKSTATION",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -533,6 +2832,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "product-08": {
     "category": "product",
     "headline": "Innovation Begins With One Touch",
@@ -560,6 +2983,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Discover The Technology",
     "badge": "CORE ROBOTICS",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -595,6 +3142,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "product-10": {
     "category": "product",
     "headline": "Simplicity Is The Ultimate Sophistication",
@@ -626,6 +3297,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "festival-01": {
     "category": "festival",
     "headline": "Happy Diwali! Festival of Lights",
@@ -639,6 +3434,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Send Festive Greetings →",
     "badge": "DIWALI SPECIAL",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -660,6 +3579,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "festival-03": {
     "category": "festival",
     "headline": "Eid Mubarak! Peace, Harmony & Joy",
@@ -673,6 +3716,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Share Eid Blessings",
     "badge": "EID MUBARAK",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -694,6 +3861,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "festival-05": {
     "category": "festival",
     "headline": "MEGA FESTIVE SALE: Flat 50% Off Everything",
@@ -707,6 +3998,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Claim 50% Festive Discount →",
     "badge": "MEGA SALE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -728,6 +4143,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "festival-07": {
     "category": "festival",
     "headline": "Happy Holi! Celebrate The Colors of Innovation",
@@ -741,6 +4280,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Celebrate With Colors",
     "badge": "HOLI COLORS",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -762,6 +4425,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "festival-09": {
     "category": "festival",
     "headline": "Grateful For Our Community & Partners",
@@ -779,6 +4566,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "festival-10": {
     "category": "festival",
     "headline": "Celebrating 5 Years of Excellence & Growth",
@@ -792,6 +4703,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Celebrate The Milestone",
     "badge": "ANNIVERSARY 5TH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -814,6 +4849,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-02": {
     "category": "knowledge",
     "headline": "YOUR WEBSITE SHOULD DO MORE THAN LOOK GOOD",
@@ -831,6 +4990,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-03": {
     "category": "knowledge",
     "headline": "Fast Execution Beats Perfect Planning",
@@ -843,6 +5126,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Read The Full Essay",
     "badge": "LEADERSHIP INSIGHT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -864,6 +5271,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-05": {
     "category": "knowledge",
     "headline": "2027 Tech & AI Industry Trends Report",
@@ -876,6 +5407,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Download The Complete Report",
     "badge": "TREND REPORT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -893,6 +5548,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Upgrade Your Workflow Today",
     "badge": "COMPARISON",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -915,6 +5694,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-08": {
     "category": "knowledge",
     "headline": "Did You Know? Visuals Outperform Plain Text 6x",
@@ -927,6 +5830,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Start Posting Visual Cards",
     "badge": "DID YOU KNOW?",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -948,6 +5975,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-10": {
     "category": "knowledge",
     "headline": "How CloudFlow Grew MRR by 240% in 90 Days",
@@ -960,6 +6111,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Read The Full Case Study",
     "badge": "CLIENT SUCCESS",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -980,6 +6255,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-12": {
     "category": "knowledge",
     "headline": "Weekly Tech Pulse: Edition #48",
@@ -996,6 +6395,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-13": {
     "category": "knowledge",
     "headline": "The 3 Pillars of Scalable SaaS Growth",
@@ -1008,6 +6531,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Download The Growth Framework",
     "badge": "GROWTH PLAYBOOK",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -1029,6 +6676,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-15": {
     "category": "knowledge",
     "headline": "Podcast Episode 42: The Future of Autonomous Coding",
@@ -1041,6 +6812,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Listen Now on Spotify & Apple",
     "badge": "PODCAST SPOTLIGHT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -1061,6 +6956,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-17": {
     "category": "knowledge",
     "headline": "SIMPLICITY IS THE ULTIMATE SPEED",
@@ -1073,6 +7092,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Share If You Agree",
     "badge": "EDITORIAL STATEMENT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -1094,6 +7237,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-19": {
     "category": "knowledge",
     "headline": "The Power of Automated Transformation",
@@ -1111,6 +7378,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     "websiteUrl": "www.infinitetechai.com"
   },
 
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
   "common-20": {
     "category": "knowledge",
     "headline": "Our Mission: Empowering Creators Everywhere",
@@ -1123,6 +7514,130 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Join The InfiniteTech Mission",
     "badge": "COMPANY MANIFESTO",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
@@ -1152,6 +7667,254 @@ export const TEMPLATE_DEFAULT_CONTENT = {
     ],
     "cta": "Start Your Transformation Today",
     "badge": "BEFORE & AFTER",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding & fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency & executive typography across all channels",
+      "10x marketing output with +280% higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag & high recurring fees",
+      "Before: Inconsistent branding & fragmented messaging",
+      "After: Instant 1-click multi-format vector synthesis",
+      "After: 10x marketing velocity & compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+    "common-22": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "50/50 side-by-side comparison contrasting manual friction with automated intelligence.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding and fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency across all channels",
+      "10x marketing output with higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag and high fees",
+      "Before: Inconsistent branding across channels",
+      "After: Instant 1-click multi-format synthesis",
+      "After: 10x marketing velocity and compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "VERTICAL SPLIT",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-23": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Diagonal slash contrast with central focal badge contrasting manual and automated workflows.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding and fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency across all channels",
+      "10x marketing output with higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag and high fees",
+      "Before: Inconsistent branding across channels",
+      "After: Instant 1-click multi-format synthesis",
+      "After: 10x marketing velocity and compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "DIAGONAL SLASH",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-24": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Fluid S-wave transformation separating traditional friction from modern AI acceleration.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding and fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency across all channels",
+      "10x marketing output with higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag and high fees",
+      "Before: Inconsistent branding across channels",
+      "After: Instant 1-click multi-format synthesis",
+      "After: 10x marketing velocity and compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "FLUID S-WAVE",
+    "phone": "+91 99765 63210",
+    "websiteUrl": "www.infinitetechai.com"
+  },
+
+  "common-25": {
+    "category": "knowledge",
+    "headline": "THE TRANSFORMATION: BEFORE VS AFTER",
+    "tagline": "How modern teams replace 14-day creative lag with sub-second AI velocity.",
+    "description": "Architectural Y-split transformation with prominent top headline and dual Before/After chambers.",
+    "beforeTitle": "BEFORE: MANUAL FRICTION",
+    "beforeImage": "/images_ai/software%20development/pexels-ketut-subiyanto-4623179.jpg",
+    "beforePoints": [
+      "Manual agency revisions take 2+ weeks per campaign",
+      "Inconsistent branding and fragmented messaging across channels",
+      "High recurring overhead with unpredictable ROI"
+    ],
+    "afterTitle": "AFTER: AI VELOCITY",
+    "afterImage": "/images_ai/AI_ML/pexels-googledeepmind-17484975.jpg",
+    "afterPoints": [
+      "Instant 1-click multi-format vector synthesis",
+      "100% brand consistency across all channels",
+      "10x marketing output with higher engagement"
+    ],
+    "keyPoints": [
+      "Before: 14-day agency lag and high fees",
+      "Before: Inconsistent branding across channels",
+      "After: Instant 1-click multi-format synthesis",
+      "After: 10x marketing velocity and compounding ROI"
+    ],
+    "cta": "Start Your Transformation Today",
+    "badge": "Y-SPLIT MATRIX",
     "phone": "+91 99765 63210",
     "websiteUrl": "www.infinitetechai.com"
   },
