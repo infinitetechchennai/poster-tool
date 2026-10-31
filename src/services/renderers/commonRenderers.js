@@ -1669,9 +1669,10 @@ async function renderCommonVisionManifesto({
  * Based on User Wireframe Sketch:
  * - Upper curve dips down to center point (width / 2, centerY)
  * - Lower curve arches up to center point (width / 2, centerY)
- * - Upper zone: "BEFORE" section with pain points, crimson/rose accents, and warning badges
- * - Lower zone: "AFTER" section with AI breakthrough outcomes, teal/cyan accents, and victory badges
+ * - Upper zone ("the before place"): Holds all BEFORE content (prominent "BEFORE" header, description, and pain points)
+ * - Lower zone ("the after place"): Holds all AFTER content (prominent "AFTER" header, description, and breakthrough points)
  * - Central intersection: ⚡ VS • TRANSFORMATION ⚡ floating focal badge
+ * - Complete clearance: Curve lines never intersect or cut through any cards!
  * - Supports frosted glass transparency when hasBg = true, and crisp light cards when hasBg = false
  */
 async function renderCommonBeforeAfter({
@@ -1693,27 +1694,26 @@ async function renderCommonBeforeAfter({
   const totalContentH = footerY - contentTopY;
 
   // Exact vertical center meeting junction
-  const centerY = Math.round(contentTopY + totalContentH * 0.49);
-  const upperDip = Math.round(totalContentH * (isLandscape ? 0.26 : 0.23));
-  const topEdgeY = centerY - upperDip;
-  const bottomRise = Math.round(totalContentH * (isLandscape ? 0.36 : 0.34));
-  const bottomEdgeY = centerY + bottomRise;
+  const centerY = Math.round(contentTopY + totalContentH * (isLandscape ? 0.48 : 0.49));
+  const curveDip = Math.round(totalContentH * (isLandscape ? 0.075 : 0.082)); // ~90px in portrait, ~36px in landscape
+  const topEdgeY = centerY - curveDip;
+  const bottomEdgeY = centerY + curveDip;
 
-  // 1. Draw Upper Curved Container Fill (Zone: Above Upper Curve)
+  // 1. Draw Upper Curved Container Fill (Zone: Above Upper Curve - "The Before Place")
   ctx.save();
   ctx.beginPath();
   ctx.moveTo(0, contentTopY);
   ctx.lineTo(width, contentTopY);
   ctx.lineTo(width, topEdgeY);
   for (let x = width; x >= 0; x -= 8) {
-    const y = topEdgeY + (centerY - topEdgeY) * Math.sin((x / width) * Math.PI);
+    const y = topEdgeY + curveDip * Math.sin((x / width) * Math.PI);
     ctx.lineTo(x, y);
   }
   ctx.closePath();
   if (hasBg) {
     const grad = ctx.createLinearGradient(0, contentTopY, 0, centerY);
-    grad.addColorStop(0, 'rgba(15, 23, 42, 0.68)');
-    grad.addColorStop(1, 'rgba(30, 41, 59, 0.45)');
+    grad.addColorStop(0, 'rgba(15, 23, 42, 0.65)');
+    grad.addColorStop(1, 'rgba(30, 41, 59, 0.40)');
     ctx.fillStyle = grad;
   } else {
     const grad = ctx.createLinearGradient(0, contentTopY, 0, centerY);
@@ -1727,20 +1727,20 @@ async function renderCommonBeforeAfter({
   ctx.beginPath();
   ctx.moveTo(0, topEdgeY);
   for (let x = 0; x <= width; x += 8) {
-    const y = topEdgeY + (centerY - topEdgeY) * Math.sin((x / width) * Math.PI);
+    const y = topEdgeY + curveDip * Math.sin((x / width) * Math.PI);
     ctx.lineTo(x, y);
   }
-  ctx.strokeStyle = hasBg ? 'rgba(251, 113, 133, 0.65)' : 'rgba(225, 29, 72, 0.35)';
+  ctx.strokeStyle = hasBg ? 'rgba(251, 113, 133, 0.75)' : 'rgba(225, 29, 72, 0.40)';
   ctx.lineWidth = 3;
   ctx.stroke();
   ctx.restore();
 
-  // 2. Draw Lower Curved Container Fill (Zone: Below Lower Curve)
+  // 2. Draw Lower Curved Container Fill (Zone: Below Lower Curve - "The After Place")
   ctx.save();
   ctx.beginPath();
   ctx.moveTo(0, bottomEdgeY);
   for (let x = 0; x <= width; x += 8) {
-    const y = bottomEdgeY - (bottomEdgeY - centerY) * Math.sin((x / width) * Math.PI);
+    const y = bottomEdgeY - curveDip * Math.sin((x / width) * Math.PI);
     ctx.lineTo(x, y);
   }
   ctx.lineTo(width, footerY);
@@ -1748,7 +1748,7 @@ async function renderCommonBeforeAfter({
   ctx.closePath();
   if (hasBg) {
     const grad = ctx.createLinearGradient(0, centerY, 0, footerY);
-    grad.addColorStop(0, 'rgba(13, 148, 136, 0.25)');
+    grad.addColorStop(0, 'rgba(13, 148, 136, 0.22)');
     grad.addColorStop(1, 'rgba(15, 23, 42, 0.72)');
     ctx.fillStyle = grad;
   } else {
@@ -1763,7 +1763,7 @@ async function renderCommonBeforeAfter({
   ctx.beginPath();
   ctx.moveTo(0, bottomEdgeY);
   for (let x = 0; x <= width; x += 8) {
-    const y = bottomEdgeY - (bottomEdgeY - centerY) * Math.sin((x / width) * Math.PI);
+    const y = bottomEdgeY - curveDip * Math.sin((x / width) * Math.PI);
     ctx.lineTo(x, y);
   }
   ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
@@ -1773,7 +1773,7 @@ async function renderCommonBeforeAfter({
 
   // 3. Central Junction Badge at (width / 2, centerY)
   const badgeW = isLandscape ? 170 : 210;
-  const badgeH = isLandscape ? 40 : 48;
+  const badgeH = isLandscape ? 38 : 44;
   const badgeX = (width - badgeW) / 2;
   const badgeY = centerY - badgeH / 2;
 
@@ -1783,8 +1783,8 @@ async function renderCommonBeforeAfter({
   badgeGrad.addColorStop(0, '#0F172A');
   badgeGrad.addColorStop(1, '#008080');
   ctx.fillStyle = badgeGrad;
-  ctx.shadowColor = 'rgba(45, 212, 191, 0.6)';
-  ctx.shadowBlur = 14;
+  ctx.shadowColor = 'rgba(45, 212, 191, 0.65)';
+  ctx.shadowBlur = 12;
   ctx.fill();
 
   ctx.strokeStyle = '#2DD4BF';
@@ -1792,7 +1792,7 @@ async function renderCommonBeforeAfter({
   ctx.stroke();
   ctx.shadowBlur = 0;
 
-  ctx.font = '900 16px "Outfit", sans-serif';
+  ctx.font = '900 15px "Outfit", sans-serif';
   ctx.fillStyle = '#FFFFFF';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -1821,8 +1821,8 @@ async function renderCommonBeforeAfter({
     const explicitAfter = rawList.filter(p => /^after\b/i.test(p.trim()));
 
     if (explicitBefore.length > 0 || explicitAfter.length > 0) {
-      beforeList = explicitBefore.map(p => p.replace(/^before\s*:\s*/i, '').trim());
-      afterList = explicitAfter.map(p => p.replace(/^after\s*:\s*/i, '').trim());
+      beforeList = explicitBefore.map(p => p.replace(/^before\s*(#\d+)?\s*:\s*/i, '').trim());
+      afterList = explicitAfter.map(p => p.replace(/^after\s*(#\d+)?\s*:\s*/i, '').trim());
     } else {
       const mid = Math.ceil(rawList.length / 2);
       beforeList = rawList.slice(0, mid);
@@ -1832,67 +1832,99 @@ async function renderCommonBeforeAfter({
 
   if (beforeList.length === 0) {
     beforeList = [
-      'Manual design cycles take 2+ weeks per campaign',
-      'Inconsistent branding across multiple channels'
+      'Manual agency revisions take 2+ weeks per campaign',
+      'Inconsistent branding & fragmented messaging across channels'
     ];
   }
   if (afterList.length === 0) {
     afterList = [
-      'Instant 1-click synced vector synthesis',
-      '10x marketing output with compounding ROI'
+      'Instant 1-click multi-format vector synthesis',
+      '100% brand consistency & compounding organic reach'
     ];
   }
 
-  // 5. Render UPPER SECTION ("BEFORE")
-  let curY = contentTopY + 12;
+  // 5. Render UPPER SECTION ("THE BEFORE PLACE")
+  let curY = contentTopY + (isLandscape ? 8 : 12);
 
-  // Upper Kicker Pill
-  const pillW = isLandscape ? 220 : 250;
-  const pillH = isLandscape ? 28 : 32;
-  ctx.save();
-  drawRoundRect(ctx, padX, curY, pillW, pillH, 8);
-  ctx.fillStyle = hasBg ? 'rgba(225, 29, 72, 0.25)' : 'rgba(225, 29, 72, 0.10)';
-  ctx.fill();
-  ctx.strokeStyle = hasBg ? '#FB7185' : '#E11D48';
-  ctx.lineWidth = 1.2;
-  ctx.stroke();
+  // Optional overarching topic banner if provided
+  if (headline && !headline.toLowerCase().includes('before') && !isLandscape) {
+    ctx.save();
+    const bannerH = 28;
+    drawRoundRect(ctx, padX, curY, maxW, bannerH, 8);
+    ctx.fillStyle = hasBg ? 'rgba(0, 0, 0, 0.40)' : 'rgba(0, 128, 128, 0.07)';
+    ctx.fill();
+    ctx.strokeStyle = hasBg ? 'rgba(45, 212, 191, 0.35)' : 'rgba(0, 128, 128, 0.20)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
 
-  ctx.font = '800 13px "Outfit", sans-serif';
-  ctx.fillStyle = hasBg ? '#FECDD3' : '#E11D48';
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('🔴 BEFORE: MANUAL FRICTION', padX + 14, curY + pillH / 2);
-  ctx.restore();
-  curY += pillH + 12;
-
-  // Headline in upper zone
-  const hlInfo = drawPosterHeadline(ctx, {
-    kicker: '',
-    headline: headline || 'THE CREATIVE PROCESS: BEFORE & AFTER',
-    x: padX,
-    y: curY,
-    maxW,
-    initialFs: isLandscape ? 40 : 54,
-    minFs: 30,
-    maxLines: 2,
-    isLandscape
-  });
-  curY = hlInfo.bottomY + 10;
-
-  // Tagline in upper zone
-  if (tagline && !isLandscape) {
-    curY = drawPosterTagline(ctx, tagline, padX, curY, maxW, 'left', 18);
-    curY += 12;
+    ctx.font = '800 12px "Outfit", sans-serif';
+    ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(`⚡ ${headline.toUpperCase()} ⚡`, width / 2, curY + bannerH / 2);
+    ctx.restore();
+    curY += bannerH + 12;
   }
 
-  // Render Before cards
+  // Prominent BEFORE Header Row
+  const beforeHeaderH = isLandscape ? 30 : 34;
+  ctx.save();
+  // Pill badge: 🔴 BEFORE
+  const bPillW = isLandscape ? 110 : 130;
+  drawRoundRect(ctx, padX, curY, bPillW, beforeHeaderH, 8);
+  ctx.fillStyle = hasBg ? 'rgba(225, 29, 72, 0.30)' : 'rgba(225, 29, 72, 0.12)';
+  ctx.fill();
+  ctx.strokeStyle = hasBg ? '#FB7185' : '#E11D48';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+
+  ctx.font = '900 14px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#FECDD3' : '#E11D48';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🔴 BEFORE', padX + bPillW / 2, curY + beforeHeaderH / 2);
+
+  // Before Title Text next to badge
+  ctx.font = '900 22px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#FFFFFF' : '#0F172A';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+    ctx.shadowBlur = 6;
+  }
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  const beforeTitleText = post?.beforeTitle || 'TRADITIONAL MANUAL PROCESS';
+  ctx.fillText(beforeTitleText, padX + bPillW + 14, curY + beforeHeaderH / 2, maxW - bPillW - 20);
+  ctx.restore();
+  curY += beforeHeaderH + (isLandscape ? 6 : 8);
+
+  // Before Subtitle / Description
+  ctx.save();
+  ctx.font = '600 14px "Plus Jakarta Sans", sans-serif';
+  ctx.fillStyle = hasBg ? '#CBD5E1' : '#64748B';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+    ctx.shadowBlur = 4;
+  }
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const beforeSub = post?.beforeDescription || tagline || 'Slow manual agency revisions, disjointed branding, and high recurring costs.';
+  const bLines = wrapText(ctx, beforeSub, maxW).slice(0, isLandscape ? 1 : 2);
+  bLines.forEach(l => {
+    ctx.fillText(l, padX, curY);
+    curY += 18;
+  });
+  ctx.restore();
+  curY += (isLandscape ? 8 : 12);
+
+  // Render Before cards (contained safely inside the Before zone above topEdgeY)
   const beforeCards = isLandscape ? beforeList.slice(0, 1) : beforeList.slice(0, 2);
-  const cardH = isLandscape ? 56 : 64;
+  const cardH = isLandscape ? 52 : 62;
 
   beforeCards.forEach(bp => {
     ctx.save();
-    drawRoundRect(ctx, padX, curY, maxW, cardH, 14);
-    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.65)' : 'rgba(255, 255, 255, 0.92)';
+    drawRoundRect(ctx, padX, curY, maxW, cardH, 12);
+    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.68)' : 'rgba(255, 255, 255, 0.94)';
     if (hasBg) {
       ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
       ctx.shadowBlur = 8;
@@ -1903,12 +1935,12 @@ async function renderCommonBeforeAfter({
     ctx.stroke();
     ctx.shadowBlur = 0;
 
-    // Cross / Warning icon bubble
-    const iconSize = 34;
+    // Cross Icon bubble
+    const iconSize = isLandscape ? 30 : 34;
     const iconX = padX + 14;
     const iconY = curY + (cardH - iconSize) / 2;
-    drawRoundRect(ctx, iconX, iconY, iconSize, iconSize, 10);
-    ctx.fillStyle = hasBg ? 'rgba(244, 63, 94, 0.25)' : 'rgba(244, 63, 94, 0.12)';
+    drawRoundRect(ctx, iconX, iconY, iconSize, iconSize, 9);
+    ctx.fillStyle = hasBg ? 'rgba(244, 63, 94, 0.28)' : 'rgba(244, 63, 94, 0.12)';
     ctx.fill();
     ctx.strokeStyle = hasBg ? '#FB7185' : '#F43F5E';
     ctx.lineWidth = 1.2;
@@ -1920,8 +1952,8 @@ async function renderCommonBeforeAfter({
     ctx.textBaseline = 'middle';
     ctx.fillText('✕', iconX + iconSize / 2, iconY + iconSize / 2);
 
-    // Text
-    ctx.font = '700 17px "Plus Jakarta Sans", sans-serif';
+    // Text with multi-line support
+    ctx.font = '700 16px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
     if (hasBg) {
       ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
@@ -1930,40 +1962,80 @@ async function renderCommonBeforeAfter({
     ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
     const cleanBp = String(bp).replace(/^[✕✗•\-\*]\s*/, '').trim();
-    ctx.fillText(cleanBp, padX + iconSize + 26, curY + cardH / 2, maxW - iconSize - 40);
+    const bpLines = wrapText(ctx, cleanBp, maxW - iconSize - 36).slice(0, 2);
+    if (bpLines.length === 1) {
+      ctx.fillText(bpLines[0], padX + iconSize + 24, curY + cardH / 2);
+    } else {
+      ctx.fillText(bpLines[0], padX + iconSize + 24, curY + cardH / 2 - 10);
+      ctx.fillText(bpLines[1], padX + iconSize + 24, curY + cardH / 2 + 10);
+    }
     ctx.restore();
 
-    curY += cardH + 10;
+    curY += cardH + (isLandscape ? 8 : 10);
   });
 
-  // 6. Render LOWER SECTION ("AFTER")
-  let afterCurY = centerY + (isLandscape ? 28 : 34);
+  // 6. Render LOWER SECTION ("THE AFTER PLACE")
+  // Starts comfortably below the lower curve boundary
+  let afterCurY = bottomEdgeY + (isLandscape ? 10 : 16);
 
-  // Lower Kicker Pill
-  const afterPillW = isLandscape ? 220 : 250;
-  const afterPillH = isLandscape ? 28 : 32;
+  // Prominent AFTER Header Row
+  const afterHeaderH = isLandscape ? 30 : 34;
   ctx.save();
-  drawRoundRect(ctx, padX, afterCurY, afterPillW, afterPillH, 8);
-  ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.30)' : 'rgba(0, 128, 128, 0.10)';
+  // Pill badge: 🟢 AFTER
+  const aPillW = isLandscape ? 110 : 130;
+  drawRoundRect(ctx, padX, afterCurY, aPillW, afterHeaderH, 8);
+  ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.35)' : 'rgba(0, 128, 128, 0.14)';
   ctx.fill();
   ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
-  ctx.lineWidth = 1.2;
+  ctx.lineWidth = 1.4;
   ctx.stroke();
 
-  ctx.font = '800 13px "Outfit", sans-serif';
+  ctx.font = '900 14px "Outfit", sans-serif';
   ctx.fillStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🟢 AFTER', padX + aPillW / 2, afterCurY + afterHeaderH / 2);
+
+  // After Title Text next to badge
+  ctx.font = '900 22px "Outfit", sans-serif';
+  ctx.fillStyle = hasBg ? '#2DD4BF' : '#008080';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+    ctx.shadowBlur = 6;
+  }
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-  ctx.fillText('🟢 AFTER: AI VELOCITY', padX + 14, afterCurY + afterPillH / 2);
+  const afterTitleText = post?.afterTitle || 'AUTONOMOUS AI ACCELERATION';
+  ctx.fillText(afterTitleText, padX + aPillW + 14, afterCurY + afterHeaderH / 2, maxW - aPillW - 20);
   ctx.restore();
-  afterCurY += afterPillH + 12;
+  afterCurY += afterHeaderH + (isLandscape ? 6 : 8);
 
-  // After Cards
+  // After Subtitle / Description
+  ctx.save();
+  ctx.font = '600 14px "Plus Jakarta Sans", sans-serif';
+  ctx.fillStyle = hasBg ? '#E2E8F0' : '#475569';
+  if (hasBg) {
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+    ctx.shadowBlur = 4;
+  }
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const afterSub = post?.afterDescription || 'Sub-second 1-click vector synthesis, 100% brand consistency & compounding ROI.';
+  const aLines = wrapText(ctx, afterSub, maxW).slice(0, isLandscape ? 1 : 2);
+  aLines.forEach(l => {
+    ctx.fillText(l, padX, afterCurY);
+    afterCurY += 18;
+  });
+  ctx.restore();
+  afterCurY += (isLandscape ? 8 : 12);
+
+  // Render After cards (contained safely inside the After zone below bottomEdgeY)
   const afterCards = isLandscape ? afterList.slice(0, 2) : afterList.slice(0, 3);
+
   afterCards.forEach(ap => {
     ctx.save();
-    drawRoundRect(ctx, padX, afterCurY, maxW, cardH, 14);
-    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.65)' : 'rgba(255, 255, 255, 0.92)';
+    drawRoundRect(ctx, padX, afterCurY, maxW, cardH, 12);
+    ctx.fillStyle = hasBg ? 'rgba(15, 23, 42, 0.68)' : 'rgba(255, 255, 255, 0.94)';
     if (hasBg) {
       ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
       ctx.shadowBlur = 8;
@@ -1974,12 +2046,12 @@ async function renderCommonBeforeAfter({
     ctx.stroke();
     ctx.shadowBlur = 0;
 
-    // Checkmark / Zap icon bubble
-    const iconSize = 34;
+    // Checkmark Icon bubble
+    const iconSize = isLandscape ? 30 : 34;
     const iconX = padX + 14;
     const iconY = afterCurY + (cardH - iconSize) / 2;
-    drawRoundRect(ctx, iconX, iconY, iconSize, iconSize, 10);
-    ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.35)' : 'rgba(0, 128, 128, 0.12)';
+    drawRoundRect(ctx, iconX, iconY, iconSize, iconSize, 9);
+    ctx.fillStyle = hasBg ? 'rgba(0, 128, 128, 0.38)' : 'rgba(0, 128, 128, 0.14)';
     ctx.fill();
     ctx.strokeStyle = hasBg ? '#2DD4BF' : TEAL_PRIMARY;
     ctx.lineWidth = 1.2;
@@ -1991,8 +2063,8 @@ async function renderCommonBeforeAfter({
     ctx.textBaseline = 'middle';
     ctx.fillText('✓', iconX + iconSize / 2, iconY + iconSize / 2);
 
-    // Text
-    ctx.font = '700 17px "Plus Jakarta Sans", sans-serif';
+    // Text with multi-line support
+    ctx.font = '700 16px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = hasBg ? '#FFFFFF' : TEXT_DARK;
     if (hasBg) {
       ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
@@ -2001,9 +2073,15 @@ async function renderCommonBeforeAfter({
     ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
     const cleanAp = String(ap).replace(/^[✓•\-\*]\s*/, '').trim();
-    ctx.fillText(cleanAp, padX + iconSize + 26, afterCurY + cardH / 2, maxW - iconSize - 40);
+    const apLines = wrapText(ctx, cleanAp, maxW - iconSize - 36).slice(0, 2);
+    if (apLines.length === 1) {
+      ctx.fillText(apLines[0], padX + iconSize + 24, afterCurY + cardH / 2);
+    } else {
+      ctx.fillText(apLines[0], padX + iconSize + 24, afterCurY + cardH / 2 - 10);
+      ctx.fillText(apLines[1], padX + iconSize + 24, afterCurY + cardH / 2 + 10);
+    }
     ctx.restore();
 
-    afterCurY += cardH + 12;
+    afterCurY += cardH + (isLandscape ? 8 : 10);
   });
 }

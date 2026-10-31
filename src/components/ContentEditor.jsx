@@ -155,6 +155,7 @@ export default function ContentEditor({
   const isProduct = !isHiring && Boolean(styleId?.startsWith('product-') || selectedCategory === 'product' || post?.category === 'product');
   const isFestival = !isHiring && !isProduct && Boolean(styleId?.startsWith('festival-') || selectedCategory === 'festival' || post?.category === 'festival');
   const isCommon = !isHiring && !isProduct && !isFestival;
+  const isBeforeAfter = Boolean(styleId === 'common-21' || styleId?.includes('before-after'));
   const isRoadmap = false;
   const isEducation = false;
   const isService = false;
@@ -1384,7 +1385,7 @@ export default function ContentEditor({
               <div className="flex items-center justify-between mb-1.5">
                 <div className="flex items-center gap-2">
                   <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                    Key Points (Supporting Section)
+                    {isBeforeAfter ? 'Before & After Transformation Points' : 'Key Points (Supporting Section)'}
                   </label>
                   <button
                     type="button"
@@ -1399,7 +1400,7 @@ export default function ContentEditor({
                 {(post.keyPoints || []).length < 4 && (
                   <button
                     type="button"
-                    onClick={() => handleAddKeyPoint('New key supporting takeaway')}
+                    onClick={() => handleAddKeyPoint(isBeforeAfter ? 'New transformation takeaway' : 'New key supporting takeaway')}
                     className="text-xs text-teal-700 hover:text-teal-800 font-semibold flex items-center gap-1"
                   >
                     <Plus className="w-3.5 h-3.5" />
@@ -1408,30 +1409,44 @@ export default function ContentEditor({
                 )}
               </div>
               <div className="space-y-2">
-                {(post.keyPoints || []).map((pt, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5">
-                    <span className="w-6 h-6 rounded-lg bg-teal-50 border border-teal-200/60 text-teal-800 flex items-center justify-center text-xs font-bold shrink-0 mt-1">
-                      {idx + 1}
-                    </span>
-                    <textarea
-                      rows={2}
-                      value={pt}
-                      onChange={(e) => handleKeyPointChange(idx, e.target.value)}
-                      className="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-slate-800 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 leading-snug resize-none font-medium bg-slate-50/40 focus:bg-white transition-colors"
-                      placeholder="Key supporting point..."
-                    />
-                    {(post.keyPoints || []).length > 1 && (
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveKeyPoint(idx)}
-                        className="p-2 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-colors mt-1"
-                        title="Remove point"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    )}
-                  </div>
-                ))}
+                {(post.keyPoints || []).map((pt, idx) => {
+                  const isBeforePoint = isBeforeAfter && idx < 2;
+                  const isAfterPoint = isBeforeAfter && idx >= 2;
+                  return (
+                    <div key={idx} className="flex items-start gap-2.5">
+                      {isBeforePoint ? (
+                        <span className="px-2 py-1 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 flex items-center justify-center text-[10px] font-bold shrink-0 mt-1 whitespace-nowrap">
+                          🔴 Before #{idx + 1}
+                        </span>
+                      ) : isAfterPoint ? (
+                        <span className="px-2 py-1 rounded-lg bg-teal-50 border border-teal-200 text-teal-800 flex items-center justify-center text-[10px] font-bold shrink-0 mt-1 whitespace-nowrap">
+                          🟢 After #{idx - 1}
+                        </span>
+                      ) : (
+                        <span className="w-6 h-6 rounded-lg bg-teal-50 border border-teal-200/60 text-teal-800 flex items-center justify-center text-xs font-bold shrink-0 mt-1">
+                          {idx + 1}
+                        </span>
+                      )}
+                      <textarea
+                        rows={2}
+                        value={pt}
+                        onChange={(e) => handleKeyPointChange(idx, e.target.value)}
+                        className="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-slate-800 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 leading-snug resize-none font-medium bg-slate-50/40 focus:bg-white transition-colors"
+                        placeholder={isBeforePoint ? "Before problem / friction point..." : isAfterPoint ? "After outcome / AI breakthrough..." : "Key supporting point..."}
+                      />
+                      {(post.keyPoints || []).length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveKeyPoint(idx)}
+                          className="p-2 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-colors mt-1"
+                          title="Remove point"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
